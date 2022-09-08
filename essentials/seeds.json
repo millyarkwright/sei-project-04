@@ -1,0 +1,18 @@
+[
+{
+  "model": "essentials.essential",
+  "pk": 1,
+  "fields": {
+    "name": "Lavender",
+    "latin_name": "Lavendula angustifolia",
+    "key_actions": 4,
+    "method_of_extraction": "Steam distilled from the flowers and leaves.",
+    "description_short": "Cleansing and refreshing, this is soothing for the skin and mind.",
+    "description_long": "A versatile and popular essential oil, lavender is a calming fragrance and is particularly renown for its ability to relax and promote restful sleep. Its rejuvenating and soothing effects make it an effective skin treatment and a good skin healer.",
+    "the_essential_oil": "Colourless or pale yellow, lavender oil has a floral, slightly hard, sweet aroma. Some oils have synthetic compounds. Check the label for the name Lavendula angustifolia.",
+    "the_plant": "Lavendula angustifolia is commonly used for essential oils. Lavandin or spike lavender is a hybrid with medicinal aroma and antiseptic and tonic properties.",
+    "safe_usage": "Non-toxic and non-irritant. Can be used neat on small areas.",
+    "image": "lavender.com"
+  }
+}
+]

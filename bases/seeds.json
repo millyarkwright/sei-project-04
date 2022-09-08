@@ -1,0 +1,35 @@
+[
+{
+  "model": "bases.baseoil",
+  "pk": 1,
+  "fields": {
+    "name": "Argan",
+    "latin_name": "Argania spinosa",
+    "description": "Argan oil comes from a tree found growing only in Morocco. With high levels of antioxidant vitamin E and essential fatty acids, it's soothing for all skin types, and for hair and nails. It is moisturising and protective against environmental factors, such as weather and pollutants.",
+    "the_base_oil": "The kernels of the Moroccan argan fruit produce the rich, skin nourishing, golden-yellow argan oil. Argan oil has a characteristic nutty aroma.",
+    "safe_usage": ""
+  }
+},
+{
+  "model": "bases.baseoil",
+  "pk": 2,
+  "fields": {
+    "name": "Canola",
+    "latin_name": "Brassica napus",
+    "description": "Also known as rapeseed oil, canola has the benefits of being widely available, relatively inexpensive, and effective on dry, sensitive, or mature skin. However, it's often genetically modified and highly processed so choose organic brands.",
+    "the_base_oil": "After harvesting the seeds are crushed for the oil. This golden oil is virtually odourless so works well in aromatherapy blends.",
+    "safe_usage": "Ideally, choose organic oil to avoid possible pesticide residues that can be present in some genetically modified organisms (GMOs)."
+  }
+},
+{
+  "model": "bases.baseoil",
+  "pk": 3,
+  "fields": {
+    "name": "Shea nut butter",
+    "latin_name": "Butyrospermum parkii",
+    "description": "Extracted from the nuts of African karite trees, shea butter has a long history in cooking, but has more recently found its way into cosmetic formulations where its thick, waxy texture acts like an emulsifier and provides skin-enriching properties.",
+    "the_base_oil": "Shea nut butter ranges from bright yellow in its raw state to white. The oil has a nutty, sweet aroma, the more refined it is.",
+    "safe_usage": ""
+  }
+}
+]

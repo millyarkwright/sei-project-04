@@ -1,0 +1,11 @@
+[
+{
+  "model": "bo_benefits.bobenefit",
+  "pk": 1,
+  "fields": {
+    "title": "Makes an all-round moisturiser",
+    "description": "A non-greasy, dry oil that can be used under make-up during the day and the skin repair at night, argan can minimise the appearance of scars and stretch marks and help to soften sun- or wind-damaged skin. Apply sparingly to lips before bedtime to aid healing and repair skin overnight.",
+    "base_oil": 1
+  }
+}
+]

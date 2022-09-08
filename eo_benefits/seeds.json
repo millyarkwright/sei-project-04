@@ -1,0 +1,11 @@
+[
+{
+  "model": "eo_benefits.eobenefit",
+  "pk": 1,
+  "fields": {
+    "title": "Soothes skin",
+    "description": "Lavender oil has a softening and conditioning effect on the skin. Try adding to creams, base oils, and bath preparations.",
+    "essential_oil": 1
+  }
+}
+]
