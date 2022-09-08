@@ -9,7 +9,7 @@ from .serializers.populated import PopulatedKeyActionSerializer
 
 # Create your views here.
 
-# ! Get All Essential Oils
+# ! Get All Key Actions 
 
 class KeyActionListView(APIView):
 
