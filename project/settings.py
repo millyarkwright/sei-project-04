@@ -41,13 +41,14 @@ INSTALLED_APPS = [
     'rest_framework',
     'django.contrib.postgres',
     'jwt_auth',
-    'application',
+    'applications',
     'bases',
     'bo_benefits',
     'essentials',
     'eo_benefits',
     'eo_uses',
-    'key_actions'
+    'key_actions',
+    'remedies',
 ]
 
 MIDDLEWARE = [

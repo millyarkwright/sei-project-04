@@ -20,5 +20,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('essentialoils/', include('essentials.urls')),
     path('keyactions/', include('key_actions.urls')),
-    path('baseoils/', include('bases.urls'))
+    path('baseoils/', include('bases.urls')),
+    path('applications/', include('applications.urls')),
+    path('remedies/', include('remedies.urls'))
 ]

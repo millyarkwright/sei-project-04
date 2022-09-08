@@ -12,7 +12,12 @@
     "the_essential_oil": "Colourless or pale yellow, lavender oil has a floral, slightly hard, sweet aroma. Some oils have synthetic compounds. Check the label for the name Lavendula angustifolia.",
     "the_plant": "Lavendula angustifolia is commonly used for essential oils. Lavandin or spike lavender is a hybrid with medicinal aroma and antiseptic and tonic properties.",
     "safe_usage": "Non-toxic and non-irritant. Can be used neat on small areas.",
-    "image": "lavender.com"
+    "image": "lavender.com",
+    "applications": [
+      1,
+      2
+    ],
+    "remedies": []
   }
 }
 ]

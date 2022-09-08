@@ -21,6 +21,18 @@ class Essential(models.Model):
   safe_usage = models.TextField(max_length=250)
   image = models.CharField(max_length=100)
 
+  applications = models.ManyToManyField(
+    'applications.Application',
+    related_name = 'essential_oils',
+    blank=True
+  )
+
+  remedies = models.ManyToManyField(
+    'remedies.Remedy',
+    related_name = 'essential_oils',
+    blank=True
+  )
+
   def __str__(self):
     return f"{self.name}"
 

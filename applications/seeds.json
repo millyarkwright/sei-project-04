@@ -1,0 +1,16 @@
+[
+{
+  "model": "applications.application",
+  "pk": 1,
+  "fields": {
+    "name": "Bath Oil"
+  }
+},
+{
+  "model": "applications.application",
+  "pk": 2,
+  "fields": {
+    "name": "Massage Oil"
+  }
+}
+]
