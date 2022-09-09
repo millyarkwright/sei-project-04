@@ -21,41 +21,5 @@
   "fields": {
     "name": "Unscented shower gel"
   }
-},
-{
-  "model": "recipes.otheringredientamount",
-  "pk": 1,
-  "fields": {
-    "amount": "{\"quantity\": \"2\", \"measurement\": \"tbsp\"}",
-    "other_ingredient": 1,
-    "recipe": 1
-  }
-},
-{
-  "model": "recipes.essentialoilamount",
-  "pk": 1,
-  "fields": {
-    "amount": "{\"quantity\": \"4\", \"measurement\": \"drops\"}",
-    "essential_oil": 2,
-    "recipe": 1
-  }
-},
-{
-  "model": "recipes.essentialoilamount",
-  "pk": 2,
-  "fields": {
-    "amount": "{\"quantity\": \"4\", \"measurement\": \"drops\"}",
-    "essential_oil": 1,
-    "recipe": 1
-  }
-},
-{
-  "model": "recipes.baseoilamount",
-  "pk": 1,
-  "fields": {
-    "amount": "{\"quantity\": \"1\", \"measurement\": \"tbps\"}",
-    "base_oil": 1,
-    "recipe": 1
-  }
 }
 ]

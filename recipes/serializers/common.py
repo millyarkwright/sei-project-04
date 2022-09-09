@@ -35,7 +35,7 @@ class OtherIngredientAmountSerializer(serializers.ModelSerializer):
 
   class Meta:
     model = OtherIngredientAmount
-    fields = ('amount', 'id', 'other_ingredient')
+    fields = ( 'id', 'other_ingredient', 'quantity', 'measurement')
 
 # ESSENTIAL OIL AMOUNT-------------
 class EssentialOilAmountSerializer(serializers.ModelSerializer):
@@ -46,7 +46,7 @@ class EssentialOilAmountSerializer(serializers.ModelSerializer):
 
   class Meta:
     model = EssentialOilAmount
-    fields = ('amount', 'id', 'essential_oil')
+    fields = ('id', 'essential_oil', 'quantity', 'measurement')
 
 #BASE OIL AMOUNT-----------
 class BaseOilAmountSerializer(serializers.ModelSerializer):
@@ -56,4 +56,4 @@ class BaseOilAmountSerializer(serializers.ModelSerializer):
   )
   class Meta:
     model = BaseOilAmount
-    fields = ('amount', 'id', 'base_oil')
+    fields = ('id', 'base_oil',  'quantity', 'measurement')

@@ -37,7 +37,10 @@ class OtherIngredient(models.Model):
 
 
 class OtherIngredientAmount(models.Model):
-    amount = HStoreField(blank=True, null=True)
+    # amount = HStoreField(blank=True, null=True)
+    quantity = models.FloatField()
+    measurement = models.CharField(max_length=20)
+    
     other_ingredient = models.ForeignKey(
         'recipes.OtherIngredient',
         related_name='amount',
@@ -49,8 +52,13 @@ class OtherIngredientAmount(models.Model):
         on_delete=models.CASCADE
     )
 
+    def __str__(self):
+      return f"{self.other_ingredient} - {self.quantity} {self.measurement}"
+
 class EssentialOilAmount(models.Model):
-    amount = HStoreField(blank=True, null=True)
+    quantity = models.FloatField()
+    measurement = models.CharField(max_length=20)
+    # amount = HStoreField(blank=True, null=True)
     essential_oil = models.ForeignKey(
         'essentials.Essential',
         related_name='amount',
@@ -61,9 +69,13 @@ class EssentialOilAmount(models.Model):
         related_name='essential_oil_amount',
         on_delete=models.CASCADE
     )
+    def __str__(self):
+      return f"{self.essential_oil} - {self.quantity} {self.measurement}"
 
 class BaseOilAmount(models.Model):
-    amount = HStoreField(blank=True, null=True)
+    quantity = models.FloatField()
+    measurement = models.CharField(max_length=20)
+    # amount = HStoreField(blank=True, null=True)
     base_oil = models.ForeignKey(
         'bases.BaseOil',
         related_name='amount',
@@ -74,3 +86,5 @@ class BaseOilAmount(models.Model):
         related_name='base_oil_amount',
         on_delete=models.CASCADE
     )
+    def __str__(self):
+      return f"{self.base_oil} - {self.quantity} {self.measurement}"
