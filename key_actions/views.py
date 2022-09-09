@@ -15,7 +15,7 @@ class KeyActionListView(APIView):
 
   def get(self, _request):
     key_actions = Key_action.objects.all()
-    print('EOs->', key_actions)
-    serialized_key_actions = PopulatedKeyActionSerializer(key_actions, many=True)
-    print('Serialized EOs ->', serialized_key_actions)
+    print('Keyactions->', key_actions)
+    serialized_key_actions = KeyActionSerializer(key_actions, many=True)
+    print('Serialised Keyactions ->', serialized_key_actions)
     return Response(serialized_key_actions.data, status=status.HTTP_200_OK)

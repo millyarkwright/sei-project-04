@@ -33,6 +33,11 @@ class Essential(models.Model):
     blank=True
   )
 
+  blends_well_with = models.ManyToManyField(
+    'self',
+    blank=True,
+  )
+
   def __str__(self):
     return f"{self.name}"
 
