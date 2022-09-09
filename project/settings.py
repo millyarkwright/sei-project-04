@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'applications',
     'bases',
     'essentials',
+    'recipes',
     'remedies',
 ]
 
