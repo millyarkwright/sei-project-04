@@ -41,7 +41,7 @@
     "image": "tbc",
     "applications": [
       2,
-      3
+      4
     ],
     "remedies": [],
     "blends_well_with": [
@@ -65,8 +65,8 @@
     "safe_usage": "Contains components that may cause sensitisation in some people. Recommend use in less than 1% dilution on the skin.",
     "image": "tbc",
     "applications": [
-      3,
-      4
+      4,
+      6
     ],
     "remedies": [],
     "blends_well_with": [
@@ -91,7 +91,7 @@
     "image": "tbc",
     "applications": [
       2,
-      5
+      3
     ],
     "remedies": [],
     "blends_well_with": [
