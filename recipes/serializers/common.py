@@ -17,6 +17,11 @@ class RecipeSerializer(serializers.ModelSerializer):
   class Meta:
     model = Recipe
     fields = "__all__"
+# SHORT RECIPE SERIALIZER -------------
+class RecipeIndexSerializer(serializers.ModelSerializer):
+    class Meta:
+      model = Recipe
+      fields = ('id', 'name', 'description', 'applications', 'remedies')
 
 # ! OTHER INGREDIENT SERIALIZER ------------
 class OtherIngredientSerializer(serializers.ModelSerializer):
