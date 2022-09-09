@@ -17,7 +17,86 @@
       1,
       2
     ],
-    "remedies": []
+    "remedies": [],
+    "blends_well_with": [
+      2,
+      3,
+      4
+    ]
+  }
+},
+{
+  "model": "essentials.essential",
+  "pk": 2,
+  "fields": {
+    "name": "Bergamot",
+    "latin_name": "Citrus aurantium bergamia",
+    "key_actions": 4,
+    "method_of_extraction": "Expressed from the citrus fruit's peel.",
+    "description_short": "Uplifting and fruity, this is balancing for the skin and calming for the emotions.",
+    "description_long": "input long description",
+    "the_essential_oil": "input essential oil",
+    "the_plant": "input plant info",
+    "safe_usage": "Contains components that may cause sensitisation in some people. Recommend use in less than 1% dilution on the skin.",
+    "image": "tbc",
+    "applications": [
+      2,
+      3
+    ],
+    "remedies": [],
+    "blends_well_with": [
+      1,
+      3
+    ]
+  }
+},
+{
+  "model": "essentials.essential",
+  "pk": 3,
+  "fields": {
+    "name": "Basil",
+    "latin_name": "Ocimum basilicum",
+    "key_actions": 3,
+    "method_of_extraction": "Steam distilled from the herb.",
+    "description_short": "Stimulating, sweet and peppery, this is a great restorative when overwrought.",
+    "description_long": "TBC",
+    "the_essential_oil": "TBC",
+    "the_plant": "TBC",
+    "safe_usage": "Contains components that may cause sensitisation in some people. Recommend use in less than 1% dilution on the skin.",
+    "image": "tbc",
+    "applications": [
+      3,
+      4
+    ],
+    "remedies": [],
+    "blends_well_with": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "essentials.essential",
+  "pk": 4,
+  "fields": {
+    "name": "Cardamom",
+    "latin_name": "Elettaria cardamomum",
+    "key_actions": 4,
+    "method_of_extraction": "Steam distilled from the aromatic seed.",
+    "description_short": "Comforting and sweet, this is soothing for the mind and beneficial for digestion.",
+    "description_long": "tbc",
+    "the_essential_oil": "tbc",
+    "the_plant": "tbc",
+    "safe_usage": "Non-toxic and non-irritant. Avoid using in children under 7 years old.",
+    "image": "tbc",
+    "applications": [
+      2,
+      5
+    ],
+    "remedies": [],
+    "blends_well_with": [
+      1
+    ]
   }
 }
 ]
