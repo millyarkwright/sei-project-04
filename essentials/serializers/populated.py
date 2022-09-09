@@ -1,6 +1,5 @@
-from .common import EssentialSerializer
-from eo_benefits.serializers.common import EoBenefitSerializer
-from eo_uses.serializers.common import EoUseSerializer
+from .common import EssentialSerializer, EoUseSerializer, EoBenefitSerializer
+
 
 class PopulatedEssentialSerializer(EssentialSerializer):
     benefits = EoBenefitSerializer(many=True)

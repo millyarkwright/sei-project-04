@@ -5,7 +5,7 @@
   "fields": {
     "name": "Lavender",
     "latin_name": "Lavendula angustifolia",
-    "key_actions": 4,
+    "key_action": 4,
     "method_of_extraction": "Steam distilled from the flowers and leaves.",
     "description_short": "Cleansing and refreshing, this is soothing for the skin and mind.",
     "description_long": "A versatile and popular essential oil, lavender is a calming fragrance and is particularly renown for its ability to relax and promote restful sleep. Its rejuvenating and soothing effects make it an effective skin treatment and a good skin healer.",
@@ -31,7 +31,7 @@
   "fields": {
     "name": "Bergamot",
     "latin_name": "Citrus aurantium bergamia",
-    "key_actions": 4,
+    "key_action": 4,
     "method_of_extraction": "Expressed from the citrus fruit's peel.",
     "description_short": "Uplifting and fruity, this is balancing for the skin and calming for the emotions.",
     "description_long": "input long description",
@@ -56,7 +56,7 @@
   "fields": {
     "name": "Basil",
     "latin_name": "Ocimum basilicum",
-    "key_actions": 3,
+    "key_action": 3,
     "method_of_extraction": "Steam distilled from the herb.",
     "description_short": "Stimulating, sweet and peppery, this is a great restorative when overwrought.",
     "description_long": "TBC",
@@ -81,7 +81,7 @@
   "fields": {
     "name": "Cardamom",
     "latin_name": "Elettaria cardamomum",
-    "key_actions": 4,
+    "key_action": 4,
     "method_of_extraction": "Steam distilled from the aromatic seed.",
     "description_short": "Comforting and sweet, this is soothing for the mind and beneficial for digestion.",
     "description_long": "tbc",
@@ -97,6 +97,68 @@
     "blends_well_with": [
       1
     ]
+  }
+},
+{
+  "model": "essentials.keyaction",
+  "pk": 1,
+  "fields": {
+    "name": "Balancing"
+  }
+},
+{
+  "model": "essentials.keyaction",
+  "pk": 2,
+  "fields": {
+    "name": "Cleansing"
+  }
+},
+{
+  "model": "essentials.keyaction",
+  "pk": 3,
+  "fields": {
+    "name": "Energising"
+  }
+},
+{
+  "model": "essentials.keyaction",
+  "pk": 4,
+  "fields": {
+    "name": "Relaxing"
+  }
+},
+{
+  "model": "essentials.keyaction",
+  "pk": 5,
+  "fields": {
+    "name": "Uplifting"
+  }
+},
+{
+  "model": "essentials.eouse",
+  "pk": 1,
+  "fields": {
+    "title": "As a bath oil",
+    "description": "Add 8-12 drops to 1 tablespoon base oil or full-fat milk and disperse in a relaxing bedtime bath.",
+    "essential_oil": 1
+  }
+},
+{
+  "model": "essentials.eouse",
+  "pk": 2,
+  "fields": {
+    "title": "As a massage oil",
+    "description": "Add 12-20 drops to 2 tablespoons base oil.",
+    "essential_oil": 1
+  }
+},
+{
+  "model": "essentials.eobenefit",
+  "pk": 1,
+  "fields": {
+    "title": "Soothes skin",
+    "description": "Lavender oil has a softening and conditioning effect on the skin. Try adding to creams, base oils, and bath preparations.",
+    "essential_oil": 1
   }
 }
 ]
