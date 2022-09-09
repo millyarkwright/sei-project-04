@@ -1,164 +1,72 @@
 [
 {
-  "model": "essentials.essential",
+  "model": "applications.application",
   "pk": 1,
   "fields": {
-    "name": "Lavender",
-    "latin_name": "Lavendula angustifolia",
-    "key_action": 4,
-    "method_of_extraction": "Steam distilled from the flowers and leaves.",
-    "description_short": "Cleansing and refreshing, this is soothing for the skin and mind.",
-    "description_long": "A versatile and popular essential oil, lavender is a calming fragrance and is particularly renown for its ability to relax and promote restful sleep. Its rejuvenating and soothing effects make it an effective skin treatment and a good skin healer.",
-    "the_essential_oil": "Colourless or pale yellow, lavender oil has a floral, slightly hard, sweet aroma. Some oils have synthetic compounds. Check the label for the name Lavendula angustifolia.",
-    "the_plant": "Lavendula angustifolia is commonly used for essential oils. Lavandin or spike lavender is a hybrid with medicinal aroma and antiseptic and tonic properties.",
-    "safe_usage": "Non-toxic and non-irritant. Can be used neat on small areas.",
-    "image": "lavender.com",
-    "applications": [
-      1,
-      2
-    ],
-    "remedies": [],
-    "blends_well_with": [
-      2,
-      3,
-      4
-    ]
+    "name": "Bath Oil"
   }
 },
 {
-  "model": "essentials.essential",
+  "model": "applications.application",
   "pk": 2,
   "fields": {
-    "name": "Bergamot",
-    "latin_name": "Citrus aurantium bergamia",
-    "key_action": 4,
-    "method_of_extraction": "Expressed from the citrus fruit's peel.",
-    "description_short": "Uplifting and fruity, this is balancing for the skin and calming for the emotions.",
-    "description_long": "input long description",
-    "the_essential_oil": "input essential oil",
-    "the_plant": "input plant info",
-    "safe_usage": "Contains components that may cause sensitisation in some people. Recommend use in less than 1% dilution on the skin.",
-    "image": "tbc",
-    "applications": [
-      2,
-      3
-    ],
-    "remedies": [],
-    "blends_well_with": [
-      1,
-      3
-    ]
+    "name": "Massage Oil"
   }
 },
 {
-  "model": "essentials.essential",
+  "model": "applications.application",
   "pk": 3,
   "fields": {
-    "name": "Basil",
-    "latin_name": "Ocimum basilicum",
-    "key_action": 3,
-    "method_of_extraction": "Steam distilled from the herb.",
-    "description_short": "Stimulating, sweet and peppery, this is a great restorative when overwrought.",
-    "description_long": "TBC",
-    "the_essential_oil": "TBC",
-    "the_plant": "TBC",
-    "safe_usage": "Contains components that may cause sensitisation in some people. Recommend use in less than 1% dilution on the skin.",
-    "image": "tbc",
-    "applications": [
-      3,
-      4
-    ],
-    "remedies": [],
-    "blends_well_with": [
-      1,
-      2
-    ]
+    "name": "Mouthwash"
   }
 },
 {
-  "model": "essentials.essential",
+  "model": "applications.application",
   "pk": 4,
   "fields": {
-    "name": "Cardamom",
-    "latin_name": "Elettaria cardamomum",
-    "key_action": 4,
-    "method_of_extraction": "Steam distilled from the aromatic seed.",
-    "description_short": "Comforting and sweet, this is soothing for the mind and beneficial for digestion.",
-    "description_long": "tbc",
-    "the_essential_oil": "tbc",
-    "the_plant": "tbc",
-    "safe_usage": "Non-toxic and non-irritant. Avoid using in children under 7 years old.",
-    "image": "tbc",
-    "applications": [
-      2,
-      5
-    ],
-    "remedies": [],
-    "blends_well_with": [
-      1
-    ]
+    "name": "Compress"
   }
 },
 {
-  "model": "essentials.keyaction",
-  "pk": 1,
-  "fields": {
-    "name": "Balancing"
-  }
-},
-{
-  "model": "essentials.keyaction",
-  "pk": 2,
-  "fields": {
-    "name": "Cleansing"
-  }
-},
-{
-  "model": "essentials.keyaction",
-  "pk": 3,
-  "fields": {
-    "name": "Energising"
-  }
-},
-{
-  "model": "essentials.keyaction",
-  "pk": 4,
-  "fields": {
-    "name": "Relaxing"
-  }
-},
-{
-  "model": "essentials.keyaction",
+  "model": "applications.application",
   "pk": 5,
   "fields": {
-    "name": "Uplifting"
+    "name": "Steam Inhalation"
   }
 },
 {
-  "model": "essentials.eouse",
-  "pk": 1,
+  "model": "applications.application",
+  "pk": 6,
   "fields": {
-    "title": "As a bath oil",
-    "description": "Add 8-12 drops to 1 tablespoon base oil or full-fat milk and disperse in a relaxing bedtime bath.",
-    "essential_oil": 1
+    "name": "Diffuser"
   }
 },
 {
-  "model": "essentials.eouse",
-  "pk": 2,
+  "model": "applications.application",
+  "pk": 7,
   "fields": {
-    "title": "As a massage oil",
-    "description": "Add 12-20 drops to 2 tablespoons base oil.",
-    "essential_oil": 1
+    "name": "Fragrance"
   }
 },
 {
-  "model": "essentials.eobenefit",
-  "pk": 1,
+  "model": "applications.application",
+  "pk": 8,
   "fields": {
-    "title": "Soothes skin",
-    "description": "Lavender oil has a softening and conditioning effect on the skin. Try adding to creams, base oils, and bath preparations.",
-    "essential_oil": 1
+    "name": "Shower"
+  }
+},
+{
+  "model": "applications.application",
+  "pk": 9,
+  "fields": {
+    "name": "Foot Bath"
+  }
+},
+{
+  "model": "applications.application",
+  "pk": 10,
+  "fields": {
+    "name": "Ointment"
   }
 }
 ]

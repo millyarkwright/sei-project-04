@@ -11,7 +11,7 @@ class Recipe(models.Model):
     step_one = models.TextField(max_length=500)
     step_two = models.TextField(max_length=500, blank=True)
     step_three = models.TextField(max_length=500, blank=True)
-    safe_usage = models.TextField(max_length=250)
+    safe_usage = models.TextField(max_length=250, blank=True)
     public = models.BooleanField(default=True)
 
     applications = models.ManyToManyField(
@@ -46,5 +46,31 @@ class OtherIngredientAmount(models.Model):
     recipe = models.ForeignKey(
         'recipes.Recipe',
         related_name='other_ingredient_amount',
+        on_delete=models.CASCADE
+    )
+
+class EssentialOilAmount(models.Model):
+    amount = HStoreField(blank=True, null=True)
+    essential_oil = models.ForeignKey(
+        'essentials.Essential',
+        related_name='amount',
+        on_delete=models.CASCADE
+    )
+    recipe = models.ForeignKey(
+        'recipes.Recipe',
+        related_name='essential_oil_amount',
+        on_delete=models.CASCADE
+    )
+
+class BaseOilAmount(models.Model):
+    amount = HStoreField(blank=True, null=True)
+    base_oil = models.ForeignKey(
+        'bases.BaseOil',
+        related_name='amount',
+        on_delete=models.CASCADE
+    )
+    recipe = models.ForeignKey(
+        'recipes.Recipe',
+        related_name='base_oil_amount',
         on_delete=models.CASCADE
     )

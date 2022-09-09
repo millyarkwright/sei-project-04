@@ -3,12 +3,13 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.exceptions import NotFound
 
-from .models import Recipe, OtherIngredient, OtherIngredientAmount
-from .serializers.common import RecipeSerializer, OtherIngredientSerializer, OtherIngredientAmountSerializer
+from .models import Recipe, OtherIngredient, OtherIngredientAmount, EssentialOilAmount, BaseOilAmount
+from .serializers.common import RecipeSerializer, OtherIngredientSerializer, OtherIngredientAmountSerializer, EssentialOilAmountSerializer, BaseOilAmountSerializer
 from .serializers.populated import PopulatedRecipeSerializer, PopulatedOtherIngredientSerializer
+
 # Create your views here.
 
-# ! Get All Recipes
+# ! Recipe Views
 
 class RecipeListView(APIView):
 
@@ -19,6 +20,7 @@ class RecipeListView(APIView):
     print('Serialized Recipes ->', serialized_recipes)
     return Response(serialized_recipes.data, status=status.HTTP_200_OK)
 
+#  ! Other Ingredients Views
 
 class OtherIngredientListView(APIView):
 
@@ -36,4 +38,28 @@ class OtherIngredientAmountListView(APIView):
     print('Other Ingredient Amounts->', other_ingredient_amounts)
     serialized_other_ingredient_amounts = OtherIngredientAmountSerializer(other_ingredient_amounts, many=True)
     print('Serialized Other Ingredient Amounts->', serialized_other_ingredient_amounts)
+    print('Serialized Other Ingredient Amounts DATA->', serialized_other_ingredient_amounts.data)
+
     return Response(serialized_other_ingredient_amounts.data, status=status.HTTP_200_OK)
+
+# ! Essential Oil Views
+
+class EssentialOilAmountListView(APIView):
+
+  def get(self, _request):
+    essential_oil_amounts = EssentialOilAmount.objects.all()
+    print('essential_oil_amounts->', essential_oil_amounts)
+    serialized_essential_oil_amounts = EssentialOilAmountSerializer(essential_oil_amounts, many=True)
+    print('Serialized essential_oil_amounts->', serialized_essential_oil_amounts)
+    return Response(serialized_essential_oil_amounts.data, status=status.HTTP_200_OK)
+
+# ! Base Oil View 
+
+class BaseOilAmountListView(APIView):
+
+  def get(self, _request):
+    base_oil_amounts = BaseOilAmount.objects.all()
+    print('base_oil_amounts->', base_oil_amounts)
+    serialized_base_oil_amounts = BaseOilAmountSerializer(base_oil_amounts, many=True)
+    print('Serialized base_oil_amounts->', serialized_base_oil_amounts)
+    return Response(serialized_base_oil_amounts.data, status=status.HTTP_200_OK)

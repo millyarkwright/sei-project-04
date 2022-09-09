@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Recipe, OtherIngredient, OtherIngredientAmount
+from .models import Recipe, OtherIngredient, OtherIngredientAmount, EssentialOilAmount, BaseOilAmount
 
 from django import forms
 from django_admin_hstore_widget.forms import HStoreFormField
@@ -9,6 +9,7 @@ from django_admin_hstore_widget.forms import HStoreFormField
 admin.site.register(Recipe)
 admin.site.register(OtherIngredient)
 
+#  ! Other Ingredients
 class OtherIngredientAmountAdminForm(forms.ModelForm):
   amount = HStoreFormField()
 
@@ -20,4 +21,26 @@ class OtherIngredientAmountAdminForm(forms.ModelForm):
 class OtherIngredientAmountAdmin(admin.ModelAdmin):
   form = OtherIngredientAmountAdminForm
 
+# ! Essential Oils
+class EssentialOilAmountAdminForm(forms.ModelForm):
+  amount = HStoreFormField()
 
+  class Meta:
+      model = EssentialOilAmount
+      exclude = ()
+
+@admin.register(EssentialOilAmount)
+class EssentialOilAmountAdmin(admin.ModelAdmin):
+  form = EssentialOilAmountAdminForm
+
+# ! Base Oils
+class BaseOilAmountAdminForm(forms.ModelForm):
+  amount = HStoreFormField()
+
+  class Meta:
+      model = BaseOilAmount
+      exclude = ()
+
+@admin.register(BaseOilAmount)
+class BaseAmountAdmin(admin.ModelAdmin):
+  form = BaseOilAmountAdminForm

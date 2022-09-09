@@ -1,0 +1,61 @@
+[
+{
+  "model": "recipes.recipe",
+  "pk": 1,
+  "fields": {
+    "name": "Uplifting blend",
+    "description": "to be written",
+    "makes": "30ml",
+    "step_one": "Mix the essential oil drops with unscented shower gel.",
+    "step_two": "",
+    "step_three": "",
+    "safe_usage": "n/a",
+    "public": true,
+    "applications": [],
+    "remedies": []
+  }
+},
+{
+  "model": "recipes.otheringredient",
+  "pk": 1,
+  "fields": {
+    "name": "Unscented shower gel"
+  }
+},
+{
+  "model": "recipes.otheringredientamount",
+  "pk": 1,
+  "fields": {
+    "amount": "{\"quantity\": \"2\", \"measurement\": \"tbsp\"}",
+    "other_ingredient": 1,
+    "recipe": 1
+  }
+},
+{
+  "model": "recipes.essentialoilamount",
+  "pk": 1,
+  "fields": {
+    "amount": "{\"quantity\": \"4\", \"measurement\": \"drops\"}",
+    "essential_oil": 2,
+    "recipe": 1
+  }
+},
+{
+  "model": "recipes.essentialoilamount",
+  "pk": 2,
+  "fields": {
+    "amount": "{\"quantity\": \"4\", \"measurement\": \"drops\"}",
+    "essential_oil": 1,
+    "recipe": 1
+  }
+},
+{
+  "model": "recipes.baseoilamount",
+  "pk": 1,
+  "fields": {
+    "amount": "{\"quantity\": \"1\", \"measurement\": \"tbps\"}",
+    "base_oil": 1,
+    "recipe": 1
+  }
+}
+]
