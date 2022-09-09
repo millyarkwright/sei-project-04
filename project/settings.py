@@ -43,11 +43,7 @@ INSTALLED_APPS = [
     'jwt_auth',
     'applications',
     'bases',
-    'bo_benefits',
     'essentials',
-    'eo_benefits',
-    'eo_uses',
-    'key_actions',
     'remedies',
 ]
 

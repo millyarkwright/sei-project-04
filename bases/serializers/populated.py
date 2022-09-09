@@ -1,5 +1,5 @@
-from .common import BaseOilSerializer
-from bo_benefits.serializers.common import BoBenefitSerializer
+from .common import BaseOilSerializer, BoBenefitSerializer
+# from bo_benefits.serializers.common import BoBenefitSerializer
 
 
 class PopulatedBaseOilSerializer(BaseOilSerializer):

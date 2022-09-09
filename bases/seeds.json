@@ -1,35 +1,164 @@
 [
 {
-  "model": "bases.baseoil",
+  "model": "essentials.essential",
   "pk": 1,
   "fields": {
-    "name": "Argan",
-    "latin_name": "Argania spinosa",
-    "description": "Argan oil comes from a tree found growing only in Morocco. With high levels of antioxidant vitamin E and essential fatty acids, it's soothing for all skin types, and for hair and nails. It is moisturising and protective against environmental factors, such as weather and pollutants.",
-    "the_base_oil": "The kernels of the Moroccan argan fruit produce the rich, skin nourishing, golden-yellow argan oil. Argan oil has a characteristic nutty aroma.",
-    "safe_usage": ""
+    "name": "Lavender",
+    "latin_name": "Lavendula angustifolia",
+    "key_action": 4,
+    "method_of_extraction": "Steam distilled from the flowers and leaves.",
+    "description_short": "Cleansing and refreshing, this is soothing for the skin and mind.",
+    "description_long": "A versatile and popular essential oil, lavender is a calming fragrance and is particularly renown for its ability to relax and promote restful sleep. Its rejuvenating and soothing effects make it an effective skin treatment and a good skin healer.",
+    "the_essential_oil": "Colourless or pale yellow, lavender oil has a floral, slightly hard, sweet aroma. Some oils have synthetic compounds. Check the label for the name Lavendula angustifolia.",
+    "the_plant": "Lavendula angustifolia is commonly used for essential oils. Lavandin or spike lavender is a hybrid with medicinal aroma and antiseptic and tonic properties.",
+    "safe_usage": "Non-toxic and non-irritant. Can be used neat on small areas.",
+    "image": "lavender.com",
+    "applications": [
+      1,
+      2
+    ],
+    "remedies": [],
+    "blends_well_with": [
+      2,
+      3,
+      4
+    ]
   }
 },
 {
-  "model": "bases.baseoil",
+  "model": "essentials.essential",
   "pk": 2,
   "fields": {
-    "name": "Canola",
-    "latin_name": "Brassica napus",
-    "description": "Also known as rapeseed oil, canola has the benefits of being widely available, relatively inexpensive, and effective on dry, sensitive, or mature skin. However, it's often genetically modified and highly processed so choose organic brands.",
-    "the_base_oil": "After harvesting the seeds are crushed for the oil. This golden oil is virtually odourless so works well in aromatherapy blends.",
-    "safe_usage": "Ideally, choose organic oil to avoid possible pesticide residues that can be present in some genetically modified organisms (GMOs)."
+    "name": "Bergamot",
+    "latin_name": "Citrus aurantium bergamia",
+    "key_action": 4,
+    "method_of_extraction": "Expressed from the citrus fruit's peel.",
+    "description_short": "Uplifting and fruity, this is balancing for the skin and calming for the emotions.",
+    "description_long": "input long description",
+    "the_essential_oil": "input essential oil",
+    "the_plant": "input plant info",
+    "safe_usage": "Contains components that may cause sensitisation in some people. Recommend use in less than 1% dilution on the skin.",
+    "image": "tbc",
+    "applications": [
+      2,
+      3
+    ],
+    "remedies": [],
+    "blends_well_with": [
+      1,
+      3
+    ]
   }
 },
 {
-  "model": "bases.baseoil",
+  "model": "essentials.essential",
   "pk": 3,
   "fields": {
-    "name": "Shea nut butter",
-    "latin_name": "Butyrospermum parkii",
-    "description": "Extracted from the nuts of African karite trees, shea butter has a long history in cooking, but has more recently found its way into cosmetic formulations where its thick, waxy texture acts like an emulsifier and provides skin-enriching properties.",
-    "the_base_oil": "Shea nut butter ranges from bright yellow in its raw state to white. The oil has a nutty, sweet aroma, the more refined it is.",
-    "safe_usage": ""
+    "name": "Basil",
+    "latin_name": "Ocimum basilicum",
+    "key_action": 3,
+    "method_of_extraction": "Steam distilled from the herb.",
+    "description_short": "Stimulating, sweet and peppery, this is a great restorative when overwrought.",
+    "description_long": "TBC",
+    "the_essential_oil": "TBC",
+    "the_plant": "TBC",
+    "safe_usage": "Contains components that may cause sensitisation in some people. Recommend use in less than 1% dilution on the skin.",
+    "image": "tbc",
+    "applications": [
+      3,
+      4
+    ],
+    "remedies": [],
+    "blends_well_with": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "essentials.essential",
+  "pk": 4,
+  "fields": {
+    "name": "Cardamom",
+    "latin_name": "Elettaria cardamomum",
+    "key_action": 4,
+    "method_of_extraction": "Steam distilled from the aromatic seed.",
+    "description_short": "Comforting and sweet, this is soothing for the mind and beneficial for digestion.",
+    "description_long": "tbc",
+    "the_essential_oil": "tbc",
+    "the_plant": "tbc",
+    "safe_usage": "Non-toxic and non-irritant. Avoid using in children under 7 years old.",
+    "image": "tbc",
+    "applications": [
+      2,
+      5
+    ],
+    "remedies": [],
+    "blends_well_with": [
+      1
+    ]
+  }
+},
+{
+  "model": "essentials.keyaction",
+  "pk": 1,
+  "fields": {
+    "name": "Balancing"
+  }
+},
+{
+  "model": "essentials.keyaction",
+  "pk": 2,
+  "fields": {
+    "name": "Cleansing"
+  }
+},
+{
+  "model": "essentials.keyaction",
+  "pk": 3,
+  "fields": {
+    "name": "Energising"
+  }
+},
+{
+  "model": "essentials.keyaction",
+  "pk": 4,
+  "fields": {
+    "name": "Relaxing"
+  }
+},
+{
+  "model": "essentials.keyaction",
+  "pk": 5,
+  "fields": {
+    "name": "Uplifting"
+  }
+},
+{
+  "model": "essentials.eouse",
+  "pk": 1,
+  "fields": {
+    "title": "As a bath oil",
+    "description": "Add 8-12 drops to 1 tablespoon base oil or full-fat milk and disperse in a relaxing bedtime bath.",
+    "essential_oil": 1
+  }
+},
+{
+  "model": "essentials.eouse",
+  "pk": 2,
+  "fields": {
+    "title": "As a massage oil",
+    "description": "Add 12-20 drops to 2 tablespoons base oil.",
+    "essential_oil": 1
+  }
+},
+{
+  "model": "essentials.eobenefit",
+  "pk": 1,
+  "fields": {
+    "title": "Soothes skin",
+    "description": "Lavender oil has a softening and conditioning effect on the skin. Try adding to creams, base oils, and bath preparations.",
+    "essential_oil": 1
   }
 }
 ]
