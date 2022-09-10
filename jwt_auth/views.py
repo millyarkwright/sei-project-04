@@ -1,13 +1,64 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.exceptions import NotFound
+from rest_framework.exceptions import NotFound, PermissionDenied
 
+# Auth
+from django.contrib.auth import get_user_model
+User = get_user_model
+import jwt
+from datetime import datetime, timedelta
+
+# Models
 from .models import User, BookmarkedRecipe, TestedRecipe
-from .serializers.common import BookmarkedRecipeSerializer, TestedRecipeSerializer
+from django.conf import settings 
+
+# Serializers
+from .serializers.common import UserSerializer, UserRegisterSerializer, BookmarkedRecipeSerializer, TestedRecipeSerializer
 from .serializers.populated import PopulatedUserSerializer
 
-# Create your views here.
+# ! REGISTER VIEW -------
+class RegisterView(APIView):
+  def post(self, request):
+    user_to_create = UserRegisterSerializer(data=request.data)
+    try:
+      user_to_create.is_valid(True)
+      user_to_create.save()
+      return Response(user_to_create.data, status.HTTP_202_ACCEPTED)
+    except Exception as e:
+      print('e->', e)
+      return Response(e.__dict__ if e.__dict__ else str(e), status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+
+#  ! LOGIN VIEW ---------
+class LoginView(APIView):
+  def post(self, request):
+    email = request.data.get('email')
+    password = request.data.get('password')
+    
+    try:
+      user_to_login = User.objects.get(email=email)
+    except User.DoesNotExist:
+      print('Failed at email stage')
+      raise PermissionDenied('Invalid credentials')
+
+    if not user_to_login.check_password(password):
+      print('Failed at password stage')
+      raise PermissionDenied('Invalid Credentials')
+
+    dt = datetime.now() + timedelta(days=7)
+
+    token = jwt.encode(
+      {
+        'sub': user_to_login.id,
+        'exp': int(dt.strftime('%s'))
+      },
+      settings.SECRET_KEY,
+      'HS256'
+    )
+    print('Token->', token)
+
+    return Response({ 'token': token, 'message': f"Welcome back {user_to_login.username}" })
+
 
 # ! USER VIEW --------
 class UserListView(APIView):
