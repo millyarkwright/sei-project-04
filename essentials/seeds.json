@@ -59,10 +59,10 @@
     "key_action": 3,
     "method_of_extraction": "Steam distilled from the herb.",
     "description_short": "Stimulating, sweet and peppery, this is a great restorative when overwrought.",
-    "description_long": "TBC",
-    "the_essential_oil": "TBC",
-    "the_plant": "TBC",
-    "safe_usage": "Contains components that may cause sensitisation in some people. Recommend use in less than 1% dilution on the skin.",
+    "description_long": "The name basil comes from the Greek word \"basilikon phuton\" meaning \"king\". Basil is highly valued in traditional Ayurvedic medicine as a protector of both mental and physical wellbeing. Its crisp aroma clears and refreshes the mind and helps to calm anxiety.",
+    "the_essential_oil": "The oil is steam-distilled from the leaves and the flowing tops of the plant. It has a sweet, spicy, fresh and slightly balsamic odour, and is clear to pale yellow in colour.",
+    "the_plant": "Originally from tropical Asia and the Pacific Islands, basil is now cultivated worldwide. The flowers range from white to pink in colour, and are popular with bees and other garden pollinators.",
+    "safe_usage": "Potentially toxic over time. Dilute extremely well (less than 0.5 percent) and do not use for prolonged periods. Avoid in pregnancy, when breastfeeding, and in children under 15 years old.",
     "image": "tbc",
     "applications": [
       4,
@@ -84,9 +84,9 @@
     "key_action": 4,
     "method_of_extraction": "Steam distilled from the aromatic seed.",
     "description_short": "Comforting and sweet, this is soothing for the mind and beneficial for digestion.",
-    "description_long": "tbc",
-    "the_essential_oil": "tbc",
-    "the_plant": "tbc",
+    "description_long": "A natural diuretic and digestive stimulant, cardamom boosts the metabolism and helps the body to metabolise fat efficiently. It is also an effective antiseptic, making it a popular component of natural mouthwashes and deodorants.",
+    "the_essential_oil": "The essential oil is extracted by steam-distillation from the seeds and produces a colourless to pale yellow oil that has a sweet-spicy aroma with woody notes.",
+    "the_plant": "A native of India, cardamom seeds and pods have been used for centuries as a culinary spice and a healing remedy. Cardamom is also used in traditional Chinese medicine.",
     "safe_usage": "Non-toxic and non-irritant. Avoid using in children under 7 years old.",
     "image": "tbc",
     "applications": [
@@ -153,12 +153,246 @@
   }
 },
 {
+  "model": "essentials.eouse",
+  "pk": 3,
+  "fields": {
+    "title": "In a compress",
+    "description": "Add a few drops to warm water and make a compress with a cloth to ease pain and congestion.",
+    "essential_oil": 3
+  }
+},
+{
+  "model": "essentials.eouse",
+  "pk": 4,
+  "fields": {
+    "title": "In a diffuser",
+    "description": "Add 3-4 drops to a diffuser, vaporiser, or oil burner to clear headaches and refreshes the mind.",
+    "essential_oil": 3
+  }
+},
+{
+  "model": "essentials.eouse",
+  "pk": 5,
+  "fields": {
+    "title": "As a massage oil",
+    "description": "To promote feelings of relaxation and help ensure a restful sleep, make a refreshing blend by mixing 2-4 drops with 2 tablespoons base oil and use to massage your feet before bedtime.",
+    "essential_oil": 2
+  }
+},
+{
+  "model": "essentials.eouse",
+  "pk": 6,
+  "fields": {
+    "title": "In a compress",
+    "description": "Add 2-3 drops to cool water and add to a compress, then apply directly to the skin to help relieve heat stroke or a fever.",
+    "essential_oil": 2
+  }
+},
+{
+  "model": "essentials.eouse",
+  "pk": 7,
+  "fields": {
+    "title": "As a massage oil",
+    "description": "Add 6-8 drops to 2 tablespoons base oil for a refreshing, detoxifying full-body massage.",
+    "essential_oil": 4
+  }
+},
+{
+  "model": "essentials.eouse",
+  "pk": 8,
+  "fields": {
+    "title": "In a mouthwash",
+    "description": "Mix 1-2 drops in a teaspoon of glycerine or calendula tincture; add to water for a mouthwash.",
+    "essential_oil": 4
+  }
+},
+{
   "model": "essentials.eobenefit",
   "pk": 1,
   "fields": {
     "title": "Soothes skin",
     "description": "Lavender oil has a softening and conditioning effect on the skin. Try adding to creams, base oils, and bath preparations.",
     "essential_oil": 1
+  }
+},
+{
+  "model": "essentials.eobenefit",
+  "pk": 2,
+  "fields": {
+    "title": "Enhances wellbeing",
+    "description": "Basil balances, revives, and strengthens to help combat exhaustion, anxiety, or depression.",
+    "essential_oil": 3
+  }
+},
+{
+  "model": "essentials.eobenefit",
+  "pk": 3,
+  "fields": {
+    "title": "Tones and balances skin",
+    "description": "The oil refreshes skin and helps to control acne.",
+    "essential_oil": 3
+  }
+},
+{
+  "model": "essentials.eobenefit",
+  "pk": 4,
+  "fields": {
+    "title": "Supports women's health",
+    "description": "Basil can help stimulate scanty or delayed periods caused by debility and stress.",
+    "essential_oil": 3
+  }
+},
+{
+  "model": "essentials.eobenefit",
+  "pk": 5,
+  "fields": {
+    "title": "Eases digestion",
+    "description": "Soothing basil can relieve indigestion. Its antiseptic action also treat intestinal infections.",
+    "essential_oil": 3
+  }
+},
+{
+  "model": "essentials.eobenefit",
+  "pk": 6,
+  "fields": {
+    "title": "Fights cold symptoms",
+    "description": "The oil helps clear sinuses and soothe coughs.",
+    "essential_oil": 3
+  }
+},
+{
+  "model": "essentials.eobenefit",
+  "pk": 7,
+  "fields": {
+    "title": "Eases aches and pains",
+    "description": "Basil can ease gout and rheumatic pain.",
+    "essential_oil": 3
+  }
+},
+{
+  "model": "essentials.eobenefit",
+  "pk": 8,
+  "fields": {
+    "title": "Acts as an insect repellent",
+    "description": "Its insecticidal properties repel insects. It also relieves the irritation of insect bites.",
+    "essential_oil": 3
+  }
+},
+{
+  "model": "essentials.eobenefit",
+  "pk": 9,
+  "fields": {
+    "title": "Soothes skin",
+    "description": "Bergamot essential oil is useful for balancing combination and oily skin and improving skin tone. Its strong and soothing effects help to calm dry, itchy skin, and its natural healing properties can reduce the appearance of scars over time.",
+    "essential_oil": 2
+  }
+},
+{
+  "model": "essentials.eobenefit",
+  "pk": 10,
+  "fields": {
+    "title": "Enhances wellbeing",
+    "description": "The sweet aroma of bergamot acts as an antidepressant by balancing mood and easing anxiety. It is a popular ingredient in colognes.",
+    "essential_oil": 2
+  }
+},
+{
+  "model": "essentials.eobenefit",
+  "pk": 11,
+  "fields": {
+    "title": "Cools fevers",
+    "description": "Bergamot has a cooling action that can help to bring down fevers.",
+    "essential_oil": 2
+  }
+},
+{
+  "model": "essentials.eobenefit",
+  "pk": 12,
+  "fields": {
+    "title": "Acts as an antiseptic",
+    "description": "The oil has antibacterial and antiviral properties. Dab, diluted, on cold sores (it is active against the herpes virus) and pimples.",
+    "essential_oil": 2
+  }
+},
+{
+  "model": "essentials.eobenefit",
+  "pk": 13,
+  "fields": {
+    "title": "Heals skin",
+    "description": "Lavender is regenerative, making it useful for wounds and mouth ulcers. Applied neat, the oil makes an effective first-aid remedy for cuts, burns, bites, and stings. Its healing effects can ease acne, eczema, acne rosacea, and psoriasis, and reducing scarring.",
+    "essential_oil": 1
+  }
+},
+{
+  "model": "essentials.eobenefit",
+  "pk": 14,
+  "fields": {
+    "title": "Promotes restful sleep",
+    "description": "Deeply relaxing, lavender helps reduce stress levels and is a popular remedy for promoting restful sleep.",
+    "essential_oil": 1
+  }
+},
+{
+  "model": "essentials.eobenefit",
+  "pk": 15,
+  "fields": {
+    "title": "Acts as a painkiller",
+    "description": "Mild analgesic properties make lavender a good treatment for headaches and migraines, as well as muscular and nerve pain. As an anti-spasmodic, it eases menstrual cramps.",
+    "essential_oil": 1
+  }
+},
+{
+  "model": "essentials.eobenefit",
+  "pk": 16,
+  "fields": {
+    "title": "Acts as an antiseptic",
+    "description": "It keeps wounds, ulcers, and sores clean. In a shallow bath, its antibacterial and anti-inflammatory properties make it excellent for infections such as cystitis.",
+    "essential_oil": 1
+  }
+},
+{
+  "model": "essentials.eobenefit",
+  "pk": 17,
+  "fields": {
+    "title": "Freshens the air",
+    "description": "It makes an ideal deodorising and antiseptic spray.",
+    "essential_oil": 1
+  }
+},
+{
+  "model": "essentials.eobenefit",
+  "pk": 18,
+  "fields": {
+    "title": "Act as a deodorant",
+    "description": "Cardamom essential oil is a good addition to deodorants, helping to eliminate the bacteria that cause body odour.",
+    "essential_oil": 4
+  }
+},
+{
+  "model": "essentials.eobenefit",
+  "pk": 19,
+  "fields": {
+    "title": "Cares for teeth and gums",
+    "description": "Its antiseptic properties are useful for treating bad breathe and for helping heal sore, bleeding gums.",
+    "essential_oil": 4
+  }
+},
+{
+  "model": "essentials.eobenefit",
+  "pk": 20,
+  "fields": {
+    "title": "Aids detox",
+    "description": "Diluted with a base oil, cardamom makes a stimulating massage blend, helping to boost circulation. Its mild diuretic action also help  the removal of toxins.",
+    "essential_oil": 4
+  }
+},
+{
+  "model": "essentials.eobenefit",
+  "pk": 21,
+  "fields": {
+    "title": "Combats tiredness",
+    "description": "The oil relieves stress and is refreshing, helping combat fatigue. A reputed aphrodisiac, especially if you are overtired.",
+    "essential_oil": 4
   }
 }
 ]
