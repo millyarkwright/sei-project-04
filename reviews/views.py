@@ -7,13 +7,16 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from .serializers.common import ReviewSerializer
 from .models import Review
 
-# Create your views here.
 
-# ! Review List View -> Create Review
+# ! Review View -> Create & Delete Reviews
 
-class ReviewListView(APIView):
+class ReviewView(APIView):
 
-  def post(self, request):
+  # permission_classes = (IsAuthenticatedOrReadOnly, )
+  
+  # * POST (ADD) REVIEW -------------
+  def post(self, request, pk):
+    request.data['recipe'] = int(pk)
     review_to_create = ReviewSerializer(data=request.data)
     try:
       review_to_create.is_valid(True)
@@ -22,26 +25,25 @@ class ReviewListView(APIView):
     except Exception as e:
       print('e->', e)
       return Response(e.__dict__ if e.__dict__ else str(e), status=status.HTTP_422_UNPROCESSABLE_ENTITY)
-
-
-class ReviewDetailView(APIView):
-  permission_classes = (IsAuthenticatedOrReadOnly, )
-
+  
+  # * DELETE REVIEW ------------------
   def get_review(self, pk):
-    try: 
-      return Review.objects.get(pk=pk)
-    except Review.DoesNotExist:
-      raise NotFound("Review not found")
+        try:
+            return Review.objects.get(pk=pk)
+        except Review.DoesNotExist:
+            raise NotFound("Review not found!")
 
   def delete(self, request, pk):
     review_to_delete = self.get_review(pk)
     print('review ownner ->', review_to_delete.owner)
     print('request user ->', request.user)
-
-    if review_to_delete.owner != request.user:
-      raise PermissionDenied("Unauthorised")
+    
+    # if review_to_delete.owner != request.user or request.user.is_superuser::
+    #   raise PermissionDenied("Unauthorised")
 
     review_to_delete.delete()
 
     return Response(status=status.HTTP_204_NO_CONTENT)
+    
+
 

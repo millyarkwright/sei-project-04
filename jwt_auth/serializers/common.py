@@ -6,6 +6,11 @@ class UserSerializer(serializers.ModelSerializer):
     model = User
     fields = "__all__"
 
+class UserMinSerializer(serializers.ModelSerializer):
+  class Meta: 
+    model = User
+    fields = ('username','profile_image','id')
+
 class BookmarkedRecipeSerializer(serializers.ModelSerializer):
   class Meta: 
     model = BookmarkedRecipe

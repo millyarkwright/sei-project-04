@@ -1,11 +1,14 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.exceptions import NotFound
+from rest_framework.exceptions import NotFound, PermissionDenied
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
+# From Recipe App:
 from .models import Recipe, OtherIngredient, OtherIngredientAmount, EssentialOilAmount, BaseOilAmount
 from .serializers.common import RecipeSerializer, OtherIngredientSerializer, OtherIngredientAmountSerializer, EssentialOilAmountSerializer, BaseOilAmountSerializer
 from .serializers.populated import PopulatedRecipeSerializer, PopulatedOtherIngredientSerializer
+
 
 # Create your views here.
 
@@ -19,6 +22,37 @@ class RecipeListView(APIView):
     serialized_recipes = PopulatedRecipeSerializer(recipes, many=True)
     print('Serialized Recipes ->', serialized_recipes)
     return Response(serialized_recipes.data, status=status.HTTP_200_OK)
+
+class RecipeDetailView(APIView):
+
+  def get_recipe(self, pk):
+    try:
+      return Recipe.objects.get(pk=pk)
+    except Recipe.DoesNotExist:
+      raise NotFound(detail="Recipe not found")
+
+  def get(self, _request, pk):
+    recipe = self.get_recipe(pk=pk)
+    serialized_recipe = PopulatedRecipeSerializer(recipe)
+    return Response(serialized_recipe.data)
+
+  def put(self, request, pk):
+    recipe_to_update = self.get_recipe(pk=pk)
+    updated_recipe = PopulatedRecipeSerializer(recipe_to_update, data=request.data)
+    try: 
+      updated_recipe.is_valid(True)
+      updated_recipe.save()
+      return Response(updated_recipe.data, status=status.HTTP_202_ACCEPTED)
+    except Exception as e:
+      print('e->', e)
+      return Response(e.__dict__ if e.__dict__ else str(e), status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+
+  def delete(self, request, pk):
+    recipe_to_delete = self.get_book(pk=pk)
+    # if recipe_to_delete.owner != request.user or request.user.is_superuser:
+    #   raise PermissionDenied("Unauthorised")
+    recipe_to_delete.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
 
 #  ! Other Ingredients Views
 
@@ -63,3 +97,4 @@ class BaseOilAmountListView(APIView):
     serialized_base_oil_amounts = BaseOilAmountSerializer(base_oil_amounts, many=True)
     print('Serialized base_oil_amounts->', serialized_base_oil_amounts)
     return Response(serialized_base_oil_amounts.data, status=status.HTTP_200_OK)
+

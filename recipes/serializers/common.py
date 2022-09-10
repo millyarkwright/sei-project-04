@@ -1,25 +1,32 @@
 from rest_framework import serializers
 from ..models import Recipe, OtherIngredient, OtherIngredientAmount, EssentialOilAmount, BaseOilAmount
+from applications.serializers.common import ApplicationSerializer
+from remedies.serializers.common import RemedySerializer
 
 # ! RECIPE SERIALIZER ------------
 class RecipeSerializer(serializers.ModelSerializer):
-  applications = serializers.SlugRelatedField(
-  many=True,
-  read_only=True,
-  slug_field="name"
-  )
-  remedies = serializers.SlugRelatedField(
-  many=True,
-  read_only=True,
-  slug_field="name"
-  )
-
+  applications = ApplicationSerializer(many=True)
+  remedies = RemedySerializer(many=True)
+  
   class Meta:
     model = Recipe
     fields = "__all__"
+    
 # SHORT RECIPE SERIALIZER -------------
 class RecipeIndexSerializer(serializers.ModelSerializer):
-    class Meta:
+  applications = ApplicationSerializer(many=True)
+  remedies = RemedySerializer(many=True)
+  # applications = serializers.SlugRelatedField(
+  # many=True,
+  # read_only=True,
+  # slug_field="name"
+  # )
+  # remedies = serializers.SlugRelatedField(
+  # many=True,
+  # read_only=True,
+  # slug_field="name"
+  # )
+  class Meta:
       model = Recipe
       fields = ('id', 'name', 'description', 'applications', 'remedies')
 

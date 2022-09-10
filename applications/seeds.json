@@ -3,70 +3,80 @@
   "model": "applications.application",
   "pk": 1,
   "fields": {
-    "name": "Bath Oil"
+    "name": "Bath Oil",
+    "icon": "url"
   }
 },
 {
   "model": "applications.application",
   "pk": 2,
   "fields": {
-    "name": "Massage Oil"
+    "name": "Massage Oil",
+    "icon": "url"
   }
 },
 {
   "model": "applications.application",
   "pk": 3,
   "fields": {
-    "name": "Mouthwash"
+    "name": "Mouthwash",
+    "icon": "url"
   }
 },
 {
   "model": "applications.application",
   "pk": 4,
   "fields": {
-    "name": "Compress"
+    "name": "Compress",    
+    "icon": "url"
   }
 },
 {
   "model": "applications.application",
   "pk": 5,
   "fields": {
-    "name": "Steam Inhalation"
+    "name": "Steam Inhalation",
+    "icon": "url"
   }
 },
 {
   "model": "applications.application",
   "pk": 6,
   "fields": {
-    "name": "Diffuser"
+    "name": "Diffuser",
+    "icon": "url"
   }
 },
 {
   "model": "applications.application",
   "pk": 7,
   "fields": {
-    "name": "Fragrance"
+    "name": "Fragrance",
+    "icon": "url"
   }
 },
 {
   "model": "applications.application",
   "pk": 8,
   "fields": {
-    "name": "Shower"
+    "name": "Shower",
+    "icon": "url"
   }
 },
 {
   "model": "applications.application",
   "pk": 9,
   "fields": {
-    "name": "Foot Bath"
+    "name": "Foot Bath",
+    "icon": "url"
   }
 },
 {
   "model": "applications.application",
   "pk": 10,
   "fields": {
-    "name": "Ointment"
+    "name": "Ointment",
+    "icon": "url"
   }
 }
 ]
