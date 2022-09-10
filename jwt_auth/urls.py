@@ -1,9 +1,9 @@
 from django.urls import path
-from .views import UserListView, BookmarkedListView, TestedListView
+from .views import UserListView, BookmarkedView, TestedView
 
 urlpatterns = [
-  path('', UserListView.as_view()),
-  path('bookmarked/', BookmarkedListView.as_view()),
-  path('tested/', TestedListView.as_view()),
-
+  path('', UserListView.as_view()), 
+  path('bookmarked/<int:pk>', BookmarkedView.as_view()), 
+  path('tested/<int:pk>', TestedView.as_view()),
 ]
+

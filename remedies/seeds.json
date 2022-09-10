@@ -1,2 +1,74 @@
 [
+{
+  "model": "remedies.remedy",
+  "pk": 1,
+  "fields": {
+    "name": "Pampering & Beauty",
+    "icon": "url"
+  }
+},
+{
+  "model": "remedies.remedy",
+  "pk": 2,
+  "fields": {
+    "name": "Digestive Problems",
+    "icon": "url"
+  }
+},
+{
+  "model": "remedies.remedy",
+  "pk": 3,
+  "fields": {
+    "name": "Respiratory Complaints",
+    "icon": "url"
+  }
+},
+{
+  "model": "remedies.remedy",
+  "pk": 4,
+  "fields": {
+    "name": "Circulatory Problems",
+    "icon": "url"
+  }
+},
+{
+  "model": "remedies.remedy",
+  "pk": 5,
+  "fields": {
+    "name": "Aches & pains",
+    "icon": "url"
+  }
+},
+{
+  "model": "remedies.remedy",
+  "pk": 6,
+  "fields": {
+    "name": "Skin Care",
+    "icon": "url"
+  }
+},
+{
+  "model": "remedies.remedy",
+  "pk": 7,
+  "fields": {
+    "name": "Mind & Wellbeing",
+    "icon": "url"
+  }
+},
+{
+  "model": "remedies.remedy",
+  "pk": 8,
+  "fields": {
+    "name": "Women's Health",
+    "icon": "url"
+  }
+},
+{
+  "model": "remedies.remedy",
+  "pk": 9,
+  "fields": {
+    "name": "First Aid",
+    "icon": "url"
+  }
+}
 ]

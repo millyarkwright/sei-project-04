@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'essentials',
     'recipes',
     'remedies',
+    'reviews',
 ]
 
 MIDDLEWARE = [

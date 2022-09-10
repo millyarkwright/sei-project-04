@@ -23,5 +23,12 @@ urlpatterns = [
     path('baseoils/', include('bases.urls')),
     path('applications/', include('applications.urls')),
     path('remedies/', include('remedies.urls')),
-    path('recipes/', include('recipes.urls'))
+    path('recipes/', include('recipes.urls')),
+    path('reviews/', include('reviews.urls')),
 ]
+# bookmarks/add/recipeID
+# bookmarks/delete/bookmarkID
+
+# recipes/id -> get, update , delete RecipeDetailView
+# users/createrecipe -> post RecipeDetailView
+

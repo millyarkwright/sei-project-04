@@ -21,5 +21,7 @@ class Application(models.Model):
     max_length=30,
     choices=application_choices)
 
+  icon = models.CharField(max_length=100, blank=True)
+
   def __str__(self):
     return f"{self.name}"
