@@ -6,6 +6,11 @@ class BaseOilSerializer(serializers.ModelSerializer):
     model = BaseOil
     fields = "__all__"
 
+class BaseOilNameSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = BaseOil
+    fields = ("name","id")
+
 class BoBenefitSerializer(serializers.ModelSerializer):
   class Meta:
     model = BoBenefit

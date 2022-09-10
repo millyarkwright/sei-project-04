@@ -26,6 +26,12 @@ class EssentialSerializer(serializers.ModelSerializer):
     model = Essential
     fields = "__all__"
 
+class EssentialNameSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = Essential
+    fields = ("name","id")
+
+
 class EoUseSerializer(serializers.ModelSerializer):
   class Meta:
     model = EoUse
