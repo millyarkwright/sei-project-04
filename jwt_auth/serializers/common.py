@@ -3,15 +3,15 @@ from ..models import User, BookmarkedRecipe, TestedRecipe
 
 class UserSerializer(serializers.ModelSerializer):
   class Meta: 
-    model: User
+    model = User
     fields = "__all__"
 
 class BookmarkedRecipeSerializer(serializers.ModelSerializer):
   class Meta: 
-    model: BookmarkedRecipe
+    model = BookmarkedRecipe
     fields = "__all__"
 
 class TestedRecipeSerializer(serializers.ModelSerializer):
   class Meta: 
-    model: TestedRecipe
+    model = TestedRecipe
     fields = "__all__"

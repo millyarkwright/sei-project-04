@@ -12,12 +12,12 @@ class User(AbstractUser):
 class BookmarkedRecipe(models.Model):
   bookmarked_by = models.ForeignKey(
     'jwt_auth.User',
-    related_name='bookmarked_user',
+    related_name='bookmarked_recipes',
     on_delete=models.CASCADE
   )
   bookmarked_recipe = models.ForeignKey(
     'recipes.Recipe',
-    related_name = 'bookmarked_recipes',
+    related_name = 'bookmarked_recipes_list',
     on_delete=models.CASCADE
   )
 
@@ -26,12 +26,12 @@ class TestedRecipe(models.Model):
   
   tested_by = models.ForeignKey(
     'jwt_auth.User',
-    related_name='tested_user',
+    related_name='tested_recipes',
     on_delete=models.CASCADE
   )
   
   tested_recipe = models.ForeignKey(
   'recipes.Recipe',
-  related_name = 'tested_recipes',
+  related_name = 'tested_recipes_list',
   on_delete=models.CASCADE
   )

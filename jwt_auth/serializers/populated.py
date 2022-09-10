@@ -4,10 +4,10 @@ from recipes.serializers.common import RecipeIndexSerializer
 
 
 class PopulatedBookmarkedRecipeSerializer(BookmarkedRecipeSerializer):
-  recipe = RecipeIndexSerializer()
+  bookmarked_recipe = RecipeIndexSerializer
 
 class PopulatedTestedRecipeSerializer(TestedRecipeSerializer):
-  recipe = RecipeIndexSerializer()
+  tested_recipe = RecipeIndexSerializer
 
 class PopulatedUserSerializer(UserSerializer):
   bookmarked_recipes = PopulatedBookmarkedRecipeSerializer(many=True)
