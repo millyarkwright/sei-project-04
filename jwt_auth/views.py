@@ -2,6 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.exceptions import NotFound, PermissionDenied
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly, IsAdminUser
 
 # Auth
 from django.contrib.auth import get_user_model
@@ -60,7 +61,35 @@ class LoginView(APIView):
     return Response({ 'token': token, 'message': f"Welcome back {user_to_login.username}" })
 
 
-# ! USER VIEW --------
+# ! DELETE PROFILE
+
+class UserProfileView(APIView):
+  # permission_classes = [IsAuthenticatedOrReadOnly, IsAdminUser]
+
+  def get(self, request, username):
+    user = User.objects.get(username=username)
+    print('Users->', user)
+
+    if user.username != request.user.username or request.user.is_superuser:
+      raise PermissionDenied("Unauthorised")
+
+    serialized_user = PopulatedUserSerializer(user)
+    print('Serialized Recipes ->', serialized_user)
+    return Response(serialized_user.data, status=status.HTTP_200_OK)
+
+
+  def delete(self, request, username):
+    user_to_delete= User.objects.get(username=username)
+    print('user to be deleted')
+    if user_to_delete.username != request.user.username or request.user.is_superuser:
+      raise PermissionDenied("Unauthorised")
+    user_to_delete.delete()
+    return Response({'message': 'User successfully deleted'})
+
+
+
+
+# ! USER LIST VIEW --------
 class UserListView(APIView):
   def get(self, _request):
     users = User.objects.all()

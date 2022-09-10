@@ -36,6 +36,8 @@ class RecipeDetailView(APIView):
     serialized_recipe = PopulatedRecipeSerializer(recipe)
     return Response(serialized_recipe.data)
 
+  # def post(self, request):
+  #   recipe_to_add = RecipeSerializer()
   def put(self, request, pk):
     recipe_to_update = self.get_recipe(pk=pk)
     updated_recipe = PopulatedRecipeSerializer(recipe_to_update, data=request.data)

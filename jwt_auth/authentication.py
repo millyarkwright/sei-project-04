@@ -31,6 +31,9 @@ class JWTAuthentication(BasicAuthentication):
     except User.DoesNotExist:
       print('failed at user lookup')
       raise PermissionDenied('User not found')
+
+    print('auth-user', user)
+    print('auth-token', token)
     
     return (user, token)
 
