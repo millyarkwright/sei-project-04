@@ -1,13 +1,17 @@
 from django.urls import path 
-from .views import RecipeListView, RecipeDetailView, OtherIngredientListView, OtherIngredientAmountListView, EssentialOilAmountListView, BaseOilAmountListView
+from .views import CreateRecipeView, RecipeListView, RecipeDetailView, OtherIngredientListView, OtherIngredientAmountListView, EssentialOilAmountListView, BaseOilAmountListView
 
 
 urlpatterns = [
   # GET ALL RECIPES
   path('', RecipeListView.as_view()),
 
-  # GET SINGLE RECIPE
+  # GET, UPDATE & DELETE SINGLE RECIPE
   path('<int:pk>', RecipeDetailView.as_view()),
+
+  # CREATE RECIPE
+    path('createrecipe/', CreateRecipeView.as_view()),
+
 
   # GET OTHER INGREDIENTS LIST
   path('otheringredients/', OtherIngredientListView.as_view()),

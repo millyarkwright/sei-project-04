@@ -2,11 +2,11 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.exceptions import NotFound, PermissionDenied
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated, IsAdminUser
 
 # From Recipe App:
 from .models import Recipe, OtherIngredient, OtherIngredientAmount, EssentialOilAmount, BaseOilAmount
-from .serializers.common import RecipeSerializer, OtherIngredientSerializer, OtherIngredientAmountSerializer, EssentialOilAmountSerializer, BaseOilAmountSerializer
+from .serializers.common import RecipeSerializer, CreateRecipeSerializer, OtherIngredientSerializer, OtherIngredientAmountSerializer, EssentialOilAmountSerializer, BaseOilAmountSerializer
 from .serializers.populated import PopulatedRecipeSerializer, PopulatedOtherIngredientSerializer
 
 
@@ -24,6 +24,7 @@ class RecipeListView(APIView):
     return Response(serialized_recipes.data, status=status.HTTP_200_OK)
 
 class RecipeDetailView(APIView):
+  permission_classes = (IsAuthenticatedOrReadOnly, )
 
   def get_recipe(self, pk):
     try:
@@ -36,8 +37,6 @@ class RecipeDetailView(APIView):
     serialized_recipe = PopulatedRecipeSerializer(recipe)
     return Response(serialized_recipe.data)
 
-  # def post(self, request):
-  #   recipe_to_add = RecipeSerializer()
   def put(self, request, pk):
     recipe_to_update = self.get_recipe(pk=pk)
     updated_recipe = PopulatedRecipeSerializer(recipe_to_update, data=request.data)
@@ -51,10 +50,33 @@ class RecipeDetailView(APIView):
 
   def delete(self, request, pk):
     recipe_to_delete = self.get_book(pk=pk)
-    # if recipe_to_delete.owner != request.user or request.user.is_superuser:
-    #   raise PermissionDenied("Unauthorised")
+    if recipe_to_delete.owner != request.user or request.user.is_superuser:
+      raise PermissionDenied("Unauthorised")
     recipe_to_delete.delete()
     return Response(status=status.HTTP_204_NO_CONTENT)
+
+  # * CREATE RECIPE ---------
+
+  # ! We need to use a serialiser the doesn't have the populated Application and Remedy Serialiser (so just ids in this form: application: [1,2]). And we need to just get the id field for owner (not username, profile image and id)
+
+class CreateRecipeView(APIView):
+  permission_classes = (IsAuthenticated, IsAdminUser )
+
+  def post(self, request):
+    request.data['owner'] = request.user.id
+    print('data w/ owner', request.data)
+    # essential_oil_amount_add = EssentialOilAmountSerializer(data=request.data.essential_oil_amount)
+    # request.data.pop("essential_oil_amount")
+    recipe_to_add = CreateRecipeSerializer(data=request.data)
+    try: 
+      # essential_oil_amount_add.is_valid()
+      # essential_oil_amount_add.save()
+      recipe_to_add.is_valid()
+      recipe_to_add.save()
+      return Response(recipe_to_add.data , status=status.HTTP_201_CREATED)
+    except Exception as e:
+      print('e->', e)
+      return Response(e.__dict__ if e.__dict__ else str(e), status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
 #  ! Other Ingredients Views
 
