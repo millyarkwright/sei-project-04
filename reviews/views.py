@@ -12,7 +12,7 @@ from .models import Review
 
 class ReviewView(APIView):
 
-  # permission_classes = (IsAuthenticatedOrReadOnly, )
+  permission_classes = (IsAuthenticatedOrReadOnly, )
   
   # * POST (ADD) REVIEW -------------
   def post(self, request, pk):
@@ -37,11 +37,14 @@ class ReviewView(APIView):
     review_to_delete = self.get_review(pk)
     print('review ownner ->', review_to_delete.owner)
     print('request user ->', request.user)
-    
-    # if review_to_delete.owner != request.user or request.user.is_superuser::
+    if review_to_delete.owner == request.user or request.user.is_superuser == True:
+      review_to_delete.delete()
+    else:
+      raise PermissionDenied("Unauthorised")
+    # if review_to_delete.owner != request.user or request.user.is_superuser:
     #   raise PermissionDenied("Unauthorised")
 
-    review_to_delete.delete()
+    # review_to_delete.delete()
 
     return Response(status=status.HTTP_204_NO_CONTENT)
     
