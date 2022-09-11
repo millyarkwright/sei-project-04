@@ -60,10 +60,11 @@ class RecipeDetailView(APIView):
   # ! We need to use a serialiser the doesn't have the populated Application and Remedy Serialiser (so just ids in this form: application: [1,2]). And we need to just get the id field for owner (not username, profile image and id)
 
 class CreateRecipeView(APIView):
-  permission_classes = (IsAuthenticated, IsAdminUser )
+  permission_classes = (IsAuthenticatedOrReadOnly, )
 
   def post(self, request):
     request.data['owner'] = request.user.id
+    eo_amount_data = request.data.essential_oil_amount
     print('data w/ owner', request.data)
     # essential_oil_amount_add = EssentialOilAmountSerializer(data=request.data.essential_oil_amount)
     # request.data.pop("essential_oil_amount")

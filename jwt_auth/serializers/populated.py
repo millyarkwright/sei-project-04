@@ -1,6 +1,6 @@
 from recipes.serializers.common import RecipeIndexSerializer
 from .common import UserSerializer, BookmarkedRecipeSerializer, TestedRecipeSerializer
-from recipes.serializers.common import RecipeIndexSerializer
+from recipes.serializers.common import RecipeSerializer
 
 
 class PopulatedBookmarkedRecipeSerializer(BookmarkedRecipeSerializer):
@@ -12,3 +12,4 @@ class PopulatedTestedRecipeSerializer(TestedRecipeSerializer):
 class PopulatedUserSerializer(UserSerializer):
   bookmarked_recipes = PopulatedBookmarkedRecipeSerializer(many=True)
   tested_recipes = PopulatedTestedRecipeSerializer(many=True)
+  created_recipes = RecipeIndexSerializer(many=True)
