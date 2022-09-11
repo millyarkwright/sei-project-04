@@ -9,9 +9,6 @@ from .models import Recipe, OtherIngredient, OtherIngredientAmount, EssentialOil
 from .serializers.common import RecipeSerializer, CreateRecipeSerializer, OtherIngredientSerializer, OtherIngredientAmountSerializer, EssentialOilAmountSerializer, BaseOilAmountSerializer, EssentialOilAmountFullSerializer, OtherIngredientAmountFullSerializer
 from .serializers.populated import PopulatedRecipeSerializer, PopulatedOtherIngredientSerializer, PopulatedEssentialOilAmountSerializer
 
-
-# Create your views here.
-
 # ! Recipe Views
 
 class RecipeListView(APIView):
