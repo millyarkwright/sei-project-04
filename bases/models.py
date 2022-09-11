@@ -10,6 +10,7 @@ class BaseOil(models.Model):
   description = models.TextField(max_length=500)
   the_base_oil = models.TextField(max_length= 400)
   safe_usage =  models.TextField(max_length=250, blank=True)
+  image = models.CharField(max_length=100, default='tbc')
   
   def __str__(self):
     return f"{self.name}"
