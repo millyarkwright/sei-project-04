@@ -19,3 +19,20 @@ class BaseOilListView(APIView):
     serialized_base_oils = PopulatedBaseOilSerializer(base_oils, many=True)
     print('Serialized EOs ->', serialized_base_oils)
     return Response(serialized_base_oils.data, status=status.HTTP_200_OK)
+
+# ! Get Single Base Oil
+
+class BaseOilDetailView(APIView):
+
+  def get_essential(self, pk):
+    try:
+      return BaseOil.objects.get(pk=pk)
+    except BaseOil.DoesNotExist:
+      raise NotFound(detail='Base Oil not found')
+
+  def get(self, _request, pk):
+    base_oil = self.get_essential(pk=pk)
+    print('BO->', base_oil)
+    serialized_base_oil = PopulatedBaseOilSerializer(base_oil)
+    print('serialised BO->', serialized_base_oil)
+    return Response(serialized_base_oil.data, status=status.HTTP_200_OK)
