@@ -20,6 +20,22 @@ class EssentialListView(APIView):
     print('Serialized EOs ->', serialized_essential_oils)
     return Response(serialized_essential_oils.data, status=status.HTTP_200_OK)
 
+# ! Get Single Essential Oil
+
+class EssentialDetailView(APIView):
+
+  def get_essential(self, pk):
+    try:
+      return Essential.objects.get(pk=pk)
+    except Essential.DoesNotExist:
+      raise NotFound(detail='Essential Oil not found')
+
+  def get(self, _request, pk):
+    essential_oil = self.get_essential(pk=pk)
+    print('EO->', essential_oil)
+    serialized_essential_oil = PopulatedEssentialSerializer(essential_oil)
+    print('serialised EO->', serialized_essential_oil)
+    return Response(serialized_essential_oil.data, status=status.HTTP_200_OK)
 
 
 class EssentialUsesListView(APIView): 
