@@ -6,8 +6,8 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticate
 
 # From Recipe App:
 from .models import Recipe, OtherIngredient, OtherIngredientAmount, EssentialOilAmount, BaseOilAmount
-from .serializers.common import RecipeSerializer, CreateRecipeSerializer, OtherIngredientSerializer, OtherIngredientAmountSerializer, EssentialOilAmountSerializer, BaseOilAmountSerializer
-from .serializers.populated import PopulatedRecipeSerializer, PopulatedOtherIngredientSerializer
+from .serializers.common import RecipeSerializer, CreateRecipeSerializer, OtherIngredientSerializer, OtherIngredientAmountSerializer, EssentialOilAmountSerializer, BaseOilAmountSerializer, EssentialOilAmountFullSerializer, OtherIngredientAmountFullSerializer
+from .serializers.populated import PopulatedRecipeSerializer, PopulatedOtherIngredientSerializer, PopulatedEssentialOilAmountSerializer
 
 
 # Create your views here.
@@ -49,7 +49,7 @@ class RecipeDetailView(APIView):
       return Response(e.__dict__ if e.__dict__ else str(e), status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
   def delete(self, request, pk):
-    recipe_to_delete = self.get_book(pk=pk)
+    recipe_to_delete = self.get_recipe(pk=pk)
     if recipe_to_delete.owner != request.user or request.user.is_superuser:
       raise PermissionDenied("Unauthorised")
     recipe_to_delete.delete()
@@ -95,11 +95,46 @@ class OtherIngredientAmountListView(APIView):
   def get(self, _request):
     other_ingredient_amounts = OtherIngredientAmount.objects.all()
     print('Other Ingredient Amounts->', other_ingredient_amounts)
-    serialized_other_ingredient_amounts = OtherIngredientAmountSerializer(other_ingredient_amounts, many=True)
+    serialized_other_ingredient_amounts = OtherIngredientAmountFullSerializer(other_ingredient_amounts, many=True)
     print('Serialized Other Ingredient Amounts->', serialized_other_ingredient_amounts)
     print('Serialized Other Ingredient Amounts DATA->', serialized_other_ingredient_amounts.data)
 
     return Response(serialized_other_ingredient_amounts.data, status=status.HTTP_200_OK)
+
+class OtherIngredientAmountView(APIView):
+    # * POST (ADD) OTHER INGREDIENT AMOUNT -------------
+  def post(self, request, pk):
+    request.data['recipe'] = int(pk)
+    oi_amount_to_create = OtherIngredientAmountFullSerializer(data=request.data)
+    try:
+      oi_amount_to_create.is_valid(True)
+      oi_amount_to_create.save()
+      return Response(oi_amount_to_create.data, status=status.HTTP_201_CREATED)
+    except Exception as e:
+      print('e->', e)
+      return Response(e.__dict__ if e.__dict__ else str(e), status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+  
+  def get_oi_amount(self, pk):
+    try:
+      return OtherIngredientAmount.objects.get(pk=pk)
+    except OtherIngredientAmount.DoesNotExist:
+      raise NotFound(detail="Other Ingredient Amount not found")
+  
+  def patch(self, request, pk):
+    oi_amount_to_update = self.get_oi_amount(pk=pk)
+    updated_oi_amount = OtherIngredientAmountSerializer(oi_amount_to_update, data=request.data)
+    try: 
+      updated_oi_amount.is_valid(True)
+      updated_oi_amount.save()
+      return Response(updated_oi_amount.data, status=status.HTTP_202_ACCEPTED)
+    except Exception as e:
+      print('e->', e)
+      return Response(e.__dict__ if e.__dict__ else str(e), status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+ 
+  def delete(self, request, pk):
+      oi_amount_to_delete = self.get_oi_amount(pk=pk)
+      oi_amount_to_delete.delete()
+      return Response({'message': 'Other ingredient amount successfully deleted'})
 
 # ! Essential Oil Views
 
@@ -108,9 +143,44 @@ class EssentialOilAmountListView(APIView):
   def get(self, _request):
     essential_oil_amounts = EssentialOilAmount.objects.all()
     print('essential_oil_amounts->', essential_oil_amounts)
-    serialized_essential_oil_amounts = EssentialOilAmountSerializer(essential_oil_amounts, many=True)
+    serialized_essential_oil_amounts = EssentialOilAmountFullSerializer(essential_oil_amounts, many=True)
     print('Serialized essential_oil_amounts->', serialized_essential_oil_amounts)
     return Response(serialized_essential_oil_amounts.data, status=status.HTTP_200_OK)
+
+class EssentialOilAmountView(APIView):
+  def post(self, request, pk):
+    request.data['recipe'] = int(pk)
+    print('-------REQUEST WITH RECIPE ID --------', request.data)
+    eo_amount_to_create = EssentialOilAmountFullSerializer(data=request.data)
+    try:
+      eo_amount_to_create.is_valid(True)
+      eo_amount_to_create.save()
+      return Response(eo_amount_to_create.data, status=status.HTTP_201_CREATED)
+    except Exception as e:
+      print('e->', e)
+      return Response(e.__dict__ if e.__dict__ else str(e), status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+  
+  def get_eo_amount(self, pk):
+    try:
+      return EssentialOilAmount.objects.get(pk=pk)
+    except EssentialOilAmount.DoesNotExist:
+      raise NotFound(detail="EssentialOil Amount not found")
+  
+  def patch(self, request, pk):
+    eo_amount_to_update = self.get_eo_amount(pk=pk)
+    updated_eo_amount = EssentialOilAmountSerializer(eo_amount_to_update, data=request.data)
+    try: 
+      updated_eo_amount.is_valid(True)
+      updated_eo_amount.save()
+      return Response(updated_eo_amount.data, status=status.HTTP_202_ACCEPTED) 
+    except Exception as e:
+      print('e->', e)
+      return Response(e.__dict__ if e.__dict__ else str(e), status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+  
+  def delete(self, request, pk):
+      eo_amount_to_delete = self.get_eo_amount(pk=pk)
+      eo_amount_to_delete.delete()
+      return Response({'message': 'Essential oil Amount successfully deleted'})
 
 # ! Base Oil View 
 
@@ -123,3 +193,36 @@ class BaseOilAmountListView(APIView):
     print('Serialized base_oil_amounts->', serialized_base_oil_amounts)
     return Response(serialized_base_oil_amounts.data, status=status.HTTP_200_OK)
 
+class BaseOilAmountView(APIView):
+  def post(self, request, pk):
+    request.data['recipe'] = int(pk)
+    bo_amount_to_create = BaseOilAmountSerializer(data=request.data)
+    try:
+      bo_amount_to_create.is_valid(True)
+      bo_amount_to_create.save()
+      return Response(bo_amount_to_create.data, status=status.HTTP_201_CREATED)
+    except Exception as e:
+      print('e->', e)
+      return Response(e.__dict__ if e.__dict__ else str(e), status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+  
+  def get_bo_amount(self, pk):
+    try:
+      return BaseOilAmount.objects.get(pk=pk)
+    except BaseOilAmount.DoesNotExist:
+      raise NotFound(detail="BaseOil Amount not found")
+
+  def patch(self, request, pk):
+    bo_amount_to_update = self.get_bo_amount(pk=pk)
+    updated_bo_amount = BaseOilAmountSerializer(bo_amount_to_update, data=request.data)
+    try: 
+      updated_bo_amount.is_valid(True)
+      updated_bo_amount.save()
+      return Response(updated_bo_amount.data, status=status.HTTP_202_ACCEPTED) 
+    except Exception as e:
+      print('e->', e)
+      return Response(e.__dict__ if e.__dict__ else str(e), status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+
+  def delete(self, request, pk):
+      bo_amount_to_delete = self.get_bo_amount(pk=pk)
+      bo_amount_to_delete.delete()
+      return Response({'message': 'Base oil Amount successfully deleted'})

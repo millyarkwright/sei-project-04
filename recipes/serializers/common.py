@@ -55,6 +55,12 @@ class OtherIngredientAmountSerializer(serializers.ModelSerializer):
     model = OtherIngredientAmount
     fields = ( 'id', 'other_ingredient', 'quantity', 'measurement')
 
+
+class OtherIngredientAmountFullSerializer(serializers.ModelSerializer):
+    class Meta:
+      model = EssentialOilAmount
+      fields = "__all__"
+
 # ESSENTIAL OIL AMOUNT-------------
 class EssentialOilAmountSerializer(serializers.ModelSerializer):
   # essential_oil = serializers.SlugRelatedField(
@@ -66,6 +72,11 @@ class EssentialOilAmountSerializer(serializers.ModelSerializer):
     model = EssentialOilAmount
     fields = ('id', 'essential_oil', 'quantity', 'measurement')
 
+class EssentialOilAmountFullSerializer(serializers.ModelSerializer):
+    class Meta:
+      model = EssentialOilAmount
+      fields = "__all__"
+
 #BASE OIL AMOUNT-----------
 class BaseOilAmountSerializer(serializers.ModelSerializer):
   # base_oil = serializers.SlugRelatedField(
@@ -75,3 +86,8 @@ class BaseOilAmountSerializer(serializers.ModelSerializer):
   class Meta:
     model = BaseOilAmount
     fields = ('id', 'base_oil',  'quantity', 'measurement')
+
+class BaseOilAmountFullSerializer(serializers.ModelSerializer):
+    class Meta:
+      model = BaseOilAmount
+      fields = "__all__"
