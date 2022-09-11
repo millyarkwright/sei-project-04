@@ -60,7 +60,7 @@ class OtherIngredientAmount(models.Model):
     )
 
     def __str__(self):
-      return f"{self.other_ingredient} - {self.quantity} {self.measurement}"
+      return f"{self.recipe} - {self.other_ingredient}"
 
 class EssentialOilAmount(models.Model):
     quantity = models.FloatField()
@@ -77,7 +77,7 @@ class EssentialOilAmount(models.Model):
         on_delete=models.CASCADE
     )
     def __str__(self):
-      return f"{self.essential_oil} - {self.quantity} {self.measurement}"
+      return f"{self.recipe} - {self.essential_oil}"
 
 class BaseOilAmount(models.Model):
     quantity = models.FloatField()
@@ -94,4 +94,4 @@ class BaseOilAmount(models.Model):
         on_delete=models.CASCADE
     )
     def __str__(self):
-      return f"{self.base_oil} - {self.quantity} {self.measurement}"
+      return f"{self.recipe} - {self.base_oil}"
