@@ -4,7 +4,7 @@
   "pk": 1,
   "fields": {
     "name": "Bath Oil",
-    "icon": "url"
+    "icon": ""
   }
 },
 {
@@ -12,7 +12,7 @@
   "pk": 2,
   "fields": {
     "name": "Massage Oil",
-    "icon": "url"
+    "icon": ""
   }
 },
 {
@@ -20,15 +20,15 @@
   "pk": 3,
   "fields": {
     "name": "Mouthwash",
-    "icon": "url"
+    "icon": ""
   }
 },
 {
   "model": "applications.application",
   "pk": 4,
   "fields": {
-    "name": "Compress",    
-    "icon": "url"
+    "name": "Compress",
+    "icon": ""
   }
 },
 {
@@ -36,7 +36,7 @@
   "pk": 5,
   "fields": {
     "name": "Steam Inhalation",
-    "icon": "url"
+    "icon": ""
   }
 },
 {
@@ -44,7 +44,7 @@
   "pk": 6,
   "fields": {
     "name": "Diffuser",
-    "icon": "url"
+    "icon": ""
   }
 },
 {
@@ -52,7 +52,7 @@
   "pk": 7,
   "fields": {
     "name": "Fragrance",
-    "icon": "url"
+    "icon": ""
   }
 },
 {
@@ -60,7 +60,7 @@
   "pk": 8,
   "fields": {
     "name": "Shower",
-    "icon": "url"
+    "icon": ""
   }
 },
 {
@@ -68,7 +68,7 @@
   "pk": 9,
   "fields": {
     "name": "Foot Bath",
-    "icon": "url"
+    "icon": ""
   }
 },
 {
@@ -76,7 +76,7 @@
   "pk": 10,
   "fields": {
     "name": "Ointment",
-    "icon": "url"
+    "icon": ""
   }
 }
 ]

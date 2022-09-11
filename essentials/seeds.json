@@ -12,16 +12,24 @@
     "the_essential_oil": "Colourless or pale yellow, lavender oil has a floral, slightly hard, sweet aroma. Some oils have synthetic compounds. Check the label for the name Lavendula angustifolia.",
     "the_plant": "Lavendula angustifolia is commonly used for essential oils. Lavandin or spike lavender is a hybrid with medicinal aroma and antiseptic and tonic properties.",
     "safe_usage": "Non-toxic and non-irritant. Can be used neat on small areas.",
-    "image": "lavender.com",
+    "image": "https://i.ibb.co/ZT2Tj4J/lavender-1200x1200.jpg",
     "applications": [
       1,
       2
     ],
     "remedies": [],
     "blends_well_with": [
+      24,
+      4,
       2,
       3,
-      4
+      8,
+      6,
+      36,
+      12,
+      31,
+      23,
+      18
     ]
   }
 },
@@ -34,11 +42,11 @@
     "key_action": 4,
     "method_of_extraction": "Expressed from the citrus fruit's peel.",
     "description_short": "Uplifting and fruity, this is balancing for the skin and calming for the emotions.",
-    "description_long": "input long description",
-    "the_essential_oil": "input essential oil",
-    "the_plant": "input plant info",
-    "safe_usage": "Contains components that may cause sensitisation in some people. Recommend use in less than 1% dilution on the skin.",
-    "image": "tbc",
+    "description_long": "An aromatherapy favourite, this oil has a balancing effect on body and mind. Soothing and cooling, bergamot is idea for dry or itchy skin conditions, and its fruit aroma helps to elevate mood, enhancing wellbeing.",
+    "the_essential_oil": "The rind of the bergamot fruit is cold pressed to produce either a light yellow or pale green oil which carries an extremely rich, sweet, fruity smell.",
+    "the_plant": "Named after the Italian city of Bergamo, these oranges are very sour, but with a deeply scented rind. The familiar aroma is used, among other things, as an ingredient in Earl Grey tea and Eeau de Cologne.",
+    "safe_usage": "Non-toxic, non-irritant in dilution. Ensure you buy bergaptene-free (also called Bergamot FCF), otherwise its photo-toxic.",
+    "image": "https://i.ibb.co/hcXsY6t/bergamot-1200x1200.jpg",
     "applications": [
       2,
       4
@@ -46,7 +54,15 @@
     "remedies": [],
     "blends_well_with": [
       1,
-      3
+      3,
+      15,
+      38,
+      33,
+      30,
+      29,
+      19,
+      39,
+      17
     ]
   }
 },
@@ -63,7 +79,7 @@
     "the_essential_oil": "The oil is steam-distilled from the leaves and the flowing tops of the plant. It has a sweet, spicy, fresh and slightly balsamic odour, and is clear to pale yellow in colour.",
     "the_plant": "Originally from tropical Asia and the Pacific Islands, basil is now cultivated worldwide. The flowers range from white to pink in colour, and are popular with bees and other garden pollinators.",
     "safe_usage": "Potentially toxic over time. Dilute extremely well (less than 0.5 percent) and do not use for prolonged periods. Avoid in pregnancy, when breastfeeding, and in children under 15 years old.",
-    "image": "tbc",
+    "image": "https://i.ibb.co/WHLgh8P/basil-1200x1200.jpg",
     "applications": [
       4,
       6
@@ -88,14 +104,1029 @@
     "the_essential_oil": "The essential oil is extracted by steam-distillation from the seeds and produces a colourless to pale yellow oil that has a sweet-spicy aroma with woody notes.",
     "the_plant": "A native of India, cardamom seeds and pods have been used for centuries as a culinary spice and a healing remedy. Cardamom is also used in traditional Chinese medicine.",
     "safe_usage": "Non-toxic and non-irritant. Avoid using in children under 7 years old.",
-    "image": "tbc",
+    "image": "https://i.ibb.co/GxR94MQ/cardamom-1200x1200jpeg.jpg",
     "applications": [
       2,
       3
     ],
     "remedies": [],
     "blends_well_with": [
+      1,
+      26
+    ]
+  }
+},
+{
+  "model": "essentials.essential",
+  "pk": 5,
+  "fields": {
+    "name": "Lemon",
+    "latin_name": "Citrus limon",
+    "key_action": 2,
+    "method_of_extraction": "Expressed from the peel of the fruit.",
+    "description_short": "Uplifting and fruity, this is toning and clarifying for the skin and environment.",
+    "description_long": "Fresh and invigorating, lemon stimulates the senses and clears the mind. Detoxifying and toning, the oil lends itself naturally to massage blends and skin products, and its citrus aroma and antiseptic properties make it a natural deodoriser.",
+    "the_essential_oil": "The clear oil with its fresh, citrus smell, is pressed from the peel of the lemon fruit.",
+    "the_plant": "The lemon tree is native to India, but arrived in Europe with the Crusaders in the 21st century. As well as being a natural remedy, the rind is used in baking and cooking, and the essential oil, expressed from the rind of the fruit, has a long history of use in perfumery.",
+    "safe_usage": "Non-toxic, use well diluted (less than 2 percent). Avoid using for 12 hours prior to sun exposure.",
+    "image": "https://i.ibb.co/Ld0Gv12/lemon-1200x1200.jpg",
+    "applications": [
+      2,
+      4
+    ],
+    "remedies": [],
+    "blends_well_with": [
+      15,
+      7,
+      14,
+      36,
+      34,
+      31,
+      28,
+      25,
+      37,
+      27
+    ]
+  }
+},
+{
+  "model": "essentials.essential",
+  "pk": 6,
+  "fields": {
+    "name": "Black Pepper",
+    "latin_name": "Piper nigrum",
+    "key_action": 3,
+    "method_of_extraction": "Steam distilled from the dried, crushed fruit of the pepper vine.",
+    "description_short": "Warming and spicy, this gives your body a natural boost and helps ease tired muscles.",
+    "description_long": "A warming, spicy oil, black pepper has strong antiseptic properties. Its stimulating aroma has a clearing effect on the mind, making this a useful oil for impoving focus, while its ability to boost circulation can revive tired muscles and joints and speed the healing of bruises.",
+    "the_essential_oil": "The essential oil of the black peppercorn is steam-distilled from the dired, crushed unripe fruit. The thinly textured oil is an amber to yellow-green colour and has a distinctive pungent, spicy aroma that is both warming and fresh.",
+    "the_plant": "Black peppercorns are actually the dried fruits of a climbing vine-like shrub native to Indonesia, where the spice is still mainly cultivated today. Best known as a cooking spice, black pepper also has a long established history of use as a medicinal spice in India and China. Black pepper essential oil is valued by perfumers for adding a warming spicy note to perfume blends.",
+    "safe_usage": "Non-toxix, non-irritant in dilution.",
+    "image": "https://i.ibb.co/KbtbHzg/black-pepper-1200x1200.jpg",
+    "applications": [
+      1,
+      6
+    ],
+    "remedies": [],
+    "blends_well_with": [
+      1,
+      10,
+      33,
+      19,
+      37,
+      17
+    ]
+  }
+},
+{
+  "model": "essentials.essential",
+  "pk": 7,
+  "fields": {
+    "name": "Cedarwood",
+    "latin_name": "Cedrus atlantica",
+    "key_action": 1,
+    "method_of_extraction": "Steam distilled from the wood.",
+    "description_short": "Toning and woody, this has soothing and purifying properties.",
+    "description_long": "A long-established essential oil, cedarwood has an impressive range of benefits. Both antiseptic and astingent, it balances and tones complexions and facilitates healing infections and skin eruptions. Its uplifting aroma makes it perfect pick-me-up, helping to release tension and lift feelings of lethargy.",
+    "the_essential_oil": "The tree bark is the source of a thick, pale, yellow to amber essential oil with sweet, mild, balsamic woody odour that becomes gradually more woody while the oil dries out.",
+    "the_plant": "The sacred Cedars of Lebanon in the Atlas Mountains are large imposing trees that can live for up to 2,000 years. As a symbol of protection and power, they have been so highly prized and sought after over the years that they are becoming an endangered species, so ensure the oil you buy is harvested sustainably.",
+    "safe_usage": "Non-toxix, non-irritant in dilution.",
+    "image": "https://i.ibb.co/xfbK6JH/cedarwood-1200x1200.jpg",
+    "applications": [
+      2,
+      10,
+      7
+    ],
+    "remedies": [
+      10
+    ],
+    "blends_well_with": [
+      29,
+      34,
+      26,
+      5
+    ]
+  }
+},
+{
+  "model": "essentials.essential",
+  "pk": 8,
+  "fields": {
+    "name": "Chamomile (Blue)",
+    "latin_name": "Matricaria recutita",
+    "key_action": 4,
+    "method_of_extraction": "Steam distilled from the flowers and leaves.",
+    "description_short": "Soothing and herby, this has remarkable calming properties and is ideal for dry and itchy skin.",
+    "description_long": "Popular as a herbal tea, chamomile essential oil makes an effective skin treatment thanks to its calming and toning properties. It has a strong anti-inflammatory action that penetrates the skin's layers to soothe and repair, useful for skin conditions such as eczema, and for healing.",
+    "the_essential_oil": "A deep ink-blue viscous liquid, the oil is steam-distilled from the flowers. The heavy, herbaceous sweet smell has a fruit note. Roman chamomile makes a paler oil.",
+    "the_plant": "Also known as German chamomile, the plant, which has delicate feathery leaves and simple daisy-like white flowers on single stems, is cultivated widely throughout central and northern Europe. Roman chamomile (Anthemis nobilis) is a milder, sweeter oil with similar anti-inflammatory properties that is particularly suitable for infants and children.",
+    "safe_usage": "Non-toxix, non-irritant in dilution.",
+    "image": "https://i.ibb.co/7XzR0bk/chamomile-blue-1200x1200.jpg",
+    "applications": [
+      1,
+      2,
+      4
+    ],
+    "remedies": [
+      6
+    ],
+    "blends_well_with": [
+      1,
+      14,
+      33,
+      25,
+      23,
+      18
+    ]
+  }
+},
+{
+  "model": "essentials.essential",
+  "pk": 9,
+  "fields": {
+    "name": "Chamomile Roman",
+    "latin_name": "Anthemis nobilis",
+    "key_action": 4,
+    "method_of_extraction": "Steam distilled from the flowers and leaves.",
+    "description_short": "Calming and fruity, this is balancing and tension-easing and, being naturally milder, is more suitable for children than Chamomile Blue.",
+    "description_long": "Popular as a herbal tea, chamomile essential oil makes an effective skin treatment thanks to its calming and toning properties. It has a strong anti-inflammatory action that penetrates the skin's layers to soothe and repair, useful for skin conditions such as eczema, and for healing.",
+    "the_essential_oil": "The essential oil is steam-distilled from a the flowers and makes a pale oil with a herbaceous, sweet smell with a fruit note. lChamomile Blue (German chamomile) makes for a deep ink-blue viscous liquid.",
+    "the_plant": "The plant, which has delicate feathery leaves and simple daisy-like white flowers on single stems, is cultivated widely throughout central and northern Europe. Roman chamomile (Anthemis nobilis) is a milder, sweeter oil with similar anti-inflammatory properties to Chamomile Blue (German chamomile) that is particularly suitable for infants and children.",
+    "safe_usage": "Non-toxix, non-irritant in dilution.",
+    "image": "https://i.ibb.co/GVJT8NT/chamomile-roman-1200x1200.jpg",
+    "applications": [
+      1,
+      2,
+      4
+    ],
+    "remedies": [
+      6
+    ],
+    "blends_well_with": [
+      14,
+      33,
+      26,
+      25,
+      23,
+      18
+    ]
+  }
+},
+{
+  "model": "essentials.essential",
+  "pk": 10,
+  "fields": {
+    "name": "Cinnamon",
+    "latin_name": "Cinnamomum zeylanicum",
+    "key_action": 3,
+    "method_of_extraction": "Steam distilled from the leaves.",
+    "description_short": "Warming and spicy, this is stimulating for the digestion.",
+    "description_long": "This spicy, warming oil was used by the ancient Egyptians as an aromatic foot massage. It is used in very small amounts in cosmetics for its antiseptic properties, and its energising and stimulating aroma makes it idea for lifting flagging spirits.",
+    "the_essential_oil": "The yellow or brownish-yellow essential oil is obtained through steam-distillation of the inner bark tree. It has a warm and spicy aroma. The leaf oil is considered milder and is therefore safer for use in aromatherapy.",
+    "the_plant": "The cinnamon tree is a member of the laurel family and native of Ceylon. The name \"cinnamon\" refers to its mid-brown colour.",
+    "safe_usage": "Use very well diluted (less than 0.5 percent), and use only cinnamon leaf oil on the skin (not cinnamon bark).",
+    "image": "https://i.ibb.co/PTTxkRZ/cinnamon-1200x1200.jpg",
+    "applications": [
+      9,
+      6
+    ],
+    "remedies": [],
+    "blends_well_with": [
+      6,
+      14,
+      28
+    ]
+  }
+},
+{
+  "model": "essentials.essential",
+  "pk": 11,
+  "fields": {
+    "name": "Citronella",
+    "latin_name": "Cymbopogon nardus",
+    "key_action": 2,
+    "method_of_extraction": "Steam distilled from the grass.",
+    "description_short": "Uplifting and citrusy, this blend is useful for summer evenings outdoors. Ideal for vaporisation.",
+    "description_long": "Best known as an insect repellent used in a variety of candles, potpourri, and lotions, citonella has other important uses. As a room scent it helps clear and refresh the mind, and its antiseptic properties make it effective in deodorants.",
+    "the_essential_oil": "Citronella oil is steam-distilled from the finely chopped fresh, dried, or part-dried grass. it is a pale to dark yellow oil with a sweet, lemony scent.",
+    "the_plant": "A hardy grass, native to Sri Lanka and Java, citronella is distinguishable from its cousin, lemongrass, by its reddish-coloured stems.",
+    "safe_usage": "Non-irritant in dilution (less than 5 percent). Avoid using on hypersensitve skin.",
+    "image": "https://i.ibb.co/zn2y7Tx/citronella-1200x1200.jpg",
+    "applications": [
+      6
+    ],
+    "remedies": [
+      6
+    ],
+    "blends_well_with": [
+      31,
+      28,
+      21
+    ]
+  }
+},
+{
+  "model": "essentials.essential",
+  "pk": 12,
+  "fields": {
+    "name": "Clary Sage",
+    "latin_name": "Salvia sclarea",
+    "key_action": 4,
+    "method_of_extraction": "Steam distilled from the flowers and leaves.",
+    "description_short": "Warming and calming, perfect to use at bedtime.",
+    "description_long": "Renown for uplifting the mind and emotions, clary sage also has a tonic effect on many body systems, including the digestive and circulatory systems. It can revive tired muscles, relieve menstrual and labour pains, and is considered an aphrodisiac.",
+    "the_essential_oil": "The oil is a colourless to pale green liquid with a herbaceous, sweet, slightly nutty aroma. It is steam-distilled from the flowing tops and leaves.",
+    "the_plant": "Related to sage, but with tall, dramatic flower stems, clary sage is a native of southern Europe. The herb has long been prized as a medicinal plant and is also a popular ingredient in perfumes.",
+    "safe_usage": "Use well diluted to avoid potential skin irritation (less than 0.5 percent). Avoid on hypersensitive skin and on children under seven years old.",
+    "image": "https://i.ibb.co/xstWJ2p/clary-sage-1200x1200.jpg",
+    "applications": [
+      1,
+      2
+    ],
+    "remedies": [],
+    "blends_well_with": [
+      1,
+      24,
+      38,
+      33,
+      32
+    ]
+  }
+},
+{
+  "model": "essentials.essential",
+  "pk": 13,
+  "fields": {
+    "name": "Eucalyptus",
+    "latin_name": "Eucalyptus globulus",
+    "key_action": 2,
+    "method_of_extraction": "Steam distilled from the leaves.",
+    "description_short": "Stimulating and expansive, this helps to clear the head for easy breathing.",
+    "description_long": "This warming and antiseptic oil is great for relieving aches and pais as well as healing mouth ulcers and insect bites and stings. The oil tones and balances skin, and its sharp aroma helps increase concentration and lift feelings of depression.",
+    "the_essential_oil": "The oil is steam-distilled from the leaves of the trea. It has a clear to pale yellow hue and has a strong, camphorous, woody smell.",
+    "the_plant": "The blue gum eucalyptus, a tree native to Australia, is the most widely cultivated of hundreds of species of eucalyptus. Several other varieties are used in aromatherapy, notably the slightly gentler Eucalyptus radiata and the more cooling Eucaluptus citronella.",
+    "safe_usage": "Non-toxic externally; non-irritant in dilution (less than 5 percent). Avoid near nose or face on children under seven years old.",
+    "image": "https://i.ibb.co/ypPLLcD/eucalyptus-1200x1200.jpg",
+    "applications": [
+      2,
+      5,
+      6
+    ],
+    "remedies": [],
+    "blends_well_with": [
+      36
+    ]
+  }
+},
+{
+  "model": "essentials.essential",
+  "pk": 14,
+  "fields": {
+    "name": "Frankincense",
+    "latin_name": "Boswellia sacra",
+    "key_action": 4,
+    "method_of_extraction": "Steam distilled from the resin, extracted from the bark of the tree.",
+    "description_short": "Uplifting and fresh, this is rejuvenating for the skin and helps when feeling stressed.",
+    "description_long": "This is an important oil for toning and invigorating the complexion, particularly for mature or sun-damaged skin. Frankincense can be used as both an antiseptic and anti-inflammatory, and its distinct aroma helps to soothe and calm frayed nerves, making it useful for treating anxiety.",
+    "the_essential_oil": "The rich fragrant oil is steam-distilled from the tree resin. It produces a pale yellow or greenish oil with a sweet, spicy, resinous odour.",
+    "the_plant": "Frankincense trees grow wild in north-east Africa and Oman. They produce an aromatic sap that, when dried, is called the \"pearl of the desert\", and is traditionally burned as incense.",
+    "safe_usage": "Non-toxic, non-irritant in dilution.",
+    "image": "https://i.ibb.co/mtMGHF5/frankincense-1200x1200.jpg",
+    "applications": [
+      2,
+      10,
+      6
+    ],
+    "remedies": [
+      6
+    ],
+    "blends_well_with": [
+      5,
+      10,
+      9,
+      8,
+      28,
+      22,
+      19,
+      35,
+      17
+    ]
+  }
+},
+{
+  "model": "essentials.essential",
+  "pk": 15,
+  "fields": {
+    "name": "Geranium",
+    "latin_name": "Pelargonium graveolens",
+    "key_action": 1,
+    "method_of_extraction": "Steam distilled from the flowers and leaves.",
+    "description_short": "Uplifting and floral, this is stabilising for the emotions and the skin.",
+    "description_long": "A cheerful oil, appreciated by both adults and children, geranium essential oil has a balancing, cooling, and reviving effect on skin, especially when it is weather-damaged or irritated. The oil is also a mild diuretic, making it a useful aid to detox, and it can help to soothe urinary tract infections.",
+    "the_essential_oil": "The green to amber-colours essential oil has a powerful, sweet, floral aroma with distinct minty undertones. Once the plant has been harvested, the oil is steam-distilled from the glands found in the leaves and from the green stems of the plant.",
+    "the_plant": "A native of South Africa originally, geranium is now grown mainly in Reunion, China, and Egypt. Of the 700 different varieties of the Pelagonium plant, only 10 can be used to make the essential oil. Plants are harvested shortly after flowering to capture the highest concentrations of the oil, which comes from the plant's leaves, and not from the flowers as many assume.",
+    "safe_usage": "Non-toxic, non-irritant in dilution. Sensitisation possible.",
+    "image": "https://i.ibb.co/bXyQWs8/geranium-1200x1200.jpg",
+    "applications": [
+      1,
+      6
+    ],
+    "remedies": [],
+    "blends_well_with": [
+      24,
+      2,
+      5,
+      33,
+      30,
+      29,
+      18
+    ]
+  }
+},
+{
+  "model": "essentials.essential",
+  "pk": 16,
+  "fields": {
+    "name": "Ginger",
+    "latin_name": "Zingiber officinale",
+    "key_action": 3,
+    "method_of_extraction": "Steam distilled from the root.",
+    "description_short": "Warming and stimulating, comforting and muscle-easing.",
+    "description_long": "Most of us know ginger as the remedy of choice for reviving and relieving the nausea that often accompanies pregnancy or travel sickness. In addition, it is also a useful antiseptic in cases of cold or flu, and it has an analgesic property that can help to ease tension headaches and muscular pain.",
+    "the_essential_oil": "Ginger essential oil is steam-distilled from the fleshy root of the ginger plant. The oil can vary in colour from pale yellow to dark amber and has a warm spicy, woody scent with a hint of lemon and pepper.",
+    "the_plant": "The ginger plant produces a distinctive, knobbly root that has been used as a culinary and medicinal ingredient for thousands of years, especially by the chinese. Its enduring popularity is testament to the plant's therapeutic properties and its widespread culinary appeal.",
+    "safe_usage": "Non-toxic, non-irritant in dilution.",
+    "image": "https://i.ibb.co/JzLrFPK/ginger-1200x1200.jpg",
+    "applications": [
+      2,
+      3
+    ],
+    "remedies": [],
+    "blends_well_with": [
+      38,
+      28,
+      20
+    ]
+  }
+},
+{
+  "model": "essentials.essential",
+  "pk": 17,
+  "fields": {
+    "name": "Grapefruit",
+    "latin_name": "Citrus paradisi",
+    "key_action": 3,
+    "method_of_extraction": "Expressed from the peel of the fruit.",
+    "description_short": "Refreshing and zesty, this is uplifting for the emotions and toning for the skin.",
+    "description_long": "Grapefruit has an energising and stimulating effect on body and mind. It makes an uplifting room spray, and in a massage blend boosts circulation, aids detox, and reduces water retention. Gently antiseptic and astringent, it is useful for controlling oily skin and hair.",
+    "the_essential_oil": "The oil, which is cold-pressed from the peel of the fruit, can be yellow, pale green, or pale orange, with a sweet, zesty, citrusy smell.",
+    "the_plant": "Unlike other cirtus fruits, grapefruit originates from the Caribbean, and not Southeast Asia. Its name comes from the grape-like cluster in which the fruit grows.",
+    "safe_usage": "Non-toxic, non-irritant in dilution (less than 3 percent). Avoid using 12 hours prior to sun exposure.",
+    "image": "https://i.ibb.co/LkBwbCr/grapefruit-1200x1200.jpg",
+    "applications": [
+      1,
+      2,
+      7
+    ],
+    "remedies": [],
+    "blends_well_with": [
+      2,
+      6,
+      14,
+      25,
+      19,
+      39
+    ]
+  }
+},
+{
+  "model": "essentials.essential",
+  "pk": 18,
+  "fields": {
+    "name": "Helichrysum (Immortelle)",
+    "latin_name": "Helichrysum italicum",
+    "key_action": 1,
+    "method_of_extraction": "Stream distilled from the flowers.",
+    "description_short": "Heady, honey like with warm and spicy undertones, this is uplifting, with skin-soothing properties.",
+    "description_long": "Also known as Immortelle, or \"everlasting\" oil, this is a fantastic regenerative oil that cools and soothes the skin. Its antiseptic and anti-inflammatory properties help heal scars and skin eruptions. Deeply de-stressing, it's perfect for relieving anxiety, nervous exhaustion, and feelings of depression.",
+    "the_essential_oil": "This watery yellow essential oil that occasionally has a tinge of red is steam-distilled from the flowers. It has a distinctive staw-like aroma with hints of fruit, tea, and honey.",
+    "the_plant": "A mediterranean herb, helichrysum's small, cheerful flowers are popular with florists. Part of the sunflower family, the oil's names, \"everlasting\" and \"immortelle\", come from the reputation of the flowers for retaining their brilliant colour when dried.",
+    "safe_usage": "Use well diluted (less than 0.5 percent).",
+    "image": "https://i.ibb.co/PNwfC88/helichrysum-immortelle-1200x1200.jpg",
+    "applications": [
+      4,
+      5,
+      6
+    ],
+    "remedies": [
+      9,
+      6
+    ],
+    "blends_well_with": [
+      1,
+      15,
+      9,
+      8
+    ]
+  }
+},
+{
+  "model": "essentials.essential",
+  "pk": 19,
+  "fields": {
+    "name": "Jasmine Absolute",
+    "latin_name": "Jasminum officinale",
+    "key_action": 5,
+    "method_of_extraction": "Extricated from the flowers.",
+    "description_short": "Sensual and sweet, this is nourishing for the skin, self-confidence and sensuality boosting.",
+    "description_long": "The heady aroma of jasmine is highly prized by perfumers. The essential oil is one of the most uplifting, and its deeply relaxing effects account for its reputation as an aphrodisiac.",
+    "the_essential_oil": "The flowers are too delicate to be steam-distilled so solvent extraction is used to create a thick orange-brown oil known as an absolute.",
+    "the_plant": "A native of northwest India, the name \"jasmine\" is derived from the Persian \"yasmin\", which means \"fragrant flower\". The waxy flowers are esteemed in perfumery for their exotic, intensely floral aroma.",
+    "safe_usage": "Non-toxic and non-irritant.",
+    "image": "https://i.ibb.co/GvcGKRR/jasmine-1200x1200.jpg",
+    "applications": [
+      7
+    ],
+    "remedies": [
+      6
+    ],
+    "blends_well_with": [
+      2,
+      6,
+      14,
+      21,
+      17
+    ]
+  }
+},
+{
+  "model": "essentials.essential",
+  "pk": 20,
+  "fields": {
+    "name": "Lemongrass",
+    "latin_name": "Cymbopogon schoenanthus",
+    "key_action": 2,
+    "method_of_extraction": "Steam distilled from the grass.",
+    "description_short": "Energising and zesty, this is refreshing and muscle easing.",
+    "description_long": "This essential oil works on body and mind to refresh and stimulate. It has antiseptic and astringent effects that work on oily or acne-prone skin. Lemongrass is deodorising, antibacterial, and makes an effective insect repellent.",
+    "the_essential_oil": "The essential oil is produced by steam-distillation of the chopped grass. The liquid is pale yellow to amber in colour, and has a fresh, herbaceous, lemony aroma.",
+    "the_plant": "Lemongrass is a native of India. Its oil is used in cosmetics and scents. There are two main types: West Indian (Cymbopogon citratus) and East Indian (Cymbopogon flexuosus), both with similar properties. After distilling the oil, the grass is used as cattle feed.",
+    "safe_usage": "Use only very well diluted (less than 0.5 percent). Avoid use on hypersensitive skin and on children less than seven years old.",
+    "image": "https://i.ibb.co/G7MjknW/lemongrass-1200x1200.jpg",
+    "applications": [
+      6
+    ],
+    "remedies": [
+      9,
+      6
+    ],
+    "blends_well_with": [
+      31,
+      37,
+      16
+    ]
+  }
+},
+{
+  "model": "essentials.essential",
+  "pk": 21,
+  "fields": {
+    "name": "Lime",
+    "latin_name": "Citrus aurantifolia",
+    "key_action": 3,
+    "method_of_extraction": "Expressed from the peel of the fruit.",
+    "description_short": "Uplifting and fruity, this is gently detoxifying and toning for the skin.",
+    "description_long": "Stimulating and refreshing, lime can be relied on for its cleansing properties, and its fresh aroma calms and clears the mind. Like its relatives, grapefruit and lemon, it is a key oil for reducing water retention and puffiness. It also balances oily skin and hair.",
+    "the_essential_oil": "Lime oil, which is cold-pressed from the rind of the fruit, has a sharp citrus scent, and is either pale yellow or light olive in colour.",
+    "the_plant": "The lime tree, grown widely in tropical and subtropical areas, produces an acidic green fruit that is a popular food and drink flavouring.",
+    "safe_usage": "Non-toxi, use very well diluted (less than 1 percent). Avoid use on skin 12 hours prior to sun exposure.",
+    "image": "https://i.ibb.co/VBjcqCK/lime-1200x1200.jpg",
+    "applications": [
+      6
+    ],
+    "remedies": [
+      6
+    ],
+    "blends_well_with": [
+      31,
+      28,
+      25,
+      19,
+      11
+    ]
+  }
+},
+{
+  "model": "essentials.essential",
+  "pk": 22,
+  "fields": {
+    "name": "Litsea (May Chang)",
+    "latin_name": "Litsea cubeba",
+    "key_action": 3,
+    "method_of_extraction": "Steam distilled from the fruit.",
+    "description_short": "Purifying and citrusy, this is calming for the emotions and cleansing for oily or blemish-prone skin.",
+    "description_long": "Also known as May chang, litsea is a warming, refreshing, uplifting oil that helps to calm and soothe frayed nerves. Its antiseptic and skin-balancing properties are particularly valued in skincare preparations.",
+    "the_essential_oil": "The fruit are steam-distilled to produce a yellow oil with comples and refined lemony scent.",
+    "the_plant": "Litsea is also called Mountain, or Chinese pepper, because its berries resemble peppercorns. All the parts of the plant contain oil, but it is the hard berries that yield the highest quality. In spite of its lemony scent, it is a relative of cinnamon and other fragrant members of the laurel family.",
+    "safe_usage": "Use well diluted (less than 0.5 percent). Not suitable for children under seven years old or for hypersensitive skin.",
+    "image": "https://i.ibb.co/86hTFLH/litsea-1200x1200.jpg",
+    "applications": [
+      2
+    ],
+    "remedies": [
+      6
+    ],
+    "blends_well_with": [
+      14,
+      34
+    ]
+  }
+},
+{
+  "model": "essentials.essential",
+  "pk": 23,
+  "fields": {
+    "name": "Mandarin",
+    "latin_name": "Citrus nobilis",
+    "key_action": 4,
+    "method_of_extraction": "Expressed from the peel of the fruit.",
+    "description_short": "Warming and soothing, this is calming for the emotions and is especially good for soothing fractious children.",
+    "description_long": "Mandarin (also known as tangerine) has antiseptic and anti-fungal properties, similar to other citrus fruits. It has a tonic effect on the digestive system, nourishes the skin, and its sweet, cheerful aroma is almost instantly uplifting.",
+    "the_essential_oil": "An orange or amber colour with a tangy sweet, floral aroma, the oil is cold-pressed from the rind of the fruit.",
+    "the_plant": "A native of China and the Far East, the mandarin tree was introduced, to Europe in the nineteenth century. From Europe, the tree was shipped to the United States, which it was renamed tangerine.",
+    "safe_usage": "Non-toxic, non-irritant in dilution.",
+    "image": "https://i.ibb.co/YPfVwL1/mandarin-1200x1200.jpg",
+    "applications": [
+      3,
+      6
+    ],
+    "remedies": [],
+    "blends_well_with": [
+      1,
+      9,
+      8,
+      33,
+      26
+    ]
+  }
+},
+{
+  "model": "essentials.essential",
+  "pk": 24,
+  "fields": {
+    "name": "Marjoram",
+    "latin_name": "Origanum majorana",
+    "key_action": 4,
+    "method_of_extraction": "Steam distilled from the leaves.",
+    "description_short": "Warming and herby, this is muscle easing and comforting.",
+    "description_long": "This aromatic, warming and relaxing oil is known for its ability to aid digestion and relieve stomach and menstrual cramping. It has a gently sedative effect that can lower blood pressure and heart rate, ease anxiety, and promote restful sleep.",
+    "the_essential_oil": "The essential oil, steam-distilled from the dried flowering herb, is a pale yellow or pale amber hue with a warm, spicy, slightly camphorous smell.",
+    "the_plant": "Mediterranean sweet marjoram has a long history of use as a medicinal herb. Spanish marjoram (Thymus masticina) has some similar properties, but is harsher and should be avoided in children under seven years old.",
+    "safe_usage": "Non-toxic, non-irritant in dilution.",
+    "image": "https://i.ibb.co/nmdMkYD/marjoram-1200x1200.jpg",
+    "applications": [
+      1,
+      2
+    ],
+    "remedies": [],
+    "blends_well_with": [
+      1,
+      15,
+      12,
+      34
+    ]
+  }
+},
+{
+  "model": "essentials.essential",
+  "pk": 25,
+  "fields": {
+    "name": "Melissa (Lemon Balm)",
+    "latin_name": "Melissa officinalis",
+    "key_action": 1,
+    "method_of_extraction": "Steam distilled from the herb.",
+    "description_short": "Uplifting, sweet and citrusy, this is calming in times of stress and is cooling and soothing on the skin.",
+    "description_long": "Lemon balm, also known as melissa, is often added to skincare products because of its calming, anti-inflammatory action on irritated skin. Its antiseptic effect makes it useful to have on hand for treating bee and wasp stings, and its cheerful \"feel-good\" aroma ensures it is a popular choice in aromatherapy.",
+    "the_essential_oil": "This pale yellow oil with a pleasant lemony, fresh, sweet, and herbaceous small can be steam-distilled from the fresh leaves and flowers. Because the plant yields very little oil, lemon balm is often adulterated with other lemon-scented essential oils. Pure lemon balm oil is very expensive.",
+    "the_plant": "A native of central and southern Europe, lemon balm is a member of the mint family. Its leaves are a similar shape to mint, but when you rub them between your fingers, they release a tart sweet smell, like lemons.",
+    "safe_usage": "Non-toxic externally. Sensitisation possible. Use well diluted (less than 1 percent).",
+    "image": "https://i.ibb.co/0DYxcsy/melissa-lemonbalm-1200x1200.jpg",
+    "applications": [
+      2
+    ],
+    "remedies": [
+      6
+    ],
+    "blends_well_with": [
+      5,
+      9,
+      8,
+      33,
+      28,
+      21,
+      17
+    ]
+  }
+},
+{
+  "model": "essentials.essential",
+  "pk": 26,
+  "fields": {
+    "name": "Neroli",
+    "latin_name": "Cirtus aurantium amara",
+    "key_action": 4,
+    "method_of_extraction": "Steam distilled from the flowers of the bitter orange trees.",
+    "description_short": "Relaxing and floral, this is nourishing for the skin and uplifting for the emotions.",
+    "description_long": "The blossom of the bitter, or Seville, orange tree is the source of a calming, refreshing, and uplifting oil that has long been considered a treatment for anxiety and depression. It is intense, yet refreshing and light, and a component of Eau de Cologne.",
+    "the_essential_oil": "With delicate blossoms, the best-quality oil is water- rather than steam-distilled. The pale yellow oil darkens with age, and its sweet floral smell is powerful yet refreshing.",
+    "the_plant": "This species of orange tree is native to China, but has been cultivated for hundreds of years in the countries bordering the Mediterranean. It takes at least 450kg (1000lb) of orange blossom flowers to make just 450g (1lb) of neroli oil.",
+    "safe_usage": "Non-toxic, non-irritant in dilution.",
+    "image": "https://i.ibb.co/yYJrzf0/neroli-1200x1200.jpg",
+    "applications": [
+      6,
+      7
+    ],
+    "remedies": [
+      6
+    ],
+    "blends_well_with": [
+      4,
+      9,
+      7,
+      38,
+      32,
+      23
+    ]
+  }
+},
+{
+  "model": "essentials.essential",
+  "pk": 27,
+  "fields": {
+    "name": "Niaouli",
+    "latin_name": "Melaleuca viridiflora",
+    "key_action": 2,
+    "method_of_extraction": "Distilled from the leaves and twigs.",
+    "description_short": "Clarifying and fresh, this is purifying, helping you breathe more easily.",
+    "description_long": "Chiefly a disinfectant and astringent, niaouli helps to fight a range of infections. Stimulating the body and mind, it increases concentration, clears the head, and lifts the spirits. Think of niaouli as a gentler version of tea tree - suitable even for sensitive skin.",
+    "the_essential_oil": "Niaouli oil is extracted from the young leaves and twigs by steam-distillation. It has a mildly sweet, fresh, camphorous smell and its colour varies from clear to a pale yellowy-green.",
+    "the_plant": "A popular tree for planting on streets and in parks, niaouli has fluffy spikes of flowers and a papery bark that periodically peels. It is native to New Caledonia, Papua New Guinea, and Australia and belongs to the same family as tea tree and cajuput.",
+    "safe_usage": "Non-toxix and non-irritant.",
+    "image": "https://i.ibb.co/3pCVyfg/niaouli-1200x1200.jpg",
+    "applications": [
+      1,
+      2,
+      5
+    ],
+    "remedies": [
+      9
+    ],
+    "blends_well_with": [
+      5,
+      37
+    ]
+  }
+},
+{
+  "model": "essentials.essential",
+  "pk": 28,
+  "fields": {
+    "name": "Orange",
+    "latin_name": "Citrus sinensis",
+    "key_action": 3,
+    "method_of_extraction": "Expressed from the peel of the fruit.",
+    "description_short": "Uplifting and sweet, this is revitalising and gently detoxifying.",
+    "description_long": "Sometimes called sweet orange, this versatile oil is widely used for its uplifting and detoxifying effects. It is also calming, it may help ease tense muscles, and its rejuvenating properties help skin maintain a youthful appearance. Cheering and familiar, its aroma acts as a reviving tonic.",
+    "the_essential_oil": "Orange oil is cold-pressed from the rind of the fruit. A fine oil, it is a pale orange-greenish colour with the same sweet, fresh, and fruity smell you get when you peel an orange.",
+    "the_plant": "Like most citrus trees, the sweet orange tree originated from China. Today, however, most of the commercial production of orange essential oil takes place in Brazil, the USA, and Cyprus.",
+    "safe_usage": "Non-toxic, non-irritant in dilution.",
+    "image": "https://i.ibb.co/Fw1rtNf/orange-1200x1200.jpg",
+    "applications": [
+      1,
+      2,
+      6
+    ],
+    "remedies": [],
+    "blends_well_with": [
+      5,
+      10,
+      38,
+      14,
+      25,
+      21,
+      16,
+      11
+    ]
+  }
+},
+{
+  "model": "essentials.essential",
+  "pk": 29,
+  "fields": {
+    "name": "Palmarosa",
+    "latin_name": "Cymbopogon martini",
+    "key_action": 2,
+    "method_of_extraction": "Distilled from the fresh grass.",
+    "description_short": "Soothing, green and floral, this is balancing for the skin and emotions.",
+    "description_long": "Palmarosa comes from a wild grass native to India. The pleasant floral aroma has hints of rose. Its balancing action makes it popular skincare product: it hydrates dry skin, rejuvenates tired or mature skin, and helps control sebum secretions in oily skin.",
+    "the_essential_oil": "The thin, pale yellow essential oil can be steam-distilled from the fresh or dried grass. It has a sweet floral aroma with a subtle hint of rose.",
+    "the_plant": "Also called Indian or Turkish geranium, palmarosa grass is a relative of lemongrass, but has a floral, rather than citrus, scent. Native to India, it is now cultivated in Indonesia, East Africa, the Comoro Islands, and Brazil.",
+    "safe_usage": "Non-toxic, non-irritant in dilution (less than 5 percent).",
+    "image": "https://i.ibb.co/Sm6g4Cz/palmarosa-1200x1200.jpg",
+    "applications": [
+      1,
+      2,
+      6
+    ],
+    "remedies": [],
+    "blends_well_with": [
+      2,
+      15,
+      7
+    ]
+  }
+},
+{
+  "model": "essentials.essential",
+  "pk": 30,
+  "fields": {
+    "name": "Patchouli",
+    "latin_name": "Pogostemon cablin",
+    "key_action": 4,
+    "method_of_extraction": "Steam distilled from the leaves.",
+    "description_short": "Grounding and woody, this is toning and rejuvenating for the skin.",
+    "description_long": "A tried and testing aromatherapy favourite, patchouli oil soothes and heals the skin, improving the appearance of scar tissue and stretch marks. It also revitalised ageing complexions, and its antiseptic properties help to treat pimple-prone skin.",
+    "the_essential_oil": "The leaves are steam-distilled to produce a pale yellow to pale green oil with a spicy, woody, musky scent prized by perfume makers. The small is rather \"love it or hate it\", so it's best used in small amounts and in blends.",
+    "the_plant": "The patchouli bush, native to India and Malasia, is called \"puchaput\". To produce the oil the leaves are lightly fermented or scalded to break the cell walls and release the aroma.",
+    "safe_usage": "Non-toxic, non-irritant in dilution.",
+    "image": "https://i.ibb.co/nzvTzhb/patchouli-1200x1200.jpg",
+    "applications": [
+      1,
+      7
+    ],
+    "remedies": [],
+    "blends_well_with": [
+      2,
+      15,
+      33,
+      39
+    ]
+  }
+},
+{
+  "model": "essentials.essential",
+  "pk": 31,
+  "fields": {
+    "name": "Peppermint",
+    "latin_name": "Mentha piperita Mitcham",
+    "key_action": 3,
+    "method_of_extraction": "Steam distilled from the leaves.",
+    "description_short": "Cooling and refreshing, this is stimulating for the mind and a great digestive tonic.",
+    "description_long": "Applied to the skin, peppermint feels initially cooling and refreshing, then gently warming. Its stimulating and analgesic properties make it an effective remedy for neuralgia and muscular pains and headaches. It's also a first-class antiseptic, and a popular additional to all types of beauty products.",
+    "the_essential_oil": "Peppermint essential oil is steam-distilled from the flowering herb. The thin, almost watery oil has a fresh, sharp, strongly menthol aroma with a sweet-smelling undertone and it is a clear to pale yellow colour.",
+    "the_plant": "This popular herb is actually a hybrid of Mentha aquatica (water mint) and Mentha spicata (spearmint). It has been used as a medicinal herb for thousands of years, particularly as an infusion for digestive disorders, though in modern times it is mostly used in the flavouring and toothpaste industries.",
+    "safe_usage": "Use well diluted (less than 2 percent). Avoid use in cardiac fibrillation and near the nose in children under seven years old.",
+    "image": "https://i.ibb.co/ZGPFdKh/peppermint-1200x1200.jpg",
+    "applications": [
+      2,
+      5
+    ],
+    "remedies": [],
+    "blends_well_with": [
+      1,
+      5,
+      21,
+      20,
+      11
+    ]
+  }
+},
+{
+  "model": "essentials.essential",
+  "pk": 32,
+  "fields": {
+    "name": "Petitgrain",
+    "latin_name": "Citrus aurantiu amara",
+    "key_action": 3,
+    "method_of_extraction": "Distilled from the leaves and twigs of the bitter orange tree.",
+    "description_short": "Uplifting, fresh and floral, this is soothing for the spirits.",
+    "description_long": "Another beneficial oil from the bitter orange tree - the other being neroli from the flowers. One of its most valuable properties is its balancing and toning effect on oily skin and hair. The relaxing aroma of petitgrain helps calm body and mind.",
+    "the_essential_oil": "Petitgrain oil is extracted from the green twigs and leaves to produce a pale yellow to amber oil whose floral aroma has woody and green undertones.",
+    "the_plant": "In the past, the oil was extracted from the cherry-size unripe oranges, hence the name \"petitgrain\", meaning \"little grains\".",
+    "safe_usage": "Non-toxic, non-irritant in dilution.",
+    "image": "https://i.ibb.co/XWS9BW9/petitgrain-1200x1200.jpg",
+    "applications": [
+      2
+    ],
+    "remedies": [
+      6
+    ],
+    "blends_well_with": [
+      12,
+      34,
+      26
+    ]
+  }
+},
+{
+  "model": "essentials.essential",
+  "pk": 33,
+  "fields": {
+    "name": "Rose",
+    "latin_name": "Rosa damascena, Rosa centifolia",
+    "key_action": 1,
+    "method_of_extraction": "Extracted from the flowers.",
+    "description_short": "Nurturing and floral, this is calming for emotional or tense times.",
+    "description_long": "Roses have been used as medicinal plants since antiquity, and are celebrated for their calming, uplifting aroma. The oil has a toning, anti-inflammatory, and rejuvenating effect, and its mild detoxifying and antiseptic properties can relieve pain and nausea.",
+    "the_essential_oil": "When steam-distilled, the essential oi is known as Rose Otto, and is a clear or pale yellow oil with an intense floral aroma. Rose absolute is also available, which is somewhat less expensive, and is an amber-coloured, more viscous liquid.",
+    "the_plant": "A popular garden shrub, roses are widely grown for their beauty and with some species, their fragrance.",
+    "safe_usage": "Non-irritant. Absolute is non-toxic; use essential oil in dilutions of less than 1 percent due to its methyl eugenol content.",
+    "image": "https://i.ibb.co/VV8Vp9b/rose-1200x1200.jpg",
+    "applications": [
+      2
+    ],
+    "remedies": [
+      6
+    ],
+    "blends_well_with": [
+      2,
+      15,
+      9,
+      8,
+      6,
+      38,
+      12,
+      30,
+      25,
+      23,
+      35
+    ]
+  }
+},
+{
+  "model": "essentials.essential",
+  "pk": 34,
+  "fields": {
+    "name": "Rosemary",
+    "latin_name": "Rosmarinus officinalis",
+    "key_action": 3,
+    "method_of_extraction": "Steam distilled from the leaves.",
+    "description_short": "Strengthening and toning, this helps to focus the mind and enliven the body.",
+    "description_long": "Toning and cleansing rosemary oil helps to clear the mind. It contains potent antibacterial and antifungal substances that can fight infection, and has a warming anti-inflammatory action that helps relieve pain. Its stimulating effect on the lymphatic system aids detox and improves circulation.",
+    "the_essential_oil": "The virtually colourless oil that is extracted from rosemary is steam-distilled form the fresh flowering tops of the herb. The essential oil has a pungent, fresh and pleasant herbaceous aroma.",
+    "the_plant": "Rosemary is a popular aromatic herb with silvery green leaves and pale blue flowers. The plan is a Mediterranean native and today is still produced mainly in France, Spain, Croatia, Tunisia, and Morocco. This ubiquitous herb has been used widely in food, medicine, and during religious ceremonies for thousands of years.",
+    "safe_usage": "Non-irritant in dilution. Avoid use near the nose in children under seven years old.",
+    "image": "https://i.ibb.co/Qn8W1jw/rosemary-1200x1200.jpg",
+    "applications": [
+      8,
+      2
+    ],
+    "remedies": [],
+    "blends_well_with": [
+      24,
+      5,
+      7,
+      32,
+      22
+    ]
+  }
+},
+{
+  "model": "essentials.essential",
+  "pk": 35,
+  "fields": {
+    "name": "Sandalwood",
+    "latin_name": "Santalum album",
+    "key_action": 4,
+    "method_of_extraction": "Steam distilled from the wood.",
+    "description_short": "Rich, woody and warming aroma. Helps to promote a profound feeling of wellbeing.",
+    "description_long": "Sandalwood has a long history in Ayurvedic and Chinese medicine. Its anti-inflammatory and antiseptic properties revive and heal dry and damaged skin. It has a restorative effect on mind and emotions, and calms respiratory conditions.",
+    "the_essential_oil": "The essential oil is steam-distilled from the heartwood of the tree. It is pale yellow to pale gold in colour and has a subtle, sweet, and soothing woody aroma.",
+    "the_plant": "The sandalwood tree, a native of India, was for many years such a popular source of essential oil that is become seriously endangered. When buying the oil, it is important to check that it comes from a sustainable source.",
+    "safe_usage": "Non-toxic, non-irritant in dilutions of less than 2 percent.",
+    "image": "https://i.ibb.co/pr5DNwR/sandalwood-1200x1200.jpg",
+    "applications": [
+      6,
+      7
+    ],
+    "remedies": [],
+    "blends_well_with": [
+      14,
+      33
+    ]
+  }
+},
+{
+  "model": "essentials.essential",
+  "pk": 36,
+  "fields": {
+    "name": "Tea Tree",
+    "latin_name": "Melaleuca alternifolia",
+    "key_action": 2,
+    "method_of_extraction": "Steam distilled from the leaves.",
+    "description_short": "Stimulating and medicinal-smelling, this helps to clear the head and is purifying for the skin.",
+    "description_long": "Best known for its powerful antiseptic properties, tea tree essential oil is a great all-rounder to keep in your first-aid kit, ready to use on wounds and sores. Studies show it is effective against a range of bacteria and fungi that can lead to infection. It also has a strong deodorising action that can combat body odour.",
+    "the_essential_oil": "Steam-distilled from the leaves of the tree, the essential oil is a clear liquid with a medicinal scent reminiscent of eucalyptus.",
+    "the_plant": "A hardy tree, native to New South Wales in Australia, tea tree was an important medicine in Aboriginal tribes. Similar to the cypress in appearance, it has needle-like leaves with white flowers. Two close relatives also produce essential oils: niaouli, also native to Autralia, is primarily used to treat skin complaints and respiratory illness, and cajuput, native to Indonesia and the Philippines, is used to treat respiratory conditions.",
+    "safe_usage": "Non-irritant in dilutions of less than ten percent. Non-toxic externally.",
+    "image": "https://i.ibb.co/bRVWV47/tea-tree-1200x1200.jpg",
+    "applications": [
+      9
+    ],
+    "remedies": [
+      9
+    ],
+    "blends_well_with": [
+      1,
+      5,
+      13
+    ]
+  }
+},
+{
+  "model": "essentials.essential",
+  "pk": 37,
+  "fields": {
+    "name": "Thyme",
+    "latin_name": "Thymus vulgaris",
+    "key_action": 2,
+    "method_of_extraction": "Steam distilled from the leaves.",
+    "description_short": "Protective and herby, this helps to ease breathing and is cleansing and purifying for the skin.",
+    "description_long": "A popular oil for baths and ointments, thyme boosts circulation and relieves tired and sore muscles and joints. The oil is an effective antiseptic, helping to clear fungal infections, as well as fight colds and loosen stubborn phlegm. Its stimulating aroma can help clear and refresh the mind.",
+    "the_essential_oil": "The flowering tops and leaves of the popular herb, thyme, can be steam-distilled to create the essential oil. Several different chemotypes are used in the aromatherapy essential oil. Thyme linalol (Thymus vulgaris ct linalol) is more gentle and the most suitable essential oil for general aromatherapy use.",
+    "the_plant": "The is a low, creeping aromatic herb that is a member of the mint family. Thyme is native to the Mediterranean region where it thrives in the hot, sunny locations and the well-drained soil. Thyme is widely used as both a culinary and medicinal herb.",
+    "safe_usage": "Use well diluted (less than 2 percent).",
+    "image": "https://i.ibb.co/VWPz01r/thyme-1200x1200.jpg",
+    "applications": [
       1
+    ],
+    "remedies": [
+      6
+    ],
+    "blends_well_with": [
+      5,
+      6,
+      20,
+      27
+    ]
+  }
+},
+{
+  "model": "essentials.essential",
+  "pk": 38,
+  "fields": {
+    "name": "Vetiver",
+    "latin_name": "Vetiveria zizanoides",
+    "key_action": 4,
+    "method_of_extraction": "Steam distilled from the root.",
+    "description_short": "Calming and earthy, this is grounding and restorative.",
+    "description_long": "Working mostly on an emotional level, vetiver has a profoundly grounding effect for those who are distressed or panicky. The essential oil can help to improve circulation and is a useful antiseptic and astringent in the treatment of oily and combination skin.",
+    "the_essential_oil": "The essential oil is steam-distilled from the chopped up rootlets, which are soaked in water prior to distillation. The resulting oil is a thick, dark amber liquid with a spicy, earthy fragrance that has a hint of lemon.",
+    "the_plant": "A tall perennial grass native to India, vetiver is a relative of other fragrant grasses such as citronella, lemongrass, and palmarosa. Roots over 24 months old have the highest oil content, but take longer to distil, making this an expensive oil.",
+    "safe_usage": "Non-toxic, non-irritant in dilution.",
+    "image": "https://i.ibb.co/s575fFQ/vetiver-1200x1200.jpg",
+    "applications": [
+      1,
+      6
+    ],
+    "remedies": [],
+    "blends_well_with": [
+      2,
+      12,
+      33,
+      28,
+      26,
+      16
+    ]
+  }
+},
+{
+  "model": "essentials.essential",
+  "pk": 39,
+  "fields": {
+    "name": "Ylang Ylang",
+    "latin_name": "Cananga odorata",
+    "key_action": 4,
+    "method_of_extraction": "Steam distilled from the flowers.",
+    "description_short": "Sensual and floral, this is soothing for the emotions, helping to create a sense of calm.",
+    "description_long": "With its exotic, highly floral aroma, ylang ylang is uplifting and arousing, and at the same time eases feeling of anxiety. A key constituent of the traditional hair preparation, macassar oil, its balancing properties make it suitable for all skin types.",
+    "the_essential_oil": "The pale yellow oil is steam- or water-distilled from the flowers to create an oil with an intensely sweet, exotic floral scent. The scent can be overpowering, so use sparingly at first to discover how strong you like it.",
+    "the_plant": "A native of Asia, ylang ylang means \"flower of flowers\"; the waxy petals have been used in medicines and skin creams for millenia. Now grown mainly in madagascar and the Comoros, it is a base of high-end oriental scents and a key ingredient in Chanel No.5.",
+    "safe_usage": "Non-toxic, non-irritant. As it has a powerful odour, use well diluted, unless using neat as a perfume on a very small patch of skin.",
+    "image": "https://i.ibb.co/56z8kg6/ylang-ylang-1200x1200.jpg",
+    "applications": [
+      1,
+      2,
+      7
+    ],
+    "remedies": [
+      10,
+      6
+    ],
+    "blends_well_with": [
+      2,
+      30,
+      17
     ]
   }
 },
@@ -204,6 +1235,24 @@
     "title": "In a mouthwash",
     "description": "Mix 1-2 drops in a teaspoon of glycerine or calendula tincture; add to water for a mouthwash.",
     "essential_oil": 4
+  }
+},
+{
+  "model": "essentials.eouse",
+  "pk": 9,
+  "fields": {
+    "title": "As a massage oil",
+    "description": "Add 8-12 drops to 2 tablespoons base oil for a detoxifying massage.",
+    "essential_oil": 5
+  }
+},
+{
+  "model": "essentials.eouse",
+  "pk": 10,
+  "fields": {
+    "title": "In a compress",
+    "description": "Dilute 5-6 drops of lemon oil in almond oil or calendula tincture, and add water to use as a compress to sooth skin eruptions.",
+    "essential_oil": 5
   }
 },
 {
@@ -393,6 +1442,51 @@
     "title": "Combats tiredness",
     "description": "The oil relieves stress and is refreshing, helping combat fatigue. A reputed aphrodisiac, especially if you are overtired.",
     "essential_oil": 4
+  }
+},
+{
+  "model": "essentials.eobenefit",
+  "pk": 22,
+  "fields": {
+    "title": "Tones skin",
+    "description": "Lemon boosts circulation, helping to reduce varicose veins and prevent chilblains. It cleanses oil-prone skin and hair, and tones, helping to ward off wrinkles and \"spider\" veins.",
+    "essential_oil": 5
+  }
+},
+{
+  "model": "essentials.eobenefit",
+  "pk": 23,
+  "fields": {
+    "title": "Acts as an antiseptic",
+    "description": "Lemon acts as an antiseptic, stimulating the defences against bacteria and viruses and killing germs. Use in a compress for boils and skin eruptions, or apply neat to warts and verrucas.",
+    "essential_oil": 5
+  }
+},
+{
+  "model": "essentials.eobenefit",
+  "pk": 24,
+  "fields": {
+    "title": "Aids detox",
+    "description": "A lemon oil massage supports the liver, aids lymphatic cleansing, and reduces cellulite and fluid retention.",
+    "essential_oil": 5
+  }
+},
+{
+  "model": "essentials.eobenefit",
+  "pk": 25,
+  "fields": {
+    "title": "Eases digestion",
+    "description": "It stimulates the digestive system, helping to combat obesity and loss of appetite.",
+    "essential_oil": 5
+  }
+},
+{
+  "model": "essentials.eobenefit",
+  "pk": 26,
+  "fields": {
+    "title": "Lifts moods",
+    "description": "A cheerful, deodorising scent, lemon is great for busy days when you need mental focus and positivity.",
+    "essential_oil": 5
   }
 }
 ]

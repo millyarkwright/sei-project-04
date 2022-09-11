@@ -15,6 +15,7 @@ class Remedy(models.Model):
     ('Mind & Wellbeing','Mind & Wellbeing'),
     ("Women's Health","Women's Health"),
     ('First Aid','First Aid'),
+    ('Hair Care','Hair Care'),
   ]
   name = models.CharField(
     max_length=30,

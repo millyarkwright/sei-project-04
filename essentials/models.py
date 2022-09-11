@@ -17,7 +17,7 @@ class Essential(models.Model):
   description_short = models.TextField(max_length=250)
   description_long = models.TextField(max_length=800)
   the_essential_oil = models.TextField(max_length=400)
-  the_plant = models.TextField(max_length=400)
+  the_plant = models.TextField(max_length=500)
   safe_usage = models.TextField(max_length=250)
   image = models.CharField(max_length=100)
 

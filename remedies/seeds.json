@@ -4,7 +4,7 @@
   "pk": 1,
   "fields": {
     "name": "Pampering & Beauty",
-    "icon": "url"
+    "icon": ""
   }
 },
 {
@@ -12,7 +12,7 @@
   "pk": 2,
   "fields": {
     "name": "Digestive Problems",
-    "icon": "url"
+    "icon": ""
   }
 },
 {
@@ -20,7 +20,7 @@
   "pk": 3,
   "fields": {
     "name": "Respiratory Complaints",
-    "icon": "url"
+    "icon": ""
   }
 },
 {
@@ -28,7 +28,7 @@
   "pk": 4,
   "fields": {
     "name": "Circulatory Problems",
-    "icon": "url"
+    "icon": ""
   }
 },
 {
@@ -36,7 +36,7 @@
   "pk": 5,
   "fields": {
     "name": "Aches & pains",
-    "icon": "url"
+    "icon": ""
   }
 },
 {
@@ -44,7 +44,7 @@
   "pk": 6,
   "fields": {
     "name": "Skin Care",
-    "icon": "url"
+    "icon": ""
   }
 },
 {
@@ -52,7 +52,7 @@
   "pk": 7,
   "fields": {
     "name": "Mind & Wellbeing",
-    "icon": "url"
+    "icon": ""
   }
 },
 {
@@ -60,7 +60,7 @@
   "pk": 8,
   "fields": {
     "name": "Women's Health",
-    "icon": "url"
+    "icon": ""
   }
 },
 {
@@ -68,7 +68,15 @@
   "pk": 9,
   "fields": {
     "name": "First Aid",
-    "icon": "url"
+    "icon": ""
+  }
+},
+{
+  "model": "remedies.remedy",
+  "pk": 10,
+  "fields": {
+    "name": "Hair Care",
+    "icon": ""
   }
 }
 ]

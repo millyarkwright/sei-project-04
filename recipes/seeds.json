@@ -11,8 +11,102 @@
     "step_three": "",
     "safe_usage": "",
     "public": true,
-    "applications": [],
-    "remedies": []
+    "owner": 1,
+    "applications": [
+      1,
+      2
+    ],
+    "remedies": [
+      1
+    ]
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 2,
+  "fields": {
+    "name": "Refreshing blend",
+    "description": "If you feel sluggish...",
+    "makes": "1 diffusion",
+    "step_one": "For a massage oil, combine all the ingredient in a bowl, then transfer the belnd to a sterilised dark green bottle.",
+    "step_two": "",
+    "step_three": "",
+    "safe_usage": "",
+    "public": false,
+    "owner": 1,
+    "applications": [
+      1,
+      2
+    ],
+    "remedies": [
+      1
+    ]
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 3,
+  "fields": {
+    "name": "Refreshing blend 2",
+    "description": "If you feel sluggish...",
+    "makes": "1 diffusion",
+    "step_one": "For a massage oil, combine all the ingredient in a bowl, then transfer the belnd to a sterilised dark green bottle.",
+    "step_two": "",
+    "step_three": "",
+    "safe_usage": "",
+    "public": false,
+    "owner": 1,
+    "applications": [
+      1,
+      2
+    ],
+    "remedies": [
+      1
+    ]
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 4,
+  "fields": {
+    "name": "Refreshing blend 3",
+    "description": "If you feel sluggish...",
+    "makes": "1 diffusion",
+    "step_one": "For a massage oil, combine all the ingredient in a bowl, then transfer the belnd to a sterilised dark green bottle.",
+    "step_two": "",
+    "step_three": "",
+    "safe_usage": "",
+    "public": false,
+    "owner": 1,
+    "applications": [
+      1,
+      2
+    ],
+    "remedies": [
+      1
+    ]
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 5,
+  "fields": {
+    "name": "Refreshing blend 4",
+    "description": "If you feel sluggish...",
+    "makes": "1 diffusion",
+    "step_one": "For a massage oil, combine all the ingredient in a bowl, then transfer the belnd to a sterilised dark green bottle.",
+    "step_two": "",
+    "step_three": "",
+    "safe_usage": "",
+    "public": false,
+    "owner": 1,
+    "applications": [
+      1,
+      2
+    ],
+    "remedies": [
+      1
+    ]
   }
 },
 {
