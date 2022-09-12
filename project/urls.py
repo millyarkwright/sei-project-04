@@ -18,13 +18,13 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('users/', include('jwt_auth.urls')),
-    path('essentialoils/', include('essentials.urls')),
-    path('baseoils/', include('bases.urls')),
-    path('applications/', include('applications.urls')),
-    path('remedies/', include('remedies.urls')),
-    path('recipes/', include('recipes.urls')),
-    path('reviews/', include('reviews.urls')),
+    path('api/users/', include('jwt_auth.urls')),
+    path('api/essentialoils/', include('essentials.urls')),
+    path('api/baseoils/', include('bases.urls')),
+    path('api/applications/', include('applications.urls')),
+    path('api/remedies/', include('remedies.urls')),
+    path('api/recipes/', include('recipes.urls')),
+    path('api/reviews/', include('reviews.urls')),
 ]
 # bookmarks/add/recipeID
 # bookmarks/delete/bookmarkID
