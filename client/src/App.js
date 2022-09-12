@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { API_URL } from './config'
 
 // IMPORT PAGE COMPONENTS
-import Homepage from './components/Homepage'
+import HomePage from './components/HomePage'
 import PageNavBar from './components/PageNavBar'
 
 import Login from './components/auth/Login'
@@ -26,20 +26,20 @@ import CreatedRecipe from './components/profile/CreatedRecipes'
 
 
 function App() {
-  useEffect(() => {
-    const getData = async () => {
-      const { data } = await axios.get(`${API_URL}/recipes/`) // * <-- replace with your endpoint
-      console.log(data)
-    }
-    getData()
-  })
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     const { data } = await axios.get(`${API_URL}/recipes/`) // * <-- replace with your endpoint
+  //     console.log(data)
+  //   }
+  //   getData()
+  // })
 
   return (
     <div className="site-wrapper">
       <BrowserRouter>
         <PageNavBar/>
         <Routes>
-          <Route path='/' element ={<Homepage />} />
+          <Route path='/' element ={<HomePage />} />
           <Route path='/login' element ={<Login />} />
           <Route path='/register' element ={<Register />} />
           <Route path='/essentials' element ={<EssentialsIndex />} />
@@ -49,8 +49,8 @@ function App() {
           <Route path='/recipes' element ={<RecipesIndex />} />
           <Route path='/recipes/:recipeId' element ={<RecipeSingle />} />
           <Route path='/profile' element ={<ProfileDetail />} />
-          <Route path='/profile/savedrecipes/' element ={<SavedRecipes />} />
-          <Route path='/profile/createdrecipes/' element ={<CreatedRecipe />} />
+          <Route path='/savedrecipes/' element ={<SavedRecipes />} />
+          <Route path='/createdrecipes/' element ={<CreatedRecipe />} />
 
         </Routes>
       </BrowserRouter>
