@@ -209,7 +209,7 @@ const EssentialsIndex = () => {
                 <>
                   <div className="d-flex flex-column justify-content-around align-items-center">
                     <div className="card-container">
-                      <Link to={`/essentialoils/${oil.id}`}>
+                      <Link to={`/essentials/${oil.id}`}>
                         <img src={oil.image} alt="essential oil" className="w-1" />
 {/*                      
                         <div className="text overlay bg-gradient">
