@@ -3,26 +3,22 @@ import { userIsAuthenticated, loginTextDisplay } from '../components/helpers/aut
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 // Import React Bootstrap Components
 import NavBar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Container from 'react-bootstrap/Container'
 import NavDropdown from 'react-bootstrap/NavDropdown'
+
 let auth = false
+
 const PageNavBar = () => {
+  
   const navigate = useNavigate()
-  const handleClick = (event) => {
-    console.log(event.target.value)
-    if (event.target.value !== '') {
-      navigate('/search')
-    } else {
-      navigate('/')
-    }
-  }
 
   const handleLogout = () => {
     window.localStorage.removeItem('aroma-token')
-    toast.info('Goodbye! :(', {
+    toast.info(`Goodbye! 🙁`, {
       position: "top-left",
       autoClose: 1200,
       hideProgressBar: false,
@@ -36,7 +32,7 @@ const PageNavBar = () => {
   }
 
   return (
-    <NavBar classname='nav' expand="md">
+    <NavBar expand="md">
       <ToastContainer />
       <Container>
         <NavBar.Brand as={Link} to="/">
@@ -59,12 +55,14 @@ const PageNavBar = () => {
               <Nav.Link as={Link} to="/recipe">
                 <span className="underline ms-3">Create Recipe</span>
               </Nav.Link>
+
               <NavDropdown title="Your Pages" className=" ms-3" id="basic-nav-dropdown">
                 <NavDropdown.Item as={Link} to="/createdrecipes" >Your Recipes</NavDropdown.Item>
                 <NavDropdown.Item as={Link} to="/savedrecipes">Saved Recipes</NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item as={Link} to="/editprofile">Edit Profile</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/editprofile">Your Profile</NavDropdown.Item>
               </NavDropdown>
+
               <Nav.Link onClick={handleLogout} as={Link} to="/">
                 <span className="underline ms-3">Logout</span>
               </Nav.Link>
