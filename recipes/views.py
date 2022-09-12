@@ -34,23 +34,28 @@ class RecipeDetailView(APIView):
     serialized_recipe = PopulatedRecipeSerializer(recipe)
     return Response(serialized_recipe.data)
 
-  def put(self, request, pk):
+  def patch(self, request, pk):
     recipe_to_update = self.get_recipe(pk=pk)
-    updated_recipe = PopulatedRecipeSerializer(recipe_to_update, data=request.data)
-    try: 
-      updated_recipe.is_valid(True)
-      updated_recipe.save()
-      return Response(updated_recipe.data, status=status.HTTP_202_ACCEPTED)
-    except Exception as e:
-      print('e->', e)
-      return Response(e.__dict__ if e.__dict__ else str(e), status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+    updated_recipe = RecipeSerializer(recipe_to_update, data=request.data, partial=True)
+    if recipe_to_update.owner == request.user or request.user.is_superuser == True:
+      try: 
+        updated_recipe.is_valid(True)
+        updated_recipe.save()
+        return Response(updated_recipe.data, status=status.HTTP_202_ACCEPTED)
+      except Exception as e:
+        print('e->', e)
+        return Response(e.__dict__ if e.__dict__ else str(e), status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+    else:
+      raise PermissionDenied("You are not authorised to edit this recipe.")
 
   def delete(self, request, pk):
     recipe_to_delete = self.get_recipe(pk=pk)
-    if recipe_to_delete.owner != request.user or request.user.is_superuser:
-      raise PermissionDenied("Unauthorised")
-    recipe_to_delete.delete()
-    return Response(status=status.HTTP_204_NO_CONTENT)
+
+    if recipe_to_delete.owner == request.user or request.user.is_superuser == True:
+      recipe_to_delete.delete()
+      return Response(status=status.HTTP_204_NO_CONTENT)
+    else:
+      raise PermissionDenied("You are not authorised to delete this recipe.")
 
   # * CREATE RECIPE ---------
 
@@ -61,14 +66,9 @@ class CreateRecipeView(APIView):
 
   def post(self, request):
     request.data['owner'] = request.user.id
-    eo_amount_data = request.data.essential_oil_amount
     print('data w/ owner', request.data)
-    # essential_oil_amount_add = EssentialOilAmountSerializer(data=request.data.essential_oil_amount)
-    # request.data.pop("essential_oil_amount")
     recipe_to_add = CreateRecipeSerializer(data=request.data)
     try: 
-      # essential_oil_amount_add.is_valid()
-      # essential_oil_amount_add.save()
       recipe_to_add.is_valid()
       recipe_to_add.save()
       return Response(recipe_to_add.data , status=status.HTTP_201_CREATED)
@@ -119,19 +119,25 @@ class OtherIngredientAmountView(APIView):
   
   def patch(self, request, pk):
     oi_amount_to_update = self.get_oi_amount(pk=pk)
-    updated_oi_amount = OtherIngredientAmountSerializer(oi_amount_to_update, data=request.data)
-    try: 
-      updated_oi_amount.is_valid(True)
-      updated_oi_amount.save()
-      return Response(updated_oi_amount.data, status=status.HTTP_202_ACCEPTED)
-    except Exception as e:
-      print('e->', e)
-      return Response(e.__dict__ if e.__dict__ else str(e), status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+    updated_oi_amount = OtherIngredientAmountSerializer(oi_amount_to_update, data=request.data, partial=True)
+    if oi_amount_to_update.owner == request.user or request.user.is_superuser == True:
+      try: 
+        updated_oi_amount.is_valid(True)
+        updated_oi_amount.save()
+        return Response(updated_oi_amount.data, status=status.HTTP_202_ACCEPTED)
+      except Exception as e:
+        print('e->', e)
+        return Response(e.__dict__ if e.__dict__ else str(e), status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+    else:
+      raise PermissionDenied("You are not authorised to edit this ingredient.")
  
   def delete(self, request, pk):
       oi_amount_to_delete = self.get_oi_amount(pk=pk)
-      oi_amount_to_delete.delete()
-      return Response({'message': 'Other ingredient amount successfully deleted'})
+      if oi_amount_to_delete .owner == request.user or request.user.is_superuser == True:
+        oi_amount_to_delete.delete()
+        return Response({'message': 'Other ingredient amount successfully deleted'})
+      else:
+        raise PermissionDenied("You are not authorised to delete this ingredient.")
 
 # ! Essential Oil Views
 
@@ -166,18 +172,24 @@ class EssentialOilAmountView(APIView):
   def patch(self, request, pk):
     eo_amount_to_update = self.get_eo_amount(pk=pk)
     updated_eo_amount = EssentialOilAmountSerializer(eo_amount_to_update, data=request.data)
-    try: 
-      updated_eo_amount.is_valid(True)
-      updated_eo_amount.save()
-      return Response(updated_eo_amount.data, status=status.HTTP_202_ACCEPTED) 
-    except Exception as e:
-      print('e->', e)
-      return Response(e.__dict__ if e.__dict__ else str(e), status=status.HTTP_422_UNPROCESSABLE_ENTITY)
-  
+    if eo_amount_to_update.owner == request.user or request.user.is_superuser == True:
+      try: 
+        updated_eo_amount.is_valid(True)
+        updated_eo_amount.save()
+        return Response(updated_eo_amount.data, status=status.HTTP_202_ACCEPTED) 
+      except Exception as e:
+        print('e->', e)
+        return Response(e.__dict__ if e.__dict__ else str(e), status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+    else:
+      raise PermissionDenied("You are not authorised to edit this ingredient.")
+
   def delete(self, request, pk):
-      eo_amount_to_delete = self.get_eo_amount(pk=pk)
+    eo_amount_to_delete = self.get_eo_amount(pk=pk)
+    if eo_amount_to_delete.owner == request.user or request.user.is_superuser == True:
       eo_amount_to_delete.delete()
       return Response({'message': 'Essential oil Amount successfully deleted'})
+    else:
+      raise PermissionDenied("You are not authorised to delete this Essentential Oil ingredient.")
 
 # ! Base Oil View 
 
@@ -211,15 +223,21 @@ class BaseOilAmountView(APIView):
   def patch(self, request, pk):
     bo_amount_to_update = self.get_bo_amount(pk=pk)
     updated_bo_amount = BaseOilAmountSerializer(bo_amount_to_update, data=request.data)
-    try: 
-      updated_bo_amount.is_valid(True)
-      updated_bo_amount.save()
-      return Response(updated_bo_amount.data, status=status.HTTP_202_ACCEPTED) 
-    except Exception as e:
-      print('e->', e)
-      return Response(e.__dict__ if e.__dict__ else str(e), status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+    if bo_amount_to_update.owner == request.user or request.user.is_superuser == True:
+      try: 
+        updated_bo_amount.is_valid(True)
+        updated_bo_amount.save()
+        return Response(updated_bo_amount.data, status=status.HTTP_202_ACCEPTED) 
+      except Exception as e:
+        print('e->', e)
+        return Response(e.__dict__ if e.__dict__ else str(e), status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+    else:
+      raise PermissionDenied("You are not authorised to edit this ingredient.")
 
   def delete(self, request, pk):
-      bo_amount_to_delete = self.get_bo_amount(pk=pk)
+    bo_amount_to_delete = self.get_bo_amount(pk=pk)
+    if bo_amount_to_delete.owner == request.user or request.user.is_superuser == True:
       bo_amount_to_delete.delete()
       return Response({'message': 'Base oil Amount successfully deleted'})
+    else:
+      raise PermissionDenied("You are not authorised to delete this Base Oil ingredient.")

@@ -5,7 +5,7 @@ from django.contrib.postgres.fields import HStoreField
 
 
 class Recipe(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     description = models.TextField(max_length=800)
     makes = models.TextField(max_length=100, blank=True)
     step_one = models.TextField(max_length=500)

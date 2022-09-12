@@ -82,10 +82,10 @@ class UserProfileView(APIView):
     print('user to be deleted')
     if user_to_delete.username == request.user.username or request.user.is_superuser == True:
       user_to_delete.delete()
+      return Response({'message': 'User successfully deleted'})
     else:
       raise PermissionDenied("Unauthorised")
-    # user_to_delete.delete()
-    return Response({'message': 'User successfully deleted'})
+  
 
 
 
@@ -110,11 +110,20 @@ class BookmarkedListView(APIView):
 
 #  ! BOOKMARKED ADD/DELETE-----------
 class BookmarkedView(APIView):
+  permission_classes = (IsAuthenticated,)
 
   # * POST (ADD TO BOOKMARKED) --------
   def post(self, request, pk):
     request.data['bookmarked_recipe'] = int(pk)
+    request.data['bookmarked_by'] = request.user.id
+    
+    existing_bookmark_count = BookmarkedRecipe.objects.filter(bookmarked_recipe = request.data['bookmarked_recipe'], bookmarked_by = request.data['bookmarked_by']).count() 
+    print('CHECK BOOKMARKED>', existing_bookmark_count)
+    if existing_bookmark_count !=0:
+      return Response({'message': 'You have already bookmarked this recipe!'})
+      
     bookmark_to_add= BookmarkedRecipeSerializer(data=request.data)
+    
     try:
       bookmark_to_add.is_valid(True)
       bookmark_to_add.save()
@@ -150,10 +159,19 @@ class TestedListView(APIView):
 
 #  ! TEST ADD/DELETE-----------
 class TestedView(APIView):
+  permission_classes = (IsAuthenticated,)
 
   # * POST (ADD TO TESTED) --------
   def post(self, request, pk):
     request.data['tested_recipe'] = int(pk)
+    request.data['tested_by'] = request.user.id
+    
+    existing_tested_count = TestedRecipe.objects.filter(tested_recipe = request.data['tested_recipe'], tested_by = request.data['tested_by']).count() 
+    print('CHECK TESTED>', existing_tested_count)
+    if existing_tested_count !=0:
+      return Response({'message': 'You have already tested this recipe!'})
+
+
     test_to_add= TestedRecipeSerializer(data=request.data)
     try:
       test_to_add.is_valid(True)
