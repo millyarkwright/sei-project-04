@@ -3,19 +3,108 @@
   "model": "jwt_auth.user",
   "pk": 1,
   "fields": {
-    "password": "pbkdf2_sha256$390000$vqT3LkEYRCY2PZiqh4rZCP$ol9BvYDs0a5DQ4xoOBe37m8yeLmYOBUu9UU9bFmCdRg=",
-    "last_login": "2022-09-08T20:08:54.081Z",
+    "password": "pbkdf2_sha256$390000$wT8uKyd77cop5grBJqoEjs$CuoMc/Nzik1CeBm4aUWIEZT8i3SoBhftga6JynRIa2A=",
+    "last_login": "2022-09-10T09:33:17.346Z",
     "is_superuser": true,
     "first_name": "",
     "last_name": "",
     "is_staff": true,
     "is_active": true,
-    "date_joined": "2022-09-08T20:08:23.824Z",
+    "date_joined": "2022-09-09T14:51:14.320Z",
     "email": "admin@email.com",
     "username": "admin",
     "profile_image": "",
     "groups": [],
     "user_permissions": []
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "stars",
+    "last_login": "2022-09-10T14:43:38Z",
+    "is_superuser": true,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2022-09-10T14:43:07Z",
+    "email": "milly.arkwright@gmail.com",
+    "username": "millyA",
+    "profile_image": "tbc",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$390000$xaS4fvpEO3Qh6YW2L5wBtV$CjSfwfajTAqMQF/oLucn6i5j9KX6LFdz3qsB1VylJZU=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2022-09-10T15:50:33.565Z",
+    "email": "user1@email.com",
+    "username": "user1",
+    "profile_image": "tbc",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 6,
+  "fields": {
+    "password": "pbkdf2_sha256$390000$9SO26pACiM2RtgjQD4ZeLv$nnbdxLdP4VoPZmHjywg8ZRuWZIKdxGbppJSHHpjr9N8=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2022-09-12T10:41:14.884Z",
+    "email": "user2@email.com",
+    "username": "user2",
+    "profile_image": "tbc",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "jwt_auth.bookmarkedrecipe",
+  "pk": 1,
+  "fields": {
+    "bookmarked_by": 1,
+    "bookmarked_recipe": 1
+  }
+},
+{
+  "model": "jwt_auth.bookmarkedrecipe",
+  "pk": 2,
+  "fields": {
+    "bookmarked_by": 6,
+    "bookmarked_recipe": 2
+  }
+},
+{
+  "model": "jwt_auth.testedrecipe",
+  "pk": 1,
+  "fields": {
+    "tested_by": 1,
+    "tested_recipe": 1
+  }
+},
+{
+  "model": "jwt_auth.testedrecipe",
+  "pk": 2,
+  "fields": {
+    "tested_by": 6,
+    "tested_recipe": 2
   }
 }
 ]
