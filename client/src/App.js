@@ -1,10 +1,14 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import axios from 'axios'
 import { useEffect } from 'react'
+import { API_URL } from './config'
 
 // IMPORT PAGE COMPONENTS
 import Homepage from './components/Homepage'
 import PageNavBar from './components/PageNavBar'
+
+import Login from './components/auth/Login'
+import Register from './components/auth/Register'
 
 import BasesIndex from './components/bases/BasesIndex'
 import BaseSingle from './components/bases/BaseSingle'
@@ -19,14 +23,16 @@ import ProfileDetail from './components/profile/ProfileDetail'
 import SavedRecipes from './components/profile/SavedRecipes'
 import CreatedRecipe from './components/profile/CreatedRecipes'
 
+
+
 function App() {
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     const { data } = await axios.get('/api/recipes/') // * <-- replace with your endpoint
-  //     console.log(data)
-  //   }
-  //   getData()
-  // })
+  useEffect(() => {
+    const getData = async () => {
+      const { data } = await axios.get(`${API_URL}/recipes/`) // * <-- replace with your endpoint
+      console.log(data)
+    }
+    getData()
+  })
 
   return (
     <div className="site-wrapper">
@@ -34,6 +40,8 @@ function App() {
         <PageNavBar/>
         <Routes>
           <Route path='/' element ={<Homepage />} />
+          <Route path='/login' element ={<Login />} />
+          <Route path='/register' element ={<Register />} />
           <Route path='/essentials' element ={<EssentialsIndex />} />
           <Route path='/essentials/:eoId' element ={<EssentialSingle />} />
           <Route path='/bases' element ={<BasesIndex />} />
