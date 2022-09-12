@@ -20,13 +20,14 @@ import SavedRecipes from './components/profile/SavedRecipes'
 import CreatedRecipe from './components/profile/CreatedRecipes'
 
 function App() {
-  useEffect(() => {
-    const getData = async () => {
-      const { data } = await axios.get('/api/recipes/') // * <-- replace with your endpoint
-      console.log(data)
-    }
-    getData()
-  })
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     const { data } = await axios.get('/api/recipes/') // * <-- replace with your endpoint
+  //     console.log(data)
+  //   }
+  //   getData()
+  // })
+
   return (
     <div className="site-wrapper">
       <BrowserRouter>
