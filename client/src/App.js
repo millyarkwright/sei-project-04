@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useEffect } from 'react'
 
 // IMPORT PAGE COMPONENTS
-import Homepage from './components/Homepage'
+import Homepage from './components/HomePage'
 import PageNavBar from './components/PageNavBar'
 
 import BasesIndex from './components/bases/BasesIndex'
