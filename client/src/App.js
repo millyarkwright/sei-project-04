@@ -26,13 +26,13 @@ import CreatedRecipe from './components/profile/CreatedRecipes'
 
 
 function App() {
-  useEffect(() => {
-    const getData = async () => {
-      const { data } = await axios.get(`${API_URL}/recipes/`) // * <-- replace with your endpoint
-      console.log(data)
-    }
-    getData()
-  })
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     const { data } = await axios.get(`${API_URL}/recipes/`) // * <-- replace with your endpoint
+  //     console.log(data)
+  //   }
+  //   getData()
+  // })
 
   return (
     <div className="site-wrapper">

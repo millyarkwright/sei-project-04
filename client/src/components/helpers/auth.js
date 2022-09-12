@@ -4,14 +4,14 @@ import { Buffer } from 'buffer'
 // * Setting token
 
 export const setToken = (token) => {
-  window.localStorage.setItem('token', token)
+  window.localStorage.setItem('aroma-token', token)
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
 }
 
 // * Getting token
 
 export const getToken = () => {
-  return window.localStorage.getItem('token')
+  return window.localStorage.getItem('aroma-token')
 }
 
 // verify token by checking it exists and is JWT, aiming to return payload as object
