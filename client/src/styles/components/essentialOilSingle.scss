@@ -1,16 +1,60 @@
 .essential-single-wrapper {
     padding: 20px;
     max-width: 1200px;
-    h2 {
-      font-style: italic;
-    }
-    img {
-      max-width: 400px;
-      border-radius: 50%
+    .header-wrapper{
+      display: flex;
+      border: 1px solid black;
+      padding: 20px;
+      .title-icons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        h2 {
+          font-style: italic;
+        }
+        .categories-container {
+          display: flex;
+          div {
+            margin-right: 15px;
+          }
+          img {
+            max-width: 100px;
+          }
+        }
+      }
+      .header-image {
+        img {
+          max-width: 500px;
+          border-radius: 50%
+        }
+      }
     }
 }
 
+.eoBenefits-wrapper{
+  border: 1px solid black;
+  padding: 20px;
+}
+
+.eoBio{
+  text-align: left;
+  border: 1px solid black;
+  padding: 20px;
+  p {
+    font-style: italic;
+  }
+}
+
+.eoUses-wrapper {
+  border: 1px solid black;
+  padding: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 .blends-wrapper {
+  border: 1px solid black;
+  padding: 20px;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -18,27 +62,20 @@
   flex-wrap: wrap;
   div {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: blue;
-    color: white; 
-    border-radius: 10px;
     max-width: 150px;
-    padding: 5px 10px;
     margin: 5px;
     height: 40px;
+  }
+  img{
+    max-width: 50px;
   }
   p {
     padding: 5px;
     margin-bottom: 0px;
     text-align: center;
     font-size: 0.7rem;
-  }
-}
-.eoBio{
-  text-align: left;
-  border: 1px solid blue;
-  p {
-    font-style: italic;
   }
 }

@@ -65,10 +65,9 @@ const BaseSingle = () => {
           </Container>
           {/* Benefits */}
           <Container>
-            <Row>
-                {/* Benefits */}
-              <Col className="eoBenefits col-12" sm="6">
                 <h3>What is it good for?</h3>
+            <Row>
+              <Col className="eoBenefits col-12" sm="6">
                 {baseOil.benefits.map((benefit) => {
                   return (
                     <Col key={benefit.id}>

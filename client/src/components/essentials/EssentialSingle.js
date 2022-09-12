@@ -38,113 +38,106 @@ const EssentialSingle = () => {
   }, [])
 
   return (
-    <div className="essential-single-wrapper text-center">
+    <div className="essential-single-wrapper">
       {Object.keys(essentialOil).length ?
         <>
           {/* Header */}
           <Container className="header-wrapper">
-            <Row className="header-wrapper">
-              <Col className="col-12">
-                <h1>{essentialOil.name}</h1>
-              </Col>
-              <Col className="col-12">
-                <h2>{essentialOil.latin_name}</h2>
-              </Col>
-            </Row>
-          </Container>
-          {/* Categories */}
-          <Container>
-            <Row className="categories">
-              {essentialOil.applications.map((application) => {
-                return (
-                  <Col key={application.name}>
-                    <img srm={application.icon} alt="icon"/>
-                    <p>{application.name}</p>
-                  </Col>
-                  )
-                })}
-              {essentialOil.remedies.map((remedy) => {
-                return (
-                  <Col key={remedy.name}>
-                    <img srm={remedy.icon} alt="icon"/>
-                    <p>{remedy.name}</p>
-                  </Col>
-                )
-              })}
-            </Row>
-          </Container>
-          {/* Blends */}
-          <Container className="blends-wrapper">
-            {essentialOil.blends_well_with.map((blend) => {
-              return (
-                <div key={blend}>
-                  <p>{blend}</p>
+            <Row>
+              <Col className="header-text col-12" md="8">
+                <div className="title-icons">
+                  <div className="title-container">
+                      <h1>{essentialOil.name}</h1>
+                      <h2>{essentialOil.latin_name}</h2>
+                  </div>
+                  {/* Categories */}
+                  <div className="categories-container">
+                    {essentialOil.applications.map((application) => {
+                      return (
+                        <div key={application.name}>
+                          <img srm={application.icon} alt="icon"/>
+                          <p>{application.name}</p>
+                        </div>
+                        )
+                      })}
+                    {essentialOil.remedies.map((remedy) => {
+                      return (
+                        <div key={remedy.name}>
+                          <img srm={remedy.icon} alt="icon"/>
+                          <p>{remedy.name}</p>
+                        </div>
+                      )
+                    })}
+                  </div>
                 </div>
-              )
-            })}
+                <div className="description-container">
+                  <p>{essentialOil.description_long}</p>
+                </div>
+              </Col>
+              <Col className="header-image col-12" md="4">
+                <img className="eoSingle-image w-100" src={essentialOil.image} alt="Essential Oil"/>
+              </Col>
+            </Row>
           </Container>
+
+
           {/* Content Body */}
           <Container>
             <Row>
-              <Col className="col-12" sm="6">
-                <img className="eoSingle-image w-100" src={essentialOil.image} alt="Essential Oil"/>
-              </Col>
-              <Col className="col-12" sm="6">
-                <p>{essentialOil.description_long}</p>
-                <Row className="extractionMethod">
-                  <Col className="col-6 fw-bold">
-                    <p>Method of extraction:</p>
-                  </Col>
-                  <Col className="col-6">
-                    <p>{essentialOil.method_of_extraction}</p>
-                  </Col>
+              {/* Benefits  */}
+              <Col className="eoBenefits-wrapper col-12" md="8">
+                <h3>What is it good for?</h3>
+                <Row className="eoBenefits-container">
+                  {essentialOil.benefits.map((benefit) => {
+                    return (
+                      <Col key={benefit.id} className="col-12" md="6">
+                        <p className="fw-bold">{benefit.title}</p>
+                        <p>{benefit.description}</p>
+                      </Col>
+                    )
+                  })}
                 </Row>
+              </Col>
+              {/* BIO */}
+              <Col className="eoBio col-12" md="4">
+                <div className="thePlant">
+                    <h4>The plant</h4>
+                    <p>{essentialOil.the_plant}</p>
+                </div>
+                <div className="theOil">
+                    <h4>The essential oil</h4>
+                    <p>{essentialOil.the_essential_oil}</p>
+                </div>
               </Col>
             </Row>
           </Container>
-          {/* Benefits & Uses */}
-          <Container>
-            <Row>
-                {/* Benefits */}
-              <Col className="eoBenefits col-12" sm="6">
-                <h3>What is it good for?</h3>
-                {essentialOil.benefits.map((benefit) => {
-                  return (
-                    <Col key={benefit.id}>
-                      <p className="fw-bold">{benefit.title}</p>
-                      <p>{benefit.description}</p>
-                    </Col>
-                  )
-                })}
-              </Col>
+
             {/* Uses */}
-              <Col className="eoUses col-12" sm="6">
-                <h3>Best Uses</h3>
+          <Container className="eoUses-wrapper">
+            <h3>Best Uses</h3>
+              <Row className="eoUses-container">
                 {essentialOil.uses.map((use) => {
                   return (
-                    <Col key={use.id}>
+                    <Col key={use.id} className="col-12" md="6">
                       <p className="fw-bold">{use.title}</p>
                       <p>{use.description}</p>
                     </Col>
                   )
                 })}
-              </Col>
-            </Row>
+              </Row>
           </Container>
-          {/* BIO */}
-          <Container className="eoBio">
-            <Row className="thePlant">
-              <Col className="col-12" sm="4">
-                <h4>The plant</h4>
-                <p>{essentialOil.the_plant}</p>
-              </Col>
-            </Row>
-            <Row className="theOil">
-              <Col className="col-12" sm="4">
-                <h4>The essential oil</h4>
-                <p>{essentialOil.the_essential_oil}</p>
-              </Col>
-            </Row>
+          {/* Blends */}
+          <Container className="blends-wrapper">
+            {essentialOil.blends_well_with.map((blend) => {
+              return (
+                <Link to={`/essentials/${blend.id}`}>
+                  <div key={blend.id}>
+                    <img className="eoSingle-image w-100" src={blend.image} alt="Essential Oil"/>
+                    <p>{blend.name}</p>
+                  </div>
+                </Link>
+              )
+            })}
           </Container>
         </>
           :
