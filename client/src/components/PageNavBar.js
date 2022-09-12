@@ -45,13 +45,13 @@ const PageNavBar = () => {
         {userIsAuthenticated() && loginTextDisplay()}
         <NavBar.Toggle aria-controls="basic-navbar-nav"></NavBar.Toggle>
         <NavBar.Collapse id="basic-navbar-nav" className="justify-content-end">
-          <Nav.Link as={Link} to="/essentialoils">
+          <Nav.Link as={Link} to="/essentials">
             <span className="underline ms-3">Essential Oils</span>
           </Nav.Link>
-          <Nav.Link as={Link} to="/baseoils">
+          <Nav.Link as={Link} to="/bases">
             <span className="underline ms-3">Base Oils</span>
           </Nav.Link>
-          <Nav.Link as={Link} to="/recipe">
+          <Nav.Link as={Link} to="/recipes">
             <span className="underline ms-3">Recipes</span>
           </Nav.Link>
           {userIsAuthenticated() ? (
