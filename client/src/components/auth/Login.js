@@ -1,17 +1,17 @@
-// * Import Hooks
+// * Hooks
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
-// * Import React 
+// * React Components
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import { ToastContainer, toast } from 'react-toastify';
 
-// * Import Axios
+// * Axios & API
 import axios from "axios"
 import { API_URL } from "../../config.js"
 
-// * Import Helpers
+// * Helpers
 import { setToken } from '../helpers/auth'
 import { getText } from '../helpers/auth'
 
@@ -31,23 +31,27 @@ const Login = () => {
   // Execution
   const handleChange = (event) => {
     setLoginData({ ...loginData, [event.target.name]: event.target.value })
+    console.log('logindata', loginData)
   }
 
   const handleSubmit = async (event) => {
     event.preventDefault()
 
     try {
+      const { data } = await axios.post(`${API_URL}/users/login/`, loginData)
 
-      const res = await axios.post(`${API_URL}/login`, loginData
-      )
-      getText(res.data.message)
-      console.log('res-->', res.data.message)
+      getText(data.message)
+      console.log('message-->', data.message)
+
       setError(null)
-      const { token } = res.data
-      localStorage.setItem('rcf-ani-token', token)
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+
+      // Token & navigation
+      const { token } = data
+      setToken(token)
       navigate('/')
-      toast.success(res.data.message, {
+
+      // Notification
+      toast.success(data.message, {
         position: "top-right",
         autoClose: 1200,
         hideProgressBar: false,
@@ -70,7 +74,43 @@ const Login = () => {
     }
   }
 
-  return <h1>Login</h1>
+  return (
+    <Container className="form-wrapper min-vh-100">
+      <ToastContainer />
+      <form onSubmit={handleSubmit} className="justify-content-between">
+        <h3 className="text-center">Login</h3>
+
+        {/* UserName */}
+        <Row>
+          <label htmlFor="username">Username</label>
+          <input
+            onInput={handleChange}
+            type="text"
+            name="username"
+            placeholder="Username"
+            required
+          />
+        </Row>
+        {/* Password */}
+        <Row>
+          <label htmlFor="password">Password</label>
+          <input
+            onInput={handleChange}
+            type="password"
+            name="password"
+            placeholder="Password"
+            required
+          />
+        </Row>
+        {/* Submit */}
+        <input type="submit" value="Login" className="btn dark" />
+        <p className="text-center mb-0 mt-3">Not yet registered?</p>
+        <p className="text-center mb-0">
+          <Link to="/register">Register</Link>
+        </p>
+      </form>
+    </Container>
+  )
 }
 
 export default Login
