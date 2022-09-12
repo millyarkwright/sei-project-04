@@ -46,11 +46,10 @@ class OtherIngredientSerializer(serializers.ModelSerializer):
 
 # OTHER INGREDIENT AMOUNT -----------
 class OtherIngredientAmountSerializer(serializers.ModelSerializer):
-  other_ingredient = serializers.SlugRelatedField(
-    read_only=True,
-    slug_field="name"
-  )
-
+  # other_ingredient = serializers.SlugRelatedField(
+  #   read_only=True,
+  #   slug_field="name"
+  # )
   class Meta:
     model = OtherIngredientAmount
     fields = ( 'id', 'other_ingredient', 'quantity', 'measurement')
@@ -58,16 +57,11 @@ class OtherIngredientAmountSerializer(serializers.ModelSerializer):
 
 class OtherIngredientAmountFullSerializer(serializers.ModelSerializer):
     class Meta:
-      model = EssentialOilAmount
+      model = OtherIngredientAmount
       fields = "__all__"
 
 # ESSENTIAL OIL AMOUNT-------------
 class EssentialOilAmountSerializer(serializers.ModelSerializer):
-  # essential_oil = serializers.SlugRelatedField(
-  #   read_only=True,
-  #   slug_field="name"
-  # )
-
   class Meta:
     model = EssentialOilAmount
     fields = ('id', 'essential_oil', 'quantity', 'measurement')

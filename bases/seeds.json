@@ -8,7 +8,7 @@
     "description": "Argan oil comes from a tree found growing only in Morocco. With high levels of antioxidant vitamin E and essential fatty acids, it's soothing for all skin types, and for hair and nails. It is moisturising and protective against environmental factors, such as weather and pollutants.",
     "the_base_oil": "The kernels of the Moroccan argan fruit produce the rich, skin nourishing, golden-yellow argan oil. Argan oil has a characteristic nutty aroma.",
     "safe_usage": "",
-    "image": "tbc"
+    "image": "https://i.ibb.co/j41Kq66/argan1-1200x1200.jpg"
   }
 },
 {
@@ -20,7 +20,7 @@
     "description": "Also known as rapeseed oil, canola has the benefits of being widely available, relatively inexpensive, and effective on dry, sensitive, or mature skin. However, it's often genetically modified and highly processed so choose organic brands.",
     "the_base_oil": "After harvesting the seeds are crushed for the oil. This golden oil is virtually odourless so works well in aromatherapy blends.",
     "safe_usage": "Ideally, choose organic oil to avoid possible pesticide residues that can be present in some genetically modified organisms (GMOs).",
-    "image": "tbc"
+    "image": "https://i.ibb.co/6DN05CS/canola1-1200x1200.jpg"
   }
 },
 {
@@ -32,7 +32,103 @@
     "description": "Extracted from the nuts of African karite trees, shea butter has a long history in cooking, but has more recently found its way into cosmetic formulations where its thick, waxy texture acts like an emulsifier and provides skin-enriching properties.",
     "the_base_oil": "Shea nut butter ranges from bright yellow in its raw state to white. The oil has a nutty, sweet aroma, the more refined it is.",
     "safe_usage": "",
-    "image": "tbc"
+    "image": "https://i.ibb.co/LtwKm07/shea-1200x1200.jpg"
+  }
+},
+{
+  "model": "bases.baseoil",
+  "pk": 4,
+  "fields": {
+    "name": "Calendula macerated oil",
+    "latin_name": "Calendula officinalis",
+    "description": "Calendula macerated oil is made by infusing marigold flowers into an oil such as sunflower. The result is a rich herbal oil with recognised healing properties. Calendula is especially popular for sensitive and dry skin to its ability to soothe irritated skin quickly and repair skin tissue.",
+    "the_base_oil": "The dried flowers can be used in infusions. This macerated oil, made from fresh flowers, is a rich golden colour.",
+    "safe_usage": "",
+    "image": "https://i.ibb.co/dBbHx5Q/calendula1-1200x1200.jpg"
+  }
+},
+{
+  "model": "bases.baseoil",
+  "pk": 5,
+  "fields": {
+    "name": "Coconut",
+    "latin_name": "Cocos nucifera",
+    "description": "This is a light, moisturising, and nourishing semi-solid that quickly melts at body temperature. Coconut oil is suitable for all skin types, but is especially beneficial for dry skin and hair. Raw, unrefined, unbleached organic coconut oil is best and adds a pleasant aroma to blends. ",
+    "the_base_oil": "White coconut oil is a good base for essential oils. Coconut oil is a semi-solid that melts at body temperature to produce a liquid that can be used in aromatherapy blends.",
+    "safe_usage": "",
+    "image": "https://i.ibb.co/h8T2xNr/coconut-1200x1200.jpg"
+  }
+},
+{
+  "model": "bases.baseoil",
+  "pk": 6,
+  "fields": {
+    "name": "Flaxseed oil",
+    "latin_name": "Linum usitatissimum",
+    "description": "Pressed from the tiny seeds of the plant, flaxseed oil is rich in omega-3 fatty acids and vitamin E, making it a rejuvenating oil for tired, dry or mature skin. Also known as linseed oil, it has antioxidant and anti-inflammatory qualities that can benefit acne-prone skin.",
+    "the_base_oil": "The tiny flaxseeds have antioxidant properties. For the best-quality oil, look for cold-pressed and unflitered products.",
+    "safe_usage": "",
+    "image": "https://i.ibb.co/W0tD4pH/flaxseed-1200x1200.jpg"
+  }
+},
+{
+  "model": "bases.baseoil",
+  "pk": 7,
+  "fields": {
+    "name": "Avocado",
+    "latin_name": "Persea gratissima",
+    "description": "Avocado is one the best oils for soothing dry skin and softening rough skin patches, such as those on elbows and heels. Naturally high in vitamins, minerals, and antioxidants, the rich oil is cold-pressed from the fruit and used in small amounts to enrich lighter oil bases.",
+    "the_base_oil": "The fruit is packed with nutrients. Avocado oil is pressed from the fruit (not the skin) and is a distinctive dark green colour.",
+    "safe_usage": "",
+    "image": "https://i.ibb.co/YpsvhpS/avocado-1200x1200.jpg"
+  }
+},
+{
+  "model": "bases.baseoil",
+  "pk": 8,
+  "fields": {
+    "name": "Almond",
+    "latin_name": "Prunus amygdalus dulcis",
+    "description": "This light general-purpose oil is cold-pressed from the seeds of the sweet almond tree. Vitamin rich, the oil is suitable for all skin types, but especially for sensitive skins, and it is gentle enough to be used on children. It helps soothe dry, irritated skin and prevent moisture loss.",
+    "the_base_oil": "Almond nuts are high in vitamin E and other important nutrients. Almong oil, pressed from the seeds of the tree, is a light oil with a subtle aroma.",
+    "safe_usage": "",
+    "image": "https://i.ibb.co/LR5Wkxw/almond-1200x1200.jpg"
+  }
+},
+{
+  "model": "bases.baseoil",
+  "pk": 9,
+  "fields": {
+    "name": "Apricot kernel",
+    "latin_name": "Prunus armeniaca",
+    "description": "Apricot kernel oil is a light cold-pressed oil, rich in the fatty acid known as gamma linoleic acid, or GLA, which helps skin to maintain its moisture balance. Light enough to leave no greasy residue, the oil is particularly suitable as a base for facial serums and light moisturising lotions.",
+    "the_base_oil": "Apricot seeds have moisturising properties. Apricot kernel oil is an emollient",
+    "safe_usage": "",
+    "image": "https://i.ibb.co/9c2Q9tn/apricot-1200x1200.jpg"
+  }
+},
+{
+  "model": "bases.baseoil",
+  "pk": 10,
+  "fields": {
+    "name": "Rosehip seed",
+    "latin_name": "Rosa cannina",
+    "description": "The oil from the seeds of the rose plant is a luxurious source of skin-nourishing fatty acids. Renown for its soothing anti-inflammatory effect, it is suited to dry, mature, and weather-damaged skin.",
+    "the_base_oil": "Rosehip seeds are rich in rejuventating fatty acids. The golden oil can be used neat on small areas of skin, or added to blends to enrich other oils.",
+    "safe_usage": "",
+    "image": "https://i.ibb.co/hBWb4p1/rosehip-1200x1200.jpg"
+  }
+},
+{
+  "model": "bases.baseoil",
+  "pk": 11,
+  "fields": {
+    "name": "Jojoba",
+    "latin_name": "Simmondsia",
+    "description": "Jojoba is actually a liquid wax rather than an oil, and because it is so similar to human sebum, it is considered one of the main treatments for dry and mature skin. Its waxy texture adds a protective layer that helps skin retain moisture. Readily absorbed, it can be used on all skin types.",
+    "the_base_oil": "The oil from the seeds has long been used in skin care. Jojoba oil is a long-lasting oil which is actually a liquid wax that has a bright golden appearance.",
+    "safe_usage": "",
+    "image": "https://i.ibb.co/zJ7RLRT/jojoba-1200x1200.jpg"
   }
 },
 {
@@ -42,6 +138,375 @@
     "title": "Makes an all-round moisturiser",
     "description": "A non-greasy, dry oil that can be used under make-up during the day and the skin repair at night, argan can minimise the appearance of scars and stretch marks and help to soften sun- or wind-damaged skin. Apply sparingly to lips before bedtime to aid healing and repair skin overnight.",
     "base_oil": 1
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 2,
+  "fields": {
+    "title": "Acts as a hand conditioner",
+    "description": "Warm a few drops of the oil in the palms, then massage well into the hands, taking extra time to work into the nails and cuticles.",
+    "base_oil": 1
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 3,
+  "fields": {
+    "title": "Conditions hair",
+    "description": "For damaged or dry hair, argan oil conditions and restores shine. Use a pre-wash deep treatment, or for frizzy hair, rub a few drops into the hair just after washing for light control. ",
+    "base_oil": 1
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 4,
+  "fields": {
+    "title": "Tones skin",
+    "description": "With regular use, the oil helps to balance oily skin and reduce inflammation around spots and acne. ",
+    "base_oil": 1
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 5,
+  "fields": {
+    "title": "Moisturises skin",
+    "description": "Light and easily absorbed, canola helps to maintain the moisture balance of dry skin.",
+    "base_oil": 2
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 6,
+  "fields": {
+    "title": "It is a widely available base oil",
+    "description": "You don't need to go to a specialist shop to find canola. Good, food-quality canola is available in the supermarket. Canola is also very stable so keeps for a long time.",
+    "base_oil": 2
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 7,
+  "fields": {
+    "title": "Provides a neutral base",
+    "description": "The oil is almost odourless, so works well with most blends. Enrich it with avocado, borage or rosehip seed oil, or enhance its skin-smoothing properties by adding a healing macerate such as calendula or St John's wort.",
+    "base_oil": 2
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 8,
+  "fields": {
+    "title": "Repairs damaged skin",
+    "description": "Rich in fatty acids, antioxidant carotenoids, and vitamin E, shea nut butter helps to improve the condition of dry and mature skin and soothes eczema, psoriasis, skin allergies, and blemishes. It can also be used to treat dry, itchy scalp conditions.",
+    "base_oil": 3
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 9,
+  "fields": {
+    "title": "Hydrates skin",
+    "description": "The fatty acids in shea nut butter are a good match for those in human skin. By helping to form a thin protective layer on the skin, the oil helps prevent moisture loss and encourages healing of chapped lips. It also help to soften cracked, dry skin on heels, elbows, and knees. ",
+    "base_oil": 3
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 10,
+  "fields": {
+    "title": "Can be used as a shaving balm",
+    "description": "Adding shea nut butter to shaving cream formulations helps to achieve a smoother shave. ",
+    "base_oil": 3
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 11,
+  "fields": {
+    "title": "Repairs skin",
+    "description": "Calendula is mildly antiseptic so it can help ulcers, skin eruptions, cuts, and dermatitis to heal more quickly.",
+    "base_oil": 4
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 12,
+  "fields": {
+    "title": "Can be used as after-sun skin care",
+    "description": "Calendula oil helps to condition and restore skin, and reduces inflammation after sun exposure.",
+    "base_oil": 4
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 13,
+  "fields": {
+    "title": "Acts as a healing massage oil",
+    "description": "Calendula makes a good choice when a large area of skin requires attention as the oil spreads more easily over a large surface area than a cream-based product does.",
+    "base_oil": 4
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 14,
+  "fields": {
+    "title": "Can be used for first aid",
+    "description": "Hypercal cream, which is a mainstay of most natural first-aid kits, is a mixture of hypericum (St John's wort) and calendula. If you are making a skin salve of ointment, add calendula macerate to help speed healing time.",
+    "base_oil": 4
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 15,
+  "fields": {
+    "title": "Conditions hair",
+    "description": "Coconut oil helps combar dandruff and can restore lustre and shine to dry or damaged hair. Use the oil as a pre-shampoo conditioner or, for deeper conditioning, leave in overnight and wash the oil out in the morning.",
+    "base_oil": 5
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 16,
+  "fields": {
+    "title": "Acts as a make-up remover",
+    "description": "Warm a little bit of coconut oil between the palms, then gently massage over the face and use a tissue or a damp facecloth to remove make up.",
+    "base_oil": 5
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 17,
+  "fields": {
+    "title": "Heals rough, irritated skin",
+    "description": "The oil has an anti-inflammatory effect that can help to heal wounds, blisters, and rashes and to soothe razor burn after shaving. Use in place of mineral oil for chapped lips and for eczema and dermatitis. ",
+    "base_oil": 5
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 18,
+  "fields": {
+    "title": "Cares for teeth and gums",
+    "description": "The practice of \"oil-pulling\" - swishing around 1 tablespoon coconut oil in the mouth for 20 minutes - helps to reduce bacteria, control plaque, and fight decay and infection. Don't swallow; there's also no need to rinse afterwards.",
+    "base_oil": 5
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 19,
+  "fields": {
+    "title": "Fades scars and stretch marks",
+    "description": "The high vitamin E content of flaxseed oil helps to reduce the appearance of scarring and stretch marks.",
+    "base_oil": 6
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 20,
+  "fields": {
+    "title": "Hydrates skin",
+    "description": "Flaxseed oil seals in moisture, making a reviving remedy for dry skin conditions. Its anti-inflammatory action calms eczema and psoriasis.",
+    "base_oil": 6
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 21,
+  "fields": {
+    "title": "Has anti-ageing effects",
+    "description": "The omega-3 fatty acids in flaxseen oil help protect and rejuvenate skin cells, brightening dull-looking skin and smoothing the appearance of lines.",
+    "base_oil": 6
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 22,
+  "fields": {
+    "title": "Treats acne",
+    "description": "Use the oil to cleanse and condition oily or acne-prone skin and rosacea. It contains omega-3 alpha-linolenic acid (ALA), a powerful anti-inflammatory that reduces the soreness and redness around acne.",
+    "base_oil": 6
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 23,
+  "fields": {
+    "title": "Enriches case oil blends",
+    "description": "Flaxseed generally isn't used on it's own, but is added to other base oils, creams, and lotions to add skin-strengthening properties.",
+    "base_oil": 6
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 24,
+  "fields": {
+    "title": "Conditions and soothes skin",
+    "description": "Avocado helps to hydrate parches skin and aid the regeneration of skin cells. A high fatty acid content means this is a great oil for conditioning rough skin on the feet, knees, or elbows, and also for reviving hair damaged by styling or the sun.",
+    "base_oil": 7
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 25,
+  "fields": {
+    "title": "Repairs and protects skin",
+    "description": "If used regularly, the oil can help to prevent or minise the appearance of stretch marks.",
+    "base_oil": 7
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 26,
+  "fields": {
+    "title": "Acts as an anti-ageing oil",
+    "description": "Avocado oil gives lustre and shine to tired or dull complexions. It contains fatty acids and phytosterols (plant hormones) that help to replenish and revitalise mature skin.",
+    "base_oil": 7
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 27,
+  "fields": {
+    "title": "Acts as a natural SPF",
+    "description": "While it can't be used as a sunscreen on its own, avocado oil does contain a natural SPF factor at a low level that can help to protect the skin and hair from sun exposure. The oil also relieves the pain of sunburn.",
+    "base_oil": 7
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 28,
+  "fields": {
+    "title": "Acts a natural moisturiser",
+    "description": "Almond oil provides a long-lasting barrier against the elements that helps prevent moisture loss, soothes and encourages the healing of dry, irritated skin, and relieves inflamed skin conditions, such as eczema.",
+    "base_oil": 8
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 29,
+  "fields": {
+    "title": "It is suitable for babies and young children",
+    "description": "Almond oil is gentle enough to use on babies and young children, for example to treat nappy rash or cradle cap. Other gentle oils, such as olive and sunflower are also recommended for babies.",
+    "base_oil": 8
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 30,
+  "fields": {
+    "title": "Helps lubricate massage blends",
+    "description": "The oil is absorbed slowly, which makes it a popular choice as a massage oil base. It also has a delicate aroma that will not compete with the essential oils in a blend.",
+    "base_oil": 8
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 31,
+  "fields": {
+    "title": "Acts as a make-up remover",
+    "description": "Almond oil removes dirt and make-up effectively, leaving the skin feeling soft and supple. ",
+    "base_oil": 8
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 32,
+  "fields": {
+    "title": "Helps restore moisture",
+    "description": "If skin feels dry, itchy, or tight after bathing or cleansing, this is the perfect oil to apply lightly to damp skin before towelling off. For mature skin, it is softening and improves the skin elasticity, helping to smooth our fine lines.",
+    "base_oil": 9
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 33,
+  "fields": {
+    "title": "It is suitable for sensitive skin",
+    "description": "Apricot oil soothes sensitive skin and provides a thin barrier against irritants. It makes an idea substitute for petroleum-based baby oils.",
+    "base_oil": 9
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 34,
+  "fields": {
+    "title": "Acts as a massage base",
+    "description": "Apricot kernel is light and easily absorbed, which makes it a great base for massage blends and night-time skin treatments. A little goes a long way, so buy the best you can afford.",
+    "base_oil": 9
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 35,
+  "fields": {
+    "title": "Conditions hair",
+    "description": "The oil makes an effective treatment for flyaway hair and also minimises the appearance of split ends. Work a few drops into damp hair and allow it dry naturally to seal in moisture all day long.",
+    "base_oil": 9
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 36,
+  "fields": {
+    "title": "Has anti-ageing effects",
+    "description": "Rosehip contains the essential fatty acids omegas 3 and 6 that support cell and tissue regeneration, helping to keep the skin supple and reduce the appearance of fine lines around the eyes. It is great for treating spider veins.",
+    "base_oil": 10
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 37,
+  "fields": {
+    "title": "Prevents scarring",
+    "description": "The oil can be added to body lotions and creams to minimise the appearance of stretch marks. It can also help reduce scarring from wounds, burns, and after surgery.",
+    "base_oil": 10
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 38,
+  "fields": {
+    "title": "Treats acne",
+    "description": "The oil is a source of trans-retinoid acid, a form of vitamin A, which is a recognised treatment for acne-prone skin. Rosehip helps balance the skin's oils and its toning action minimises pores. It is also good for calming pimples and boils.",
+    "base_oil": 10
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 39,
+  "fields": {
+    "title": "Eases itching",
+    "description": "Soothing and easily absorbed, when the skin is dry and itchy rosehip seed's cooling, anti-inflammatory action brings quick release.",
+    "base_oil": 10
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 40,
+  "fields": {
+    "title": "Conditions skin and hair",
+    "description": "Jojoba can be used to soften hard, dry or rough skin and to relieve the symptoms such as eczema and psoriasis. Just a little added to hair gives instant shine and it can also be used to treat dry scalp conditions and dandruff.",
+    "base_oil": 11
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 41,
+  "fields": {
+    "title": "Has anti-ageing effects",
+    "description": "Jojoba is a good oil for dry, chapped, weather-worn, and mature skins. It helps to reduce water loss and improves suppleness and elasticity, helping to reduce the appearance of fine lines, wrinkles and scars.",
+    "base_oil": 11
+  }
+},
+{
+  "model": "bases.bobenefit",
+  "pk": 42,
+  "fields": {
+    "title": "Acts as a make-up remover",
+    "description": "Jojoba oil is suitable for all skin types, and can be used to lift and dissolve the dirt and oil that clogs pores, leaving skin instantly moisturised. Its thick texture makes it a great substitiute for soap when shaving. A little applied to the legs or face helps to lubricate the skin, enabling an extra close shave that also helps to prevent razor irritation.",
+    "base_oil": 11
   }
 }
 ]

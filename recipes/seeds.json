@@ -110,10 +110,299 @@
   }
 },
 {
+  "model": "recipes.recipe",
+  "pk": 7,
+  "fields": {
+    "name": "Eucalyptus and lemon inhalation",
+    "description": "Sometimes asthma symptoms can be triggered by the presence of an infection such as a cold or flu virus. An inhalation using clearing essential oils can be useful to help ease asthma symptoms in these circumstances.",
+    "makes": "1 inhalation",
+    "step_one": "Place the oil drops directly on a tissue or handkerchief.",
+    "step_two": "Keep the tissue with you and inhale by wafting the tissue under the nose. Do not cover the nose with the tissue.",
+    "step_three": "",
+    "safe_usage": "",
+    "public": true,
+    "owner": 1,
+    "applications": [],
+    "remedies": [
+      3
+    ]
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 8,
+  "fields": {
+    "name": "Lavender and majoram massage",
+    "description": "Essential oils that have a hypotensive action (meaning they help to lower blood pressure), as well as calming and sedating effects, can be used to alleviate mild hypertension. Here, lavender, marjoram, and ylang ylang essential oils are combined to make a therapeutic massage blend that can be used to help combat mild hypertension.",
+    "makes": "30ml",
+    "step_one": "Combine all the ingredients together in a bowl. Transfer to a sterilised dark glass bottle and seal with a cap or dropper.",
+    "step_two": "Gently massage into the body. Allow the oil to absorb into the skin before you get dressed. Store remaining oil in a cool, dark place. Keeps for up to three months.",
+    "step_three": "",
+    "safe_usage": "",
+    "public": true,
+    "owner": 1,
+    "applications": [
+      2
+    ],
+    "remedies": [
+      4
+    ]
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 9,
+  "fields": {
+    "name": "Bergamot sitz bath",
+    "description": "As UTIs are caused by infection, essential oils with antibacterial activity are recommended to help fight the infection and support your recovery. Here, antiviral and antibacterial bergamot is combined and soothing lavender. The oils are added to a shallow \"sitz\" bath, which is waist height only and ideal for treating UTIs.",
+    "makes": "1 sitz bath",
+    "step_one": "Fill the bath to waist height. Adjust the temperature depending on how long you wish to remain in the bath. For a bath of up to five minutes, run hot water a temperature of 40-45 degrees (celcius). If you want to stay in the bath for up to 15 minutes keep the water at 33-35 degrees (celcius).",
+    "step_two": "Alternatively, fill a bowl with warm water, add the essential oils, then soak a clean flannel in the water. Remove the flannel and squeeze out the excess water, then gently wash the affected area with the flannel. After washing, pat dry the area carefully.",
+    "step_three": "If using the oils in a shallow bath, add the essential oil to the bath once run, then soak as required.",
+    "safe_usage": "",
+    "public": true,
+    "owner": 1,
+    "applications": [
+      1
+    ],
+    "remedies": []
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 10,
+  "fields": {
+    "name": "Rosemary and eucalyptus temple massage",
+    "description": "Tension headaches caused by mental effort can be treated with rosemary. Eucalyptus is useful for soothing headaches caused by sinus congestion or allergic reactions. Here, the two oils are combines with refreshing peppermint and relaxing lavender.",
+    "makes": "30ml",
+    "step_one": "Combine all the ingredients together in a bowl. Transfer to a sterilised dark glass bottle and seal with a cap or dropper.",
+    "step_two": "Massage gently into the temples in a circular motion. Store the remaining oil in a cool, dark place. Keeps for up to 3 months.",
+    "step_three": "",
+    "safe_usage": "",
+    "public": true,
+    "owner": 1,
+    "applications": [
+      2
+    ],
+    "remedies": [
+      5
+    ]
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 11,
+  "fields": {
+    "name": "Lemon and bergamot facial sauna",
+    "description": "Essential oils can help to bring acne and pimples under control by helping to clear infection and reduce inflammation. The oils can also help mentally, reducing the stress and anxiety that can often accompany skin conditions. For a deep-pore cleanse, try this essential oil facial steam. The skin-clarifying and toning effects of lemon are combined with the antiseptic and skin-balancing properties of petitgrain, and soothing and antibacterial bergamot.",
+    "makes": "1 facial sauna",
+    "step_one": "Add the essential oils to a bowl of hot water. Cover your head with a towel, makes a tent over the bowel of hot water, and then lean forwards over the bowl.",
+    "step_two": "Allow the steam to act on the face for 5 minutes, taking the steam if necessary. Wash your skin with cool water and pat dry with a clean towel.",
+    "step_three": "",
+    "safe_usage": "",
+    "public": true,
+    "owner": 1,
+    "applications": [],
+    "remedies": [
+      6
+    ]
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 12,
+  "fields": {
+    "name": "Eczema ointment",
+    "description": "Chamomile and rose cool and balance skin. Combined with an unscented base they can be applied to affected areas to take the heat out of itchy skin.",
+    "makes": "15ml",
+    "step_one": "Mix the essential oils into the lotion or ointment.",
+    "step_two": "Dab on to affected areas of skin.",
+    "step_three": "",
+    "safe_usage": "",
+    "public": true,
+    "owner": 1,
+    "applications": [
+      10
+    ],
+    "remedies": [
+      6
+    ]
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 13,
+  "fields": {
+    "name": "Invigorating scalp massage",
+    "description": "The stimulating action of a scalp massage can be used with essential oils to create an effective dandruff treatment. Thyme essential oil has an anti-fungal action that is useful for treating conditions such as dandruff, while tea tree helps to balance oils and keep the scalp healthy.",
+    "makes": "2 applications",
+    "step_one": "Melt the coconut oil solid in a bain marie, then add the essential oils and pour the blend into a sterilised glass jar. Massage half the oil blend into the scalp. Do this before bed, then cover the pillow with a towel to avoid the oil blend staining the pillowcase.",
+    "step_two": "Leave the oil on overnight and then rinse it out in the morning, applying shampoo before wetting and rinsing the hair.",
+    "step_three": "",
+    "safe_usage": "",
+    "public": true,
+    "owner": 1,
+    "applications": [
+      2
+    ],
+    "remedies": [
+      10
+    ]
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 14,
+  "fields": {
+    "name": "Neroli \"rescue\" remedy",
+    "description": "Neroli essential oil is considered to be the \"rescue remedy\" of essential oil and is particularly helpful during times of grief and shock. Here, its effects are supported by uplifting bergamot and calming petitgrain essential oils. Disperse this blend of oils in your environment to help calm emotions and ease feelings of anxiety.",
+    "makes": "1 diffusion",
+    "step_one": "Add the essential oil blend to a diffuser, vaporiser or oil burner.",
+    "step_two": "Gently fragrance your chosen environment.",
+    "step_three": "",
+    "safe_usage": "",
+    "public": true,
+    "owner": 1,
+    "applications": [
+      5
+    ],
+    "remedies": [
+      7
+    ]
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 15,
+  "fields": {
+    "name": "De-stressing clary sage massage",
+    "description": "Using therapeutic essential oils in a massage blend is an excellent way to help the body to manage chronic stress,  promote relaxation, and improve the quality of sleep if stress is causing insomnia. You can also enjoy this oil blend in a soothing bedtime bath by adding the essential oils to 1 tablespoon of either base oil or full-fat milk, and dispersing immediately in the bath, then enjoy a relaxing pre-bedtime soak.",
+    "makes": "2 tbsp",
+    "step_one": "Combine all the ingredients together in a bowl. Transfer to a sterilised dark glass bottle and seal with a cap or dropper.",
+    "step_two": "Massage into the skin (avoiding the face). Allow the oil to absorb into the skin before getting dressed. Store the remaining oil in a cool, dark place. Keeps for up to 3 months.",
+    "step_three": "",
+    "safe_usage": "",
+    "public": true,
+    "owner": 1,
+    "applications": [
+      1,
+      2
+    ],
+    "remedies": [
+      7
+    ]
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 16,
+  "fields": {
+    "name": "Lavender compress for insect bites and stings",
+    "description": "The severity of bites and stings depends on the type of insect and a person's sensitivity. A serious allergic reaction will require immediate medical help. This soothing compress reduces itching.",
+    "makes": "1 compress",
+    "step_one": "Fill a bowl with cold water. Add the essential oils to the witch hazel and then to the water.",
+    "step_two": "Soak a flannel in the bowl, remove and wring out.",
+    "step_three": "Place the flannel on the skin. Leave it in place while it reaches body temperature. Repeat 3 times.",
+    "safe_usage": "",
+    "public": true,
+    "owner": 1,
+    "applications": [
+      4
+    ],
+    "remedies": [
+      9
+    ]
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 17,
+  "fields": {
+    "name": "Skin-nourishing pregnancy massage",
+    "description": "Enjoy a backache-relieving massage or a calming facial massage. Stick to 1 percent dilutions as your sense of smell is heightened in pregnancy. This massage blend nourishes skin and improves elasticity. Used daily from the fifth month of pregnancy, it can help prevent stretch marks. It is best not use essential oils until you are past the first trimester (unless you have had advice from a qualified aromatherapy practitioner).",
+    "makes": "30ml",
+    "step_one": "Combine all the ingredients together in a bowl.",
+    "step_two": "Disperse the oil blend immediately in a hot bath, and then enjoy a reviving and uplifting soak that can leave you feeling revived.",
+    "step_three": "",
+    "safe_usage": "",
+    "public": true,
+    "owner": 1,
+    "applications": [
+      1
+    ],
+    "remedies": [
+      8
+    ]
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 18,
+  "fields": {
+    "name": "Refreshing blend 7",
+    "description": "If you feel sluggish...",
+    "makes": "1 diffusion",
+    "step_one": "For a massage oil, combine all the ingredient in a bowl, then transfer the belnd to a sterilised dark green bottle.",
+    "step_two": "",
+    "step_three": "",
+    "safe_usage": "",
+    "public": false,
+    "owner": 5,
+    "applications": [
+      1,
+      2
+    ],
+    "remedies": [
+      1
+    ]
+  }
+},
+{
   "model": "recipes.otheringredient",
   "pk": 1,
   "fields": {
     "name": "Unscented shower gel"
+  }
+},
+{
+  "model": "recipes.otheringredient",
+  "pk": 2,
+  "fields": {
+    "name": "Unfragranced lotion"
+  }
+},
+{
+  "model": "recipes.otheringredient",
+  "pk": 3,
+  "fields": {
+    "name": "Witch hazel"
+  }
+},
+{
+  "model": "recipes.otheringredient",
+  "pk": 4,
+  "fields": {
+    "name": "Full-fat milk"
+  }
+},
+{
+  "model": "recipes.otheringredientamount",
+  "pk": 1,
+  "fields": {
+    "quantity": 1.0,
+    "measurement": "tbsp",
+    "other_ingredient": 2,
+    "recipe": 12
+  }
+},
+{
+  "model": "recipes.otheringredientamount",
+  "pk": 2,
+  "fields": {
+    "quantity": 1.0,
+    "measurement": "tbsp",
+    "other_ingredient": 3,
+    "recipe": 16
   }
 },
 {
@@ -127,6 +416,326 @@
   }
 },
 {
+  "model": "recipes.essentialoilamount",
+  "pk": 4,
+  "fields": {
+    "quantity": 4.0,
+    "measurement": "drops",
+    "essential_oil": 5,
+    "recipe": 7
+  }
+},
+{
+  "model": "recipes.essentialoilamount",
+  "pk": 5,
+  "fields": {
+    "quantity": 4.0,
+    "measurement": "drops",
+    "essential_oil": 13,
+    "recipe": 7
+  }
+},
+{
+  "model": "recipes.essentialoilamount",
+  "pk": 6,
+  "fields": {
+    "quantity": 4.0,
+    "measurement": "drops",
+    "essential_oil": 31,
+    "recipe": 7
+  }
+},
+{
+  "model": "recipes.essentialoilamount",
+  "pk": 7,
+  "fields": {
+    "quantity": 6.0,
+    "measurement": "drops",
+    "essential_oil": 1,
+    "recipe": 8
+  }
+},
+{
+  "model": "recipes.essentialoilamount",
+  "pk": 8,
+  "fields": {
+    "quantity": 6.0,
+    "measurement": "drops",
+    "essential_oil": 24,
+    "recipe": 8
+  }
+},
+{
+  "model": "recipes.essentialoilamount",
+  "pk": 9,
+  "fields": {
+    "quantity": 3.0,
+    "measurement": "drops",
+    "essential_oil": 39,
+    "recipe": 8
+  }
+},
+{
+  "model": "recipes.essentialoilamount",
+  "pk": 10,
+  "fields": {
+    "quantity": 4.0,
+    "measurement": "drops",
+    "essential_oil": 2,
+    "recipe": 9
+  }
+},
+{
+  "model": "recipes.essentialoilamount",
+  "pk": 11,
+  "fields": {
+    "quantity": 3.0,
+    "measurement": "drops",
+    "essential_oil": 8,
+    "recipe": 9
+  }
+},
+{
+  "model": "recipes.essentialoilamount",
+  "pk": 12,
+  "fields": {
+    "quantity": 2.0,
+    "measurement": "drops",
+    "essential_oil": 1,
+    "recipe": 9
+  }
+},
+{
+  "model": "recipes.essentialoilamount",
+  "pk": 13,
+  "fields": {
+    "quantity": 3.0,
+    "measurement": "drops",
+    "essential_oil": 34,
+    "recipe": 10
+  }
+},
+{
+  "model": "recipes.essentialoilamount",
+  "pk": 14,
+  "fields": {
+    "quantity": 1.0,
+    "measurement": "drop",
+    "essential_oil": 31,
+    "recipe": 10
+  }
+},
+{
+  "model": "recipes.essentialoilamount",
+  "pk": 15,
+  "fields": {
+    "quantity": 1.0,
+    "measurement": "drop",
+    "essential_oil": 1,
+    "recipe": 10
+  }
+},
+{
+  "model": "recipes.essentialoilamount",
+  "pk": 16,
+  "fields": {
+    "quantity": 1.0,
+    "measurement": "drop",
+    "essential_oil": 13,
+    "recipe": 10
+  }
+},
+{
+  "model": "recipes.essentialoilamount",
+  "pk": 17,
+  "fields": {
+    "quantity": 3.0,
+    "measurement": "drops",
+    "essential_oil": 2,
+    "recipe": 11
+  }
+},
+{
+  "model": "recipes.essentialoilamount",
+  "pk": 18,
+  "fields": {
+    "quantity": 2.0,
+    "measurement": "drops",
+    "essential_oil": 5,
+    "recipe": 11
+  }
+},
+{
+  "model": "recipes.essentialoilamount",
+  "pk": 19,
+  "fields": {
+    "quantity": 1.0,
+    "measurement": "drop",
+    "essential_oil": 32,
+    "recipe": 11
+  }
+},
+{
+  "model": "recipes.essentialoilamount",
+  "pk": 20,
+  "fields": {
+    "quantity": 3.0,
+    "measurement": "drops",
+    "essential_oil": 9,
+    "recipe": 12
+  }
+},
+{
+  "model": "recipes.essentialoilamount",
+  "pk": 21,
+  "fields": {
+    "quantity": 2.0,
+    "measurement": "drops",
+    "essential_oil": 33,
+    "recipe": 12
+  }
+},
+{
+  "model": "recipes.essentialoilamount",
+  "pk": 22,
+  "fields": {
+    "quantity": 3.0,
+    "measurement": "drops",
+    "essential_oil": 36,
+    "recipe": 13
+  }
+},
+{
+  "model": "recipes.essentialoilamount",
+  "pk": 23,
+  "fields": {
+    "quantity": 2.0,
+    "measurement": "drops",
+    "essential_oil": 1,
+    "recipe": 13
+  }
+},
+{
+  "model": "recipes.essentialoilamount",
+  "pk": 24,
+  "fields": {
+    "quantity": 2.0,
+    "measurement": "drops",
+    "essential_oil": 37,
+    "recipe": 13
+  }
+},
+{
+  "model": "recipes.essentialoilamount",
+  "pk": 25,
+  "fields": {
+    "quantity": 5.0,
+    "measurement": "drops",
+    "essential_oil": 26,
+    "recipe": 14
+  }
+},
+{
+  "model": "recipes.essentialoilamount",
+  "pk": 26,
+  "fields": {
+    "quantity": 3.0,
+    "measurement": "drops",
+    "essential_oil": 32,
+    "recipe": 14
+  }
+},
+{
+  "model": "recipes.essentialoilamount",
+  "pk": 27,
+  "fields": {
+    "quantity": 2.0,
+    "measurement": "drops",
+    "essential_oil": 2,
+    "recipe": 14
+  }
+},
+{
+  "model": "recipes.essentialoilamount",
+  "pk": 28,
+  "fields": {
+    "quantity": 5.0,
+    "measurement": "drops",
+    "essential_oil": 12,
+    "recipe": 15
+  }
+},
+{
+  "model": "recipes.essentialoilamount",
+  "pk": 29,
+  "fields": {
+    "quantity": 5.0,
+    "measurement": "drops",
+    "essential_oil": 14,
+    "recipe": 15
+  }
+},
+{
+  "model": "recipes.essentialoilamount",
+  "pk": 30,
+  "fields": {
+    "quantity": 5.0,
+    "measurement": "drops",
+    "essential_oil": 15,
+    "recipe": 15
+  }
+},
+{
+  "model": "recipes.essentialoilamount",
+  "pk": 31,
+  "fields": {
+    "quantity": 3.0,
+    "measurement": "drops",
+    "essential_oil": 1,
+    "recipe": 16
+  }
+},
+{
+  "model": "recipes.essentialoilamount",
+  "pk": 32,
+  "fields": {
+    "quantity": 1.0,
+    "measurement": "drop",
+    "essential_oil": 9,
+    "recipe": 16
+  }
+},
+{
+  "model": "recipes.essentialoilamount",
+  "pk": 33,
+  "fields": {
+    "quantity": 5.0,
+    "measurement": "drops",
+    "essential_oil": 33,
+    "recipe": 17
+  }
+},
+{
+  "model": "recipes.essentialoilamount",
+  "pk": 34,
+  "fields": {
+    "quantity": 2.0,
+    "measurement": "drops",
+    "essential_oil": 12,
+    "recipe": 17
+  }
+},
+{
+  "model": "recipes.essentialoilamount",
+  "pk": 35,
+  "fields": {
+    "quantity": 2.0,
+    "measurement": "drops",
+    "essential_oil": 15,
+    "recipe": 17
+  }
+},
+{
   "model": "recipes.baseoilamount",
   "pk": 1,
   "fields": {
@@ -134,6 +743,56 @@
     "measurement": "drops",
     "base_oil": 1,
     "recipe": 1
+  }
+},
+{
+  "model": "recipes.baseoilamount",
+  "pk": 3,
+  "fields": {
+    "quantity": 2.0,
+    "measurement": "tbsp",
+    "base_oil": 8,
+    "recipe": 8
+  }
+},
+{
+  "model": "recipes.baseoilamount",
+  "pk": 4,
+  "fields": {
+    "quantity": 2.0,
+    "measurement": "tbsp",
+    "base_oil": 8,
+    "recipe": 10
+  }
+},
+{
+  "model": "recipes.baseoilamount",
+  "pk": 5,
+  "fields": {
+    "quantity": 1.0,
+    "measurement": "tbsp",
+    "base_oil": 5,
+    "recipe": 13
+  }
+},
+{
+  "model": "recipes.baseoilamount",
+  "pk": 6,
+  "fields": {
+    "quantity": 2.0,
+    "measurement": "tbsp",
+    "base_oil": 8,
+    "recipe": 15
+  }
+},
+{
+  "model": "recipes.baseoilamount",
+  "pk": 7,
+  "fields": {
+    "quantity": 1.0,
+    "measurement": "tbsp",
+    "base_oil": 8,
+    "recipe": 17
   }
 }
 ]
