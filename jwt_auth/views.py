@@ -18,6 +18,7 @@ from django.conf import settings
 from .serializers.common import UserSerializer, UserRegisterSerializer, BookmarkedRecipeSerializer, TestedRecipeSerializer
 from .serializers.populated import PopulatedUserSerializer
 
+
 # ! REGISTER VIEW -------
 class RegisterView(APIView):
   def post(self, request):
@@ -66,7 +67,7 @@ class LoginView(APIView):
 class UserProfilePrivateView(APIView):
   def get(self, request):
     print('USERNAMEEE->', request.user.username)
-    request_username = request.user.username
+    # request_username = request.user.username
     user = User.objects.get(username=request.user.username)
     print('Users->', user)
     if user.username == request.user.username or request.user.is_superuser == True:
@@ -134,14 +135,15 @@ class BookmarkedView(APIView):
     existing_bookmark_count = BookmarkedRecipe.objects.filter(bookmarked_recipe = request.data['bookmarked_recipe'], bookmarked_by = request.data['bookmarked_by']).count() 
     print('CHECK BOOKMARKED>', existing_bookmark_count)
     if existing_bookmark_count !=0:
-      return Response({'message': 'You have already bookmarked this recipe!'}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+      return Response({'message': 'You have already bookmarked this recipe!'})
+
       
     bookmark_to_add= BookmarkedRecipeSerializer(data=request.data)
     
     try:
       bookmark_to_add.is_valid(True)
       bookmark_to_add.save()
-      return Response(bookmark_to_add.data, status=status.HTTP_201_CREATED)
+      return Response( bookmark_to_add.data, status=status.HTTP_201_CREATED, )
     except Exception as e:
       print('e->', e)
       return Response(e.__dict__ if e.__dict__ else str(e), status=status.HTTP_422_UNPROCESSABLE_ENTITY)
