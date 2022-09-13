@@ -16,11 +16,15 @@ class PopulatedEssentialOilAmountSerializer(EssentialOilAmountSerializer):
 class PopulatedBaseOilAmountSerializer(BaseOilAmountSerializer):
     base_oil = BaseOilNameSerializer()
 
+class PopulatedOtherIngredientAmountSerializer(OtherIngredientAmountSerializer):
+    other_ingredient = OtherIngredientSerializer()
+
 class PopulatedOtherIngredientSerializer(OtherIngredientSerializer):
     amount = OtherIngredientAmountSerializer(many=True)
 
 class PopulatedRecipeSerializer(RecipeSerializer):
-    other_ingredient_amount = OtherIngredientAmountSerializer(many=True)
+    other_ingredient_amount = PopulatedOtherIngredientAmountSerializer(many=True)
+    # other_ingredient_amount = OtherIngredientAmountSerializer(many=True)
     # essential_oil_amount = EssentialOilAmountSerializer(many=True)
     essential_oil_amount = PopulatedEssentialOilAmountSerializer(many=True)
     base_oil_amount = PopulatedBaseOilAmountSerializer(many=True)

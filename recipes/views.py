@@ -7,7 +7,7 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticate
 # From Recipe App:
 from .models import Recipe, OtherIngredient, OtherIngredientAmount, EssentialOilAmount, BaseOilAmount
 from .serializers.common import RecipeSerializer, CreateRecipeSerializer, OtherIngredientSerializer, OtherIngredientAmountSerializer, EssentialOilAmountSerializer, BaseOilAmountSerializer, EssentialOilAmountFullSerializer, OtherIngredientAmountFullSerializer
-from .serializers.populated import PopulatedRecipeSerializer, PopulatedOtherIngredientSerializer, PopulatedEssentialOilAmountSerializer
+from .serializers.populated import PopulatedOtherIngredientAmountSerializer, PopulatedRecipeSerializer, PopulatedOtherIngredientSerializer, PopulatedEssentialOilAmountSerializer
 
 # ! Recipe Views
 
@@ -92,7 +92,7 @@ class OtherIngredientAmountListView(APIView):
   def get(self, _request):
     other_ingredient_amounts = OtherIngredientAmount.objects.all()
     print('Other Ingredient Amounts->', other_ingredient_amounts)
-    serialized_other_ingredient_amounts = OtherIngredientAmountFullSerializer(other_ingredient_amounts, many=True)
+    serialized_other_ingredient_amounts = PopulatedOtherIngredientAmountSerializer(other_ingredient_amounts, many=True)
     print('Serialized Other Ingredient Amounts->', serialized_other_ingredient_amounts)
     print('Serialized Other Ingredient Amounts DATA->', serialized_other_ingredient_amounts.data)
 
