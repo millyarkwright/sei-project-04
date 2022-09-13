@@ -34,6 +34,16 @@ function App() {
   //   getData()
   // })
 
+  useEffect(() => {
+    // if localstorage token exists, set axios default headers to token, if not, set to null
+    const token = localStorage.getItem('aroma-token')
+    if (token) {
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
+    } else {
+      axios.defaults.headers.common["Authorization"] = null
+    }
+  }, [])
+
   return (
     <div className="site-wrapper">
       <BrowserRouter>

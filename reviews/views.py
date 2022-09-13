@@ -9,7 +9,7 @@ from .models import Review
 
 # CUSTOM EXCEPTIONS
 class RatingException(APIException):
-  status_code = 422,
+  # status_code = 422,
   default_detail = 'Please also rate the recipe!'
   default_code = 'unprocessable_entity'
 # ----------------------------
@@ -34,8 +34,10 @@ class ReviewView(APIView):
     
     # Check rating is included
     data = request.data
-    if data.get('rating') == None:
-      raise RatingException()
+    # print('DATA RATING', data['rating'])
+    if data.get('rating') == '' or data.get('rating') == None:
+      # raise RatingException()
+      return Response({'message': 'Please also rate the recipe!'})
 
     review_to_create = ReviewSerializer(data=request.data)
     
