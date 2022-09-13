@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { API_URL } from '../../config'
 import { Rating } from 'react-simple-star-rating'
-
+import { getToken } from '../helpers/auth'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -75,7 +75,9 @@ const RecipeSingle = () => {
   const handleAddToBookmark = async (event) => {
     event.preventDefault()
     try {
-      console.log(`ADD THIS TO BOOKMARK ->`, recipeId)
+      console.log(`ADD THIS TO BOOKMARK ->`, recipeId, {
+        headers: { Authorization: `Bearer ${getToken()}` },
+      })
       // const { data } = await axios.post(
       //   `${API_URL}/users/bookmarked/${recipeId}`
       // )
@@ -109,7 +111,9 @@ const RecipeSingle = () => {
   const handleAddToTested = async (event) => {
     event.preventDefault()
     try {
-      console.log(`ADD THIS TO Tested ->`, recipeId)
+      console.log(`ADD THIS TO Tested ->`, recipeId, {
+        headers: { Authorization: `Bearer ${getToken()}` },
+      })
       const { data } = await axios.post(
         `${API_URL}/users/tested/${recipeId}`
       )
@@ -138,9 +142,9 @@ const RecipeSingle = () => {
       console.log('form data -->', formData)
 
       const res = await axios.post(
-        `${API_URL}/reviews/${recipeId}`,
-        formData
-      )
+        `${API_URL}/reviews/${recipeId}`, formData, {
+        headers: { Authorization: `Bearer ${getToken()}` },
+      })
       setFormData({ text: '', rating: '' })
       console.log('res-->', res.data.message)
       toast.error(res.data.message, {
@@ -189,15 +193,15 @@ const RecipeSingle = () => {
                 {oils.applications.map((application) => {
                   return (
                     <div key={application.name} className="category">
-                      <img srm={application.icon} alt="icon"/>
+                      <img srm={application.icon} alt="icon" />
                       <p>{application.name}</p>
                     </div>
-                    )
-                  })}
+                  )
+                })}
                 {oils.remedies.map((remedy) => {
                   return (
                     <div key={remedy.name}>
-                      <img srm={remedy.icon} alt="icon"/>
+                      <img srm={remedy.icon} alt="icon" />
                       <p>{remedy.name}</p>
                     </div>
                   )
@@ -205,12 +209,12 @@ const RecipeSingle = () => {
               </div>
               <p>{oils.description}</p>
             </div>
-                <div>
-                    <button onClick={handleDelete} className="disabled">DELETE RECIPE</button>
-                    <button onClick={handleAddToBookmark}>ADD TO BOOKMARK</button>
-                    <button onClick={handleAddToTested}>ADD TO TESTED</button>
-                </div>
-                        {/* { userIsAuthenticated ? 
+            <div>
+              <button onClick={handleDelete} className="disabled">DELETE RECIPE</button>
+              <button onClick={handleAddToBookmark}>ADD TO BOOKMARK</button>
+              <button onClick={handleAddToTested}>ADD TO TESTED</button>
+            </div>
+            {/* { userIsAuthenticated ? 
                 <div>
                     <button onClick={handleAddToBookmark}>DELETE RECIPE</button>
                     <button onClick={handleAddToBookmark}>ADD TO BOOKMARK</button>
@@ -241,20 +245,20 @@ const RecipeSingle = () => {
                           <Link to={`/bases/${item.base_oil.id}`}>
                             <p className="fw-bold">{item.base_oil.name} oil</p>
                           </Link>
-                            <p className="ms-2">{item.quantity} {item.measurement}</p>
+                          <p className="ms-2">{item.quantity} {item.measurement}</p>
                         </div>
                       )
                     })}
                   </>
                 }
                 {/* Other Ingredient Oils */}
-                {oils.other_ingredient_amount.length >0 &&
+                {oils.other_ingredient_amount.length > 0 &&
                   <>
                     {oils.other_ingredient_amount.map((item) => {
                       return (
                         <div key={item.id} className="ingredient">
-                            <p className="fw-bold">{item.other_ingredient.name}</p>
-                            <p className="ms-2">{item.quantity} {item.measurement}</p>
+                          <p className="fw-bold">{item.other_ingredient.name}</p>
+                          <p className="ms-2">{item.quantity} {item.measurement}</p>
                         </div>
                       )
                     })}
@@ -269,7 +273,7 @@ const RecipeSingle = () => {
                           <Link to={`/essentials/${item.essential_oil.id}`}>
                             <p className="fw-bold">{item.essential_oil.name} essential oil</p>
                           </Link>
-                            <p className="ms-2">{item.quantity} {item.measurement}</p>
+                          <p className="ms-2">{item.quantity} {item.measurement}</p>
                         </div>
                       )
                     })}
@@ -383,7 +387,10 @@ const RecipeSingle = () => {
                             src={comment.owner.profile_image}
                             alt="profile"
                           />
-                          <p>{comment.owner.username}</p>
+                          <Link to={`/users/profile/${comment.owner.username}`}>
+                            <p>{comment.owner.username}</p>
+                          </Link>
+
                           <Rating
                             onClick={handleRating}
                             size={20}
