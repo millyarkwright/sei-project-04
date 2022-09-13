@@ -36,7 +36,7 @@ import 'swiper/css/free-mode'
 
 const RecipeSingle = () => {
   const { recipeId } = useParams()
-  const [oils, setOils] = useState([])
+  const [recipe, setRecipe] = useState([])
   const [formData, setFormData] = useState([])
   const [comments, setComments] = useState([])
   const [updatedComments, setUpdatedComments] = useState([])
@@ -47,7 +47,7 @@ const RecipeSingle = () => {
     const getData = async () => {
       try {
         const { data } = await axios.get(`${API_URL}/recipes/${recipeId}`)
-        setOils(data)
+        setRecipe(data)
         console.log(data)
       } catch (error) {
         setError(error)
@@ -77,34 +77,33 @@ const RecipeSingle = () => {
     event.preventDefault()
     try {
       console.log(`ADD THIS TO BOOKMARK ->`, recipeId)
-      // const { data } = await axios.post(
-      //   `${API_URL}/users/bookmarked/${recipeId}`
-      // )
-      const res = await axios.post(
+      const {data} = await axios.post(
         `${API_URL}/users/bookmarked/${recipeId}`
       )
-      console.log(res.data)
-      console.log(res.data.message)
-      toast.error(res.data.message, {
-        position: "bottom-center",
-        autoClose: 1200,
+      console.log(data)
+      console.log(data.detail)
+      toast.success(data.detail, {
+        position: "top-right",
+        autoClose: 1500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-      });
+      })
     } catch (error) {
       console.log(error)
-      toast.error(error.data.message, {
-        position: "bottom-center",
-        autoClose: 1200,
+      setError(error)
+      setErrorMessage(error.response.data.detail)
+      toast.error(error.response.data.detail, {
+        position: "top-right",
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-      });
+      })
     }
   }
 
@@ -115,8 +114,30 @@ const RecipeSingle = () => {
       const { data } = await axios.post(
         `${API_URL}/users/tested/${recipeId}`
       )
+      console.log(data)
+      console.log(data.detail)
+      toast.success(data.detail, {
+        position: "top-right",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
     } catch (error) {
       console.log(error)
+      setError(error)
+      setErrorMessage(error.response.data.detail)
+      toast.error(error.response.data.detail, {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
     }
   }
 
@@ -183,14 +204,30 @@ const RecipeSingle = () => {
 
   return (
     <Container className="search-wrapper min-vh-100 recipe-single">
-      {Object.keys(oils).length ?
+      {Object.keys(recipe).length ?
         <>
-          <div className='title-container text-start p-4'>
-            <div>
-              <h1>{oils.name}</h1>
+          <div className="title-container text-start p-4">
+            <Row>
+            {/* <Row className="flex-column-reverse flex-md-row"> */}
+              <Col className="col-12" md="6">
+                <h1>{recipe.name}</h1>
+              </Col>
+              <Col className="col-12" md="6">
+                <div className="userActions d-flex justify-content-md-end">
+                    <button onClick={handleAddToBookmark}>BOOKMARK</button>
+                    <button onClick={handleAddToTested}>TESTED</button>
+                  { userIsAuthenticated() &&
+                    <>
+                      <button onClick={handleDelete}>DELETE</button>
+                      <button>EDIT</button>
+                    </>
+                  }
+                </div>
+              </Col>
+            </Row>
               {/* Categoies */}
               <div className="categories-container">
-                {oils.applications.map((application) => {
+                {recipe.applications.map((application) => {
                   return (
                     <div key={application.name} className="category">
                       <img srm={application.icon} alt="icon"/>
@@ -198,7 +235,7 @@ const RecipeSingle = () => {
                     </div>
                     )
                   })}
-                {oils.remedies.map((remedy) => {
+                {recipe.remedies.map((remedy) => {
                   return (
                     <div key={remedy.name}>
                       <img srm={remedy.icon} alt="icon"/>
@@ -207,26 +244,7 @@ const RecipeSingle = () => {
                   )
                 })}
               </div>
-              <p>{oils.description}</p>
-            </div>
-                <div>
-                    <button onClick={handleDelete} className="disabled">DELETE RECIPE</button>
-                    <button onClick={handleAddToBookmark}>ADD TO BOOKMARK</button>
-                    <button onClick={handleAddToTested}>ADD TO TESTED</button>
-                </div>
-                        {/* { userIsAuthenticated ? 
-                <div>
-                    <button onClick={handleAddToBookmark}>DELETE RECIPE</button>
-                    <button onClick={handleAddToBookmark}>ADD TO BOOKMARK</button>
-                    <button onClick={handleAddToTested}>ADD TO TESTED</button>
-                </div>
-                :
-                <div>
-                  <button onClick={handleAddToBookmark} disabled>DELETE RECIPE</button>
-                  <button onClick={handleAddToBookmark} disabled>ADD TO BOOKMARK</button>
-                  <button onClick={handleAddToTested} disabled>ADD TO TESTED</button>
-                </div>
-              } */}
+              <p>{recipe.description}</p>
           </div>
 
 
@@ -235,11 +253,11 @@ const RecipeSingle = () => {
             <Col className="col-12" md="6">
               <div className='ingredients-container'>
                 <h3>Ingredients</h3>
-                <p className="m-0">Makes {oils.makes}</p>
+                <p className="m-0">Makes {recipe.makes}</p>
                 {/* Base Oils */}
-                {oils.base_oil_amount.length > 0 &&
+                {recipe.base_oil_amount.length > 0 &&
                   <>
-                    {oils.base_oil_amount.map((item) => {
+                    {recipe.base_oil_amount.map((item) => {
                       return (
                         <div key={item.id} className="ingredient">
                           <Link to={`/bases/${item.base_oil.id}`}>
@@ -252,9 +270,9 @@ const RecipeSingle = () => {
                   </>
                 }
                 {/* Other Ingredient Oils */}
-                {oils.other_ingredient_amount.length >0 &&
+                {recipe.other_ingredient_amount.length >0 &&
                   <>
-                    {oils.other_ingredient_amount.map((item) => {
+                    {recipe.other_ingredient_amount.map((item) => {
                       return (
                         <div key={item.id} className="ingredient">
                             <p className="fw-bold">{item.other_ingredient.name}</p>
@@ -265,9 +283,9 @@ const RecipeSingle = () => {
                   </>
                 }
                 {/* Essential Oils */}
-                {oils.essential_oil_amount.length > 0 &&
+                {recipe.essential_oil_amount.length > 0 &&
                   <>
-                    {oils.essential_oil_amount.map((item) => {
+                    {recipe.essential_oil_amount.map((item) => {
                       return (
                         <div key={item.id} className="ingredient">
                           <Link to={`/essentials/${item.essential_oil.id}`}>
@@ -285,9 +303,9 @@ const RecipeSingle = () => {
               <div className="steps">
                 <h3>Steps</h3>
                 <div className="text-start">
-                  {oils.step_one !== "" ? <><p>1. {oils.step_one}</p></> : <></>}
-                  {oils.step_two !== "" ? <><p>2. {oils.step_two}</p></> : <></>}
-                  {oils.step_three !== "" ? <><p>3. {oils.step_three}</p></> : <></>}
+                  {recipe.step_one !== "" ? <><p>1. {recipe.step_one}</p></> : <></>}
+                  {recipe.step_two !== "" ? <><p>2. {recipe.step_two}</p></> : <></>}
+                  {recipe.step_three !== "" ? <><p>3. {recipe.step_three}</p></> : <></>}
                 </div>
               </div>
             </Col>

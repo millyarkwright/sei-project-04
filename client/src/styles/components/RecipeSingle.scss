@@ -1,4 +1,11 @@
 .recipe-single{
+  .userActions {
+    // display: flex;
+    flex-wrap: wrap;
+    button {
+      margin-left: 10px;
+    }
+  }
   .categories-container {
     display: flex; 
     .category {

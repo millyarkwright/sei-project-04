@@ -136,7 +136,10 @@ class BookmarkedView(APIView):
     print('CHECK BOOKMARKED>', existing_bookmark_count)
     
     if existing_bookmark_count !=0:
-      return Response({'message': 'You have already bookmarked this recipe!'})
+      return Response({'detail': 'You have already bookmarked this recipe!'})
+
+    # if not request.user.id:
+    #   return Response({'detail': 'Please login to bookmark this recipe'})
   
     bookmark_to_add= BookmarkedRecipeSerializer(data=request.data)
     
