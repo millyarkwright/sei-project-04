@@ -209,11 +209,11 @@ const RecipeSingle = () => {
                 <h3>Ingredients</h3>
                 <p className="m-0">Makes {oils.makes}</p>
                 {/* Base Oils */}
-                {oils.base_oil_amount.length &&
+                {oils.base_oil_amount.length > 0 &&
                   <>
                     {oils.base_oil_amount.map((item) => {
                       return (
-                        <div className="ingredient">
+                        <div key={item.id} className="ingredient">
                           <Link to={`/bases/${item.base_oil.id}`}>
                             <p className="fw-bold">{item.base_oil.name} oil</p>
                           </Link>
@@ -224,11 +224,11 @@ const RecipeSingle = () => {
                   </>
                 }
                 {/* Other Ingredient Oils */}
-                {oils.other_ingredient_amount.length &&
+                {oils.other_ingredient_amount.length >0 &&
                   <>
                     {oils.other_ingredient_amount.map((item) => {
                       return (
-                        <div className="ingredient">
+                        <div key={item.id} className="ingredient">
                             <p className="fw-bold">{item.other_ingredient.name}</p>
                             <p className="ms-2">{item.quantity} {item.measurement}</p>
                         </div>
@@ -237,11 +237,11 @@ const RecipeSingle = () => {
                   </>
                 }
                 {/* Essential Oils */}
-                {oils.essential_oil_amount.length &&
+                {oils.essential_oil_amount.length > 0 &&
                   <>
                     {oils.essential_oil_amount.map((item) => {
                       return (
-                        <div className="ingredient">
+                        <div key={item.id} className="ingredient">
                           <Link to={`/essentials/${item.essential_oil.id}`}>
                             <p className="fw-bold">{item.essential_oil.name} essential oil</p>
                           </Link>
