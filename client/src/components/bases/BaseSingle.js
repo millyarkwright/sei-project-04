@@ -15,7 +15,6 @@ import Col from 'react-bootstrap/Col'
 // import Carousel from 'react-bootstrap/Carousel' --- related recipes or blend well with oils
 
 
-
 const BaseSingle = () => {
 
   const { boId } = useParams()

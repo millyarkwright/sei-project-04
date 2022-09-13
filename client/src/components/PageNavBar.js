@@ -36,7 +36,7 @@ const PageNavBar = () => {
       <ToastContainer />
       <Container>
         <NavBar.Brand as={Link} to="/">
-          🍃 <span className="logo fw-bold">AROMA</span>
+          🍃 <span className="logo fw-bold">aromatics</span>
         </NavBar.Brand>
         {userIsAuthenticated() && loginTextDisplay()}
         <NavBar.Toggle aria-controls="basic-navbar-nav"></NavBar.Toggle>
