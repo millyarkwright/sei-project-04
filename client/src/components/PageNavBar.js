@@ -52,7 +52,7 @@ const PageNavBar = () => {
           </Nav.Link>
           {userIsAuthenticated() ? (
             <>
-              <Nav.Link as={Link} to="/recipe">
+              <Nav.Link as={Link} to="/createrecipe">
                 <span className="underline ms-3">Create Recipe</span>
               </Nav.Link>
 

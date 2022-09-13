@@ -18,6 +18,7 @@ import EssentialSingle from './components/essentials/EssentialSingle'
 
 import RecipesIndex from './components/recipes/RecipesIndex'
 import RecipeSingle from './components/recipes/RecipeSingle'
+import CreateRecipe from './components/recipes/CreateRecipe'
 
 import ProfileDetail from './components/profile/ProfileDetail'
 import SavedRecipes from './components/profile/SavedRecipes'
@@ -58,6 +59,7 @@ function App() {
           <Route path='/bases/:boId' element ={<BaseSingle />} />
           <Route path='/recipes' element ={<RecipesIndex />} />
           <Route path='/recipes/:recipeId' element ={<RecipeSingle />} />
+          <Route path='/createrecipe' element ={<CreateRecipe />} />
           <Route path='/profile' element ={<ProfileDetail />} />
           <Route path='/savedrecipes/' element ={<SavedRecipes />} />
           <Route path='/createdrecipes/' element ={<CreatedRecipe />} />
