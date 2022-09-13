@@ -157,7 +157,7 @@ class BookmarkedView(APIView):
         try:
             return BookmarkedRecipe.objects.get(pk=pk)
         except BookmarkedRecipe.DoesNotExist:
-            raise NotFound("BookedMark Recipe not found!")
+            raise NotFound("Bookmarked recipe not found!")
 
   def delete(self, request, pk):
     bookmark_to_delete = self.get_bookmark(pk)

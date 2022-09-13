@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useState, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { API_URL } from '../../config'
 import { Rating } from 'react-simple-star-rating'
@@ -35,6 +35,10 @@ import 'swiper/css/scrollbar'
 import 'swiper/css/free-mode'
 
 const RecipeSingle = () => {
+
+  const navigate = useNavigate()
+
+  // !State
   const { recipeId } = useParams()
   const [recipe, setRecipe] = useState([])
   const [formData, setFormData] = useState([])
@@ -70,7 +74,6 @@ const RecipeSingle = () => {
     }
     getData()
   }, [updatedComments])
-
 
 
   const handleAddToBookmark = async (event) => {
@@ -148,9 +151,19 @@ const RecipeSingle = () => {
       const { data } = await axios.delete(
         `${API_URL}/recipes/${recipeId}`
       )
+      toast.success(data.detail, {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
+      navigate('/recipes')
     } catch (error) {
-      console.log(error)
-      console.log(error.response.data.detail)
+      console.log('error',error)
+      console.log('error message',error.response.data.detail)
       setError(error)
       setErrorMessage(error.response.data.detail)
     }

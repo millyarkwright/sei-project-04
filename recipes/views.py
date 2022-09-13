@@ -55,7 +55,9 @@ class RecipeDetailView(APIView):
 
     if recipe_to_delete.owner == request.user or request.user.is_superuser == True:
       recipe_to_delete.delete()
-      return Response(status=status.HTTP_204_NO_CONTENT)
+      return Response({'detail':'Recipe sucessfully deleted'} ,status=status.HTTP_200_OK)
+
+      # return Response(status=status.HTTP_204_NO_CONTENT)
     else:
       raise PermissionDenied("You are not authorised to delete this recipe.")
 
