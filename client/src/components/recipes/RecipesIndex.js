@@ -6,6 +6,8 @@ import { API_URL } from '../../config'
 // Bootstrap Components
 import Container from 'react-bootstrap/Container'
 // import Row from 'react-bootstrap/Row'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 const RecipesIndex = () => {
   const [oils, setOils] = useState([])
@@ -210,17 +212,17 @@ const RecipesIndex = () => {
               // (oil.name.charAt(0).toUpperCase() + oil.name.slice(1)).join(' ')
               return (
                 <>
-                  <div className="">
+                  {/* <div className=""> */}
 
-                    <div className="list-card-container d-flex">
+                    <Row className=" list-card-container">
 
-                      <div class="list-text">
+                      <Col className=" col-8 list-text">
                         <Link to={`/recipes/${oil.id}`}>
                           <h3>{oil.name}</h3>
                         </Link>
                         <p>{oil.description}</p>
-                      </div>
-                      <div class="list-categories">
+                      </Col>
+                      <Col className="col-4 list-categories">
                         {/* <p>Main Ingredients:</p>
                         <p>
                           {oil.essential_oil_amount.length ?
@@ -233,15 +235,19 @@ const RecipesIndex = () => {
                             <></>}
                         </p> */}
 
-                        <div>
+                        <div className="flex-column">
                           {oil.essential_oil_amount.length ?
                             <>
-                              <p>Main Ingredients:</p>
-                              {oil.essential_oil_amount.map((item) => {
-                                return (<Link to={`/essentials/${item.essential_oil.id}`}>
-                                  <span>{item.essential_oil.name}</span>
-                                </Link>)
-                              })}
+                              <p >Main Ingredients:</p>
+                              <div className="d-flex flex-wrap">
+                                {oil.essential_oil_amount.map((item) => {
+                                  return (
+                                    <Link to={`/essentials/${item.essential_oil.id}`}>
+                                      <span>{item.essential_oil.name}</span>
+                                    </Link>
+                                  )
+                                })}
+                              </div>
                             </>
                             :
                             <></>}
@@ -265,13 +271,13 @@ const RecipesIndex = () => {
                             <></>}
                         </div>
 
-                      </div>
+                      </Col>
 
 
 
-                    </div>
+                    </Row>
 
-                  </div>
+                  {/* </div> */}
                 </>
               )
             })}

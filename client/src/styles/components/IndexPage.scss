@@ -25,14 +25,15 @@
     .button-container {
       margin-top: 10px;
       button {
-        // background-color:rgba(251, 251, 251, 0.598);
+        background-color:transparent;
         // border: 1px solid rgb(211, 211, 211);
         border: 1px solid transparent;
-        // border-radius: 10px;
+        border-radius: 10px;
         margin: 5px;
         padding-left: 10px;
         padding-right:10px;
         font-weight: 300;
+        font-size: 0.9rem;
         &:hover {
           background-color: lightgray;
         }
@@ -155,7 +156,7 @@
 }
 
 .btn-clicked {
-  background-color: rgb(228, 221, 209);
+  background-color: rgb(228, 221, 209) !important;
   // color: white;
 }
 
