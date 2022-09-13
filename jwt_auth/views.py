@@ -146,7 +146,8 @@ class BookmarkedView(APIView):
     try:
       bookmark_to_add.is_valid(True)
       bookmark_to_add.save()
-      return Response( bookmark_to_add.data, status=status.HTTP_201_CREATED, )
+      print('bookmark_to_add.data',bookmark_to_add.data)
+      return Response({'detail':'Recipe added to bookmarks📚'}, status=status.HTTP_201_CREATED)
     except Exception as e:
       print('e->', e)
       return Response(e.__dict__ if e.__dict__ else str(e), status=status.HTTP_422_UNPROCESSABLE_ENTITY)
@@ -195,7 +196,7 @@ class TestedView(APIView):
     try:
       test_to_add.is_valid(True)
       test_to_add.save()
-      return Response(test_to_add.data, status=status.HTTP_201_CREATED)
+      return Response({'detail':'Successfully added to tested recipes👩‍🍳'}, status=status.HTTP_201_CREATED)
     except Exception as e:
       print('e->', e)
       return Response(e.__dict__ if e.__dict__ else str(e), status=status.HTTP_422_UNPROCESSABLE_ENTITY)

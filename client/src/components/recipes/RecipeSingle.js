@@ -80,8 +80,8 @@ const RecipeSingle = () => {
       const {data} = await axios.post(
         `${API_URL}/users/bookmarked/${recipeId}`
       )
-      console.log(data)
-      console.log(data.detail)
+      console.log('DATA->',data)
+      console.log('data.detail',data.detail)
       toast.success(data.detail, {
         position: "top-right",
         autoClose: 1500,
