@@ -8,9 +8,8 @@ import { Rating } from 'react-simple-star-rating'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// Bootstrap Components
+// * Bootstrap Components
 import Container from 'react-bootstrap/Container'
-// import Row from 'react-bootstrap/Row'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 

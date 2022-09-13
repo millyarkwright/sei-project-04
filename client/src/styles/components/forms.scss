@@ -52,5 +52,17 @@
     text-decoration: none;
     color: rgb(209, 7, 77);
   }
+  textarea {
+    width: 100%;
+    // min-height: 212px;
+    max-height: 212px;
+    margin-bottom: 10px;
+    border-radius: 15px;
+    border: 1px solid lightgray;
+    background-color: rgb(245, 245, 245);
+    color: grey;
+    font-size: 0.9rem;
+    padding: 10px;
+  }
 }
 
