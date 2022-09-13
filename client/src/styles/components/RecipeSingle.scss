@@ -1,10 +1,10 @@
 .recipe-single-wrapper{
   .header-wrapper{
     margin-top: 30px;
+    margin-bottom: 10px;
     padding: 20px;
-    width: 100%;
     background-color: rgba(239, 239, 239, 0.655);
-    border-radius: 15px 15px 0px 0px;
+    border-radius: 10px;
   }
   .userActions {
     flex-wrap: wrap;
@@ -19,11 +19,15 @@
     }
   }
   .ingredients-container{
+    align-items: flex-start;
     text-align: left;
     padding: 20px;
     background-color: $beigebg;
+    border-radius: 10px;
+    height: 100%;
     .ingredient {
       display: flex;
+      align-items: center;
       p {
         margin: 0px;
       }
@@ -34,9 +38,11 @@
     }
   }
 
-  .steps {
+  .steps-container {
     background-color: $lightbg;
     padding: 20px;
+    border-radius: 10px;
+    height: 100%;
     h3, p {
       text-align: left;
     }

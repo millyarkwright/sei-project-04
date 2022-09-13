@@ -263,8 +263,8 @@ const RecipeSingle = () => {
           {/* Ingredients */}
           <Container>
             <Row>
-              <Col className="col-12" md="6">
-                <div className='ingredients-container'>
+              <Col className="col-12" md="5">
+                <Row className='ingredients-container me-md-1'>
                   <h3>Ingredients</h3>
                   <p className="m-0">Makes {recipe.makes}</p>
                   {/* Base Oils */}
@@ -283,7 +283,7 @@ const RecipeSingle = () => {
                     </>
                   }
                   {/* Other Ingredient Oils */}
-                  {recipe.other_ingredient_amount.length >0 &&
+                  {recipe.other_ingredient_amount.length > 0 &&
                     <>
                       {recipe.other_ingredient_amount.map((item) => {
                         return (
@@ -310,20 +310,21 @@ const RecipeSingle = () => {
                       })}
                     </>
                   }
-                </div>
+                </Row>
               </Col>
-              <Col className="col-12" md="6">
-                <div className="steps">
+              <Col className="col-12" md="7">
+                <Row className="steps-container">
                   <h3>Steps</h3>
                   <div className="text-start">
                     {recipe.step_one !== "" ? <><p>1. {recipe.step_one}</p></> : <></>}
                     {recipe.step_two !== "" ? <><p>2. {recipe.step_two}</p></> : <></>}
                     {recipe.step_three !== "" ? <><p>3. {recipe.step_three}</p></> : <></>}
                   </div>
-                </div>
+                </Row>
               </Col>
             </Row>
           </Container>
+
           {/* COMMENTS SECTION */}
           <Row className="comment-wrapper d-flex flex-sm-row flex-column align-content-center justify-content-center">
             <div className="create-comment">
