@@ -1,0 +1,39 @@
+// See Oil Sing Common SCSS for Header, Benefits, and Bio (Plant/Oil and Safety Usage)
+
+.eoUses-wrapper {
+  background-color: $lightbg;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.blends-wrapper {
+  background-color: $greybg;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 150px;
+    margin: 5px;
+    height: 40px;
+  }
+  img{
+    max-width: 50px;
+    border-radius: 50%;
+  }
+  p {
+    padding: 5px;
+    margin-bottom: 0px;
+    text-align: center;
+    font-size: 0.7rem;
+  }
+}
