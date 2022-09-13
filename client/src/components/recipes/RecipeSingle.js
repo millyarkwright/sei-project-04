@@ -216,10 +216,10 @@ const RecipeSingle = () => {
   }
 
   return (
-    <Container className="search-wrapper min-vh-100 recipe-single">
+    <Container className="recipe-single-wrapper min-vh-100">
       {Object.keys(recipe).length ?
         <>
-          <div className="title-container text-start p-4">
+          <Container className="header-wrapper">
             <Row>
             {/* <Row className="flex-column-reverse flex-md-row"> */}
               <Col className="col-12" md="6">
@@ -258,71 +258,72 @@ const RecipeSingle = () => {
                 })}
               </div>
               <p>{recipe.description}</p>
-          </div>
-
+          </Container>
 
           {/* Ingredients */}
-          <Row className='block-container'>
-            <Col className="col-12" md="6">
-              <div className='ingredients-container'>
-                <h3>Ingredients</h3>
-                <p className="m-0">Makes {recipe.makes}</p>
-                {/* Base Oils */}
-                {recipe.base_oil_amount.length > 0 &&
-                  <>
-                    {recipe.base_oil_amount.map((item) => {
-                      return (
-                        <div key={item.id} className="ingredient">
-                          <Link to={`/bases/${item.base_oil.id}`}>
-                            <p className="fw-bold">{item.base_oil.name} oil</p>
-                          </Link>
-                            <p className="ms-2">{item.quantity} {item.measurement}</p>
-                        </div>
-                      )
-                    })}
-                  </>
-                }
-                {/* Other Ingredient Oils */}
-                {recipe.other_ingredient_amount.length >0 &&
-                  <>
-                    {recipe.other_ingredient_amount.map((item) => {
-                      return (
-                        <div key={item.id} className="ingredient">
-                            <p className="fw-bold">{item.other_ingredient.name}</p>
-                            <p className="ms-2">{item.quantity} {item.measurement}</p>
-                        </div>
-                      )
-                    })}
-                  </>
-                }
-                {/* Essential Oils */}
-                {recipe.essential_oil_amount.length > 0 &&
-                  <>
-                    {recipe.essential_oil_amount.map((item) => {
-                      return (
-                        <div key={item.id} className="ingredient">
-                          <Link to={`/essentials/${item.essential_oil.id}`}>
-                            <p className="fw-bold">{item.essential_oil.name} essential oil</p>
-                          </Link>
-                            <p className="ms-2">{item.quantity} {item.measurement}</p>
-                        </div>
-                      )
-                    })}
-                  </>
-                }
-              </div>
-            </Col>
-            <Col className="col-12" md="6">
-              <div className="steps">
-                <h3>Steps</h3>
-                <div className="text-start">
-                  {recipe.step_one !== "" ? <><p>1. {recipe.step_one}</p></> : <></>}
-                  {recipe.step_two !== "" ? <><p>2. {recipe.step_two}</p></> : <></>}
-                  {recipe.step_three !== "" ? <><p>3. {recipe.step_three}</p></> : <></>}
+          <Container>
+            <Row>
+              <Col className="col-12" md="6">
+                <div className='ingredients-container'>
+                  <h3>Ingredients</h3>
+                  <p className="m-0">Makes {recipe.makes}</p>
+                  {/* Base Oils */}
+                  {recipe.base_oil_amount.length > 0 &&
+                    <>
+                      {recipe.base_oil_amount.map((item) => {
+                        return (
+                          <div key={item.id} className="ingredient">
+                            <Link to={`/bases/${item.base_oil.id}`}>
+                              <p className="fw-bold">{item.base_oil.name} oil</p>
+                            </Link>
+                              <p className="ms-2">{item.quantity} {item.measurement}</p>
+                          </div>
+                        )
+                      })}
+                    </>
+                  }
+                  {/* Other Ingredient Oils */}
+                  {recipe.other_ingredient_amount.length >0 &&
+                    <>
+                      {recipe.other_ingredient_amount.map((item) => {
+                        return (
+                          <div key={item.id} className="ingredient">
+                              <p className="fw-bold">{item.other_ingredient.name}</p>
+                              <p className="ms-2">{item.quantity} {item.measurement}</p>
+                          </div>
+                        )
+                      })}
+                    </>
+                  }
+                  {/* Essential Oils */}
+                  {recipe.essential_oil_amount.length > 0 &&
+                    <>
+                      {recipe.essential_oil_amount.map((item) => {
+                        return (
+                          <div key={item.id} className="ingredient">
+                            <Link to={`/essentials/${item.essential_oil.id}`}>
+                              <p className="fw-bold">{item.essential_oil.name} essential oil</p>
+                            </Link>
+                              <p className="ms-2">{item.quantity} {item.measurement}</p>
+                          </div>
+                        )
+                      })}
+                    </>
+                  }
                 </div>
-              </div>
-            </Col>
-          </Row>
+              </Col>
+              <Col className="col-12" md="6">
+                <div className="steps">
+                  <h3>Steps</h3>
+                  <div className="text-start">
+                    {recipe.step_one !== "" ? <><p>1. {recipe.step_one}</p></> : <></>}
+                    {recipe.step_two !== "" ? <><p>2. {recipe.step_two}</p></> : <></>}
+                    {recipe.step_three !== "" ? <><p>3. {recipe.step_three}</p></> : <></>}
+                  </div>
+                </div>
+              </Col>
+            </Row>
+          </Container>
           {/* COMMENTS SECTION */}
           <Row className="comment-wrapper d-flex flex-sm-row flex-column align-content-center justify-content-center">
             <div className="create-comment">

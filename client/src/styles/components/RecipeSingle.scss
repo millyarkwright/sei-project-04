@@ -1,6 +1,12 @@
-.recipe-single{
+.recipe-single-wrapper{
+  .header-wrapper{
+    margin-top: 30px;
+    padding: 20px;
+    width: 100%;
+    background-color: rgba(239, 239, 239, 0.655);
+    border-radius: 15px 15px 0px 0px;
+  }
   .userActions {
-    // display: flex;
     flex-wrap: wrap;
     button {
       margin-left: 10px;
