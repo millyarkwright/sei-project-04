@@ -1,3 +1,4 @@
+from doctest import OutputChecker
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -66,11 +67,13 @@ class CreateRecipeView(APIView):
 
   def post(self, request):
     request.data['owner'] = request.user.id
-    print('data w/ owner', request.data)
+    # convert request.data into a dictionary. Pop out ingredient amounts- save to varaible. 
+
     recipe_to_add = CreateRecipeSerializer(data=request.data)
     try: 
       recipe_to_add.is_valid()
       recipe_to_add.save()
+
       return Response(recipe_to_add.data , status=status.HTTP_201_CREATED)
     except Exception as e:
       print('e->', e)
