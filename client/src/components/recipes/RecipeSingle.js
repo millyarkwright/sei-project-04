@@ -13,6 +13,9 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
+// * HELPERS
+import { userIsAuthenticated } from '../helpers/auth'
+
 //! Components
 import { Swiper, SwiperSlide } from 'swiper/react'
 
@@ -115,6 +118,19 @@ const RecipeSingle = () => {
     }
   }
 
+  const handleDelete = async (event) => {
+    event.preventDefault()
+    try {
+      console.log(`delete this recipe`, recipeId)
+      const { data } = await axios.delete(
+        `${API_URL}/recipes/${recipeId}`
+      )
+    } catch (error) {
+      console.log(error)
+      setError(error)
+    }
+  }
+
   const handleAddComment = async (event) => {
     event.preventDefault()
     try {
@@ -125,10 +141,7 @@ const RecipeSingle = () => {
         `${API_URL}/reviews/${recipeId}`,
         formData
       )
-      // console.log('form data -->', formData)
-      // setMovie(res.data)
       setFormData({ text: '', rating: '' })
-      // setMessage(res.data.message)
       console.log('res-->', res.data.message)
       toast.error(res.data.message, {
         position: "bottom-center",
@@ -140,8 +153,6 @@ const RecipeSingle = () => {
         progress: undefined,
       });
       setUpdatedComments({ ...recipeId })
-      // window.location.reload()
-      // console.log('reloaded')
     } catch (error) {
       console.log('error message-->', error)
       toast.error(error.message, {
@@ -194,10 +205,24 @@ const RecipeSingle = () => {
               </div>
               <p>{oils.description}</p>
             </div>
-            <div>
-              <button onClick={handleAddToBookmark}>ADD TO BOOKMARK</button>
-              <button onClick={handleAddToTested}>ADD TO TESTED</button>
-            </div>
+                <div>
+                    <button onClick={handleDelete} className="disabled">DELETE RECIPE</button>
+                    <button onClick={handleAddToBookmark}>ADD TO BOOKMARK</button>
+                    <button onClick={handleAddToTested}>ADD TO TESTED</button>
+                </div>
+                        {/* { userIsAuthenticated ? 
+                <div>
+                    <button onClick={handleAddToBookmark}>DELETE RECIPE</button>
+                    <button onClick={handleAddToBookmark}>ADD TO BOOKMARK</button>
+                    <button onClick={handleAddToTested}>ADD TO TESTED</button>
+                </div>
+                :
+                <div>
+                  <button onClick={handleAddToBookmark} disabled>DELETE RECIPE</button>
+                  <button onClick={handleAddToBookmark} disabled>ADD TO BOOKMARK</button>
+                  <button onClick={handleAddToTested} disabled>ADD TO TESTED</button>
+                </div>
+              } */}
           </div>
 
 
