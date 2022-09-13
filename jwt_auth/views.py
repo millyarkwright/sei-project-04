@@ -134,16 +134,20 @@ class BookmarkedView(APIView):
     
     existing_bookmark_count = BookmarkedRecipe.objects.filter(bookmarked_recipe = request.data['bookmarked_recipe'], bookmarked_by = request.data['bookmarked_by']).count() 
     print('CHECK BOOKMARKED>', existing_bookmark_count)
+    
     if existing_bookmark_count !=0:
-      return Response({'message': 'You have already bookmarked this recipe!'})
+      return Response({'detail': 'You have already bookmarked this recipe!'})
 
-      
+    # if not request.user.id:
+    #   return Response({'detail': 'Please login to bookmark this recipe'})
+  
     bookmark_to_add= BookmarkedRecipeSerializer(data=request.data)
     
     try:
       bookmark_to_add.is_valid(True)
       bookmark_to_add.save()
-      return Response( bookmark_to_add.data, status=status.HTTP_201_CREATED, )
+      print('bookmark_to_add.data',bookmark_to_add.data)
+      return Response({'detail':'Recipe added to bookmarks📚'}, status=status.HTTP_201_CREATED)
     except Exception as e:
       print('e->', e)
       return Response(e.__dict__ if e.__dict__ else str(e), status=status.HTTP_422_UNPROCESSABLE_ENTITY)
@@ -153,7 +157,7 @@ class BookmarkedView(APIView):
         try:
             return BookmarkedRecipe.objects.get(pk=pk)
         except BookmarkedRecipe.DoesNotExist:
-            raise NotFound("BookedMark Recipe not found!")
+            raise NotFound("Bookmarked recipe not found!")
 
   def delete(self, request, pk):
     bookmark_to_delete = self.get_bookmark(pk)
@@ -192,7 +196,7 @@ class TestedView(APIView):
     try:
       test_to_add.is_valid(True)
       test_to_add.save()
-      return Response(test_to_add.data, status=status.HTTP_201_CREATED)
+      return Response({'detail':'Successfully added to tested recipes👩‍🍳'}, status=status.HTTP_201_CREATED)
     except Exception as e:
       print('e->', e)
       return Response(e.__dict__ if e.__dict__ else str(e), status=status.HTTP_422_UNPROCESSABLE_ENTITY)
