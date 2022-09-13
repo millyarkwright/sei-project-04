@@ -41,6 +41,7 @@ const RecipeSingle = () => {
   const [comments, setComments] = useState([])
   const [updatedComments, setUpdatedComments] = useState([])
   const [error, setError] = useState([])
+  const [errorMessage, setErrorMessage] = useState([])
 
   useEffect(() => {
     const getData = async () => {
@@ -82,6 +83,7 @@ const RecipeSingle = () => {
       const res = await axios.post(
         `${API_URL}/users/bookmarked/${recipeId}`
       )
+      console.log(res.data)
       console.log(res.data.message)
       toast.error(res.data.message, {
         position: "bottom-center",
@@ -127,7 +129,9 @@ const RecipeSingle = () => {
       )
     } catch (error) {
       console.log(error)
+      console.log(error.response.data.detail)
       setError(error)
+      setErrorMessage(error.response.data.detail)
     }
   }
 

@@ -22,7 +22,8 @@ class RecipeListView(APIView):
     return Response(serialized_recipes.data, status=status.HTTP_200_OK)
 
 class RecipeDetailView(APIView):
-  permission_classes = (IsAuthenticatedOrReadOnly, )
+  permission_classes = (IsAuthenticatedOrReadOnly, ) 
+  # --> Need to remove if  we want to get the canned responses rather than the auth response "Invalid Token"
 
   def get_recipe(self, pk):
     try:

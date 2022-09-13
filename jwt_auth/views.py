@@ -134,10 +134,10 @@ class BookmarkedView(APIView):
     
     existing_bookmark_count = BookmarkedRecipe.objects.filter(bookmarked_recipe = request.data['bookmarked_recipe'], bookmarked_by = request.data['bookmarked_by']).count() 
     print('CHECK BOOKMARKED>', existing_bookmark_count)
+    
     if existing_bookmark_count !=0:
       return Response({'message': 'You have already bookmarked this recipe!'})
-
-      
+  
     bookmark_to_add= BookmarkedRecipeSerializer(data=request.data)
     
     try:
