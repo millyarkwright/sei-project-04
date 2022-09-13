@@ -38,53 +38,57 @@ const BaseSingle = () => {
   }, [])
 
   return (
-    <div className="base-single-wrapper text-center">
+    <div className="oil-single-wrapper">
       {Object.keys(baseOil).length ?
         <>
           {/* Header */}
           <Container className="header-wrapper">
-            <Row className="header-wrapper">
-              <Col className="col-12">
-                <h1>{baseOil.name}</h1>
+            <Row>
+              <Col className="header-text col-12" md="8">
+                <div className="title-icons">
+                  <div className="title-container">
+                      <h1>{baseOil.name}</h1>
+                      <h2>{baseOil.latin_name}</h2>
+                  </div>
+                </div>
+                <div className="description-container mt-md-4">
+                  <p>{baseOil.description}</p>
+                </div>
               </Col>
-              <Col className="col-12">
-                <h2>{baseOil.latin_name}</h2>
+              <Col className="header-image col-12" md="4">
+                <img className="w-100" src={baseOil.image} alt="Base Oil"/>
               </Col>
             </Row>
           </Container>
-          {/* Content Body */}
+         {/* Content Body */}
           <Container>
             <Row>
-              <Col className="col-12" sm="6">
-                <img className="boSingle-image w-100" src={baseOil.image} alt="Base Oil"/>
-              </Col>
-              <Col className="col-12" sm="6">
-                <p>{baseOil.description}</p>
-              </Col>
-            </Row>
-          </Container>
-          {/* Benefits */}
-          <Container>
+              {/* Benefits  */}
+              <Col className="benefits-wrapper col-12" md="8">
                 <h3>What is it good for?</h3>
-            <Row>
-              <Col className="eoBenefits col-12" sm="6">
-                {baseOil.benefits.map((benefit) => {
-                  return (
-                    <Col key={benefit.id}>
-                      <p className="fw-bold">{benefit.title}</p>
-                      <p>{benefit.description}</p>
-                    </Col>
-                  )
-                })}
+                <Row className="benefits-container">
+                  {baseOil.benefits.map((benefit) => {
+                    return (
+                      <Col key={benefit.id} className="col-12" md="6">
+                        <p className="fw-bold">{benefit.title}</p>
+                        <p>{benefit.description}</p>
+                      </Col>
+                    )
+                  })}
+                </Row>
               </Col>
-            </Row>
-          </Container>
-          {/* BIO */}
-          <Container className="boBio">
-            <Row className="theOil">
-              <Col className="col-12" sm="4">
-                <h4>The base oil</h4>
-                <p>{baseOil.the_base_oil}</p>
+              {/* BIO */}
+              <Col className="bio col-12" md="4">
+                <div className="theOil">
+                    <h4>The base oil</h4>
+                    <p>{baseOil.the_base_oil}</p>
+                </div>
+                {baseOil.safe_usage &&
+                  <div className="safeUsage">
+                      <h4>Safe usage</h4>
+                      <p>{baseOil.safe_usage}</p>
+                  </div>
+                }
               </Col>
             </Row>
           </Container>

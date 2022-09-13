@@ -1,59 +1,16 @@
-.essential-single-wrapper {
-    padding: 20px;
-    max-width: 1200px;
-    .header-wrapper{
-      display: flex;
-      border: 1px solid black;
-      padding: 20px;
-      .title-icons {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        h2 {
-          font-style: italic;
-        }
-        .categories-container {
-          display: flex;
-          div {
-            margin-right: 15px;
-          }
-          img {
-            max-width: 100px;
-          }
-        }
-      }
-      .header-image {
-        img {
-          max-width: 500px;
-          border-radius: 50%
-        }
-      }
-    }
-}
-
-.eoBenefits-wrapper{
-  border: 1px solid black;
-  padding: 20px;
-}
-
-.eoBio{
-  text-align: left;
-  border: 1px solid black;
-  padding: 20px;
-  p {
-    font-style: italic;
-  }
-}
+// See Oil Sing Common SCSS for Header, Benefits, and Bio (Plant/Oil and Safety Usage)
 
 .eoUses-wrapper {
-  border: 1px solid black;
+  background-color: $lightbg;
+  border-radius: 10px;
   padding: 20px;
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
 .blends-wrapper {
-  border: 1px solid black;
+  background-color: $greybg;
+  border-radius: 10px;
   padding: 20px;
   display: flex;
   flex-direction: row;
@@ -71,6 +28,7 @@
   }
   img{
     max-width: 50px;
+    border-radius: 50%;
   }
   p {
     padding: 5px;

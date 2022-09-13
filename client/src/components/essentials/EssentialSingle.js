@@ -38,7 +38,7 @@ const EssentialSingle = () => {
   }, [])
 
   return (
-    <div className="essential-single-wrapper">
+    <div className="oil-single-wrapper">
       {Object.keys(essentialOil).length ?
         <>
           {/* Header */}
@@ -70,12 +70,13 @@ const EssentialSingle = () => {
                     })}
                   </div>
                 </div>
-                <div className="description-container">
+                <div className="description-container mt-md-4">
                   <p>{essentialOil.description_long}</p>
+                  <p><span className="fw-bold">Method of extraction: </span>{essentialOil.method_of_extraction}</p>
                 </div>
               </Col>
               <Col className="header-image col-12" md="4">
-                <img className="eoSingle-image w-100" src={essentialOil.image} alt="Essential Oil"/>
+                <img className="w-100" src={essentialOil.image} alt="Essential Oil"/>
               </Col>
             </Row>
           </Container>
@@ -85,9 +86,9 @@ const EssentialSingle = () => {
           <Container>
             <Row>
               {/* Benefits  */}
-              <Col className="eoBenefits-wrapper col-12" md="8">
+              <Col className="benefits-wrapper col-12" md="8">
                 <h3>What is it good for?</h3>
-                <Row className="eoBenefits-container">
+                <Row className="benefits-container">
                   {essentialOil.benefits.map((benefit) => {
                     return (
                       <Col key={benefit.id} className="col-12" md="6">
@@ -99,7 +100,7 @@ const EssentialSingle = () => {
                 </Row>
               </Col>
               {/* BIO */}
-              <Col className="eoBio col-12" md="4">
+              <Col className="bio col-12" md="4">
                 <div className="thePlant">
                     <h4>The plant</h4>
                     <p>{essentialOil.the_plant}</p>
@@ -107,6 +108,10 @@ const EssentialSingle = () => {
                 <div className="theOil">
                     <h4>The essential oil</h4>
                     <p>{essentialOil.the_essential_oil}</p>
+                </div>
+                <div className="safeUsage">
+                    <h4>Safe usage</h4>
+                    <p>{essentialOil.safe_usage}</p>
                 </div>
               </Col>
             </Row>

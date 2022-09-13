@@ -1,0 +1,47 @@
+.oil-single-wrapper {
+  background-color: white;
+  padding: 20px;
+  max-width: 1200px;
+  .header-wrapper{
+    padding: 20px;
+    margin-bottom: 10px;
+    .title-icons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      h2 {
+        font-style: italic;
+      }
+      .categories-container {
+        display: flex;
+        div {
+          margin-right: 15px;
+        }
+        img {
+          max-width: 100px;
+        }
+      }
+    }
+  .header-image {
+    img {
+      max-width: 500px;
+      border-radius: 50%
+    }
+  }
+  }
+}
+
+.benefits-wrapper{
+  background-color: $lightbg;
+  padding: 20px;
+}
+
+.bio{
+  background-color: $beigebg;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: left;
+  p {
+    font-style: italic;
+  }
+}
