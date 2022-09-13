@@ -7,7 +7,7 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticate
 
 # From Recipe App:
 from .models import Recipe, OtherIngredient, OtherIngredientAmount, EssentialOilAmount, BaseOilAmount
-from .serializers.common import RecipeSerializer, CreateRecipeSerializer, OtherIngredientSerializer, OtherIngredientAmountSerializer, EssentialOilAmountSerializer, BaseOilAmountSerializer, EssentialOilAmountFullSerializer, OtherIngredientAmountFullSerializer
+from .serializers.common import RecipeSerializer, CreateRecipeSerializer, OtherIngredientSerializer, OtherIngredientAmountSerializer, EssentialOilAmountSerializer, BaseOilAmountSerializer, BaseOilAmountFullSerializer, EssentialOilAmountFullSerializer, OtherIngredientAmountFullSerializer
 from .serializers.populated import PopulatedOtherIngredientAmountSerializer, PopulatedRecipeSerializer, PopulatedOtherIngredientSerializer, PopulatedEssentialOilAmountSerializer
 
 # ! Recipe Views
@@ -201,14 +201,14 @@ class BaseOilAmountListView(APIView):
   def get(self, _request):
     base_oil_amounts = BaseOilAmount.objects.all()
     print('base_oil_amounts->', base_oil_amounts)
-    serialized_base_oil_amounts = BaseOilAmountSerializer(base_oil_amounts, many=True)
+    serialized_base_oil_amounts = BaseOilAmountFullSerializer(base_oil_amounts, many=True)
     print('Serialized base_oil_amounts->', serialized_base_oil_amounts)
     return Response(serialized_base_oil_amounts.data, status=status.HTTP_200_OK)
 
 class BaseOilAmountView(APIView):
   def post(self, request, pk):
     request.data['recipe'] = int(pk)
-    bo_amount_to_create = BaseOilAmountSerializer(data=request.data)
+    bo_amount_to_create = BaseOilAmountFullSerializer(data=request.data)
     try:
       bo_amount_to_create.is_valid(True)
       bo_amount_to_create.save()

@@ -52,13 +52,15 @@ const CreateRecipe = () => {
 
   // * Recipe ID
   const [recipeId, setRecipeId] = useState(parseInt(''))
-
+  
   //  * Categories
   const [applicationOptions, setApplicationOptions] = useState([])
   const [applicationData, setApplicationData] = useState([])
   const [remedyOptions, setRemedyOptions] = useState([])
   const [remedyData, setRemedyData] = useState([])
-
+  
+  const [selectedRemedies, setSelectedRemedies] = useState()
+  const [selectedApplications, setSelectedApplication] = useState()
   
   const [error, setError] = useState([])
 
@@ -104,23 +106,11 @@ const CreateRecipe = () => {
   //  ! Execution
   
   // * Recipe Handlers
-  // const handleRecipeChange = (event) => {
-  //   setRecipeData({ ...recipeData, [event.target.name]: event.target.value })
-  //   setError({ ...error, [event.target.name]: '' })
-  //   console.log('recipedata',recipeData)
-  // }
-
   const handleRecipeChange = (event) => {
     setRecipeData({ ...recipeData, [event.target.name]: event.target.value})
     setError({ ...error, [event.target.name]: '' })
     console.log('recipedata',recipeData)
-    // console.log('recipedata applications',  recipeData['applications'])
   }
-
-
-  const [selectedRemedies, setSelectedRemedies] = useState()
-  const [selectedApplications, setSelectedApplication] = useState()
-
 
   const handleRemedyChange = (selectedRemedies) => {
     console.log('selected Remedy->', selectedRemedies)
@@ -261,13 +251,7 @@ const CreateRecipe = () => {
       {/* Categories */}
       <Row>
         <label htmlFor="remedies">Remedy</label>
-        {/* <Select name="remedies" options={applicationOptions}  className="basic-multi-select" classNamePrefix="select" isMulti onChange={handleRemedyChange} >
-          <option value selected="true" disabled="disabled" >Select Remedy</option>
-          { remedyData.map(item => <option key={item.id} value={item.id}>{item.name}</option>)}
-        </Select> */}
         <Select  value={selectedRemedies} name="remedies" options={remedyOptions}  className="basic-multi-select" classNamePrefix="select" isMulti onChange={handleRemedyChange} >
-          {/* <option value selected="true" disabled="disabled" >Select Remedy</option>
-          { remedyData.map(item => <option key={item.id} value={item.id}>{item.name}</option>)} */}
         </Select>
       </Row>
       <Row>

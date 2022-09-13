@@ -18,9 +18,9 @@ urlpatterns = [
 
   # GET LIST OF AMOUNTS
   path('oiamounts/', OtherIngredientAmountListView.as_view()),
-  path('oiamounts/<int:pk>', OtherIngredientAmountListView.as_view()), # pk=recipeID(POST) pk=amountsID(DELETE)
+  path('oiamounts/<int:pk>', OtherIngredientAmountView.as_view()), # pk=recipeID(POST) pk=amountsID(DELETE)
   path('eoamounts/', EssentialOilAmountListView.as_view()),
   path('eoamounts/<int:pk>', EssentialOilAmountView.as_view()), # pk=recipeID(POST) pk=amountsID(DELETE)
   path('boamounts/', BaseOilAmountListView.as_view()),
-  path('boamounts/<int:pk>', BaseOilAmountListView.as_view()), # pk=recipeID(POST) pk=amountsID(DELETE)
+  path('boamounts/<int:pk>', BaseOilAmountView.as_view()), # pk=recipeID(POST) pk=amountsID(DELETE)
 ]
