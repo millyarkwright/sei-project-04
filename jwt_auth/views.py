@@ -63,6 +63,20 @@ class LoginView(APIView):
 
 # ! DELETE PROFILE
 
+class UserProfilePrivateView(APIView):
+  def get(self, request):
+    print('USERNAMEEE->', request.user.username)
+    request_username = request.user.username
+    user = User.objects.get(username=request.user.username)
+    print('Users->', user)
+    if user.username == request.user.username or request.user.is_superuser == True:
+          serialized_user = PopulatedUserSerializer(user)
+          print('Serialized Recipes ->', serialized_user)
+          return Response(serialized_user.data, status=status.HTTP_200_OK)
+    else:
+      raise PermissionDenied("Unauthorised")
+
+
 class UserProfileView(APIView):
   # permission_classes = [IsAuthenticatedOrReadOnly, IsAdminUser]
 
@@ -120,7 +134,7 @@ class BookmarkedView(APIView):
     existing_bookmark_count = BookmarkedRecipe.objects.filter(bookmarked_recipe = request.data['bookmarked_recipe'], bookmarked_by = request.data['bookmarked_by']).count() 
     print('CHECK BOOKMARKED>', existing_bookmark_count)
     if existing_bookmark_count !=0:
-      return Response({'message': 'You have already bookmarked this recipe!'})
+      return Response({'message': 'You have already bookmarked this recipe!'}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
       
     bookmark_to_add= BookmarkedRecipeSerializer(data=request.data)
     
@@ -169,7 +183,7 @@ class TestedView(APIView):
     existing_tested_count = TestedRecipe.objects.filter(tested_recipe = request.data['tested_recipe'], tested_by = request.data['tested_by']).count() 
     print('CHECK TESTED>', existing_tested_count)
     if existing_tested_count !=0:
-      return Response({'message': 'You have already tested this recipe!'})
+      return Response({'message': 'You have already tested this recipe!'}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
 
     test_to_add= TestedRecipeSerializer(data=request.data)
