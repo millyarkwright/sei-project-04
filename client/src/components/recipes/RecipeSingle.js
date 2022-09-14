@@ -61,9 +61,9 @@ const RecipeSingle = () => {
         console.log('data.bookmarked -->', data.bookmarked_recipes)
         console.log('data.tested -->', data.tested_recipes)
         console.log('data.bookmarked id -->', data.bookmarked_recipes.id)
-        console.log('SOME--->', data.bookmarked_recipes.some(bookmarked => bookmarked.id === 3))
-        console.log('RECIPE ID--->', parseInt(recipeId))
-        setBookmarked(data.bookmarked_recipes.some(bookmarked => bookmarked.id === parseInt(recipeId)))
+        // console.log('SOME--->', data.bookmarked_recipes.some(bookmarked => bookmarked.id === 3))
+        // console.log('RECIPE ID--->', parseInt(recipeId))
+        // setBookmarked(data.bookmarked_recipes.some(bookmarked => bookmarked.id === parseInt(recipeId)))
       } catch (error) {
         setError(error)
         console.log(error)
