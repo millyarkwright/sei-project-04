@@ -163,9 +163,9 @@ const CreatedRecipes = () => {
                     </Col>
 
                     <Col className="col-12 list-categories px-2 pb-2 p-md-3" md="4">
-                        
+                      <Row>
                       {recipe.applications.length > 0 &&
-                        <Col className="col-4" md="12">
+                        <Col className="col-5"  md="12">
                           <p>Applications:</p>
                           <div className="d-flex flex-wrap">
                             {recipe.applications.map((item) => {
@@ -175,7 +175,7 @@ const CreatedRecipes = () => {
                         </Col>}
 
                         {recipe.remedies.length > 0 &&
-                        <Col className="col-4" md="12">
+                        <Col className="col-7"  md="12">
                           <p>Remedies:</p>
                           <div className="d-flex flex-wrap">
                             {recipe.remedies.map((item) => {
@@ -183,7 +183,7 @@ const CreatedRecipes = () => {
                             })}
                           </div>
                         </Col>}
-                    
+                      </Row> 
                     </Col>
                   </Row>
                 </>

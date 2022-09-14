@@ -4,11 +4,13 @@ import axios from 'axios'
 import { API_URL } from '../../config'
 import { getToken } from '../helpers/auth'
 
+import loaderImg from '../../images/loader.gif'
+
 // Bootstrap Components
 import Container from 'react-bootstrap/Container'
-// import Row from 'react-bootstrap/Row'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+
 
 
 const SavedRecipes = () => {
@@ -34,155 +36,169 @@ const SavedRecipes = () => {
     }
     getData()
   }, [])
+
   return (
     <Container className="search-wrapper min-vh-100">
-      <div className='list-container'>
-        {Object.keys(bookmarked).length ?
-          <>
-          <h1>Bookmarked Recipes</h1>
-            {bookmarked.map((oil) => {
-              // (oil.name.charAt(0).toUpperCase() + oil.name.slice(1)).join(' ')
+      <Row>
+        {/* BOOKMARKED */}
+        <Col className="list-container col-12" md="6">
+          <Row className="title-container">
+            <h1>Bookmarked Recipes</h1>
+          </Row>
+          {Object.keys(bookmarked).length > 0 ? 
+            <>
+            {bookmarked.map((recipe) => {
               return (
                 <>
-                  {/* <div className=""> */}
-
-                  <Row className=" list-card-container">
-
-                    <Col className=" col-8 list-text">
-                      <Link to={`/recipes/${oil.id}`}>
-                        <h3>{oil.bookmarked_recipe.name}</h3>
+                  <Row className="list-card-container me-md-1">
+                    <Col className="col-12 list-text px-2 pt-2 p-md-3" md="8">
+                      <Link to={`/recipes/${recipe.id}`}>
+                        <h3>{recipe.bookmarked_recipe.name}</h3>
                       </Link>
-                      <p>{oil.bookmarked_recipe.description}</p>
+                      <p>{recipe.bookmarked_recipe.description}</p>
                     </Col>
-                    <Col className="col-4 list-categories">
-
-
-                      <div className="flex-column">
-                        {/* {oil.essential_oil_amount.length ?
-                    <>
-                      <p >Main Ingredients:</p>
-                      <div className="d-flex flex-wrap">
-                        {oil.essential_oil_amount.map((item) => {
-                          return (
-                            <Link to={`/essentials/${item.essential_oil.id}`}>
-                              <span>{item.essential_oil.name}</span>
-                            </Link>
-                          )
-                        })}
-                      </div>
-                    </>
-                    :
-                    <></>} */}
-                        {oil.bookmarked_recipe.applications.length ?
-                          <>
+                    <Col className="col-12 list-categories px-2 pb-2 p-md-3" md="4">
+                      <Row>
+                        {recipe.bookmarked_recipe.applications.length > 0 &&
+                          <Col className="col-4" md="12">
                             <p>Applications:</p>
-                            {oil.bookmarked_recipe.applications.map((item) => {
-                              return (<span>{item.name}</span>)
-                            })}
-                          </>
-                          :
-                          <></>}
-                        {oil.bookmarked_recipe.remedies.length ?
-                          <>
+                            <div className="d-flex flex-wrap">
+                              {recipe.bookmarked_recipe.applications.map((item) => {
+                                return (<span>{item.name}</span>)
+                              })}
+                            </div>
+                          </Col>}
+                        {recipe.bookmarked_recipe.remedies.length > 0 &&
+                          <Col className="col-4" md="12">
                             <p>Remedies:</p>
-                            {oil.bookmarked_recipe.remedies.map((item) => {
-                              return (<span>{item.name}</span>)
-                            })}
-                          </>
-                          :
-                          <></>}
-                      </div>
+                            <div className="d-flex flex-wrap">
+                              {recipe.bookmarked_recipe.remedies.map((item) => {
+                                return (<span>{item.name}</span>)
+                              })}
+                            </div>
+                          </Col>}     
+                      </Row>
                     </Col>
                   </Row>
+                </>
+              )
+            })}            
+            </>
+            :
+            <h1 className='text-center'>{error ? <p>error</p> : <img className="w-25" src={loaderImg} alt='loader' />}</h1>
+          }
+        </Col>
 
-                  {/* </div> */}
+        {/* TESTED */}
+        <Col className="list-container col-12" md="6">
+          <Row className='title-container ms-md-1'>
+            <h1>Tested Recipes</h1>
+          </Row>
+          {Object.keys(tested).length > 0 ?
+            <>
+            {tested.map((recipe) => {
+              return (
+                <>
+                  <Row className="list-card-container ms-md-1">
+
+                    <Col className="col-12 list-text px-2 pt-2 p-md-3" md="8">
+                      <Link to={`/recipes/${recipe.id}`}>
+                        <h3>{recipe.tested_recipe.name}</h3>
+                      </Link>
+                      <p>{recipe.tested_recipe.description}</p>
+                    </Col>
+
+                    <Col className="col-12 list-categories px-2 pb-2 p-md-3" md="4">
+                      <Row>
+          
+                        {recipe.tested_recipe.applications.length > 0 &&
+
+                          <Col className="col-4" md="12">
+                            <p>Applications:</p>
+                            <div className="d-flex flex-wrap">
+                              {recipe.tested_recipe.applications.map((item) => {
+                                return (<span>{item.name}</span>)
+                              })}
+                            </div>
+                          </Col>}
+
+                        {recipe.tested_recipe.remedies.length > 0 &&
+
+                          <Col className="col-4" md="12">
+                            <p>Remedies:</p>
+                            <div className="d-flex flex-wrap">
+                              {recipe.tested_recipe.remedies.map((item) => {
+                                return (<span>{item.name}</span>)
+                              })}
+                            </div>
+                          </Col>}     
+
+                      </Row>
+                    </Col>
+                  </Row>
                 </>
               )
             })}
-          </>
+            </>
           :
-
-          <h1 className='text-center'>{error ? 'error' : 'loading'}</h1>
-        }
-      </div>
-
-      {/* TEST LIST */}
-      
-      <div className='list-container'>
-        {Object.keys(tested).length ?
-          <>
-          <h1>Tested Recipes</h1>
-            {tested.map((oil) => {
-              // (oil.name.charAt(0).toUpperCase() + oil.name.slice(1)).join(' ')
-              return (
-                <>
-                  {/* <div className=""> */}
-
-                  <Row className=" list-card-container">
-
-                    <Col className=" col-8 list-text">
-                      <Link to={`/recipes/${oil.id}`}>
-                        <h3>{oil.tested_recipe.name}</h3>
-                      </Link>
-                      <p>{oil.tested_recipe.description}</p>
-                    </Col>
-                    <Col className="col-4 list-categories">
-
-
-                      <div className="flex-column">
-                        {/* {oil.essential_oil_amount.length ?
-                    <>
-                      <p >Main Ingredients:</p>
-                      <div className="d-flex flex-wrap">
-                        {oil.essential_oil_amount.map((item) => {
-                          return (
-                            <Link to={`/essentials/${item.essential_oil.id}`}>
-                              <span>{item.essential_oil.name}</span>
-                            </Link>
-                          )
-                        })}
-                      </div>
-                    </>
-                    :
-                    <></>} */}
-                        {oil.tested_recipe.applications.length ?
-                          <>
-                            <p>Applications:</p>
-                            {oil.tested_recipe.applications.map((item) => {
-                              return (<span>{item.name}</span>)
-                            })}
-                          </>
-                          :
-                          <></>}
-                        {oil.tested_recipe.remedies.length ?
-                          <>
-                            <p>Remedies:</p>
-                            {oil.tested_recipe.remedies.map((item) => {
-                              return (<span>{item.name}</span>)
-                            })}
-                          </>
-                          :
-                          <></>}
-                      </div>
-
-                    </Col>
-
-
-
-                  </Row>
-
-                  {/* </div> */}
-                </>
-              )
-            })}
-          </>
-          :
-
-          <h1 className='text-center'>{error ? 'error' : 'loading'}</h1>
-        }
-      </div>
+          <h1 className='text-center'>{error ? <p>error</p> : <img className="w-25" src={loaderImg} alt='loader' />}</h1>
+          }
+        </Col>
+      </Row>
     </Container>
   )
 }
 
 export default SavedRecipes
+
+
+// {Object.keys(bookmarked).length ?
+//   <>
+//   <div className='list-container'>
+//     <h1>Bookmarked Recipes</h1>
+//       {bookmarked.map((recipe) => {
+//         return (
+//           <>
+//             <Row className=" list-card-container">
+//               <Col className=" col-8 list-text">
+//                 <Link to={`/recipes/${recipe.id}`}>
+//                   <h3>{recipe.bookmarked_recipe.name}</h3>
+//                 </Link>
+//                 <p>{recipe.bookmarked_recipe.description}</p>
+//               </Col>
+//               <Col className="col-4 list-categories">
+//                 <div className="flex-column">
+
+//                   {recipe.bookmarked_recipe.applications.length ?
+//                     <>
+//                       <p>Applications:</p>
+//                       {recipe.bookmarked_recipe.applications.map((item) => {
+//                         return (<span>{item.name}</span>)
+//                       })}
+//                     </>
+//                     :
+//                     <></>}
+//                   {recipe.bookmarked_recipe.remedies.length ?
+//                     <>
+//                       <p>Remedies:</p>
+//                       {recipe.bookmarked_recipe.remedies.map((item) => {
+//                         return (<span>{item.name}</span>)
+//                       })}
+//                     </>
+//                     :
+//                     <></>}
+//                 </div>
+//               </Col>
+//             </Row>
+//           </>
+//         )
+//       })}
+//     </div>
+//   </>
+//   :
+//   <h1 className='text-center'>{error ? <p>error</p> : <img className="w-25" src={loaderImg} alt='loader' />}</h1>
+// }
+
+
+
+
