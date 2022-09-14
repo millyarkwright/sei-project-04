@@ -37,9 +37,10 @@ const PublicProfile = () => {
   return (
     <Container className="search-wrapper min-vh-100">
       <div className='list-container'>
+      <h1>Recipes by {username}</h1>
         {Object.keys(publicRecipes).length > 0 ?
           <>
-          <h1>Recipes by {username}</h1>
+     
             {publicRecipes.map((recipe) => {
               // (recipe.name.charAt(0).toUpperCase() + recipe.name.slice(1)).join(' ')
               return (
@@ -106,7 +107,7 @@ const PublicProfile = () => {
           </>
           :
 
-          <h1 className='text-center'>{error ? 'error' : 'loading'}</h1>
+          <h5 className='text-center mt-5'>{error ? 'no recipe found!' : 'loading'}</h5>
         }
       </div>
     </Container>
