@@ -69,18 +69,54 @@ class CreateRecipeView(APIView):
   permission_classes = (IsAuthenticatedOrReadOnly, )
 
   def post(self, request):
-    
-    print('CREATE RECIPEEE REQUEST DATA ->>>', request.data)
-    request.data['owner'] = request.user.id
-    # convert request.data into a dictionary. Pop out ingredient amounts- save to varaible. 
+    req_eo_amount = request.data['eo_amount']
+    req_bo_amount = request.data['bo_amount']
+    req_oi_amount = request.data['oi_amount']
 
-    recipe_to_add = CreateRecipeSerializer(data=request.data)
+    recipe_request = request.data
+    recipe_request.pop('eo_amount')
+    recipe_request.pop('bo_amount')
+    recipe_request.pop('oi_amount')
+    print('CREATE RECIPEEE REQUEST DATA ->>>', request.data)
+    print('NEW EO AMOUNT ->>>', req_eo_amount)
+    print('NEW BO AMOUNT ->>>', req_bo_amount)
+    print('NEW OI AMOUNT ->>>', req_oi_amount)
+
+    recipe_request['owner'] = request.user.id
+    print('-----NEW RECIPE REQUEST ->>>', recipe_request)
+
+    recipe_to_add = CreateRecipeSerializer(data=recipe_request)
+    print('-------RECIPE_TO_ADD--------')
+    print(recipe_to_add)
+    print('------------------------')
+
     try: 
       recipe_to_add.is_valid()
       recipe_to_add.save()
-      # print('ADDED RECIPE ID', recipe_to_add.data.id)
+      print('-------NEW RECIPE_TO_ADD--------')
+      print(recipe_to_add.data)
+      print('-------NEW RECIPE_ID--------')
+      print(recipe_to_add.data['id'])
 
-      return Response(recipe_to_add.data , status=status.HTTP_201_CREATED)
+      for item in req_eo_amount:
+        item['recipe'] = recipe_to_add.data['id']
+        amount_to_add = EssentialOilAmountFullSerializer(data=item)
+        amount_to_add.is_valid(True)
+        amount_to_add.save()
+        
+      for item in req_bo_amount:
+        item['recipe'] = recipe_to_add.data['id']
+        amount_to_add = BaseOilAmountFullSerializer(data=item)
+        amount_to_add.is_valid(True)
+        amount_to_add.save()  
+
+      for item in req_oi_amount:
+        item['recipe'] = recipe_to_add.data['id']
+        amount_to_add = OtherIngredientAmountFullSerializer(data=item)
+        amount_to_add.is_valid(True)
+        amount_to_add.save()
+
+      return Response({'detail': 'Recipe successfully added!'}, status=status.HTTP_201_CREATED)
     except Exception as e:
       print('e->', e)
       return Response(e.__dict__ if e.__dict__ else str(e), status=status.HTTP_422_UNPROCESSABLE_ENTITY)
