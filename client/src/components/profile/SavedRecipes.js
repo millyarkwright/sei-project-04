@@ -89,11 +89,7 @@ const SavedRecipes = () => {
                           :
                           <></>}
                       </div>
-
                     </Col>
-
-
-
                   </Row>
 
                   {/* </div> */}
@@ -106,6 +102,9 @@ const SavedRecipes = () => {
           <h1 className='text-center'>{error ? 'error' : 'loading'}</h1>
         }
       </div>
+
+      {/* TEST LIST */}
+      
       <div className='list-container'>
         {Object.keys(tested).length ?
           <>
