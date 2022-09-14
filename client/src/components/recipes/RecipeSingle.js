@@ -46,6 +46,23 @@ const RecipeSingle = () => {
   const [updatedComments, setUpdatedComments] = useState([])
   const [error, setError] = useState('')
   const [errorMessage, setErrorMessage] = useState([])
+  const [currentUser, setCurrentUser] = useState([])
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const { data } = await axios.get(`${API_URL}/users/profile/`)
+        setCurrentUser(data)
+        console.log('DATAAA', data)
+        console.log('data.bookmarked -->', data.bookmarked_recipes)
+        console.log('data.tested -->', data.tested_recipes)
+      } catch (error) {
+        setError(error)
+        console.log(error)
+      }
+    }
+    getData()
+  }, [])
 
   useEffect(() => {
     const getData = async () => {
@@ -60,6 +77,8 @@ const RecipeSingle = () => {
     }
     getData()
   }, [])
+
+
 
   useEffect(() => {
     const getData = async () => {
@@ -228,13 +247,22 @@ const RecipeSingle = () => {
               </Col>
               <Col className="col-12" md="6">
                 <div className="userActions d-flex justify-content-md-end">
+                  {/* {currentUser.bookmarked_recipes.objects.filter(['bookmarked_by'] = currentUser.id).count() > 0 ? 
+                  <>
+                   <button disabled>BOOKMARKED!</button>
+                  </>
+                  :
+                  <button onClick={handleAddToBookmark}>BOOKMARK</button>
+                  } */}
                   <button onClick={handleAddToBookmark}>BOOKMARK</button>
                   <button onClick={handleAddToTested}>TESTED</button>
-                  {userIsAuthenticated() &&
+                  {userIsAuthenticated() && (currentUser.id === recipe.owner.id) ?
                     <>
                       <button onClick={handleDelete}>DELETE</button>
                       <button>EDIT</button>
                     </>
+                    :
+                    <></>
                   }
                 </div>
               </Col>

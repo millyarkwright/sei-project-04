@@ -28,6 +28,7 @@ const CreatedRecipes = () => {
     }
     getData()
   }, [])
+  
   return (
     <Container className="search-wrapper min-vh-100">
       <div className='list-container'>
