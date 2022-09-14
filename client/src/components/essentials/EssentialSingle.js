@@ -38,7 +38,7 @@ const EssentialSingle = () => {
   }, [])
 
   return (
-    <div className="oil-single-wrapper">
+    <Container className="oil-single-wrapper min-vh-100">
       {Object.keys(essentialOil).length ?
         <>
           {/* Header */}
@@ -100,7 +100,7 @@ const EssentialSingle = () => {
                 </Row>
               </Col>
               {/* BIO */}
-              <Col className="bio col-12" md="4">
+              <Col className="bio col-12 mt-3 mt-md-0" md="4">
                 <div className="thePlant">
                     <h4>The plant</h4>
                     <p>{essentialOil.the_plant}</p>
@@ -135,12 +135,12 @@ const EssentialSingle = () => {
           <Container className="blends-wrapper">
             {essentialOil.blends_well_with.map((blend) => {
               return (
-                <Link to={`/essentials/${blend.id}`}>
-                  <div key={blend.id}>
+                <div key={blend.id}>
+                  <Link to={`/essentials/${blend.id}`}>
                     <img className="eoSingle-image w-100" src={blend.image} alt="Essential Oil"/>
                     <p>{blend.name}</p>
-                  </div>
-                </Link>
+                  </Link>
+                </div>
               )
             })}
           </Container>
@@ -148,7 +148,7 @@ const EssentialSingle = () => {
           :
           <h1 className='text-center'>{error ? 'error' : <img className="w-25" src={loaderImg} alt='loader'/>}</h1>
       }
-    </div>
+    </Container>
   ) 
 }
 
