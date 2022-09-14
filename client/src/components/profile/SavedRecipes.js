@@ -42,7 +42,7 @@ const SavedRecipes = () => {
       <Row>
         {/* BOOKMARKED */}
         <Col className="list-container col-12" md="6">
-          <Row className='title-container'>
+          <Row className="title-container">
             <h1>Bookmarked Recipes</h1>
           </Row>
           {Object.keys(bookmarked).length > 0 ? 
