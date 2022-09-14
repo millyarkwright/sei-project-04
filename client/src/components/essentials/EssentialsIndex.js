@@ -217,7 +217,7 @@ const EssentialsIndex = () => {
           </div>
         </>
         :
-        <h1 className='text-center'>{error ? <p>{error}</p> : <img className="w-25" src={loaderImg} alt='loader' />}</h1>
+        <h1 className='text-center'>{error ? <p>error</p> : <img className="w-25" src={loaderImg} alt='loader' />}</h1>
       }
     </Container>
   )
