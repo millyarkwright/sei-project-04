@@ -7,7 +7,7 @@ import { Rating } from 'react-simple-star-rating'
 import loaderImg from '../../images/loader.gif'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { getToken } from '../helpers/auth'
 // * Bootstrap Components
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -51,7 +51,9 @@ const RecipeSingle = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const { data } = await axios.get(`${API_URL}/users/profile/`)
+        const { data } = await axios.get(`${API_URL}/users/profile/`, {
+          headers: { Authorization: `Bearer ${getToken()}` },
+        })
         setCurrentUser(data)
         console.log('DATAAA', data)
         console.log('data.bookmarked -->', data.bookmarked_recipes)
@@ -99,9 +101,9 @@ const RecipeSingle = () => {
     event.preventDefault()
     try {
       console.log(`ADD THIS TO BOOKMARK ->`, recipeId)
-      const { data } = await axios.post(
-        `${API_URL}/users/bookmarked/${recipeId}`
-      )
+      const { data } = await axios.post( `${API_URL}/users/bookmarked/${recipeId}`, {
+        headers: { Authorization: `Bearer ${getToken()}` },
+      })
       console.log('DATA->', data)
       console.log('data.detail', data.detail)
       toast.success(data.detail, {
@@ -132,7 +134,9 @@ const RecipeSingle = () => {
   const handleAddToTested = async (event) => {
     event.preventDefault()
     try {
-      console.log(`ADD THIS TO Tested ->`, recipeId)
+      console.log(`ADD THIS TO Tested ->`, recipeId, {
+        headers: { Authorization: `Bearer ${getToken()}` },
+      })
       const { data } = await axios.post(
         `${API_URL}/users/tested/${recipeId}`
       )
@@ -167,9 +171,9 @@ const RecipeSingle = () => {
     event.preventDefault()
     try {
       console.log(`delete this recipe`, recipeId)
-      const { data } = await axios.delete(
-        `${API_URL}/recipes/${recipeId}`
-      )
+      const { data } = await axios.delete(`${API_URL}/recipes/${recipeId}`, {
+        headers: { Authorization: `Bearer ${getToken()}` },
+      })
       toast.success(data.detail, {
         position: "top-right",
         autoClose: 1000,
@@ -196,8 +200,9 @@ const RecipeSingle = () => {
 
       const res = await axios.post(
         `${API_URL}/reviews/${recipeId}`,
-        formData
-      )
+        formData, {
+          headers: { Authorization: `Bearer ${getToken()}` },
+        })
       setFormData({ text: '', rating: '' })
       console.log('res-->', res.data.message)
       toast.error(res.data.message, {

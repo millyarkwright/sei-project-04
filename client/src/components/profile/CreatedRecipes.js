@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { API_URL } from '../../config'
 import loaderImg from '../../images/loader.gif'
-
+import { getToken } from '../helpers/auth'
 
 // Bootstrap Components
 import Container from 'react-bootstrap/Container'
@@ -28,7 +28,9 @@ const CreatedRecipes = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const { data } = await axios.get(`${API_URL}/users/profile/`)
+        const { data } = await axios.get(`${API_URL}/users/profile/`, {
+          headers: { Authorization: `Bearer ${getToken()}` },
+        })
         setCreated(data.created_recipes)
         console.log('DATAAA', data)
         console.log('data.bookmarked -->', data.bookmarked_recipes)

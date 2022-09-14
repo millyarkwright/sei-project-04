@@ -1,7 +1,7 @@
 //  * Hooks
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-
+import { getToken } from '../helpers/auth'
 // * Axios & URL
 import axios from 'axios'
 import { API_URL } from '../../config'
@@ -138,7 +138,9 @@ const CreateRecipe = () => {
   const handleRecipeSubmit = async (event) => {
     event.preventDefault()
     try {
-      const { data } = await axios.post(`${API_URL}/recipes/createrecipe/`, recipeData)
+      const { data } = await axios.post(`${API_URL}/recipes/createrecipe/`, recipeData, {
+        headers: { Authorization: `Bearer ${getToken()}` },
+      })
     } catch (error) {
       setError(error)
       }
