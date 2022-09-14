@@ -1,6 +1,6 @@
 //  * Hooks
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { getToken } from '../helpers/auth'
 // * Axios & URL
 import axios from 'axios'
@@ -12,7 +12,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Select from 'react-select'
 
-const CreateRecipe = () => {
+const EditRecipe = () => {
 
   //  ! State
 
@@ -54,7 +54,7 @@ const CreateRecipe = () => {
   },])
 
   // * Recipe ID
-  const [recipeId, setRecipeId] = useState(parseInt(''))
+  const { recipeId } = useParams()
 
   //  * Categories
   const [applicationOptions, setApplicationOptions] = useState([])
@@ -65,9 +65,8 @@ const CreateRecipe = () => {
   const [baseOptions, setBaseOptions] = useState([])
   const [otherOptions, setOtherOptions] = useState([])
 
-
   const [selectedRemedies, setSelectedRemedies] = useState()
-  const [selectedApplications, setSelectedApplication] = useState()
+  const [selectedApplications, setSelectedApplications] = useState()
   const [selectedEssentials, setSelectedEssentials] = useState()
   const [selectedBases, setSelecteBases] = useState()
   const [selectedOthers, setSelecteOthers] = useState()
@@ -86,7 +85,7 @@ const CreateRecipe = () => {
         let dataMapped = data.map((keys) => { return keys.name })
         console.log(dataMapped)
         let applicationOptions = data.map(application => ({ value: application.id, label: application.name }))
-        console.log('application options?', applicationOptions)
+        // console.log('application options?', applicationOptions)
         setApplicationOptions(applicationOptions)
       } catch (error) {
         setError(error)
@@ -122,7 +121,7 @@ const CreateRecipe = () => {
         const { data } = await axios.get(`${API_URL}/essentialoils/`)
         let essentialOptions = data.map(essential => ({ value: essential.id, label: essential.name }))
         setEssentialOptions(essentialOptions)
-        console.log('essentialOptions', essentialOptions)
+        // console.log('essentialOptions', essentialOptions)
       } catch (error) {
         setError(error)
         console.log('ESSENTIAL OIL ERROR', error)
@@ -163,29 +162,110 @@ const CreateRecipe = () => {
     getData()
   }, [])
 
+  // * GET RECIPE DATA
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const { data } = await axios.get(`${API_URL}/recipes/${recipeId}`)
+        setRecipeData({
+          name: data.name,
+          description: data.description,
+          makes: data.makes,
+          step_one: data.step_one,
+          step_two: data.step_two,
+          step_three: data.step_three,
+          public: data.public,
+          applications: data.applications,
+          remedies: data.remedies,
+          // eo_amount: '',
+          // bo_amount: '',
+          // oi_amount:''
+        })
+        
+        console.log('RECIPE DATA PREPOP', data)
+        
+        let currentRemedies = data.remedies.map(remedy => ({ value: remedy.id, label: remedy.name }))
+        console.log('REMEDY OPTIONS--->', currentRemedies)
+        setSelectedRemedies(currentRemedies)
+
+        let currentApplications = data.applications.map(application => ({ value: application.id, label: application.name }))
+        setSelectedApplications(currentApplications)
+
+        // Set Current Essentials Form Field
+        let currentEssentials = data.essential_oil_amount.map(object => ({
+          essential_oil: { value: object.essential_oil.id, label: object.essential_oil.name },
+          quantity: object.quantity,
+          measurement: object.measurement
+        }))
+        console.log('currentEssentials--->', currentEssentials)
+        setEoFormFields(currentEssentials)
+
+        // Set Current Bases Form Field
+        let currentBases = data.base_oil_amount.map(object => ({
+          base_oil: { value: object.base_oil.id, label: object.base_oil.name },
+          quantity: object.quantity,
+          measurement: object.measurement
+        }))
+        console.log('currentBases--->', currentBases)
+        setBoFormFields(currentBases)
+        
+        // Set Current Other Form Field
+        let currentOthers = data.other_ingredient_amount.map(object => ({
+        other_ingredient: { value: object.other_ingredient.id, label: object.other_ingredient.name },
+        quantity: object.quantity,
+        measurement: object.measurement
+        }))
+        console.log('currentOthers--->', currentOthers)
+        setOiFormFields(currentOthers)
+
+      
+      } catch (error) {
+        setError(error)
+        console.log(error)
+      }
+    }
+    getData()
+  }, [])
+
+  // * Checking recipeData after its been updated
+
+  useEffect(() => {
+    console.log('updated RecipeData-->', recipeData)
+  }, [recipeData])
+
+
   // * UPDATING RECIPE DATA WITH INGREDIENTS
 
-  // useEffect(() => {
-
-  //   setRecipeData({ ...recipeData, 'eo_amount' : eoFormFields, 'bo_amount' : boFormFields, 'oi_amount' : oiFormFields})
-  //   console.log('updated eo formfield---->', eoFormFields)
-  //   console.log('updated bo formfield---->', boFormFields)
-  //   console.log('updated io formfield---->', oiFormFields)
-  // },[eoFormFields, boFormFields, oiFormFields])
-
   useEffect(() => {
-    setRecipeData({ ...recipeData, 'eo_amount': eoFormFields })
-    console.log('updated eo formfield---->', eoFormFields)
+    let formattedEoFormFields = eoFormFields.map(object => ({
+      essential_oil:  object.essential_oil.value,
+      quantity: object.quantity,
+      measurement: object.measurement
+    }))
+    
+    setRecipeData({ ...recipeData, 'eo_amount': formattedEoFormFields })
+    console.log('formattedEoFormField---->', formattedEoFormFields)
   }, [eoFormFields])
 
+
   useEffect(() => {
-    setRecipeData({ ...recipeData, 'bo_amount': boFormFields })
-    console.log('updated bo formfield---->', boFormFields)
+    let formattedBoFormFields = boFormFields.map(object => ({
+      base_oil:  object.base_oil.value,
+      quantity: object.quantity,
+      measurement: object.measurement
+    }))
+    setRecipeData({ ...recipeData, 'bo_amount': formattedBoFormFields })
+    console.log('formattedBoFormField---->', formattedBoFormFields)
   }, [boFormFields])
 
   useEffect(() => {
-    setRecipeData({ ...recipeData, 'oi_amount': oiFormFields })
-    console.log('updated eo formfield---->', oiFormFields)
+    let formattedOiFormFields = oiFormFields.map(object => ({
+      other_ingredient:  object.other_ingredient.value,
+      quantity: object.quantity,
+      measurement: object.measurement
+    }))
+    setRecipeData({ ...recipeData, 'oi_amount': formattedOiFormFields })
+    console.log('formattedOiFormField---->', formattedOiFormFields)
   }, [oiFormFields])
 
   //  ! Execution
@@ -223,7 +303,7 @@ const CreateRecipe = () => {
   const handleRecipeSubmit = async (event) => {
     event.preventDefault()
     try {
-      const { data } = await axios.post(`${API_URL}/recipes/createrecipe/`, recipeData, {
+      const { data } = await axios.patch(`${API_URL}/recipes/createrecipe/`, recipeData, {
         headers: { Authorization: `Bearer ${getToken()}` },
       })
     } catch (error) {
@@ -233,26 +313,19 @@ const CreateRecipe = () => {
 
   // * Essential Oil Handlers
   const handleEssentialChange = (event, index) => {
-
-    console.log('EVENT->', event)
-    console.log('INDEX->', index)
-    // console.log('Selected Essential Value->', event.value)
-    // const selectedEssentialsId = selectedEssentials.map((item) => {return item.value} )
-    // console.log('selectedEssentialsId->', selectedEssentialsId)
+    let foundEssential = essentialOptions.filter((item) => item.value === event.value)
+    console.log('FIND ESSENTIAL', foundEssential)
+    console.log('Selected Essential Value->', event.value)
     let data = [...eoFormFields]
-    data[index]['essential_oil'] = event.value
+    data[index]['essential_oil'] = foundEssential[0]
     console.log('HandleEssentialChange DATA -->', data)
     setEoFormFields(data)
     console.log('eo amount data after ---->', eoFormFields)
   }
-  useEffect(() => {
-    console.log('updated RecipeData-->', recipeData)
-  }, [recipeData])
 
   const handleEoFormChange = (event, index) => {
     let data = [...eoFormFields]
     data[index][event.target.name] = event.target.value
-    // setEoFormFields({ ...eoFormFields, [event.target.name]: event.target.value })
     setEoFormFields(data)
     setError({ ...error, [event.target.name]: '' })
     console.log('eoFormFields', eoFormFields)
@@ -274,31 +347,23 @@ const CreateRecipe = () => {
     setEoFormFields(data)
   }
 
-  // const handleEoFormSubmit = async (event) => {
-  //   event.preventDefault()
-  //   try {
-  //     const { data } = await axios.post(`${API_URL}/recipes/eoamounts/`, eoFormFields)
-  //   } catch (error) {
-  //     setError(error)
-  //     }
-  // }
-
   // * Base Oil Handlers
 
   const handleBaseChange = (event, index) => {
-    console.log('EVENT->', event)
-    console.log('INDEX->', index)
+    let foundBase = baseOptions.filter((item) => item.value === event.value)
+    console.log('FIND BASE', foundBase)
+    console.log('Selected Base Value->', event.value)
+
     let data = [...boFormFields]
-    data[index]['base_oil'] = event.value
+    data[index]['base_oil'] = foundBase[0]
     console.log('HandleBaseChange DATA -->', data)
     setBoFormFields(data)
-    console.log('bo amount data after ---->', eoFormFields)
+    console.log('bo amount data after ---->', boFormFields)
   }
 
   const handleBoFormChange = (event, index) => {
     let data = [...boFormFields]
     data[index][event.target.name] = event.target.value
-    // setEoFormFields({ ...eoFormFields, [event.target.name]: event.target.value })
     setBoFormFields(data)
     setError({ ...error, [event.target.name]: '' })
     console.log('boFormFields', boFormFields)
@@ -321,22 +386,16 @@ const CreateRecipe = () => {
     setBoFormFields(data)
   }
 
-  // const handleBoFormSubmit = async (event) => {
-  //   event.preventDefault()
-  //   try {
-  //     const { data } = await axios.post(`${API_URL}/recipes/boamounts/`, boFormFields)
-  //   } catch (error) {
-  //     setError(error)
-  //     }
-  // }
 
   // * Other Ingredient Handlers
 
   const handleOtherChange = (event, index) => {
-    console.log('EVENT->', event)
-    console.log('INDEX->', index)
+    let foundOther = otherOptions.filter((item) => item.value === event.value)
+    console.log('FIND OTHER', foundOther)
+    console.log('Selected Base Value->', event.value)
+
     let data = [...oiFormFields]
-    data[index]['other_ingredient'] = event.value
+    data[index]['other_ingredient'] = foundOther[0]
     console.log('HandleOtherChange DATA -->', data)
     setOiFormFields(data)
     console.log('oi amount data after ---->', oiFormFields)
@@ -366,18 +425,10 @@ const CreateRecipe = () => {
     setOiFormFields(data)
   }
 
-  // const handleOiFormSubmit = async (event) => {
-  //   event.preventDefault()
-  //   try {
-  //     const { data } = await axios.post(`${API_URL}/recipes/oiamounts/`, oiFormFields)
-  //   } catch (error) {
-  //     setError(error)
-  //     }
-  // }
-
   return (
     <Container className="recipe-form-wrapper min-vh-100">
-      <h1>CREATE RECIPE</h1>
+      <h1>EDIT RECIPE</h1>
+      {Object.keys(recipeData).length && 
       <Row>
         <Col className="col-12" md="6">
           <form onSubmit={handleRecipeSubmit} className="justify-content-between">
@@ -496,7 +547,8 @@ const CreateRecipe = () => {
                     <Select
                       name="essential_oil"
                       options={essentialOptions}
-                      // value={selectedEssentials} 
+                      // defaultValue={form.essential_oil} 
+                      placeholder={form.essential_oil.label}
                       onChange={event => handleEssentialChange(event, index)}
                       className="basic-single"
                       classNamePrefix="select"
@@ -533,6 +585,7 @@ const CreateRecipe = () => {
                     <Select
                       name="base_oil"
                       options={baseOptions}
+                      placeholder={form.base_oil.label}
                       onChange={event => handleBaseChange(event, index)}
                       className="basic-single"
                       classNamePrefix="select"
@@ -569,6 +622,7 @@ const CreateRecipe = () => {
                     <Select
                       name="other_ingredient"
                       options={otherOptions}
+                      placeholder={form.other_ingredient.label}
                       onChange={event => handleOtherChange(event, index)}
                       className="basic-single"
                       classNamePrefix="select"
@@ -597,8 +651,9 @@ const CreateRecipe = () => {
           </Row>
         </Col>
       </Row>
+}
     </Container>
   )
 }
 
-export default CreateRecipe
+export default EditRecipe

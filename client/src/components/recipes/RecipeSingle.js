@@ -101,7 +101,7 @@ const RecipeSingle = () => {
     event.preventDefault()
     try {
       console.log(`ADD THIS TO BOOKMARK ->`, recipeId)
-      const { data } = await axios.post( `${API_URL}/users/bookmarked/${recipeId}`, {
+      const { data } = await axios.post(`${API_URL}/users/bookmarked/${recipeId}`, {
         headers: { Authorization: `Bearer ${getToken()}` },
       })
       console.log('DATA->', data)
@@ -201,8 +201,8 @@ const RecipeSingle = () => {
       const res = await axios.post(
         `${API_URL}/reviews/${recipeId}`,
         formData, {
-          headers: { Authorization: `Bearer ${getToken()}` },
-        })
+        headers: { Authorization: `Bearer ${getToken()}` },
+      })
       setFormData({ text: '', rating: '' })
       console.log('res-->', res.data.message)
       toast.error(res.data.message, {
@@ -264,7 +264,10 @@ const RecipeSingle = () => {
                   {userIsAuthenticated() && (currentUser.id === recipe.owner.id) ?
                     <>
                       <button onClick={handleDelete}>DELETE</button>
-                      <button>EDIT</button>
+                      <Link to={`/recipes/${recipeId}/edit`}>
+                        <button>EDIT</button>
+                      </Link>
+
                     </>
                     :
                     <></>
