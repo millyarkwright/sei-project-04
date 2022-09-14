@@ -421,7 +421,7 @@ const RecipeSingle = () => {
                             src={comment.owner.profile_image}
                             alt="profile img"
                           />
-                          <Link to={`/users/profile/${comment.owner.username}`}>
+                          <Link to={`/profile/${comment.owner.username}`}>
                             <p>{comment.owner.username}</p>
                           </Link>
 
