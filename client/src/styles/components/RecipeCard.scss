@@ -1,5 +1,4 @@
 .list-container{
-  // border: 1px solid black;
   padding: 10px;
   p, a {
     text-decoration: none;
@@ -24,7 +23,7 @@
       text-align: left;
       // max-width: 60%;
       height: 90%;
-      padding: 20px;
+      // padding: 20px;
       // overflow: scroll;
       // white-space: nowrap;
       // text-overflow: ellipsis;
@@ -56,28 +55,25 @@
     }
 
     .list-categories {
-      padding: 20px;
-      // width: 35%;
+      // padding: 20px;
       text-align: left;
-      // color: rgb(10, 57, 57);
       p, span{
         margin-bottom: 0px;
         color: rgb(10, 57, 57);
         font-size: 0.9rem;
+        margin-right: 5px;
       }
       p {
         font-weight: bold;
       }
-      span:not(:first-of-type), a:not(:first-of-type) {
-        margin-left: 5px;
-      }
+      // span:not(:first-of-type), a:not(:first-of-type) {
+      //   margin-left: 5px;
+      // }
       a {
-        // margin-left: 5px;
         color: rgb(10, 57, 57);
         text-decoration: underline;
         &:hover {
           font-weight: bold;
-          
         }
       }
     }

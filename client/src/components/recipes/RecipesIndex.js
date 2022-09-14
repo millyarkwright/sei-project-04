@@ -116,7 +116,6 @@ const RecipesIndex = () => {
     console.log('search value', regexSearch)
     console.log('saved tag', filters.tag)
     const filteredArray = recipes.filter(recipe => {
-      // console.log('movie.tag-->', movie.tags)
       return regexSearch.test(recipe.name)
         && ((recipe.applications.map((keys) => { return keys.name }).includes(filters.applications) || filters.applications === 'All'))
         && ((recipe.remedies.map((keys) => { return keys.name }).includes(filters.remedies) || filters.remedies === 'All'))
@@ -130,6 +129,7 @@ const RecipesIndex = () => {
     <Container className="search-wrapper min-vh-100">
       {Object.keys(recipes).length ?
         <>
+        {/* FILTERS */}
           <div className='title-container'>
             <h1>Recipes</h1>
             <div className='search-container text-center text-end my-md-0 my-3'>
@@ -147,30 +147,29 @@ const RecipesIndex = () => {
                 return <button className={remediesBtn === item ? "btn-clicked" : ""} onClick={handleSearch3} name="remedies" value={item} > {item}</button>
               })}
             </div>
-
           </div>
-
+          {/*  */}
           <div className='list-container'>
-
             {filteredRecipes.map((recipe) => {
               return (
                 <>
                   {/* <div className=""> */}
 
-                    <Row className=" list-card-container">
+                    <Row className="list-card-container">
 
-                      <Col className=" col-8 list-text">
+                      <Col className="col-12 list-text px-2 pt-2 p-md-3" md="8">
                         <Link to={`/recipes/${recipe.id}`}>
                           <h3>{recipe.name}</h3>
                         </Link>
                         <p>{recipe.description}</p>
                       </Col>
-                      <Col className="col-4 list-categories">
 
-                        <div className="flex-column">
+                      <Col className="col-12 list-categories px-2 pb-2 p-md-3" md="4">
+                        <Row>
                           {recipe.essential_oil_amount.length > 0 &&
-                            <>
-                              <p >Main Ingredients:</p>
+
+                            <Col className="col-4" md="12">
+                              <p>Main Ingredients:</p>
                               <div className="d-flex flex-wrap">
                                 {recipe.essential_oil_amount.map((item) => {
                                   return (
@@ -180,23 +179,27 @@ const RecipesIndex = () => {
                                   )
                                 })}
                               </div>
-                            </>}
+                            </Col>}
+
                           {recipe.applications.length > 0 &&
-                            <>
+
+                            <Col className="col-4" md="12">
                               <p>Applications:</p>
                               {recipe.applications.map((item) => {
                                 return (<span>{item.name}</span>)
                               })}
-                            </>}
+                            </Col>}
+
                           {recipe.remedies.length > 0 &&
-                            <>
+
+                            <Col className="col-4" md="12">
                               <p>Remedies:</p>
                               {recipe.remedies.map((item) => {
                                 return (<span>{item.name}</span>)
                               })}
-                            </>}
-                        </div>
+                            </Col>}     
 
+                        </Row>
                       </Col>
                     </Row>
                   {/* </div> */}
