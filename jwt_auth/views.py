@@ -16,7 +16,7 @@ from django.conf import settings
 
 # Serializers
 from .serializers.common import UserSerializer, UserRegisterSerializer, BookmarkedRecipeSerializer, TestedRecipeSerializer
-from .serializers.populated import PopulatedUserSerializer
+from .serializers.populated import PopulatedUserSerializer, PopulatedUserPublicSerializer
 
 
 # ! REGISTER VIEW -------
@@ -84,12 +84,12 @@ class UserProfileView(APIView):
   def get(self, request, username):
     user = User.objects.get(username=username)
     print('Users->', user)
-    if user.username == request.user.username or request.user.is_superuser == True:
-          serialized_user = PopulatedUserSerializer(user)
-          print('Serialized Recipes ->', serialized_user)
-          return Response(serialized_user.data, status=status.HTTP_200_OK)
-    else:
-      raise PermissionDenied("Unauthorised")
+    # if user.username == request.user.username or request.user.is_superuser == True:
+    serialized_user = PopulatedUserPublicSerializer(user)
+    print('Serialized Recipes ->', serialized_user)
+    return Response(serialized_user.data, status=status.HTTP_200_OK)
+    # else:
+      # raise PermissionDenied("Unauthorised")
 
 
   def delete(self, request, username):
