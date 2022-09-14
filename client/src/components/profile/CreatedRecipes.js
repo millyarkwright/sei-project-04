@@ -2,10 +2,11 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { API_URL } from '../../config'
+import loaderImg from '../../images/loader.gif'
+
 
 // Bootstrap Components
 import Container from 'react-bootstrap/Container'
-// import Row from 'react-bootstrap/Row'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
@@ -31,79 +32,52 @@ const CreatedRecipes = () => {
   
   return (
     <Container className="search-wrapper min-vh-100">
-      <div className='list-container'>
         {Object.keys(created).length ?
           <>
+          <div className='list-container'>
           <h1>Your Created Recipes</h1>
-            {created.map((oil) => {
-              // (oil.name.charAt(0).toUpperCase() + oil.name.slice(1)).join(' ')
+            {created.map((recipe) => {
               return (
                 <>
-                  {/* <div className=""> */}
-
                   <Row className=" list-card-container">
-
-                    <Col className=" col-8 list-text">
-                      <Link to={`/recipes/${oil.id}`}>
-                        <h3>{oil.name}</h3>
+                    <Col className="col-12 list-text px-2 pt-2 p-md-3" md="8">
+                      <Link to={`/recipes/${recipe.id}`}>
+                        <h3>{recipe.name}</h3>
                       </Link>
-                      <p>{oil.description}</p>
-                    </Col>
-                    <Col className="col-4 list-categories">
-
-
-                      <div className="flex-column">
-                        {/* {oil.essential_oil_amount.length ?
-                    <>
-                      <p >Main Ingredients:</p>
-                      <div className="d-flex flex-wrap">
-                        {oil.essential_oil_amount.map((item) => {
-                          return (
-                            <Link to={`/essentials/${item.essential_oil.id}`}>
-                              <span>{item.essential_oil.name}</span>
-                            </Link>
-                          )
-                        })}
-                      </div>
-                    </>
-                    :
-                    <></>} */}
-                        {oil.applications.length ?
-                          <>
-                            <p>Applications:</p>
-                            {oil.applications.map((item) => {
-                              return (<span>{item.name}</span>)
-                            })}
-                          </>
-                          :
-                          <></>}
-                        {oil.remedies.length ?
-                          <>
-                            <p>Remedies:</p>
-                            {oil.remedies.map((item) => {
-                              return (<span>{item.name}</span>)
-                            })}
-                          </>
-                          :
-                          <></>}
-                      </div>
-
+                      <p>{recipe.description}</p>
                     </Col>
 
+                    <Col className="col-12 list-categories px-2 pb-2 p-md-3" md="4">
+                        
+                      {recipe.applications.length > 0 &&
+                        <Col className="col-4" md="12">
+                          <p>Applications:</p>
+                          <div className="d-flex flex-wrap">
+                            {recipe.applications.map((item) => {
+                              return (<span>{item.name}</span>)
+                            })}
+                          </div>
+                        </Col>}
 
-
+                        {recipe.remedies.length > 0 &&
+                        <Col className="col-4" md="12">
+                          <p>Remedies:</p>
+                          <div className="d-flex flex-wrap">
+                            {recipe.remedies.map((item) => {
+                              return (<span>{item.name}</span>)
+                            })}
+                          </div>
+                        </Col>}
+                    
+                    </Col>
                   </Row>
-
-                  {/* </div> */}
                 </>
               )
             })}
+            </div>
           </>
           :
-
-          <h1 className='text-center'>{error ? 'error' : 'loading'}</h1>
-        }
-      </div>
+          <h1 className='text-center'>{error ? <p>error</p> : <img className="w-25" src={loaderImg} alt='loader' />}</h1>        }
     </Container>
   )
 }

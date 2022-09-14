@@ -148,13 +148,12 @@ const RecipesIndex = () => {
               })}
             </div>
           </div>
-          {/*  */}
+
+          {/* RECIPE CARDS */}
           <div className='list-container'>
             {filteredRecipes.map((recipe) => {
               return (
                 <>
-                  {/* <div className=""> */}
-
                     <Row className="list-card-container">
 
                       <Col className="col-12 list-text px-2 pt-2 p-md-3" md="8">
@@ -206,7 +205,7 @@ const RecipesIndex = () => {
                         </Row>
                       </Col>
                     </Row>
-                  {/* </div> */}
+
                 </>
               )
             })}
