@@ -185,18 +185,22 @@ const RecipesIndex = () => {
 
                             <Col className="col-4" md="12">
                               <p>Applications:</p>
-                              {recipe.applications.map((item) => {
-                                return (<span>{item.name}</span>)
-                              })}
+                              <div className="d-flex flex-wrap">
+                                {recipe.applications.map((item) => {
+                                  return (<span>{item.name}</span>)
+                                })}
+                              </div>
                             </Col>}
 
                           {recipe.remedies.length > 0 &&
 
                             <Col className="col-4" md="12">
                               <p>Remedies:</p>
-                              {recipe.remedies.map((item) => {
-                                return (<span>{item.name}</span>)
-                              })}
+                              <div className="d-flex flex-wrap">
+                                {recipe.remedies.map((item) => {
+                                  return (<span>{item.name}</span>)
+                                })}
+                              </div>
                             </Col>}     
 
                         </Row>
