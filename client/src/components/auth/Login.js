@@ -48,6 +48,8 @@ const Login = () => {
       // Token & navigation
       const { token } = data
       setToken(token)
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
+
       navigate('/')
 
       // Notification
