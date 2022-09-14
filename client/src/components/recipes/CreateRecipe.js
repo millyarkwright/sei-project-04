@@ -41,15 +41,15 @@ const CreateRecipe = () => {
 
   // * Base Oil Form Field
   const [boFormFields, setBoFormFields] = useState([{
-    base_oil: parseInt(''),
-    quantity: parseFloat(''),
+    base_oil: '',
+    quantity: '',
     measurement: ''
   },])
 
   // * Other IngrForm Fieldedient
   const [oiFormFields, setOiFormFields] = useState([{
-    other_ingredient: parseInt(''),
-    quantity: parseFloat(''),
+    other_ingredient: '',
+    quantity: '',
     measurement: ''
   },])
 
@@ -137,7 +137,7 @@ const CreateRecipe = () => {
       try {
         const { data } = await axios.get(`${API_URL}/baseoils/`)
         let baseOptions = data.map(base => ({ value: base.id, label: base.name }))
-        setEssentialOptions(baseOptions)
+        setBaseOptions(baseOptions)
         console.log('baseOptions',baseOptions)
       } catch (error) {
         setError(error)
@@ -164,11 +164,29 @@ const CreateRecipe = () => {
   }, [])
 
   // * UPDATING RECIPE DATA WITH INGREDIENTS
-  useEffect(() => {
-    setRecipeData({ ...recipeData, 'eo_amount' : eoFormFields})
-    console.log('updated formfield---->', eoFormFields)
 
+  // useEffect(() => {
+    
+  //   setRecipeData({ ...recipeData, 'eo_amount' : eoFormFields, 'bo_amount' : boFormFields, 'oi_amount' : oiFormFields})
+  //   console.log('updated eo formfield---->', eoFormFields)
+  //   console.log('updated bo formfield---->', boFormFields)
+  //   console.log('updated io formfield---->', oiFormFields)
+  // },[eoFormFields, boFormFields, oiFormFields])
+
+  useEffect(() => {
+    setRecipeData({ ...recipeData, 'eo_amount' : eoFormFields })
+    console.log('updated eo formfield---->', eoFormFields)
   },[eoFormFields])
+
+  useEffect(() => {
+    setRecipeData({ ...recipeData, 'bo_amount' : boFormFields })
+    console.log('updated bo formfield---->', boFormFields)
+  },[boFormFields])
+
+  useEffect(() => {
+    setRecipeData({ ...recipeData, 'oi_amount' : oiFormFields })
+    console.log('updated eo formfield---->', oiFormFields)
+  },[oiFormFields])
 
   //  ! Execution
   
@@ -240,7 +258,8 @@ const CreateRecipe = () => {
     console.log('eoFormFields',eoFormFields)
   }
 
-  const addEoFields = () => {
+  const addEoFields = (event) => {
+    event.preventDefault()
     let object = {
       essential_oil: '',
       quantity: '',
@@ -255,57 +274,87 @@ const CreateRecipe = () => {
     setEoFormFields(data)
   }
   
-  const handleEoFormSubmit = async (event) => {
-    event.preventDefault()
-    try {
-      const { data } = await axios.post(`${API_URL}/recipes/eoamounts/`, eoFormFields)
-    } catch (error) {
-      setError(error)
-      }
-  }
+  // const handleEoFormSubmit = async (event) => {
+  //   event.preventDefault()
+  //   try {
+  //     const { data } = await axios.post(`${API_URL}/recipes/eoamounts/`, eoFormFields)
+  //   } catch (error) {
+  //     setError(error)
+  //     }
+  // }
 
   // * Base Oil Handlers
-  const handleBoFormChange = (event) => {
-    setBoFormFields({ ...boFormFields, [event.target.name]: event.target.value })
+
+  const handleBaseChange = (event, index) => {
+    console.log('EVENT->', event)
+    console.log('INDEX->',  index)
+    let data = [...boFormFields]
+    data[index]['base_oil'] = event.value
+    console.log('HandleBaseChange DATA -->', data)
+    setBoFormFields(data)
+    console.log('bo amount data after ---->', eoFormFields)
+  }
+
+  const handleBoFormChange = (event, index) => {
+    let data = [...boFormFields]
+    data[index][event.target.name] = event.target.value
+    // setEoFormFields({ ...eoFormFields, [event.target.name]: event.target.value })
+    setBoFormFields(data)
     setError({ ...error, [event.target.name]: '' })
-    console.log('bodata',boFormFields)
+    console.log('boFormFields',boFormFields)
   }
 
-  const handleBoFormSubmit = async (event) => {
+  
+  const addBoFields = (event) => {
     event.preventDefault()
-    try {
-      const { data } = await axios.post(`${API_URL}/recipes/boamounts/`, boFormFields)
-    } catch (error) {
-      setError(error)
-      }
-  }
-
-  const addBoFields = () => {
     let object = {
-      base_oil: parseInt(''),
-      quantity: parseFloat(''),
+      base_oil: '',
+      quantity: '',
       measurement: ''
     }
     setBoFormFields([...boFormFields, object])
   }
-
+  
   const removeBoFields = (index) => {
     let data = [...boFormFields];
     data.splice(index, 1)
     setBoFormFields(data)
   }
+  
+  // const handleBoFormSubmit = async (event) => {
+  //   event.preventDefault()
+  //   try {
+  //     const { data } = await axios.post(`${API_URL}/recipes/boamounts/`, boFormFields)
+  //   } catch (error) {
+  //     setError(error)
+  //     }
+  // }
 
   // * Other Ingredient Handlers
-  const handleOiFormChange = (event) => {
-    setOiFormFields({ ...oiFormFields, [event.target.name]: event.target.value })
-    setError({ ...error, [event.target.name]: '' })
-    console.log('oidata',oiFormFields)
+
+  const handleOtherChange = (event, index) => {
+    console.log('EVENT->', event)
+    console.log('INDEX->',  index)
+    let data = [...oiFormFields]
+    data[index]['other_ingredient'] = event.value
+    console.log('HandleOtherChange DATA -->', data)
+    setOiFormFields(data)
+    console.log('oi amount data after ---->', oiFormFields)
   }
 
-  const addOiFields = () => {
+  const handleOiFormChange = (event, index) => {
+    let data = [...oiFormFields]
+    data[index][event.target.name] = event.target.value
+    setOiFormFields(data)
+    setError({ ...error, [event.target.name]: '' })
+    console.log('oiFormFields',oiFormFields)
+  }
+
+  const addOiFields = (event) => {
+    event.preventDefault()
     let object = {
-      base_oil: parseInt(''),
-      quantity: parseFloat(''),
+      other_ingredient: '',
+      quantity: '',
       measurement: ''
     }
     setOiFormFields([...oiFormFields, object])
@@ -317,14 +366,14 @@ const CreateRecipe = () => {
     setOiFormFields(data)
   }
   
-  const handleOiFormSubmit = async (event) => {
-    event.preventDefault()
-    try {
-      const { data } = await axios.post(`${API_URL}/recipes/oiamounts/`, oiFormFields)
-    } catch (error) {
-      setError(error)
-      }
-  }
+  // const handleOiFormSubmit = async (event) => {
+  //   event.preventDefault()
+  //   try {
+  //     const { data } = await axios.post(`${API_URL}/recipes/oiamounts/`, oiFormFields)
+  //   } catch (error) {
+  //     setError(error)
+  //     }
+  // }
 
   return (
     <Container className="recipe-form-wrapper min-vh-100">
@@ -437,7 +486,9 @@ const CreateRecipe = () => {
         <Col className="col-12" md="6">
           {/* Essential Oils */}
           <Row className="ingredient-form-container">
-            <form onSubmit={handleEoFormSubmit}>
+            {/* <form onSubmit={handleEoFormSubmit}> */}
+            <form>
+              <h4>Essential Oils</h4>
               {eoFormFields.map((form, index) => {
                 return (
                   <div key={index}>
@@ -466,20 +517,82 @@ const CreateRecipe = () => {
                   </div>
                 )
               })}
+              <button onClick={addEoFields}>Add More..</button>
             </form>
-            <button onClick={addEoFields}>Add More..</button>
-            <br />
-            <button onClick={handleEoFormSubmit}>Submit</button>
           </Row>
 
           {/* Base Oils */}
           <Row className="ingredient-form-container">
-
+            {/* <form onSubmit={handleEoFormSubmit}> */}
+            <form>
+              <h4 className="fw-bold">Base Ingredients</h4>
+              {boFormFields.map((form, index) => {
+                return (
+                  <div key={index}>
+                    <Select 
+                      name="base_oil" 
+                      options={baseOptions} 
+                      onChange={event => handleBaseChange(event, index)} 
+                      className="basic-single" 
+                      classNamePrefix="select" 
+                      >
+                    </Select>
+                    <input
+                      name='quantity'
+                      placeholder='Quantity'
+                      onChange={event => handleBoFormChange(event, index)}
+                      value={form.quantity}
+                    />
+                    <input
+                      name='measurement'
+                      placeholder='Measurement'
+                      onChange={event => handleBoFormChange(event, index)}
+                      value={form.measurement}
+                    />
+                    <button onClick={() => removeBoFields(index)}>Remove</button>
+                  </div>
+                )
+              })}
+              <button onClick={addBoFields}>Add More..</button>
+            </form>
           </Row>
 
           {/* Other Indgredients */}
           <Row className="ingredient-form-container">
-
+           {/* <form onSubmit={handleOiFormSubmit}> */}
+            <form>
+              <h4>Other Ingredients</h4>
+              {oiFormFields.map((form, index) => {
+                return (
+                  <div key={index}>
+                    <Select 
+                      name="other_ingredient" 
+                      options={otherOptions} 
+                      onChange={event => handleOtherChange(event, index)} 
+                      className="basic-single" 
+                      classNamePrefix="select" 
+                      >
+                    </Select>
+                    <input
+                      name='quantity'
+                      placeholder='Quantity'
+                      className='amount'
+                      onChange={event => handleOiFormChange(event, index)}
+                      value={form.quantity}
+                    />
+                    <input
+                      name='measurement'
+                      placeholder='Measurement'
+                      className='amount'
+                      onChange={event => handleOiFormChange(event, index)}
+                      value={form.measurement}
+                    />
+                    <button onClick={() => removeOiFields(index)}>Remove</button>
+                  </div>
+                )
+              })}
+              <button onClick={addOiFields}>Add More..</button>
+            </form>
           </Row>
         </Col>
       </Row>

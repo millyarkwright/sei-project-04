@@ -69,6 +69,8 @@ class CreateRecipeView(APIView):
   permission_classes = (IsAuthenticatedOrReadOnly, )
 
   def post(self, request):
+    
+    print('CREATE RECIPEEE REQUEST DATA ->>>', request.data)
     request.data['owner'] = request.user.id
     # convert request.data into a dictionary. Pop out ingredient amounts- save to varaible. 
 
@@ -76,6 +78,7 @@ class CreateRecipeView(APIView):
     try: 
       recipe_to_add.is_valid()
       recipe_to_add.save()
+      # print('ADDED RECIPE ID', recipe_to_add.data.id)
 
       return Response(recipe_to_add.data , status=status.HTTP_201_CREATED)
     except Exception as e:
