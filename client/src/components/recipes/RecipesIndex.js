@@ -30,7 +30,8 @@ const RecipesIndex = () => {
     const getData = async () => {
       try {
         const { data } = await axios.get(`${API_URL}/recipes/`)
-        setRecipes(data)
+        let publicData = data.filter(((item) => item.public === true))
+        setRecipes(publicData)
         console.log(data)
       } catch (error) {
         setError(error)
@@ -86,8 +87,7 @@ const RecipesIndex = () => {
   }
 
 
-
-  const handleSearch2 = (event) => {
+  const handleApplicationFilter = (event) => {
     console.log('FILTERS', filters)
     const newObj = {
       ...filters,
@@ -96,10 +96,9 @@ const RecipesIndex = () => {
     console.log('newObj', newObj)
     setFilters(newObj)
     setApplicationsBtn(event.target.value)
-
   }
 
-  const handleSearch3 = (event) => {
+  const handleRemedyFilter = (event) => {
     console.log('FILTERS', filters)
     const newObj = {
       ...filters,
@@ -108,7 +107,6 @@ const RecipesIndex = () => {
     console.log('newObj', newObj)
     setFilters(newObj)
     setRemediesBtn(event.target.value)
-
   }
 
   useEffect(() => {
@@ -138,13 +136,13 @@ const RecipesIndex = () => {
             <div className='button-container ms-5 text-start flex-column'>
               <h5>Applications</h5>
               {applicationsFilter.map((item) => {
-                return <button className={applicationsBtn === item ? "btn-clicked" : ""} onClick={handleSearch2} name="applications" value={item} > {item}</button>
+                return <button className={applicationsBtn === item ? "btn-clicked" : ""} onClick={handleApplicationFilter} name="applications" value={item} > {item}</button>
               })}
             </div>
             <div className='button-container ms-5 text-start flex-column'>
               <h5>Remedies</h5>
               {remediesFilter.map((item) => {
-                return <button className={remediesBtn === item ? "btn-clicked" : ""} onClick={handleSearch3} name="remedies" value={item} > {item}</button>
+                return <button className={remediesBtn === item ? "btn-clicked" : ""} onClick={handleRemedyFilter} name="remedies" value={item} > {item}</button>
               })}
             </div>
           </div>
