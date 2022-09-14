@@ -4,7 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { API_URL } from '../../config'
 import { Rating } from 'react-simple-star-rating'
-
+import loaderImg from '../../images/loader.gif'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -44,7 +44,7 @@ const RecipeSingle = () => {
   const [formData, setFormData] = useState([])
   const [comments, setComments] = useState([])
   const [updatedComments, setUpdatedComments] = useState([])
-  const [error, setError] = useState([])
+  const [error, setError] = useState('')
   const [errorMessage, setErrorMessage] = useState([])
 
   useEffect(() => {
@@ -80,11 +80,11 @@ const RecipeSingle = () => {
     event.preventDefault()
     try {
       console.log(`ADD THIS TO BOOKMARK ->`, recipeId)
-      const {data} = await axios.post(
+      const { data } = await axios.post(
         `${API_URL}/users/bookmarked/${recipeId}`
       )
-      console.log('DATA->',data)
-      console.log('data.detail',data.detail)
+      console.log('DATA->', data)
+      console.log('data.detail', data.detail)
       toast.success(data.detail, {
         position: "top-right",
         autoClose: 1500,
@@ -162,8 +162,8 @@ const RecipeSingle = () => {
       })
       navigate('/recipes')
     } catch (error) {
-      console.log('error',error)
-      console.log('error message',error.response.data.detail)
+      console.log('error', error)
+      console.log('error message', error.response.data.detail)
       setError(error)
       setErrorMessage(error.response.data.detail)
     }
@@ -209,6 +209,7 @@ const RecipeSingle = () => {
 
   const handleChange = async (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value })
+    console.log(formData)
   }
 
   const handleRating = (rating) => {
@@ -221,15 +222,15 @@ const RecipeSingle = () => {
         <>
           <Container className="header-wrapper">
             <Row>
-            {/* <Row className="flex-column-reverse flex-md-row"> */}
+              {/* <Row className="flex-column-reverse flex-md-row"> */}
               <Col className="col-12" md="6">
                 <h1>{recipe.name}</h1>
               </Col>
               <Col className="col-12" md="6">
                 <div className="userActions d-flex justify-content-md-end">
-                    <button onClick={handleAddToBookmark}>BOOKMARK</button>
-                    <button onClick={handleAddToTested}>TESTED</button>
-                  { userIsAuthenticated() &&
+                  <button onClick={handleAddToBookmark}>BOOKMARK</button>
+                  <button onClick={handleAddToTested}>TESTED</button>
+                  {userIsAuthenticated() &&
                     <>
                       <button onClick={handleDelete}>DELETE</button>
                       <button>EDIT</button>
@@ -238,26 +239,26 @@ const RecipeSingle = () => {
                 </div>
               </Col>
             </Row>
-              {/* Categoies */}
-              <div className="categories-container">
-                {recipe.applications.map((application) => {
-                  return (
-                    <div key={application.name} className="category">
-                      <img srm={application.icon} alt="icon"/>
-                      <p>{application.name}</p>
-                    </div>
-                    )
-                  })}
-                {recipe.remedies.map((remedy) => {
-                  return (
-                    <div key={remedy.name}>
-                      <img srm={remedy.icon} alt="icon"/>
-                      <p>{remedy.name}</p>
-                    </div>
-                  )
-                })}
-              </div>
-              <p>{recipe.description}</p>
+            {/* Categoies */}
+            <div className="categories-container">
+              {recipe.applications.map((application) => {
+                return (
+                  <div key={application.name} className="category">
+                    <img srm={application.icon} alt="icon" />
+                    <p>{application.name}</p>
+                  </div>
+                )
+              })}
+              {recipe.remedies.map((remedy) => {
+                return (
+                  <div key={remedy.name}>
+                    <img srm={remedy.icon} alt="icon" />
+                    <p>{remedy.name}</p>
+                  </div>
+                )
+              })}
+            </div>
+            <p>{recipe.description}</p>
           </Container>
 
           {/* Ingredients */}
@@ -276,7 +277,7 @@ const RecipeSingle = () => {
                             <Link to={`/bases/${item.base_oil.id}`}>
                               <p className="fw-bold">{item.base_oil.name} oil</p>
                             </Link>
-                              <p className="ms-2">{item.quantity} {item.measurement}</p>
+                            <p className="ms-2">{item.quantity} {item.measurement}</p>
                           </div>
                         )
                       })}
@@ -288,8 +289,8 @@ const RecipeSingle = () => {
                       {recipe.other_ingredient_amount.map((item) => {
                         return (
                           <div key={item.id} className="ingredient">
-                              <p className="fw-bold">{item.other_ingredient.name}</p>
-                              <p className="ms-2">{item.quantity} {item.measurement}</p>
+                            <p className="fw-bold">{item.other_ingredient.name}</p>
+                            <p className="ms-2">{item.quantity} {item.measurement}</p>
                           </div>
                         )
                       })}
@@ -304,7 +305,7 @@ const RecipeSingle = () => {
                             <Link to={`/essentials/${item.essential_oil.id}`}>
                               <p className="fw-bold">{item.essential_oil.name} essential oil</p>
                             </Link>
-                              <p className="ms-2">{item.quantity} {item.measurement}</p>
+                            <p className="ms-2">{item.quantity} {item.measurement}</p>
                           </div>
                         )
                       })}
@@ -418,9 +419,12 @@ const RecipeSingle = () => {
                         <div>
                           <img
                             src={comment.owner.profile_image}
-                            alt="profile"
+                            alt="profile img"
                           />
-                          <p>{comment.owner.username}</p>
+                          <Link to={`/users/profile/${comment.owner.username}`}>
+                            <p>{comment.owner.username}</p>
+                          </Link>
+
                           <Rating
                             onClick={handleRating}
                             size={20}
@@ -456,7 +460,7 @@ const RecipeSingle = () => {
           </Row>
         </>
         :
-        <h1 className='text-center'>{error ? 'error' : 'loading'}</h1>
+        <h1 className='text-center'>{error ? <p>error</p> : <img className="w-25" src={loaderImg} alt='loader' />}</h1>
       }
 
     </Container>
