@@ -15,7 +15,7 @@ import Select from 'react-select'
 const CreateRecipe = () => {
 
   //  ! State
-
+  
   // * Base Recipe
   const [recipeData, setRecipeData] = useState({
     name: '',
@@ -26,29 +26,32 @@ const CreateRecipe = () => {
     step_three: '',
     public: true,
     applications: [],
-    remedies: []
+    remedies: [],
+    eo_amount: [],
+    bo_amount: [],
+    oi_amount: [],
   })
 
-  // * Esential Oil Ingredient
-  const [eoData, setEoData] = useState({
-    essential_oil: parseInt(''),
-    quantity: parseFloat(''),
+  // * Esential Oil Form Field
+  const [eoFormFields, setEoFormFields] = useState([{
+    essential_oil: '',
+    quantity: '',
     measurement: ''
-  })
+  },])
 
-  // * Base Oil Ingredient
-  const [boData, setBoData] = useState({
+  // * Base Oil Form Field
+  const [boFormFields, setBoFormFields] = useState([{
     base_oil: parseInt(''),
     quantity: parseFloat(''),
     measurement: ''
-  })
+  },])
 
-  // * Other Ingredient
-  const [oiData, setOiData] = useState({
+  // * Other IngrForm Fieldedient
+  const [oiFormFields, setOiFormFields] = useState([{
     other_ingredient: parseInt(''),
     quantity: parseFloat(''),
     measurement: ''
-  })
+  },])
 
   // * Recipe ID
   const [recipeId, setRecipeId] = useState(parseInt(''))
@@ -58,14 +61,22 @@ const CreateRecipe = () => {
   const [applicationData, setApplicationData] = useState([])
   const [remedyOptions, setRemedyOptions] = useState([])
   const [remedyData, setRemedyData] = useState([])
+  const [essentialOptions, setEssentialOptions] = useState([])
+  const [baseOptions, setBaseOptions] = useState([])
+  const [otherOptions, setOtherOptions] = useState([])
+
 
   const [selectedRemedies, setSelectedRemedies] = useState()
   const [selectedApplications, setSelectedApplication] = useState()
+  const [selectedEssentials, setSelectedEssentials] = useState()
+  const [selectedBases, setSelecteBases] = useState()
+  const [selectedOthers, setSelecteOthers] = useState()
 
   const [error, setError] = useState([])
 
-  // * Requests
+  // ! Requests
 
+  // * Applications
   useEffect(() => {
     const getData = async () => {
       try {
@@ -85,6 +96,7 @@ const CreateRecipe = () => {
     getData()
   }, [])
 
+  // * Remedies
   useEffect(() => {
     const getData = async () => {
       try {
@@ -102,6 +114,61 @@ const CreateRecipe = () => {
     }
     getData()
   }, [])
+
+  // * ESSENTIAL OIL OPTIONS
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const { data } = await axios.get(`${API_URL}/essentialoils/`)
+        let essentialOptions = data.map(essential => ({ value: essential.id, label: essential.name }))
+        setEssentialOptions(essentialOptions)
+        console.log('essentialOptions',essentialOptions)
+      } catch (error) {
+        setError(error)
+        console.log('ESSENTIAL OIL ERROR', error)
+      }
+    }
+    getData()
+  }, [])
+
+  // * BASE OIL OPTIONS
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const { data } = await axios.get(`${API_URL}/baseoils/`)
+        let baseOptions = data.map(base => ({ value: base.id, label: base.name }))
+        setEssentialOptions(baseOptions)
+        console.log('baseOptions',baseOptions)
+      } catch (error) {
+        setError(error)
+        console.log('BASE OIL ERROR', error)
+      }
+    }
+    getData()
+  }, [])
+
+  // * OTHER INGREDIENT  OPTIONS
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const { data } = await axios.get(`${API_URL}/recipes/otheringredients/`)
+        let otherOptions = data.map(other => ({ value: other.id, label: other.name }))
+        setOtherOptions(otherOptions)
+        console.log('otherOptions',otherOptions)
+      } catch (error) {
+        setError(error)
+        console.log('OTHER OIL ERROR', error)
+      }
+    }
+    getData()
+  }, [])
+
+  // * UPDATING RECIPE DATA WITH INGREDIENTS
+  useEffect(() => {
+    setRecipeData({ ...recipeData, 'eo_amount' : eoFormFields})
+    console.log('updated formfield---->', eoFormFields)
+
+  },[eoFormFields])
 
   //  ! Execution
   
@@ -147,149 +214,277 @@ const CreateRecipe = () => {
     }
 
   // * Essential Oil Handlers
-  const handleEoChange = (event) => {
-    setEoData({ ...eoData, [event.target.name]: event.target.value })
+  const handleEssentialChange = (event, index) => {
+
+    console.log('EVENT->', event)
+    console.log('INDEX->',  index)
+    // console.log('Selected Essential Value->', event.value)
+    // const selectedEssentialsId = selectedEssentials.map((item) => {return item.value} )
+    // console.log('selectedEssentialsId->', selectedEssentialsId)
+    let data = [...eoFormFields]
+    data[index]['essential_oil'] = event.value
+    console.log('HandleEssentialChange DATA -->', data)
+    setEoFormFields(data)
+    console.log('eo amount data after ---->', eoFormFields)
+  }
+  useEffect(() => {
+    console.log('updated RecipeData-->', recipeData)
+  }, [recipeData])
+
+  const handleEoFormChange = (event, index) => {
+    let data = [...eoFormFields]
+    data[index][event.target.name] = event.target.value
+    // setEoFormFields({ ...eoFormFields, [event.target.name]: event.target.value })
+    setEoFormFields(data)
     setError({ ...error, [event.target.name]: '' })
-    console.log('eodata',eoData)
+    console.log('eoFormFields',eoFormFields)
   }
 
-  const handleEoSubmit = async (event) => {
+  const addEoFields = () => {
+    let object = {
+      essential_oil: '',
+      quantity: '',
+      measurement: ''
+    }
+    setEoFormFields([...eoFormFields, object])
+  }
+  
+  const removeEoFields = (index) => {
+    let data = [...eoFormFields];
+    data.splice(index, 1)
+    setEoFormFields(data)
+  }
+  
+  const handleEoFormSubmit = async (event) => {
     event.preventDefault()
     try {
-      const { data } = await axios.post(`${API_URL}/recipes/eoamounts/`, eoData)
+      const { data } = await axios.post(`${API_URL}/recipes/eoamounts/`, eoFormFields)
     } catch (error) {
       setError(error)
       }
   }
 
   // * Base Oil Handlers
-  const handleBoChange = (event) => {
-    setBoData({ ...boData, [event.target.name]: event.target.value })
+  const handleBoFormChange = (event) => {
+    setBoFormFields({ ...boFormFields, [event.target.name]: event.target.value })
     setError({ ...error, [event.target.name]: '' })
-    console.log('bodata',boData)
+    console.log('bodata',boFormFields)
   }
 
-  const handleBoSubmit = async (event) => {
+  const handleBoFormSubmit = async (event) => {
     event.preventDefault()
     try {
-      const { data } = await axios.post(`${API_URL}/recipes/boamounts/`, boData)
+      const { data } = await axios.post(`${API_URL}/recipes/boamounts/`, boFormFields)
     } catch (error) {
       setError(error)
       }
   }
 
-  // * Other Ingredient Handlers
-  const handleOiChange = (event) => {
-    setOiData({ ...oiData, [event.target.name]: event.target.value })
-    setError({ ...error, [event.target.name]: '' })
-    console.log('oidata',oiData)
+  const addBoFields = () => {
+    let object = {
+      base_oil: parseInt(''),
+      quantity: parseFloat(''),
+      measurement: ''
+    }
+    setBoFormFields([...boFormFields, object])
   }
 
-  const handleOiSubmit = async (event) => {
+  const removeBoFields = (index) => {
+    let data = [...boFormFields];
+    data.splice(index, 1)
+    setBoFormFields(data)
+  }
+
+  // * Other Ingredient Handlers
+  const handleOiFormChange = (event) => {
+    setOiFormFields({ ...oiFormFields, [event.target.name]: event.target.value })
+    setError({ ...error, [event.target.name]: '' })
+    console.log('oidata',oiFormFields)
+  }
+
+  const addOiFields = () => {
+    let object = {
+      base_oil: parseInt(''),
+      quantity: parseFloat(''),
+      measurement: ''
+    }
+    setOiFormFields([...oiFormFields, object])
+  }
+  
+  const removeOiFields = (index) => {
+    let data = [...oiFormFields];
+    data.splice(index, 1)
+    setOiFormFields(data)
+  }
+  
+  const handleOiFormSubmit = async (event) => {
     event.preventDefault()
     try {
-      const { data } = await axios.post(`${API_URL}/recipes/oiamounts/`, oiData)
+      const { data } = await axios.post(`${API_URL}/recipes/oiamounts/`, oiFormFields)
     } catch (error) {
       setError(error)
       }
   }
 
   return (
-    <Container className="form-wrapper min-vh-100">
-    {/* <Row> */}
-    <form onSubmit={handleRecipeSubmit} className="justify-content-between">
-      <h3 className="text-center">Recipe Details</h3>
-      {/* Recipe name */}
+    <Container className="recipe-form-wrapper min-vh-100">
       <Row>
-        <label htmlFor="name">Recipe Name</label>
-        <input
-          onInput={handleRecipeChange}
-          type="text"
-          name="name"
-          value={recipeData.name}
-          required
-        />
-      </Row>
-      {/* Description */}
-      <Row>
-        <label htmlFor="description">Description</label>
-        <textarea
-          onInput={handleRecipeChange}
-          name="description"
-          value={recipeData.description}
-          required
-        />
-      </Row>
-      {/* Makes */}
-      <Row>
-        <label htmlFor="makes">Makes</label>
-        <input
-          onInput={handleRecipeChange}
-          type="text"
-          name="makes"
-          value={recipeData.makes}
-          placeholder="How much does this recipe make..."
-          required
-        />
-      </Row>
-      {/* Step1 */}
-      <Row>
-        <label htmlFor="step_one">Step 1</label>
-        <textarea
-          onInput={handleRecipeChange}
-          name="step_one"
-          value={recipeData.step_one}
-          required
-        />
-      </Row>
-      <Row>
-        <label htmlFor="step_two">Step 2</label>
-        <textarea
-          onInput={handleRecipeChange}
-          name="step_two"
-          value={recipeData.step_two}
-        />
-      </Row>
-      <Row>
-        <label htmlFor="step_three">Step 3</label>
-        <textarea
-          onInput={handleRecipeChange}
-          name="step_three"
-          value={recipeData.step_three}
-        />
-      </Row>
-      {/* Categories */}
-      <Row>
-        <label htmlFor="remedies">Remedy</label>
-        <Select  value={selectedRemedies} name="remedies" options={remedyOptions}  className="basic-multi-select" classNamePrefix="select" isMulti onChange={handleRemedyChange} >
-        </Select>
-      </Row>
-      <Row>
-        <label htmlFor="applications">Applications</label>
-        <Select  value={selectedApplications} name="applications" options={applicationOptions}  className="basic-multi-select" classNamePrefix="select" isMulti onChange={handleApplicationChange} >
-        </Select>
-      </Row>
-      {/* Public*/}
-      <Row className="checkbox">
-        <Col className="col-2 ps-0">
-          <label htmlFor="public">Public</label>
+        <Col className="col-12" md="6">
+          <form onSubmit={handleRecipeSubmit} className="justify-content-between">
+            <h3 className="text-center">Recipe Details</h3>
+            {/* Recipe name */}
+            <Row>
+              <label htmlFor="name">Recipe Name</label>
+              <input
+                onInput={handleRecipeChange}
+                type="text"
+                name="name"
+                value={recipeData.name}
+                required
+              />
+            </Row>
+            {/* Description */}
+            <Row>
+              <label htmlFor="description">Description</label>
+              <textarea
+                onInput={handleRecipeChange}
+                name="description"
+                value={recipeData.description}
+                required
+              />
+            </Row>
+            {/* Makes */}
+            <Row>
+              <label htmlFor="makes">Makes</label>
+              <input
+                onInput={handleRecipeChange}
+                type="text"
+                name="makes"
+                value={recipeData.makes}
+                placeholder="How much does this recipe make..."
+                required
+              />
+            </Row>
+            {/* Step1 */}
+            <Row>
+              <label htmlFor="step_one">Step 1</label>
+              <textarea
+                onInput={handleRecipeChange}
+                name="step_one"
+                value={recipeData.step_one}
+                required
+              />
+            </Row>
+            <Row>
+              <label htmlFor="step_two">Step 2</label>
+              <textarea
+                onInput={handleRecipeChange}
+                name="step_two"
+                value={recipeData.step_two}
+              />
+            </Row>
+            <Row>
+              <label htmlFor="step_three">Step 3</label>
+              <textarea
+                onInput={handleRecipeChange}
+                name="step_three"
+                value={recipeData.step_three}
+              />
+            </Row>
+            {/* Categories */}
+            <Row>
+              <label htmlFor="remedies">Remedy</label>
+              <Select  
+                value={selectedRemedies} 
+                name="remedies" 
+                options={remedyOptions}  
+                className="basic-multi-select" 
+                classNamePrefix="select" 
+                isMulti 
+                onChange={handleRemedyChange} >
+              </Select>
+            </Row>
+            <Row>
+              <label htmlFor="applications">Applications</label>
+              <Select  
+                value={selectedApplications} 
+                name="applications" 
+                options={applicationOptions}  
+                className="basic-multi-select" 
+                classNamePrefix="select" 
+                isMulti 
+                onChange={handleApplicationChange} >
+              </Select>
+            </Row>
+            {/* Public*/}
+            <Row className="checkbox">
+              <Col className="col-2 ps-0">
+                <label htmlFor="public">Public</label>
+              </Col>
+              <Col className="col-10">
+                <input
+                  onInput={handleCheckBoxChange}
+                  type="checkbox"
+                  name="public"
+                  defaultChecked
+                  />
+              </Col>
+            </Row>
+            {/* Submit */}
+              <input type="submit" value="Add Recipe" className="btn dark" />
+          </form>
         </Col>
-        <Col className="col-10">
-          <input
-            onInput={handleCheckBoxChange}
-            type="checkbox"
-            name="public"
-            defaultChecked
-            />
-        </Col>
-      </Row>
-      {/* Submit */}
-        <input type="submit" value="Add Recipe" className="btn dark" />
-    </form>
-    {/* </Row> */}
-  </Container>
-  )
+        <Col className="col-12" md="6">
+          {/* Essential Oils */}
+          <Row className="ingredient-form-container">
+            <form onSubmit={handleEoFormSubmit}>
+              {eoFormFields.map((form, index) => {
+                return (
+                  <div key={index}>
+                    <Select 
+                      name="essential_oil" 
+                      options={essentialOptions} 
+                      // value={selectedEssentials} 
+                      onChange={event => handleEssentialChange(event, index)} 
+                      className="basic-single" 
+                      classNamePrefix="select" 
+                      >
+                    </Select>
+                    <input
+                      name='quantity'
+                      placeholder='Quantity'
+                      onChange={event => handleEoFormChange(event, index)}
+                      value={form.quantity}
+                    />
+                    <input
+                      name='measurement'
+                      placeholder='Measurement'
+                      onChange={event => handleEoFormChange(event, index)}
+                      value={form.measurement}
+                    />
+                    <button onClick={() => removeEoFields(index)}>Remove</button>
+                  </div>
+                )
+              })}
+            </form>
+            <button onClick={addEoFields}>Add More..</button>
+            <br />
+            <button onClick={handleEoFormSubmit}>Submit</button>
+          </Row>
 
+          {/* Base Oils */}
+          <Row className="ingredient-form-container">
+
+          </Row>
+
+          {/* Other Indgredients */}
+          <Row className="ingredient-form-container">
+
+          </Row>
+        </Col>
+      </Row>
+    </Container>
+  )
 }
 
 export default CreateRecipe
