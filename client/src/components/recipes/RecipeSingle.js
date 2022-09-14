@@ -249,7 +249,7 @@ const RecipeSingle = () => {
                 <div className="userActions d-flex justify-content-md-end">
                   {/* {currentUser.bookmarked_recipes.objects.filter(['bookmarked_by'] = currentUser.id).count() > 0 ? 
                   <>
-                   <button disabled>BOOKMARKED!</button>
+                  <button disabled>BOOKMARKED!</button>
                   </>
                   :
                   <button onClick={handleAddToBookmark}>BOOKMARK</button>
