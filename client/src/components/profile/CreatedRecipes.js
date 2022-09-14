@@ -2,21 +2,35 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { API_URL } from '../../config'
+import loaderImg from '../../images/loader.gif'
+import { getToken } from '../helpers/auth'
 
 // Bootstrap Components
 import Container from 'react-bootstrap/Container'
-// import Row from 'react-bootstrap/Row'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
 const CreatedRecipes = () => {
   const [created, setCreated] = useState([])
+  const [applicationsFilter, setApplicationsFilter] = useState([])
+  const [remediesFilter, setRemediesFilter] = useState([])
+  const [filteredRecipes, setFilteredRecipes] = useState([])
+  const [filters, setFilters] = useState({
+    applications: 'All',
+    remedies: 'All',
+    search: ''
+  })
+
+  const [applicationsBtn, setApplicationsBtn] = useState('All')
+  const [remediesBtn, setRemediesBtn] = useState('All')
   const [error, setError] = useState([])
 
   useEffect(() => {
     const getData = async () => {
       try {
-        const { data } = await axios.get(`${API_URL}/users/profile/`)
+        const { data } = await axios.get(`${API_URL}/users/profile/`, {
+          headers: { Authorization: `Bearer ${getToken()}` },
+        })
         setCreated(data.created_recipes)
         console.log('DATAAA', data)
         console.log('data.bookmarked -->', data.bookmarked_recipes)
@@ -28,81 +42,157 @@ const CreatedRecipes = () => {
     }
     getData()
   }, [])
+
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const { data } = await axios.get(`${API_URL}/applications`)
+        console.log(data)
+        let dataMapped = data.map((keys) => { return keys.name })
+        dataMapped.unshift('All')
+        console.log(dataMapped)
+        setApplicationsFilter(dataMapped)
+      } catch (error) {
+        setError(error)
+        console.log(error)
+      }
+    }
+    getData()
+  }, [])
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const { data } = await axios.get(`${API_URL}/remedies`)
+        let dataMapped = data.map((keys) => { return keys.name })
+        dataMapped.unshift('All')
+        console.log(dataMapped)
+        setRemediesFilter(dataMapped)
+      } catch (error) {
+        setError(error)
+        console.log(error)
+      }
+    }
+    getData()
+  }, [])
+
+  useEffect(() => {
+    const regexSearch = new RegExp(filters.search, 'i')
+    console.log('search value', regexSearch)
+    console.log('saved tag', filters.tag)
+    const filteredArray = created.filter(recipe => {
+      return regexSearch.test(recipe.name)
+        && ((recipe.applications.map((keys) => { return keys.name }).includes(filters.applications) || filters.applications === 'All'))
+        && ((recipe.remedies.map((keys) => { return keys.name }).includes(filters.remedies) || filters.remedies === 'All'))
+    })
+    console.log('filtered array', filteredArray)
+    setFilteredRecipes(filteredArray)
+
+  }, [created, filters])
+
+  const handleSearch = (event) => {
+
+    console.log('FILTERS', filters)
+    const newObj = {
+      ...filters,
+      [event.target.name]: event.target.value
+    }
+    console.log('newObj', newObj)
+    setFilters(newObj)
+  }
+
+
+  const handleApplicationFilter = (event) => {
+    console.log('FILTERS', filters)
+    const newObj = {
+      ...filters,
+      [event.target.name]: event.target.value
+    }
+    console.log('newObj', newObj)
+    setFilters(newObj)
+    setApplicationsBtn(event.target.value)
+  }
+
+  const handleRemedyFilter = (event) => {
+    console.log('FILTERS', filters)
+    const newObj = {
+      ...filters,
+      [event.target.name]: event.target.value
+    }
+    console.log('newObj', newObj)
+    setFilters(newObj)
+    setRemediesBtn(event.target.value)
+  }
+  
   return (
     <Container className="search-wrapper min-vh-100">
-      <div className='list-container'>
         {Object.keys(created).length ?
           <>
-          <h1>Your Created Recipes</h1>
-            {created.map((oil) => {
-              // (oil.name.charAt(0).toUpperCase() + oil.name.slice(1)).join(' ')
+          {/* FILTERS */}
+          <div className='title-container'>
+            <h1>Your Created Recipes</h1>
+            <div className='search-container text-center text-end my-md-0 my-3'>
+              <input type="text" className="seach" placeholder="Search..." onChange={handleSearch} name="search" value={filters.search}></input>
+            </div>
+            <div className='button-container ms-5 text-start flex-column'>
+              <h5>Applications</h5>
+              {applicationsFilter.map((item) => {
+                return <button className={applicationsBtn === item ? "btn-clicked" : ""} onClick={handleApplicationFilter} name="applications" value={item} > {item}</button>
+              })}
+            </div>
+            <div className='button-container ms-5 text-start flex-column'>
+              <h5>Remedies</h5>
+              {remediesFilter.map((item) => {
+                return <button className={remediesBtn === item ? "btn-clicked" : ""} onClick={handleRemedyFilter} name="remedies" value={item} > {item}</button>
+              })}
+            </div>
+          </div>
+
+
+          <div className='list-container'>
+            {filteredRecipes.map((recipe) => {
               return (
                 <>
-                  {/* <div className=""> */}
-
                   <Row className=" list-card-container">
-
-                    <Col className=" col-8 list-text">
-                      <Link to={`/recipes/${oil.id}`}>
-                        <h3>{oil.name}</h3>
+                    <Col className="col-12 list-text px-2 pt-2 p-md-3" md="8">
+                      <Link to={`/recipes/${recipe.id}`}>
+                        <h3>{recipe.name}</h3>
                       </Link>
-                      <p>{oil.description}</p>
-                    </Col>
-                    <Col className="col-4 list-categories">
-
-
-                      <div className="flex-column">
-                        {/* {oil.essential_oil_amount.length ?
-                    <>
-                      <p >Main Ingredients:</p>
-                      <div className="d-flex flex-wrap">
-                        {oil.essential_oil_amount.map((item) => {
-                          return (
-                            <Link to={`/essentials/${item.essential_oil.id}`}>
-                              <span>{item.essential_oil.name}</span>
-                            </Link>
-                          )
-                        })}
-                      </div>
-                    </>
-                    :
-                    <></>} */}
-                        {oil.applications.length ?
-                          <>
-                            <p>Applications:</p>
-                            {oil.applications.map((item) => {
-                              return (<span>{item.name}</span>)
-                            })}
-                          </>
-                          :
-                          <></>}
-                        {oil.remedies.length ?
-                          <>
-                            <p>Remedies:</p>
-                            {oil.remedies.map((item) => {
-                              return (<span>{item.name}</span>)
-                            })}
-                          </>
-                          :
-                          <></>}
-                      </div>
-
+                      <p>{recipe.description}</p>
                     </Col>
 
+                    <Col className="col-12 list-categories px-2 pb-2 p-md-3" md="4">
+                        
+                      {recipe.applications.length > 0 &&
+                        <Col className="col-4" md="12">
+                          <p>Applications:</p>
+                          <div className="d-flex flex-wrap">
+                            {recipe.applications.map((item) => {
+                              return (<span>{item.name}</span>)
+                            })}
+                          </div>
+                        </Col>}
 
-
+                        {recipe.remedies.length > 0 &&
+                        <Col className="col-4" md="12">
+                          <p>Remedies:</p>
+                          <div className="d-flex flex-wrap">
+                            {recipe.remedies.map((item) => {
+                              return (<span>{item.name}</span>)
+                            })}
+                          </div>
+                        </Col>}
+                    
+                    </Col>
                   </Row>
-
-                  {/* </div> */}
                 </>
               )
             })}
+            </div>
           </>
           :
-
-          <h1 className='text-center'>{error ? 'error' : 'loading'}</h1>
-        }
-      </div>
+          <h1 className='text-center'>{error ? <p>error</p> : <img className="w-25" src={loaderImg} alt='loader' />}</h1>        }
     </Container>
   )
 }

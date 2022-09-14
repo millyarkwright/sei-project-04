@@ -3,30 +3,38 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { API_URL } from '../../config'
 
+import loaderImg from '../../images/loader.gif'
+
 // Bootstrap Components
 import Container from 'react-bootstrap/Container'
-// import Row from 'react-bootstrap/Row'
 
 const EssentialsIndex = () => {
+  // ! STATES
+  // * ESSENTIAL OIL DATA
   const [oils, setOils] = useState([])
+  
+  // * FILTERS
   const [keyActions, setKeyActions] = useState([])
-  const [applications, setApplications] = useState([])
   const [applicationsFilter, setApplicationsFilter] = useState([])
-  const [remedies, setRemedies] = useState([])
   const [remediesFilter, setRemediesFilter] = useState([])
   const [filteredOils, setFilteredOils] = useState([])
-  const [activeBtn1, setActiveBtn1] = useState('All')
-  const [activeBtn2, setActiveBtn2] = useState('All')
-  const [activeBtn3, setActiveBtn3] = useState('All')
-  const [searchValue, setSearchValue] = useState([])
   const [filters, setFilters] = useState({
     keyActions: 'All',
     applications: 'All',
     remedies: 'All',
     search: ''
   })
-  const [error, setError] = useState([])
 
+  // * FILTER BUTTON CLASSES
+  const [activeBtn1, setActiveBtn1] = useState('All')
+  const [activeBtn2, setActiveBtn2] = useState('All')
+  const [activeBtn3, setActiveBtn3] = useState('All')
+  // const [searchValue, setSearchValue] = useState([])
+
+  const [error, setError] = useState('')
+
+  // ! GET DATA
+  // * ESSENTIAL OILS
   useEffect(() => {
     const getData = async () => {
       try {
@@ -35,12 +43,13 @@ const EssentialsIndex = () => {
         console.log(data)
       } catch (error) {
         setError(error)
-        console.log(error)
+        console.log('ESSENTIAL OIL ERROR', error)
       }
     }
     getData()
   }, [])
 
+    // * KEY ACTIONS
   useEffect(() => {
     const getData = async () => {
       try {
@@ -48,7 +57,7 @@ const EssentialsIndex = () => {
         console.log(data)
         let dataMapped = data.map((keys) => { return keys.name })
         dataMapped.unshift('All')
-        console.log('KEYYYYYY', dataMapped)
+        console.log('DATA MAPPED-->', dataMapped)
         setKeyActions(dataMapped)
       } catch (error) {
         setError(error)
@@ -58,6 +67,7 @@ const EssentialsIndex = () => {
     getData()
   }, [])
 
+  // * APPLICATIONS
   useEffect(() => {
     const getData = async () => {
       try {
@@ -65,9 +75,8 @@ const EssentialsIndex = () => {
         console.log(data)
         let dataMapped = data.map((keys) => { return keys.name })
         dataMapped.unshift('All')
-        console.log(dataMapped)
+        console.log('DATA MAPPED-->', dataMapped)
         setApplicationsFilter(dataMapped)
-        console.log('mapped applications->', data.map((keys) => { return keys.name }).unshift('All'))
       } catch (error) {
         setError(error)
         console.log(error)
@@ -76,16 +85,15 @@ const EssentialsIndex = () => {
     getData()
   }, [])
 
+  // * REMEDIES
   useEffect(() => {
     const getData = async () => {
       try {
         const { data } = await axios.get(`${API_URL}/remedies`)
         let dataMapped = data.map((keys) => { return keys.name })
         dataMapped.unshift('All')
-        console.log(dataMapped)
+        console.log('DATA MAPPED-->', dataMapped)
         setRemediesFilter(dataMapped)
-        console.log(data)
-        console.log('mapped Remedies->', data.map((keys) => { return keys.name }))
       } catch (error) {
         setError(error)
         console.log(error)
@@ -94,17 +102,8 @@ const EssentialsIndex = () => {
     getData()
   }, [])
 
-
-  const genreDummy = [
-    'All',
-    'Balancing',
-    'Cleansing',
-    'Energising',
-    'Relaxing',
-    'Uplifting'
-  ]
+  // ! EXECUTIONS
   const handleSearch = (event) => {
-    setSearchValue(event.target.value)
     console.log('FILTERS', filters)
     const newObj = {
       ...filters,
@@ -116,7 +115,6 @@ const EssentialsIndex = () => {
 
 
   const handleSearch1 = (event) => {
-    setSearchValue(event.target.value)
     console.log('FILTERS', filters)
     const newObj = {
       ...filters,
@@ -129,7 +127,6 @@ const EssentialsIndex = () => {
   }
 
   const handleSearch2 = (event) => {
-    setSearchValue(event.target.value)
     console.log('FILTERS', filters)
     const newObj = {
       ...filters,
@@ -142,7 +139,6 @@ const EssentialsIndex = () => {
   }
 
   const handleSearch3 = (event) => {
-    setSearchValue(event.target.value)
     console.log('FILTERS', filters)
     const newObj = {
       ...filters,
@@ -154,15 +150,12 @@ const EssentialsIndex = () => {
 
   }
 
-
-
-
+  // * SEARCH
   useEffect(() => {
     const regexSearch = new RegExp(filters.search, 'i')
     console.log('search value', regexSearch)
     console.log('saved tag', filters.tag)
     const filteredArray = oils.filter(oil => {
-      // console.log('movie.tag-->', movie.tags)
       return regexSearch.test(oil.name) && ((oil.key_action === filters.keyActions) || filters.keyActions === 'All')
         && ((oil.applications.includes(filters.applications) || filters.applications === 'All'))
         && ((oil.remedies.includes(filters.remedies) || filters.remedies === 'All'))
@@ -172,9 +165,10 @@ const EssentialsIndex = () => {
 
   }, [oils, filters])
 
+  // ! JSX RETURNS
   return (
     <Container className="search-wrapper min-vh-100">
-      {Object.keys(oils).length ?
+      {Object.keys(oils).length > 0 ?
         <>
           <div className='title-container'>
             <h1>Essential Oils</h1>
@@ -211,40 +205,11 @@ const EssentialsIndex = () => {
                     <div className="card-container">
                       <Link to={`/essentials/${oil.id}`}>
                         <img src={oil.image} alt="essential oil" className="w-1" />
-{/*                      
-                        <div className="text overlay bg-gradient">
-                          <p>
-                            {oil.name}
-                          </p>
-                          <p>
-                            {oil.latin_name}
-                          </p>
-                          {oil.applications !== [] ?
-                            <>
-                              <p className='fw-bold'>Applications:</p>
-                              <p>
-                                {oil.applications.map((item) => { return <span> {item}</span> })}
-                              </p>
-                            </>
-                            :
-                            <></>}
-
-                          {oil.remedies.length ?
-                            <>
-                              <p className='fw-bold'>Remedies:</p>
-                              <p>
-                                {oil.remedies.map((item) => { return <span> {item}</span> })}
-                              </p>
-                            </>
-                            :
-                            <></>}
-
-                        </div> */}
-                         <p>{oil.name}</p>
+                        <p>{oil.name}</p>
                       </Link>
-                     
+
                     </div>
-                 
+
                   </div>
                 </>
               )
@@ -252,10 +217,13 @@ const EssentialsIndex = () => {
           </div>
         </>
         :
-        <h1 className='text-center'>{error ? 'error' : 'loading'}</h1>
+        <h1 className='text-center'>{error ? <p>error</p> : <img className="w-25" src={loaderImg} alt='loader' />}</h1>
       }
     </Container>
   )
 }
 
 export default EssentialsIndex
+
+
+

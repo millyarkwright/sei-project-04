@@ -13,3 +13,6 @@ class PopulatedUserSerializer(UserSerializer):
   bookmarked_recipes = PopulatedBookmarkedRecipeSerializer(many=True)
   tested_recipes = PopulatedTestedRecipeSerializer(many=True)
   created_recipes = RecipeIndexSerializer(many=True)
+
+class PopulatedUserPublicSerializer(UserSerializer):
+  created_recipes = RecipeIndexSerializer(many=True)

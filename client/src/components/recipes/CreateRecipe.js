@@ -1,7 +1,7 @@
 //  * Hooks
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-
+import { getToken } from '../helpers/auth'
 // * Axios & URL
 import axios from 'axios'
 import { API_URL } from '../../config'
@@ -58,10 +58,10 @@ const CreateRecipe = () => {
   const [applicationData, setApplicationData] = useState([])
   const [remedyOptions, setRemedyOptions] = useState([])
   const [remedyData, setRemedyData] = useState([])
-  
+
   const [selectedRemedies, setSelectedRemedies] = useState()
   const [selectedApplications, setSelectedApplication] = useState()
-  
+
   const [error, setError] = useState([])
 
   // * Requests
@@ -106,11 +106,19 @@ const CreateRecipe = () => {
   //  ! Execution
   
   // * Recipe Handlers
+
   const handleRecipeChange = (event) => {
     setRecipeData({ ...recipeData, [event.target.name]: event.target.value})
     setError({ ...error, [event.target.name]: '' })
     console.log('recipedata',recipeData)
   }
+
+  const handleCheckBoxChange = (event) => {
+    // console.log('checkbox value', event.target.name, event.target.checked)
+    // console.log('RECIPE PUBLIC/PRIVATE', {...recipeData, [event.target.name]: event.target.checked})
+    setRecipeData({ ...recipeData, [event.target.name]: event.target.checked})
+  }
+
 
   const handleRemedyChange = (selectedRemedies) => {
     console.log('selected Remedy->', selectedRemedies)
@@ -130,7 +138,9 @@ const CreateRecipe = () => {
   const handleRecipeSubmit = async (event) => {
     event.preventDefault()
     try {
-      const { data } = await axios.post(`${API_URL}/recipes/createrecipe/`, recipeData)
+      const { data } = await axios.post(`${API_URL}/recipes/createrecipe/`, recipeData, {
+        headers: { Authorization: `Bearer ${getToken()}` },
+      })
     } catch (error) {
       setError(error)
       }
@@ -266,12 +276,10 @@ const CreateRecipe = () => {
         </Col>
         <Col className="col-10">
           <input
-            onInput={handleRecipeChange}
+            onInput={handleCheckBoxChange}
             type="checkbox"
             name="public"
-            value={recipeData.public}
             defaultChecked
-            required
             />
         </Col>
       </Row>

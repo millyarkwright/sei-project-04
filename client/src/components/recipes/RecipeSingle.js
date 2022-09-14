@@ -1,17 +1,20 @@
 /* eslint-disable no-unused-vars */
 import { useState, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { API_URL } from '../../config'
 import { Rating } from 'react-simple-star-rating'
-
+import loaderImg from '../../images/loader.gif'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { getToken } from '../helpers/auth'
 // * Bootstrap Components
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+
+// * HELPERS
+import { userIsAuthenticated } from '../helpers/auth'
 
 //! Components
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -32,18 +35,42 @@ import 'swiper/css/scrollbar'
 import 'swiper/css/free-mode'
 
 const RecipeSingle = () => {
+
+  const navigate = useNavigate()
+
+  // !State
   const { recipeId } = useParams()
-  const [oils, setOils] = useState([])
+  const [recipe, setRecipe] = useState([])
   const [formData, setFormData] = useState([])
   const [comments, setComments] = useState([])
   const [updatedComments, setUpdatedComments] = useState([])
-  const [error, setError] = useState([])
+  const [error, setError] = useState('')
+  const [errorMessage, setErrorMessage] = useState([])
+  const [currentUser, setCurrentUser] = useState([])
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const { data } = await axios.get(`${API_URL}/users/profile/`, {
+          headers: { Authorization: `Bearer ${getToken()}` },
+        })
+        setCurrentUser(data)
+        console.log('DATAAA', data)
+        console.log('data.bookmarked -->', data.bookmarked_recipes)
+        console.log('data.tested -->', data.tested_recipes)
+      } catch (error) {
+        setError(error)
+        console.log(error)
+      }
+    }
+    getData()
+  }, [])
 
   useEffect(() => {
     const getData = async () => {
       try {
         const { data } = await axios.get(`${API_URL}/recipes/${recipeId}`)
-        setOils(data)
+        setRecipe(data)
         console.log(data)
       } catch (error) {
         setError(error)
@@ -52,6 +79,8 @@ const RecipeSingle = () => {
     }
     getData()
   }, [])
+
+
 
   useEffect(() => {
     const getData = async () => {
@@ -68,50 +97,98 @@ const RecipeSingle = () => {
   }, [updatedComments])
 
 
-
   const handleAddToBookmark = async (event) => {
     event.preventDefault()
     try {
       console.log(`ADD THIS TO BOOKMARK ->`, recipeId)
-      // const { data } = await axios.post(
-      //   `${API_URL}/users/bookmarked/${recipeId}`
-      // )
-      const res = await axios.post(
-        `${API_URL}/users/bookmarked/${recipeId}`
-      )
-      console.log(res.data.message)
-      toast.error(res.data.message, {
-        position: "bottom-center",
-        autoClose: 1200,
+      const { data } = await axios.post( `${API_URL}/users/bookmarked/${recipeId}`, {
+        headers: { Authorization: `Bearer ${getToken()}` },
+      })
+      console.log('DATA->', data)
+      console.log('data.detail', data.detail)
+      toast.success(data.detail, {
+        position: "top-right",
+        autoClose: 1500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-      });
+      })
     } catch (error) {
       console.log(error)
-      toast.error(error.data.message, {
-        position: "bottom-center",
-        autoClose: 1200,
+      setError(error)
+      setErrorMessage(error.response.data.detail)
+      toast.error(error.response.data.detail, {
+        position: "top-right",
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-      });
+      })
     }
   }
 
   const handleAddToTested = async (event) => {
     event.preventDefault()
     try {
-      console.log(`ADD THIS TO Tested ->`, recipeId)
+      console.log(`ADD THIS TO Tested ->`, recipeId, {
+        headers: { Authorization: `Bearer ${getToken()}` },
+      })
       const { data } = await axios.post(
         `${API_URL}/users/tested/${recipeId}`
       )
+      console.log(data)
+      console.log(data.detail)
+      toast.success(data.detail, {
+        position: "top-right",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
     } catch (error) {
       console.log(error)
+      setError(error)
+      setErrorMessage(error.response.data.detail)
+      toast.error(error.response.data.detail, {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
+    }
+  }
+
+  const handleDelete = async (event) => {
+    event.preventDefault()
+    try {
+      console.log(`delete this recipe`, recipeId)
+      const { data } = await axios.delete(`${API_URL}/recipes/${recipeId}`, {
+        headers: { Authorization: `Bearer ${getToken()}` },
+      })
+      toast.success(data.detail, {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
+      navigate('/recipes')
+    } catch (error) {
+      console.log('error', error)
+      console.log('error message', error.response.data.detail)
+      setError(error)
+      setErrorMessage(error.response.data.detail)
     }
   }
 
@@ -123,12 +200,10 @@ const RecipeSingle = () => {
 
       const res = await axios.post(
         `${API_URL}/reviews/${recipeId}`,
-        formData
-      )
-      // console.log('form data -->', formData)
-      // setMovie(res.data)
+        formData, {
+          headers: { Authorization: `Bearer ${getToken()}` },
+        })
       setFormData({ text: '', rating: '' })
-      // setMessage(res.data.message)
       console.log('res-->', res.data.message)
       toast.error(res.data.message, {
         position: "bottom-center",
@@ -140,8 +215,6 @@ const RecipeSingle = () => {
         progress: undefined,
       });
       setUpdatedComments({ ...recipeId })
-      // window.location.reload()
-      // console.log('reloaded')
     } catch (error) {
       console.log('error message-->', error)
       toast.error(error.message, {
@@ -160,6 +233,7 @@ const RecipeSingle = () => {
 
   const handleChange = async (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value })
+    console.log(formData)
   }
 
   const handleRating = (rating) => {
@@ -167,102 +241,124 @@ const RecipeSingle = () => {
   }
 
   return (
-    <Container className="search-wrapper min-vh-100 recipe-single">
-      {Object.keys(oils).length ?
+    <Container className="recipe-single-wrapper min-vh-100">
+      {Object.keys(recipe).length ?
         <>
-          <div className='title-container text-start p-4'>
-            <div>
-              <h1>{oils.name}</h1>
-              {/* Categoies */}
-              <div className="categories-container">
-                {oils.applications.map((application) => {
-                  return (
-                    <div key={application.name} className="category">
-                      <img srm={application.icon} alt="icon"/>
-                      <p>{application.name}</p>
-                    </div>
-                    )
-                  })}
-                {oils.remedies.map((remedy) => {
-                  return (
-                    <div key={remedy.name}>
-                      <img srm={remedy.icon} alt="icon"/>
-                      <p>{remedy.name}</p>
-                    </div>
-                  )
-                })}
-              </div>
-              <p>{oils.description}</p>
+          <Container className="header-wrapper">
+            <Row>
+              {/* <Row className="flex-column-reverse flex-md-row"> */}
+              <Col className="col-12" md="6">
+                <h1>{recipe.name}</h1>
+              </Col>
+              <Col className="col-12" md="6">
+                <div className="userActions d-flex justify-content-md-end">
+                  {/* {currentUser.bookmarked_recipes.objects.filter(['bookmarked_by'] = currentUser.id).count() > 0 ? 
+                  <>
+                  <button disabled>BOOKMARKED!</button>
+                  </>
+                  :
+                  <button onClick={handleAddToBookmark}>BOOKMARK</button>
+                  } */}
+                  <button onClick={handleAddToBookmark}>BOOKMARK</button>
+                  <button onClick={handleAddToTested}>TESTED</button>
+                  {userIsAuthenticated() && (currentUser.id === recipe.owner.id) ?
+                    <>
+                      <button onClick={handleDelete}>DELETE</button>
+                      <button>EDIT</button>
+                    </>
+                    :
+                    <></>
+                  }
+                </div>
+              </Col>
+            </Row>
+            {/* Categoies */}
+            <div className="categories-container">
+              {recipe.applications.map((application) => {
+                return (
+                  <div key={application.name} className="category">
+                    <img srm={application.icon} alt="icon" />
+                    <p>{application.name}</p>
+                  </div>
+                )
+              })}
+              {recipe.remedies.map((remedy) => {
+                return (
+                  <div key={remedy.name}>
+                    <img srm={remedy.icon} alt="icon" />
+                    <p>{remedy.name}</p>
+                  </div>
+                )
+              })}
             </div>
-            <div>
-              <button onClick={handleAddToBookmark}>ADD TO BOOKMARK</button>
-              <button onClick={handleAddToTested}>ADD TO TESTED</button>
-            </div>
-          </div>
-
+            <p>{recipe.description}</p>
+          </Container>
 
           {/* Ingredients */}
-          <Row className='block-container'>
-            <Col className="col-12" md="6">
-              <div className='ingredients-container'>
-                <h3>Ingredients</h3>
-                <p className="m-0">Makes {oils.makes}</p>
-                {/* Base Oils */}
-                {oils.base_oil_amount.length > 0 &&
-                  <>
-                    {oils.base_oil_amount.map((item) => {
-                      return (
-                        <div key={item.id} className="ingredient">
-                          <Link to={`/bases/${item.base_oil.id}`}>
-                            <p className="fw-bold">{item.base_oil.name} oil</p>
-                          </Link>
+          <Container>
+            <Row>
+              <Col className="col-12" md="5">
+                <Row className='ingredients-container me-md-1'>
+                  <h3>Ingredients</h3>
+                  <p className="m-0">Makes {recipe.makes}</p>
+                  {/* Base Oils */}
+                  {recipe.base_oil_amount.length > 0 &&
+                    <>
+                      {recipe.base_oil_amount.map((item) => {
+                        return (
+                          <div key={item.id} className="ingredient">
+                            <Link to={`/bases/${item.base_oil.id}`}>
+                              <p className="fw-bold">{item.base_oil.name} oil</p>
+                            </Link>
                             <p className="ms-2">{item.quantity} {item.measurement}</p>
-                        </div>
-                      )
-                    })}
-                  </>
-                }
-                {/* Other Ingredient Oils */}
-                {oils.other_ingredient_amount.length >0 &&
-                  <>
-                    {oils.other_ingredient_amount.map((item) => {
-                      return (
-                        <div key={item.id} className="ingredient">
+                          </div>
+                        )
+                      })}
+                    </>
+                  }
+                  {/* Other Ingredient Oils */}
+                  {recipe.other_ingredient_amount.length > 0 &&
+                    <>
+                      {recipe.other_ingredient_amount.map((item) => {
+                        return (
+                          <div key={item.id} className="ingredient">
                             <p className="fw-bold">{item.other_ingredient.name}</p>
                             <p className="ms-2">{item.quantity} {item.measurement}</p>
-                        </div>
-                      )
-                    })}
-                  </>
-                }
-                {/* Essential Oils */}
-                {oils.essential_oil_amount.length > 0 &&
-                  <>
-                    {oils.essential_oil_amount.map((item) => {
-                      return (
-                        <div key={item.id} className="ingredient">
-                          <Link to={`/essentials/${item.essential_oil.id}`}>
-                            <p className="fw-bold">{item.essential_oil.name} essential oil</p>
-                          </Link>
+                          </div>
+                        )
+                      })}
+                    </>
+                  }
+                  {/* Essential Oils */}
+                  {recipe.essential_oil_amount.length > 0 &&
+                    <>
+                      {recipe.essential_oil_amount.map((item) => {
+                        return (
+                          <div key={item.id} className="ingredient">
+                            <Link to={`/essentials/${item.essential_oil.id}`}>
+                              <p className="fw-bold">{item.essential_oil.name} essential oil</p>
+                            </Link>
                             <p className="ms-2">{item.quantity} {item.measurement}</p>
-                        </div>
-                      )
-                    })}
-                  </>
-                }
-              </div>
-            </Col>
-            <Col className="col-12" md="6">
-              <div className="steps">
-                <h3>Steps</h3>
-                <div className="text-start">
-                  {oils.step_one !== "" ? <><p>1. {oils.step_one}</p></> : <></>}
-                  {oils.step_two !== "" ? <><p>2. {oils.step_two}</p></> : <></>}
-                  {oils.step_three !== "" ? <><p>3. {oils.step_three}</p></> : <></>}
-                </div>
-              </div>
-            </Col>
-          </Row>
+                          </div>
+                        )
+                      })}
+                    </>
+                  }
+                </Row>
+              </Col>
+              <Col className="col-12" md="7">
+                <Row className="steps-container">
+                  <h3>Steps</h3>
+                  <div className="text-start">
+                    {recipe.step_one !== "" ? <><p>1. {recipe.step_one}</p></> : <></>}
+                    {recipe.step_two !== "" ? <><p>2. {recipe.step_two}</p></> : <></>}
+                    {recipe.step_three !== "" ? <><p>3. {recipe.step_three}</p></> : <></>}
+                  </div>
+                </Row>
+              </Col>
+            </Row>
+          </Container>
+
           {/* COMMENTS SECTION */}
           <Row className="comment-wrapper d-flex flex-sm-row flex-column align-content-center justify-content-center">
             <div className="create-comment">
@@ -356,9 +452,12 @@ const RecipeSingle = () => {
                         <div>
                           <img
                             src={comment.owner.profile_image}
-                            alt="profile"
+                            alt="profile img"
                           />
-                          <p>{comment.owner.username}</p>
+                          <Link to={`/profile/${comment.owner.username}`}>
+                            <p>{comment.owner.username}</p>
+                          </Link>
+
                           <Rating
                             onClick={handleRating}
                             size={20}
@@ -394,7 +493,7 @@ const RecipeSingle = () => {
           </Row>
         </>
         :
-        <h1 className='text-center'>{error ? 'error' : 'loading'}</h1>
+        <h1 className='text-center'>{error ? <p>error</p> : <img className="w-25" src={loaderImg} alt='loader' />}</h1>
       }
 
     </Container>

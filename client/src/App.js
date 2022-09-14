@@ -21,6 +21,7 @@ import RecipeSingle from './components/recipes/RecipeSingle'
 import CreateRecipe from './components/recipes/CreateRecipe'
 
 import ProfileDetail from './components/profile/ProfileDetail'
+import PublicProfile from './components/profile/PublicProfile'
 import SavedRecipes from './components/profile/SavedRecipes'
 import CreatedRecipe from './components/profile/CreatedRecipes'
 
@@ -35,15 +36,15 @@ function App() {
   //   getData()
   // })
 
-  useEffect(() => {
-    // if localstorage token exists, set axios default headers to token, if not, set to null
-    const token = localStorage.getItem('aroma-token')
-    if (token) {
-      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
-    } else {
-      axios.defaults.headers.common["Authorization"] = null
-    }
-  }, [])
+  // useEffect(() => {
+  //   // if localstorage token exists, set axios default headers to token, if not, set to null
+  //   const token = localStorage.getItem('aroma-token')
+  //   if (token) {
+  //     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
+  //   } else {
+  //     axios.defaults.headers.common["Authorization"] = null
+  //   }
+  // }, [])
 
   return (
     <div className="site-wrapper">
@@ -61,6 +62,7 @@ function App() {
           <Route path='/recipes/:recipeId' element ={<RecipeSingle />} />
           <Route path='/createrecipe' element ={<CreateRecipe />} />
           <Route path='/profile' element ={<ProfileDetail />} />
+          <Route path='/profile/:username' element ={<PublicProfile />} />
           <Route path='/savedrecipes/' element ={<SavedRecipes />} />
           <Route path='/createdrecipes/' element ={<CreatedRecipe />} />
 
