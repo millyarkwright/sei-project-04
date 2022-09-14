@@ -161,11 +161,19 @@ class BookmarkedView(APIView):
 
   def delete(self, request, pk):
     bookmark_to_delete = self.get_bookmark(pk)
-    print('bookmark ownner ->', bookmark_to_delete.owner)
-    print('request user ->', request.user)
+    # print('bookmark owner ->', bookmark_to_delete.owner)
+    # print('request user ->', request.user)
+
+    # bookmark_to_delete.delete()
+    # return Response(status=status.HTTP_204_NO_CONTENT)
+
+    try:
+      bookmark_to_delete.delete()
+      return Response({'detail': 'Recipe has been removed from bookmarks'}, status=status.HTTP_200_OK)
+    except Exception as e:
+      return Response(e.__dict__ if e.__dict__ else str(e), status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+
     
-    bookmark_to_delete.delete()
-    return Response(status=status.HTTP_204_NO_CONTENT)
 
 # ! TESTED LIST VIEW --------
 class TestedListView(APIView):

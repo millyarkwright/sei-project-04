@@ -47,6 +47,8 @@ const RecipeSingle = () => {
   const [error, setError] = useState('')
   const [errorMessage, setErrorMessage] = useState([])
   const [currentUser, setCurrentUser] = useState([])
+  const [bookmarked, setBookmarked] = useState()
+
 
   useEffect(() => {
     const getData = async () => {
@@ -58,6 +60,10 @@ const RecipeSingle = () => {
         console.log('DATAAA', data)
         console.log('data.bookmarked -->', data.bookmarked_recipes)
         console.log('data.tested -->', data.tested_recipes)
+        console.log('data.bookmarked id -->', data.bookmarked_recipes.id)
+        console.log('SOME--->', data.bookmarked_recipes.some(bookmarked => bookmarked.id === 3))
+        console.log('RECIPE ID--->', parseInt(recipeId))
+        setBookmarked(data.bookmarked_recipes.some(bookmarked => bookmarked.id === parseInt(recipeId)))
       } catch (error) {
         setError(error)
         console.log(error)
@@ -65,6 +71,10 @@ const RecipeSingle = () => {
     }
     getData()
   }, [])
+
+  useEffect(() => {
+    console.log('bookmarked boolean', bookmarked)
+  },[currentUser])
 
   useEffect(() => {
     const getData = async () => {
@@ -102,6 +112,42 @@ const RecipeSingle = () => {
     try {
       console.log(`ADD THIS TO BOOKMARK ->`, recipeId)
       const { data } = await axios.post(`${API_URL}/users/bookmarked/${recipeId}`, {
+        headers: { Authorization: `Bearer ${getToken()}` },
+      })
+      console.log('DATA->', data)
+      console.log('data.detail', data.detail)
+      setBookmarked(true)
+      toast.success(data.detail, {
+        position: "top-right",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
+    } catch (error) {
+      console.log(error)
+      setError(error)
+      setErrorMessage(error.response.data.detail)
+      toast.error(error.response.data.detail, {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
+    }
+  }
+
+
+  const handleRemoveBookmark = async (event) => {
+    event.preventDefault()
+    try {
+      console.log(`REMOVE THIS FROM BOOKMARKS ->`, recipeId)
+      const { data } = await axios.delete(`${API_URL}/users/bookmarked/${recipeId}`, {
         headers: { Authorization: `Bearer ${getToken()}` },
       })
       console.log('DATA->', data)
@@ -252,15 +298,15 @@ const RecipeSingle = () => {
               </Col>
               <Col className="col-12" md="6">
                 <div className="userActions d-flex justify-content-md-end">
-                  {/* {currentUser.bookmarked_recipes.objects.filter(['bookmarked_by'] = currentUser.id).count() > 0 ? 
-                  <>
-                  <button disabled>BOOKMARKED!</button>
-                  </>
+                  {bookmarked ?
+                  <button onClick={handleRemoveBookmark}>UNBOOKMARK</button>    
                   :
                   <button onClick={handleAddToBookmark}>BOOKMARK</button>
-                  } */}
-                  <button onClick={handleAddToBookmark}>BOOKMARK</button>
+                  }
+
+                  {/* <button onClick={handleAddToBookmark}>BOOKMARK</button> */}
                   <button onClick={handleAddToTested}>TESTED</button>
+
                   {userIsAuthenticated() && (currentUser.id === recipe.owner.id) ?
                     <>
                       <button onClick={handleDelete}>DELETE</button>
