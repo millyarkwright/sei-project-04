@@ -7,7 +7,7 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticate
 
 # From Recipe App:
 from .models import Recipe, OtherIngredient, OtherIngredientAmount, EssentialOilAmount, BaseOilAmount
-from .serializers.common import RecipeSerializer, CreateRecipeSerializer, OtherIngredientSerializer, OtherIngredientAmountSerializer, EssentialOilAmountSerializer, BaseOilAmountSerializer, EssentialOilAmountFullSerializer, OtherIngredientAmountFullSerializer
+from .serializers.common import RecipeSerializer, CreateRecipeSerializer, OtherIngredientSerializer, OtherIngredientAmountSerializer, EssentialOilAmountSerializer, BaseOilAmountSerializer, BaseOilAmountFullSerializer, EssentialOilAmountFullSerializer, OtherIngredientAmountFullSerializer
 from .serializers.populated import PopulatedOtherIngredientAmountSerializer, PopulatedRecipeSerializer, PopulatedOtherIngredientSerializer, PopulatedEssentialOilAmountSerializer
 
 # ! Recipe Views
@@ -69,15 +69,54 @@ class CreateRecipeView(APIView):
   permission_classes = (IsAuthenticatedOrReadOnly, )
 
   def post(self, request):
-    request.data['owner'] = request.user.id
-    # convert request.data into a dictionary. Pop out ingredient amounts- save to varaible. 
+    req_eo_amount = request.data['eo_amount']
+    req_bo_amount = request.data['bo_amount']
+    req_oi_amount = request.data['oi_amount']
 
-    recipe_to_add = CreateRecipeSerializer(data=request.data)
+    recipe_request = request.data
+    recipe_request.pop('eo_amount')
+    recipe_request.pop('bo_amount')
+    recipe_request.pop('oi_amount')
+    print('CREATE RECIPEEE REQUEST DATA ->>>', request.data)
+    print('NEW EO AMOUNT ->>>', req_eo_amount)
+    print('NEW BO AMOUNT ->>>', req_bo_amount)
+    print('NEW OI AMOUNT ->>>', req_oi_amount)
+
+    recipe_request['owner'] = request.user.id
+    print('-----NEW RECIPE REQUEST ->>>', recipe_request)
+
+    recipe_to_add = CreateRecipeSerializer(data=recipe_request)
+    print('-------RECIPE_TO_ADD--------')
+    print(recipe_to_add)
+    print('------------------------')
+
     try: 
       recipe_to_add.is_valid()
       recipe_to_add.save()
+      print('-------NEW RECIPE_TO_ADD--------')
+      print(recipe_to_add.data)
+      print('-------NEW RECIPE_ID--------')
+      print(recipe_to_add.data['id'])
 
-      return Response(recipe_to_add.data , status=status.HTTP_201_CREATED)
+      for item in req_eo_amount:
+        item['recipe'] = recipe_to_add.data['id']
+        amount_to_add = EssentialOilAmountFullSerializer(data=item)
+        amount_to_add.is_valid(True)
+        amount_to_add.save()
+        
+      for item in req_bo_amount:
+        item['recipe'] = recipe_to_add.data['id']
+        amount_to_add = BaseOilAmountFullSerializer(data=item)
+        amount_to_add.is_valid(True)
+        amount_to_add.save()  
+
+      for item in req_oi_amount:
+        item['recipe'] = recipe_to_add.data['id']
+        amount_to_add = OtherIngredientAmountFullSerializer(data=item)
+        amount_to_add.is_valid(True)
+        amount_to_add.save()
+
+      return Response({'detail': 'Recipe successfully added!'}, status=status.HTTP_201_CREATED)
     except Exception as e:
       print('e->', e)
       return Response(e.__dict__ if e.__dict__ else str(e), status=status.HTTP_422_UNPROCESSABLE_ENTITY)
@@ -204,14 +243,14 @@ class BaseOilAmountListView(APIView):
   def get(self, _request):
     base_oil_amounts = BaseOilAmount.objects.all()
     print('base_oil_amounts->', base_oil_amounts)
-    serialized_base_oil_amounts = BaseOilAmountSerializer(base_oil_amounts, many=True)
+    serialized_base_oil_amounts = BaseOilAmountFullSerializer(base_oil_amounts, many=True)
     print('Serialized base_oil_amounts->', serialized_base_oil_amounts)
     return Response(serialized_base_oil_amounts.data, status=status.HTTP_200_OK)
 
 class BaseOilAmountView(APIView):
   def post(self, request, pk):
     request.data['recipe'] = int(pk)
-    bo_amount_to_create = BaseOilAmountSerializer(data=request.data)
+    bo_amount_to_create = BaseOilAmountFullSerializer(data=request.data)
     try:
       bo_amount_to_create.is_valid(True)
       bo_amount_to_create.save()
