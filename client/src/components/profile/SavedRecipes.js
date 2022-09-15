@@ -87,7 +87,7 @@ const SavedRecipes = () => {
                 <>
                   <Row className="list-card-container me-md-1">
                     <Col className="col-12 list-text px-2 pt-2 p-md-3" md="8">
-                      <Link to={`/recipes/${recipe.id}`}>
+                      <Link to={`/recipes/${recipe.bookmarked_recipe.id}`}>
                         <h3>{recipe.bookmarked_recipe.name}</h3>
                       </Link>
                       <p>{recipe.bookmarked_recipe.description}</p>
@@ -138,7 +138,7 @@ const SavedRecipes = () => {
                   <Row className="list-card-container ms-md-1">
 
                     <Col className="col-12 list-text px-2 pt-2 p-md-3" md="8">
-                      <Link to={`/recipes/${recipe.id}`}>
+                      <Link to={`/recipes/${recipe.tested_recipe.id}`}>
                         <h3>{recipe.tested_recipe.name}</h3>
                       </Link>
                       <p>{recipe.tested_recipe.description}</p>

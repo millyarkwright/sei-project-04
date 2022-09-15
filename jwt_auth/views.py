@@ -181,7 +181,7 @@ class TestedListView(APIView):
   def get(self, _request):
     tested = TestedRecipe.objects.all()
     print('Tested->', tested)
-    serialized_tested = TestedRecipe(tested, many=True)
+    serialized_tested = TestedRecipeSerializer(tested, many=True)
     print('Serialized Tested->', serialized_tested)
     return Response(serialized_tested.data, status=status.HTTP_200_OK)
 
@@ -197,7 +197,7 @@ class TestedView(APIView):
     existing_tested_count = TestedRecipe.objects.filter(tested_recipe = request.data['tested_recipe'], tested_by = request.data['tested_by']).count() 
     print('CHECK TESTED>', existing_tested_count)
     if existing_tested_count !=0:
-      return Response({'message': 'You have already tested this recipe!'}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+      return Response({'detail': 'You have already tested this recipe!'}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
 
     test_to_add= TestedRecipeSerializer(data=request.data)
