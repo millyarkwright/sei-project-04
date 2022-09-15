@@ -4,7 +4,7 @@
   "pk": 1,
   "fields": {
     "name": "Pampering & Beauty",
-    "icon": ""
+    "icon": "https://i.ibb.co/VwkT5t0/pampering-beauty.png"
   }
 },
 {
@@ -12,7 +12,7 @@
   "pk": 2,
   "fields": {
     "name": "Digestive Problems",
-    "icon": ""
+    "icon": "https://i.ibb.co/mBr2Hb6/digestive-problems.png"
   }
 },
 {
@@ -20,7 +20,7 @@
   "pk": 3,
   "fields": {
     "name": "Respiratory Complaints",
-    "icon": ""
+    "icon": "https://i.ibb.co/XSSHjFj/respiratory-complaints.png"
   }
 },
 {
@@ -28,7 +28,7 @@
   "pk": 4,
   "fields": {
     "name": "Circulatory Problems",
-    "icon": ""
+    "icon": "https://i.ibb.co/4j9nHD6/circulation-problems.png"
   }
 },
 {
@@ -36,7 +36,7 @@
   "pk": 5,
   "fields": {
     "name": "Aches & pains",
-    "icon": ""
+    "icon": "https://i.ibb.co/8M1qnn8/aches-pains.png"
   }
 },
 {
@@ -44,7 +44,7 @@
   "pk": 6,
   "fields": {
     "name": "Skin Care",
-    "icon": ""
+    "icon": "https://i.ibb.co/0Xnn79R/skin-care.png"
   }
 },
 {
@@ -52,7 +52,7 @@
   "pk": 7,
   "fields": {
     "name": "Mind & Wellbeing",
-    "icon": ""
+    "icon": "https://i.ibb.co/bPtQqGW/mental-health.png"
   }
 },
 {
@@ -60,7 +60,7 @@
   "pk": 8,
   "fields": {
     "name": "Women's Health",
-    "icon": ""
+    "icon": "https://i.ibb.co/0tk4C9x/womens-health.png"
   }
 },
 {
@@ -68,7 +68,7 @@
   "pk": 9,
   "fields": {
     "name": "First Aid",
-    "icon": ""
+    "icon": "https://i.ibb.co/WnjyFCq/first-aid.png"
   }
 },
 {
@@ -76,7 +76,15 @@
   "pk": 10,
   "fields": {
     "name": "Hair Care",
-    "icon": ""
+    "icon": "https://i.ibb.co/C5trBgP/hair-care.png"
+  }
+},
+{
+  "model": "remedies.remedy",
+  "pk": 11,
+  "fields": {
+    "name": "Fluid Retention",
+    "icon": "https://i.ibb.co/DtDQm4S/fluid-retention.png"
   }
 }
 ]

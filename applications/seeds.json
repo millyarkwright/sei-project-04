@@ -4,7 +4,7 @@
   "pk": 1,
   "fields": {
     "name": "Bath Oil",
-    "icon": ""
+    "icon": "https://i.ibb.co/TPMpQF2/bath-oil.png"
   }
 },
 {
@@ -12,7 +12,7 @@
   "pk": 2,
   "fields": {
     "name": "Massage Oil",
-    "icon": ""
+    "icon": "https://i.ibb.co/F7yQ1F4/massage-oil.png"
   }
 },
 {
@@ -20,7 +20,7 @@
   "pk": 3,
   "fields": {
     "name": "Mouthwash",
-    "icon": ""
+    "icon": "https://i.ibb.co/t8DQRhZ/mouthwash.png"
   }
 },
 {
@@ -28,7 +28,7 @@
   "pk": 4,
   "fields": {
     "name": "Compress",
-    "icon": ""
+    "icon": "https://i.ibb.co/Wvvb11w/compress.png"
   }
 },
 {
@@ -36,7 +36,7 @@
   "pk": 5,
   "fields": {
     "name": "Steam Inhalation",
-    "icon": ""
+    "icon": "https://i.ibb.co/ncd9WVq/steam-inhallation.png"
   }
 },
 {
@@ -44,7 +44,7 @@
   "pk": 6,
   "fields": {
     "name": "Diffuser",
-    "icon": ""
+    "icon": "https://i.ibb.co/j3tQf7L/diffuser.png"
   }
 },
 {
@@ -52,7 +52,7 @@
   "pk": 7,
   "fields": {
     "name": "Fragrance",
-    "icon": ""
+    "icon": "https://i.ibb.co/B3X4V5m/fragrance.png"
   }
 },
 {
@@ -60,7 +60,7 @@
   "pk": 8,
   "fields": {
     "name": "Shower",
-    "icon": ""
+    "icon": "https://i.ibb.co/jbx8SnL/shower.png"
   }
 },
 {
@@ -68,7 +68,7 @@
   "pk": 9,
   "fields": {
     "name": "Foot Bath",
-    "icon": ""
+    "icon": "https://i.ibb.co/cNgjPSZ/footbath.png"
   }
 },
 {
@@ -76,7 +76,7 @@
   "pk": 10,
   "fields": {
     "name": "Ointment",
-    "icon": ""
+    "icon": "https://i.ibb.co/8Bs43Cx/ointment.png"
   }
 }
 ]
