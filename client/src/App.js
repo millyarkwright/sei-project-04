@@ -6,6 +6,7 @@ import { API_URL } from './config'
 // IMPORT PAGE COMPONENTS
 import HomePage from './components/HomePage'
 import PageNavBar from './components/PageNavBar'
+import NotFoundPage from './components/NotFoundPage'
 
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
@@ -67,7 +68,7 @@ function App() {
           <Route path='/profile/:username' element ={<PublicProfile />} />
           <Route path='/savedrecipes/' element ={<SavedRecipes />} />
           <Route path='/createdrecipes/' element ={<CreatedRecipe />} />
-
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
     </div>
