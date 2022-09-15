@@ -55,7 +55,7 @@ const EssentialSingle = () => {
                     {essentialOil.applications.map((application) => {
                       return (
                         <div key={application.name}>
-                          <img srm={application.icon} alt="icon"/>
+                          <img src={application.icon} alt="icon"/>
                           <p>{application.name}</p>
                         </div>
                         )
@@ -63,7 +63,7 @@ const EssentialSingle = () => {
                     {essentialOil.remedies.map((remedy) => {
                       return (
                         <div key={remedy.name}>
-                          <img srm={remedy.icon} alt="icon"/>
+                          <img src={remedy.icon} alt="icon"/>
                           <p>{remedy.name}</p>
                         </div>
                       )

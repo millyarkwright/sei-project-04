@@ -1,5 +1,5 @@
 // * Hooks
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 
 // * React Components
@@ -14,7 +14,7 @@ import { API_URL } from "../../config.js"
 // * Helpers
 import { setToken } from '../helpers/auth'
 import { getText } from '../helpers/auth'
-
+import jwt_decode from 'jwt-decode'
 
 const Login = () => {
 
@@ -22,13 +22,50 @@ const Login = () => {
 
   // State
   const [loginData, setLoginData] = useState({
-    username:'', 
-    password:''
+    username: '',
+    password: ''
   })
 
   const [error, setError] = useState()
-  
+
   // Execution
+
+  // *---------GOOGLE AUTH--------------
+
+  const handleCallbackResponse = async (response) => {
+    console.log("Encoded JWT ID Token: " + response.credential)
+    let userObject = jwt_decode(response.credential)
+    try {
+      const { data } = await axios.post(`${API_URL}/users/login/`, {
+        username: userObject.given_name.toLowerCase() + userObject.family_name.toLowerCase().charAt(0) + userObject.sub.slice(0,3),
+        password: userObject.sub + 'abc?!',
+      })
+      // Token & navigation
+      const { token } = data
+      setToken(token)
+      getText(data.message)
+      navigate('/')
+    } catch (error) {
+      console.log(error)
+ 
+    }
+  }
+  useEffect(() => {
+    /* global google */
+    // eslint-disable-next-line no-unused-expressions
+    google.accounts.id.initialize({
+      client_id: "315316772239-fb7t6peu1k15t6as17gi3grcpbfa3kn8.apps.googleusercontent.com",
+      callback: handleCallbackResponse
+    })
+
+    google.accounts.id.renderButton(
+      document.getElementById("signInDiv"),
+      { theme: "outline", size: "large" }
+    )
+  }, [])
+
+  // * -------------------------------------
+
   const handleChange = (event) => {
     setLoginData({ ...loginData, [event.target.name]: event.target.value })
     console.log('logindata', loginData)
@@ -104,7 +141,12 @@ const Login = () => {
             required
           />
         </Row>
+        <Row>
+          {/* <label htmlFor="password">Login with Goo</label> */}
+          <div id="signInDiv" className="d-flex justify-content-center"></div>
+        </Row>
         {/* Submit */}
+
         <input type="submit" value="Login" className="btn dark" />
         <p className="text-center mb-0 mt-3">Not yet registered?</p>
         <p className="text-center mb-0">

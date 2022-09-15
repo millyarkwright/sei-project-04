@@ -422,7 +422,7 @@ const RecipeSingle = () => {
               {recipe.applications.map((application) => {
                 return (
                   <div key={application.name} className="category">
-                    <img srm={application.icon} alt="icon" />
+                    <img src={application.icon} alt="icon" />
                     <p>{application.name}</p>
                   </div>
                 )
@@ -430,7 +430,7 @@ const RecipeSingle = () => {
               {recipe.remedies.map((remedy) => {
                 return (
                   <div key={remedy.name}>
-                    <img srm={remedy.icon} alt="icon" />
+                    <img src={remedy.icon} alt="icon" />
                     <p>{remedy.name}</p>
                   </div>
                 )
