@@ -47,8 +47,10 @@ const RecipeSingle = () => {
   const [error, setError] = useState('')
   const [errorMessage, setErrorMessage] = useState([])
   const [currentUser, setCurrentUser] = useState([])
+  const [bookmarkedRecipes, setBookmarkedRecipes] = useState([])
   const [bookmarked, setBookmarked] = useState()
 
+// * Get User Data
 
   useEffect(() => {
     const getData = async () => {
@@ -57,13 +59,23 @@ const RecipeSingle = () => {
           headers: { Authorization: `Bearer ${getToken()}` },
         })
         setCurrentUser(data)
-        console.log('DATAAA', data)
-        console.log('data.bookmarked -->', data.bookmarked_recipes)
-        console.log('data.tested -->', data.tested_recipes)
-        console.log('data.bookmarked id -->', data.bookmarked_recipes.id)
-        // console.log('SOME--->', data.bookmarked_recipes.some(bookmarked => bookmarked.id === 3))
-        // console.log('RECIPE ID--->', parseInt(recipeId))
-        // setBookmarked(data.bookmarked_recipes.some(bookmarked => bookmarked.id === parseInt(recipeId)))
+        console.log('USER DATAAA', data)
+        console.log('USER data.bookmarked_recipes  -->', data.bookmarked_recipes)
+        // console.log('USER data.tested -->', data.tested_recipes)
+        console.log('SOME - bookmarkid is 11 --->', data.bookmarked_recipes.some(bookmark => bookmark.id ===11))
+        console.log('FILTER - bookmarkid is 11 --->', data.bookmarked_recipes.filter(bookmark => bookmark.id === 11))
+
+        let BookmarkedRecipeIds = data.bookmarked_recipes.map(recipe => recipe.bookmarked_recipe.id)
+        console.log('bookmarked recipe ids array-->', BookmarkedRecipeIds)
+        setBookmarkedRecipes(BookmarkedRecipeIds)
+
+        let bookmarkId = data.bookmarked_recipes.filter(bookmark => bookmark.bookmarked_recipe.id)
+        
+        console.log('BOOKMARK ID', bookmarkId)
+        
+        console.log('USER BOOKMARK IDS', data.bookmarked_recipes.map(bookmark => bookmark.id) )
+
+
       } catch (error) {
         setError(error)
         console.log(error)
@@ -73,8 +85,19 @@ const RecipeSingle = () => {
   }, [])
 
   useEffect(() => {
+    if (bookmarkedRecipes.some(id => parseInt(recipeId))) {
+      console.log('recipe found in bookmarkedRecipe')
+      setBookmarked(true)
+    } else {
+      setBookmarked(false)
+    }
+  }, [bookmarkedRecipes])
+
+  useEffect(() => {
     console.log('bookmarked boolean', bookmarked)
   },[currentUser])
+
+  // * Get Recipe Data
 
   useEffect(() => {
     const getData = async () => {
@@ -90,7 +113,7 @@ const RecipeSingle = () => {
     getData()
   }, [])
 
-
+// * Set Comments
 
   useEffect(() => {
     const getData = async () => {
@@ -106,12 +129,15 @@ const RecipeSingle = () => {
     getData()
   }, [updatedComments])
 
+  // ! Executions
+
+  // * Handle Bookmarks
 
   const handleAddToBookmark = async (event) => {
     event.preventDefault()
     try {
       console.log(`ADD THIS TO BOOKMARK ->`, recipeId)
-      const { data } = await axios.post(`${API_URL}/users/bookmarked/${recipeId}`, {
+      const { data } = await axios.post(`${API_URL}/users/bookmarked/${recipeId}`, {}, {
         headers: { Authorization: `Bearer ${getToken()}` },
       })
       console.log('DATA->', data)
@@ -146,8 +172,9 @@ const RecipeSingle = () => {
   const handleRemoveBookmark = async (event) => {
     event.preventDefault()
     try {
-      console.log(`REMOVE THIS FROM BOOKMARKS ->`, recipeId)
-      const { data } = await axios.delete(`${API_URL}/users/bookmarked/${recipeId}`, {
+      console.log(`REMOVE THIS RECIPE FROM BOOKMARKS ->`, recipeId)
+      console.log('EVENT TARGET VALUE', event.target.value)
+      const { data } = await axios.delete(`${API_URL}/users/bookmarked/${event.target.value}`, {
         headers: { Authorization: `Bearer ${getToken()}` },
       })
       console.log('DATA->', data)
@@ -177,15 +204,16 @@ const RecipeSingle = () => {
     }
   }
 
+  // * Handle Tested
   const handleAddToTested = async (event) => {
     event.preventDefault()
     try {
       console.log(`ADD THIS TO Tested ->`, recipeId, {
         headers: { Authorization: `Bearer ${getToken()}` },
       })
-      const { data } = await axios.post(
-        `${API_URL}/users/tested/${recipeId}`
-      )
+      const { data } = await axios.post(`${API_URL}/users/tested/${recipeId}`, {}, {
+        headers: { Authorization: `Bearer ${getToken()}` },
+      })
       console.log(data)
       console.log(data.detail)
       toast.success(data.detail, {
@@ -213,6 +241,7 @@ const RecipeSingle = () => {
     }
   }
 
+  // * Handle Delete Recipe
   const handleDelete = async (event) => {
     event.preventDefault()
     try {
@@ -238,6 +267,7 @@ const RecipeSingle = () => {
     }
   }
 
+  // * Handle Comments 
   const handleAddComment = async (event) => {
     event.preventDefault()
     try {
@@ -299,7 +329,7 @@ const RecipeSingle = () => {
               <Col className="col-12" md="6">
                 <div className="userActions d-flex justify-content-md-end">
                   {bookmarked ?
-                  <button onClick={handleRemoveBookmark}>UNBOOKMARK</button>    
+                  <button onClick={handleRemoveBookmark} value={currentUser.bookmarked_recipes.id}>UNBOOKMARK</button>    
                   :
                   <button onClick={handleAddToBookmark}>BOOKMARK</button>
                   }

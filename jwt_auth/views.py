@@ -218,8 +218,8 @@ class TestedView(APIView):
 
   def delete(self, request, pk):
     test_to_delete = self.get_test(pk)
-    print('bookmark owner ->', test_to_delete.owner)
-    print('request user ->', request.user)
+    # print('bookmark owner ->', test_to_delete.owner)
+    # print('request user ->', request.user)
 
     test_to_delete.delete()
     return Response(status=status.HTTP_204_NO_CONTENT)
