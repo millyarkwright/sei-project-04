@@ -1,3 +1,4 @@
+from xml.dom import ValidationErr
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -29,6 +30,7 @@ class RegisterView(APIView):
       return Response(user_to_create.data, status.HTTP_202_ACCEPTED)
     except Exception as e:
       print('e->', e)
+      print('e as dict', e.__dict__)
       return Response(e.__dict__ if e.__dict__ else str(e), status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
 #  ! LOGIN VIEW ---------
