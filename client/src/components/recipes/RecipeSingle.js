@@ -61,7 +61,7 @@ const RecipeSingle = () => {
   const [tested, setTested] = useState()
 
 
-// * Get User Data
+  // * Get User Data
 
   useEffect(() => {
     const getData = async () => {
@@ -76,7 +76,7 @@ const RecipeSingle = () => {
         let BookmarkedRecipeIds = data.bookmarked_recipes.map(recipe => recipe.bookmarked_recipe.id)
         // console.log('USER B.RECIPES IDS ARRAY-->', BookmarkedRecipeIds)
         setBookmarkedRecipeIds(BookmarkedRecipeIds)
-        
+
         // let bRecipes = data.bookmarked_recipes
         // let filteredBookmarkedRecipe 
         // for(let i=0; i < data.bookmarked_recipes.length; i++){
@@ -85,12 +85,12 @@ const RecipeSingle = () => {
         //   // console.log('RECIPE ID-->', bRecipes[i].bookmarked_recipe.id)
         //   // console.log('CURRENT RECIPE ID', parseInt(recipeId))
         //   if(bRecipes[i].bookmarked_recipe.id === parseInt(recipeId)){
-        //     // console.log('bRecipes', bRecipes[i].id)
+        //     console.log('bRecipes', bRecipes[i].id)
         //     let filteredBookmarkedRecipe = bRecipes[i].id
         //     // return bRecipes[i].id
         //   }
         // }
-        
+
       } catch (error) {
         setError(error)
         console.log(error)
@@ -98,6 +98,8 @@ const RecipeSingle = () => {
     }
     getData()
   }, [bookmarked])
+
+
 
   // * Bookmarked Recipes
 
@@ -164,7 +166,7 @@ const RecipeSingle = () => {
     getData()
   }, [])
 
-// * Set Comments
+  // * Set Comments
 
   useEffect(() => {
     const getData = async () => {
@@ -267,7 +269,7 @@ const RecipeSingle = () => {
       })
       console.log(data)
       console.log(data.detail)
-      setTested(false)
+      setTested(true)
       toast.success(data.detail, {
         position: "top-right",
         autoClose: 1500,
@@ -380,17 +382,26 @@ const RecipeSingle = () => {
               </Col>
               <Col className="col-12" md="6">
                 <div className="userActions d-flex justify-content-md-end">
-                  {bookmarked ?
-                  <button onClick={handleRemoveBookmark}>UNBOOKMARK</button>    
-                  :
-                  <button onClick={handleAddToBookmark}>BOOKMARK</button>
+                  {userIsAuthenticated() ?
+                    <>
+                      {bookmarked ?
+                        <button onClick={handleRemoveBookmark}>UNBOOKMARK</button>
+                        :
+                        <button onClick={handleAddToBookmark}>BOOKMARK</button>
+                      }
+
+                    </>
+                    :
+                    <>
+                      <button onClick={handleAddToBookmark}>BOOKMARK</button>
+                      <button onClick={handleAddToTested}>TESTED</button>
+                    </>
                   }
                   {tested ?
-                  <button disabled>TESTED</button>
-                  :
-                  <button onClick={handleAddToTested}>TESTED</button>
+                    <button disabled>TESTED</button>
+                    :
+                    <button onClick={handleAddToTested}>TESTED</button>
                   }
-
                   {userIsAuthenticated() && (currentUser.id === recipe.owner.id) ?
                     <>
                       <button onClick={handleDelete}>DELETE</button>
@@ -402,6 +413,7 @@ const RecipeSingle = () => {
                     :
                     <></>
                   }
+
                 </div>
               </Col>
             </Row>
