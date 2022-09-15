@@ -14,9 +14,12 @@ import Col from 'react-bootstrap/Col'
 
 
 const SavedRecipes = () => {
+  const [updatedList, setUpdatedList] = useState([])
   const [bookmarked, setBookmarked] = useState([])
+  const [bookmarkedId, setBookmarkedId] = useState([])
   const [tested, setTested] = useState([])
   const [error, setError] = useState([])
+  const [errorMessage, setErrorMessage] = useState([])
 
   useEffect(() => {
     const getData = async () => {
@@ -24,6 +27,7 @@ const SavedRecipes = () => {
         const { data } = await axios.get(`${API_URL}/users/profile/`, {
           headers: { Authorization: `Bearer ${getToken()}` },
         })
+        // setBookmarkedId(data.bookmarked_recipes.map((item)=> {return item.id}))
         setBookmarked(data.bookmarked_recipes)
         console.log('DATAAA', data)
         console.log('data.bookmarked -->', data.bookmarked_recipes)
@@ -35,7 +39,37 @@ const SavedRecipes = () => {
       }
     }
     getData()
-  }, [])
+  }, [updatedList])
+
+  const handleRemoveBookmarked = async (event) => {
+
+    try {
+      const { data } = await axios.delete(`${API_URL}/users/bookmarked/${event.target.value}`, {
+        headers: { Authorization: `Bearer ${getToken()}` },
+      })
+      setUpdatedList([...event.target.value])
+    } catch (error) {
+      console.log('error', error)
+      console.log('error message', error.response.data.detail)
+      setError(error)
+      setErrorMessage(error.response.data.detail)
+    }
+  }
+
+  const handleRemoveTested = async (event) => {
+
+    try {
+      const { data } = await axios.delete(`${API_URL}/users/tested/${event.target.value}`, {
+        headers: { Authorization: `Bearer ${getToken()}` },
+      })
+      setUpdatedList([...event.target.value])
+    } catch (error) {
+      console.log('error', error)
+      console.log('error message', error.response.data.detail)
+      setError(error)
+      setErrorMessage(error.response.data.detail)
+    }
+  }
 
   return (
     <Container className="search-wrapper min-vh-100">
@@ -48,6 +82,7 @@ const SavedRecipes = () => {
           {Object.keys(bookmarked).length > 0 ? 
             <>
             {bookmarked.map((recipe) => {
+
               return (
                 <>
                   <Row className="list-card-container me-md-1">
@@ -76,7 +111,8 @@ const SavedRecipes = () => {
                                 return (<span>{item.name}</span>)
                               })}
                             </div>
-                          </Col>}     
+                          </Col>}   
+                          <button onClick={handleRemoveBookmarked} value={recipe.id}>Remove</button>  
                       </Row>
                     </Col>
                   </Row>
@@ -132,7 +168,7 @@ const SavedRecipes = () => {
                               })}
                             </div>
                           </Col>}     
-
+                          <button onClick={handleRemoveTested} value={recipe.id}>Remove</button>
                       </Row>
                     </Col>
                   </Row>
