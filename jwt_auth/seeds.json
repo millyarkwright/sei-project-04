@@ -76,19 +76,152 @@
   }
 },
 {
-  "model": "jwt_auth.bookmarkedrecipe",
-  "pk": 1,
+  "model": "jwt_auth.user",
+  "pk": 7,
   "fields": {
-    "bookmarked_by": 1,
-    "bookmarked_recipe": 1
+    "password": "pbkdf2_sha256$390000$zTDyuKb5IOpR7DSm5SwvfE$fSGw3OD5hjiqGhwBAt/j3Ds5vk4CTmlHduKU74TbX9I=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2022-09-12T15:00:23.176Z",
+    "email": "user3@email.com",
+    "username": "user3",
+    "profile_image": "tbc.com",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 8,
+  "fields": {
+    "password": "pbkdf2_sha256$390000$jvHdPrA2ePTS8xW9jOsnhF$ttTsr1iQ/jGNOdgg/n6s4SOYEXVupK+N1Y57CXXRg2M=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2022-09-12T15:02:25.372Z",
+    "email": "user4@email.com",
+    "username": "user4",
+    "profile_image": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 13,
+  "fields": {
+    "password": "pbkdf2_sha256$390000$3HpRjlJYUnORrEe6Q1FF70$POEAZFP8LPTzYByEVDLxYfMvD5Wm0jf+/i2byv01yXM=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2022-09-15T14:38:09.513Z",
+    "email": "millytest4@email.com",
+    "username": "millytest4",
+    "profile_image": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 14,
+  "fields": {
+    "password": "pbkdf2_sha256$390000$w3BWQ1m6RcPTotTq6FNnlQ$+o1KVzVfvYfKE4svEPcaCuG1U7AaOxU7CcI/mTJz9+0=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2022-09-15T16:56:12.103Z",
+    "email": "millytest@email.com",
+    "username": "millytest",
+    "profile_image": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 15,
+  "fields": {
+    "password": "pbkdf2_sha256$390000$TcBI4BD4lFyv5OTaNoTJ4y$he+H7RYa5kmRzTZlunlAus3pWdpWsXkL6/EB47M2CMk=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2022-09-15T17:16:19.996Z",
+    "email": "millytest123@email",
+    "username": "millytest123",
+    "profile_image": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 16,
+  "fields": {
+    "password": "pbkdf2_sha256$390000$bhaw3KPhoVhwyzDoZXdPuT$dOYqGHIFm6M0lGFtdOCd6hmdWO57wVX7eQLpDdR2tws=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2022-09-15T17:17:08.535Z",
+    "email": "millytest1234@email",
+    "username": "millytest1234",
+    "profile_image": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 17,
+  "fields": {
+    "password": "pbkdf2_sha256$390000$wLITOzvr1gppmFUwHSx1GP$MbVHyLDeoubZKsE8Ghg/oXZnerrykr9fCV6rijDaGg0=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2022-09-15T19:22:29.471Z",
+    "email": "milly.arkwright@googlemail.com",
+    "username": "millya105",
+    "profile_image": "https://lh3.googleusercontent.com/a/AItbvmmwuFRKnIrK_oSRVvEcoOwjXl67umkmkxDV4Xdh=s96-c",
+    "groups": [],
+    "user_permissions": []
   }
 },
 {
   "model": "jwt_auth.bookmarkedrecipe",
-  "pk": 2,
+  "pk": 11,
   "fields": {
-    "bookmarked_by": 6,
-    "bookmarked_recipe": 2
+    "bookmarked_by": 1,
+    "bookmarked_recipe": 23
+  }
+},
+{
+  "model": "jwt_auth.bookmarkedrecipe",
+  "pk": 16,
+  "fields": {
+    "bookmarked_by": 1,
+    "bookmarked_recipe": 7
   }
 },
 {
@@ -101,10 +234,26 @@
 },
 {
   "model": "jwt_auth.testedrecipe",
-  "pk": 2,
+  "pk": 3,
   "fields": {
-    "tested_by": 6,
-    "tested_recipe": 2
+    "tested_by": 1,
+    "tested_recipe": 8
+  }
+},
+{
+  "model": "jwt_auth.testedrecipe",
+  "pk": 4,
+  "fields": {
+    "tested_by": 1,
+    "tested_recipe": 9
+  }
+},
+{
+  "model": "jwt_auth.testedrecipe",
+  "pk": 5,
+  "fields": {
+    "tested_by": 1,
+    "tested_recipe": 7
   }
 }
 ]
