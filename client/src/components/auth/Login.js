@@ -14,7 +14,6 @@ import { API_URL } from "../../config.js"
 // * Helpers
 import { setToken } from '../helpers/auth'
 import { getText } from '../helpers/auth'
-import getTokenBeforeClosingBracket from "eslint-plugin-react/lib/util/getTokenBeforeClosingBracket.js";
 import jwt_decode from 'jwt-decode'
 
 const Login = () => {
@@ -28,7 +27,6 @@ const Login = () => {
   })
 
   const [error, setError] = useState()
-  const [googleUser, setGoogleUser] = useState({})
 
   // Execution
 
@@ -37,16 +35,15 @@ const Login = () => {
   const handleCallbackResponse = async (response) => {
     console.log("Encoded JWT ID Token: " + response.credential)
     let userObject = jwt_decode(response.credential)
-    console.log(userObject)
-    setGoogleUser(userObject)
     try {
       const { data } = await axios.post(`${API_URL}/users/login/`, {
-        username: userObject.given_name,
+        username: userObject.given_name.toLowerCase() + userObject.family_name.toLowerCase().charAt(0) + userObject.sub.slice(0,3),
         password: userObject.sub + 'abc?!',
       })
       // Token & navigation
       const { token } = data
       setToken(token)
+      getText(data.message)
       navigate('/')
     } catch (error) {
       console.log(error)
@@ -56,7 +53,6 @@ const Login = () => {
   useEffect(() => {
     /* global google */
     // eslint-disable-next-line no-unused-expressions
-    console.log('GOOOOGLE')
     google.accounts.id.initialize({
       client_id: "315316772239-fb7t6peu1k15t6as17gi3grcpbfa3kn8.apps.googleusercontent.com",
       callback: handleCallbackResponse

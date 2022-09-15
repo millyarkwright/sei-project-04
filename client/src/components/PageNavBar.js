@@ -31,9 +31,9 @@ const PageNavBar = () => {
     navigate('/')
     console.log('USER HAS LOGGED OUT')
   }
-  useEffect(() => {
-    axios.defaults.headers.common["Authorization"] = `Bearer ${getToken()}`
-  })
+  // useEffect(() => {
+  //   axios.defaults.headers.common["Authorization"] = `Bearer ${getToken()}`
+  // },[])
   return (
     <NavBar expand="md">
       <ToastContainer />
