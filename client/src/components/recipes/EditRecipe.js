@@ -537,8 +537,7 @@ const EditRecipe = () => {
         </Col>
         <Col className="col-12" md="6">
           {/* Essential Oils */}
-          <Row className="ingredient-form-container">
-            {/* <form onSubmit={handleEoFormSubmit}> */}
+          {/* <Row className="ingredient-form-container">
             <form>
               <h4>Essential Oils</h4>
               {eoFormFields.map((form, index) => {
@@ -572,11 +571,11 @@ const EditRecipe = () => {
               })}
               <button onClick={addEoFields}>Add More..</button>
             </form>
-          </Row>
+          </Row> */}
 
           {/* Base Oils */}
-          <Row className="ingredient-form-container">
-            {/* <form onSubmit={handleEoFormSubmit}> */}
+          {/* <Row className="ingredient-form-container">
+            {/* <form onSubmit={handleEoFormSubmit}> 
             <form>
               <h4 className="fw-bold">Base Ingredients</h4>
               {boFormFields.map((form, index) => {
@@ -609,11 +608,10 @@ const EditRecipe = () => {
               })}
               <button onClick={addBoFields}>Add More..</button>
             </form>
-          </Row>
+            </Row> */}
 
           {/* Other Indgredients */}
-          <Row className="ingredient-form-container">
-            {/* <form onSubmit={handleOiFormSubmit}> */}
+          {/* <Row className="ingredient-form-container">
             <form>
               <h4>Other Ingredients</h4>
               {oiFormFields.map((form, index) => {
@@ -648,7 +646,7 @@ const EditRecipe = () => {
               })}
               <button onClick={addOiFields}>Add More..</button>
             </form>
-          </Row>
+          </Row> */}
         </Col>
       </Row>
 }

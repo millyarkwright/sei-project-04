@@ -170,18 +170,6 @@ const Register = () => {
       }
   }
 
-  
-
-  // console.log('ERROR - data', error.response.data)
-  //     console.log('ERROR - detail', error.response.data.detail)
-      // console.log('ERROR - detail - email', error.response.data.detail.email)
-      // console.log('ERROR - detail - email[0] --->', error.response.data.detail.email[0])
-      // console.log('ERROR - detail - username[0] --->', error.response.data.detail.username[0])
-      // console.log('ERROR - detail - password_confirmation[0] --->', error.response.data.detail.password_confirmation[0])
-      // console.log('ERROR - detail - password[0] --->', error.response.data.detail.password_confirmation[0])
-
-
-
 
   return (
     <Container className="form-wrapper min-vh-100">
