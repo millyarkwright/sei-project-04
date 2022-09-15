@@ -12,6 +12,9 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Select from 'react-select'
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const CreateRecipe = () => {
 
   //  ! State
@@ -207,7 +210,6 @@ const CreateRecipe = () => {
 
   const handleRemedyChange = (selectedRemedies) => {
     console.log('selected Remedy->', selectedRemedies)
-    console.log('selected Remedy->', selectedRemedies[0].value)
     const selectedRemedyIds = selectedRemedies.map((item) => { return item.value })
     console.log('selectedRemedyIds->', selectedRemedyIds)
     setRecipeData({ ...recipeData, 'remedies': selectedRemedyIds })
@@ -227,7 +229,42 @@ const CreateRecipe = () => {
         headers: { Authorization: `Bearer ${getToken()}` },
       })
     } catch (error) {
+      console.log('----ERROR-----', error)
       setError(error)
+      if ('name' in error.response.data.detail) {
+        toast.error(error.response.data.detail.name[0], {
+          position: "top-center",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        })
+      } 
+      if ('measurement' in error.response.data.detail) {
+        toast.error(error.response.data.detail.measurement[0], {
+          position: "top-center",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        })
+      }
+      if ('quantity' in error.response.data.detail) {
+        toast.error(error.response.data.detail.quantity[0], {
+          position: "top-center",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        })
+      }
+
     }
   }
 
@@ -377,6 +414,7 @@ const CreateRecipe = () => {
 
   return (
     <Container className="recipe-form-wrapper min-vh-100">
+      <ToastContainer />
       <h1>CREATE RECIPE</h1>
       <Row>
         <Col className="col-12" md="6">

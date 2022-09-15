@@ -37,19 +37,11 @@ class RecipeDetailView(APIView):
     return Response(serialized_recipe.data)
 
   def patch(self, request, pk):
-    # req_eo_amount = request.data['eo_amount']
-    # req_bo_amount = request.data['bo_amount']
-    # req_oi_amount = request.data['oi_amount']
-
-    # recipe_request = request.data
-    # recipe_request.pop('eo_amount')
-    # recipe_request.pop('bo_amount')
-    # recipe_request.pop('oi_amount')
     print('PATCH RECIPEEE REQUEST DATA ->>>')
     print(request.data)
     recipe_to_update = self.get_recipe(pk=pk)
     
-    updated_recipe = RecipeSerializer(recipe_to_update, data=request.data, partial=True)
+    updated_recipe = CreateRecipeSerializer(recipe_to_update, data=request.data, partial=True)
     
     if recipe_to_update.owner == request.user or request.user.is_superuser == True:
       try: 
@@ -98,12 +90,13 @@ class CreateRecipeView(APIView):
     print('-----NEW RECIPE REQUEST ->>>', recipe_request)
 
     recipe_to_add = CreateRecipeSerializer(data=recipe_request)
+
     print('-------RECIPE_TO_ADD--------')
     print(recipe_to_add)
     print('------------------------')
 
     try: 
-      recipe_to_add.is_valid()
+      recipe_to_add.is_valid(True)
       recipe_to_add.save()
       print('-------NEW RECIPE_TO_ADD--------')
       print(recipe_to_add.data)
