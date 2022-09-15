@@ -15,7 +15,7 @@ import { API_URL } from "../../config.js"
 import { setToken } from '../helpers/auth'
 import { getText } from '../helpers/auth'
 import getTokenBeforeClosingBracket from "eslint-plugin-react/lib/util/getTokenBeforeClosingBracket.js";
-
+import jwt_decode from 'jwt-decode'
 
 const Login = () => {
 
@@ -23,16 +23,35 @@ const Login = () => {
 
   // State
   const [loginData, setLoginData] = useState({
-    username:'', 
-    password:''
+    username: '',
+    password: ''
   })
 
   const [error, setError] = useState()
-  
+  const [googleUser, setGoogleUser] = useState({})
+
   // Execution
+
   // *---------GOOGLE AUTH--------------
-  const handleCallbackResponse = (response) => {
-    
+
+  const handleCallbackResponse = async (response) => {
+    console.log("Encoded JWT ID Token: " + response.credential)
+    let userObject = jwt_decode(response.credential)
+    console.log(userObject)
+    setGoogleUser(userObject)
+    try {
+      const { data } = await axios.post(`${API_URL}/users/login/`, {
+        username: userObject.given_name,
+        password: userObject.sub + 'abc?!',
+      })
+      // Token & navigation
+      const { token } = data
+      setToken(token)
+      navigate('/')
+    } catch (error) {
+      console.log(error)
+ 
+    }
   }
   useEffect(() => {
     /* global google */
@@ -45,9 +64,11 @@ const Login = () => {
 
     google.accounts.id.renderButton(
       document.getElementById("signInDiv"),
-      {theme: "outline", size: "large"}
+      { theme: "outline", size: "large" }
     )
   }, [])
+
+  // * -------------------------------------
 
   const handleChange = (event) => {
     setLoginData({ ...loginData, [event.target.name]: event.target.value })
@@ -129,7 +150,7 @@ const Login = () => {
           <div id="signInDiv" className="d-flex justify-content-center"></div>
         </Row>
         {/* Submit */}
-        
+
         <input type="submit" value="Login" className="btn dark" />
         <p className="text-center mb-0 mt-3">Not yet registered?</p>
         <p className="text-center mb-0">
