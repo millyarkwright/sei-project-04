@@ -37,7 +37,7 @@ const Login = () => {
     let userObject = jwt_decode(response.credential)
     try {
       const { data } = await axios.post(`${API_URL}/users/login/`, {
-        username: userObject.given_name.toLowerCase() + userObject.family_name.toLowerCase().charAt(0) + userObject.sub.slice(0,3),
+        username: userObject.given_name.toLowerCase() + userObject.family_name.toLowerCase().charAt(0) + userObject.sub.slice(0, 3),
         password: userObject.sub + 'abc?!',
       })
       // Token & navigation
@@ -45,9 +45,29 @@ const Login = () => {
       setToken(token)
       getText(data.message)
       navigate('/')
+
+      // Notification
+      toast.success(data.message, {
+        position: "top-right",
+        autoClose: 1200,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } catch (error) {
       console.log(error)
- 
+      toast.error(error.response.data.detail, {
+        position: "top-center",
+        autoClose: 1200,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+
     }
   }
   useEffect(() => {
