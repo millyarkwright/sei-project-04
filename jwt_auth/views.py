@@ -161,8 +161,19 @@ class BookmarkedView(APIView):
 
   def delete(self, request, pk):
     bookmark_to_delete = self.get_bookmark(pk)
-    bookmark_to_delete.delete()
-    return Response(status=status.HTTP_204_NO_CONTENT)
+    # print('bookmark owner ->', bookmark_to_delete.owner)
+    # print('request user ->', request.user)
+
+    # bookmark_to_delete.delete()
+    # return Response(status=status.HTTP_204_NO_CONTENT)
+
+    try:
+      bookmark_to_delete.delete()
+      return Response({'detail': 'Recipe has been removed from bookmarks'}, status=status.HTTP_200_OK)
+    except Exception as e:
+      return Response(e.__dict__ if e.__dict__ else str(e), status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+
+    
 
 # ! TESTED LIST VIEW --------
 class TestedListView(APIView):
@@ -170,7 +181,7 @@ class TestedListView(APIView):
   def get(self, _request):
     tested = TestedRecipe.objects.all()
     print('Tested->', tested)
-    serialized_tested = TestedRecipe(tested, many=True)
+    serialized_tested = TestedRecipeSerializer(tested, many=True)
     print('Serialized Tested->', serialized_tested)
     return Response(serialized_tested.data, status=status.HTTP_200_OK)
 
@@ -186,7 +197,7 @@ class TestedView(APIView):
     existing_tested_count = TestedRecipe.objects.filter(tested_recipe = request.data['tested_recipe'], tested_by = request.data['tested_by']).count() 
     print('CHECK TESTED>', existing_tested_count)
     if existing_tested_count !=0:
-      return Response({'message': 'You have already tested this recipe!'}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+      return Response({'detail': 'You have already tested this recipe!'}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
 
     test_to_add= TestedRecipeSerializer(data=request.data)
