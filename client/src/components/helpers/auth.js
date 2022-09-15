@@ -14,6 +14,12 @@ export const getToken = () => {
   return window.localStorage.getItem('aroma-token')
 }
 
+// * Deleteing Token
+
+export const removeToken = () => {
+  return window.localStorage.removeItem('aroma-token')
+}
+
 // verify token by checking it exists and is JWT, aiming to return payload as object
 
 export const getPayload = () => {

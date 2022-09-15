@@ -97,7 +97,7 @@ class UserProfileView(APIView):
     print('user to be deleted')
     if user_to_delete.username == request.user.username or request.user.is_superuser == True:
       user_to_delete.delete()
-      return Response({'message': 'User successfully deleted'})
+      return Response({"detail": "Your account has been successfully deleted. We're sorrry to see you go!"})
     else:
       raise PermissionDenied("Unauthorised")
   

@@ -60,7 +60,7 @@ const PageNavBar = () => {
                 <NavDropdown.Item as={Link} to="/createdrecipes" >Your Recipes</NavDropdown.Item>
                 <NavDropdown.Item as={Link} to="/savedrecipes">Saved Recipes</NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item as={Link} to="/editprofile">Your Profile</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/profile">Your Profile</NavDropdown.Item>
               </NavDropdown>
 
               <Nav.Link onClick={handleLogout} as={Link} to="/">

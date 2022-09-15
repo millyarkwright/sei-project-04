@@ -5,9 +5,14 @@ import axios from 'axios'
 import { API_URL } from '../../config'
 import { Rating } from 'react-simple-star-rating'
 import loaderImg from '../../images/loader.gif'
+
+// * Toast
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+// * Helpers
 import { getToken } from '../helpers/auth'
+
 // * Bootstrap Components
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
