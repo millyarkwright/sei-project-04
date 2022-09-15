@@ -1,3 +1,4 @@
+from xml.dom import ValidationErr
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -29,6 +30,7 @@ class RegisterView(APIView):
       return Response(user_to_create.data, status.HTTP_202_ACCEPTED)
     except Exception as e:
       print('e->', e)
+      print('e as dict', e.__dict__)
       return Response(e.__dict__ if e.__dict__ else str(e), status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
 #  ! LOGIN VIEW ---------
@@ -97,7 +99,7 @@ class UserProfileView(APIView):
     print('user to be deleted')
     if user_to_delete.username == request.user.username or request.user.is_superuser == True:
       user_to_delete.delete()
-      return Response({'message': 'User successfully deleted'})
+      return Response({"detail": "Your account has been successfully deleted. We're sorrry to see you go!"})
     else:
       raise PermissionDenied("Unauthorised")
   

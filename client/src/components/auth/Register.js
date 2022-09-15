@@ -27,7 +27,12 @@ const Register = () => {
     profile_image: '',
   })
 
-  const [errors, setErrors] = useState('')
+  const [errors, setErrors] = useState({
+    username: [],
+    email: [],
+    password: [],
+    password_confirmation: []
+  })
 
   //! Functions
   const handleChange = (event) => {
@@ -45,19 +50,96 @@ const Register = () => {
       navigate('/login')
       console.log(formData)
     } catch (error) {
-      toast.error(error.response.data.message, {
-        position: "top-center",
-        autoClose: 1200,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      })
-      // console.log('error ->', error.response.data.errors)
-      // if (error.response.data.errors) setErrors(error.response.data.errors)
-    }
+        console.log('ERROR', error)
+        // if (error.response.data.detail) setErrors(error.response.data.detail)
+        console.log('DETAIL --->', error.response.data.detail)
+
+  
+        // console.log('username --->', error.response.data.detail.username)
+        // console.log('username[0] --->', error.response.data.detail.username[0])
+        // console.log('email --->', error.response.data.detail.email)
+        // console.log('email[0] --->', error.response.data.detail.email[0])
+        // console.log('password[0] --->', error.response.data.detail.password_confirmation[0])
+        // console.log('password_confirmation[0] --->', error.response.data.detail.password_confirmation[0])
+
+
+        if ('username' in error.response.data.detail) {
+          console.log('USERNAME KEY FOUND')
+        }
+        // if (error.response.data.detail.username) {
+
+        if ('username' in error.response.data.detail) {
+          toast.error(error.response.data.detail.username[0], {
+            position: "top-center",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          })
+        } 
+        if ('email' in error.response.data.detail) {
+          toast.error(error.response.data.detail.email[0], {
+            position: "top-center",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          })
+        }
+        if ('password' in error.response.data.detail) {
+          toast.error(error.response.data.detail.password[0], {
+            position: "top-center",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          })
+        } 
+        if ('password_confirmation' in error.response.data.detail) {
+          toast.error(error.response.data.detail.password_confirmation[0], {
+            position: "top-center",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          })
+        }
+        if ('non_field_errors' in error.response.data.detail) {
+          for(let i=0; i < error.response.data.detail.non_field_errors.length; i++) {
+            toast.error(error.response.data.detail.non_field_errors[i], {
+              position: "top-center",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            })
+          }
+        }
+      }
   }
+
+  
+
+  // console.log('ERROR - data', error.response.data)
+  //     console.log('ERROR - detail', error.response.data.detail)
+      // console.log('ERROR - detail - email', error.response.data.detail.email)
+      // console.log('ERROR - detail - email[0] --->', error.response.data.detail.email[0])
+      // console.log('ERROR - detail - username[0] --->', error.response.data.detail.username[0])
+      // console.log('ERROR - detail - password_confirmation[0] --->', error.response.data.detail.password_confirmation[0])
+      // console.log('ERROR - detail - password[0] --->', error.response.data.detail.password_confirmation[0])
+
+
+
 
   return (
     <Container className="form-wrapper min-vh-100">
