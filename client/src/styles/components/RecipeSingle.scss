@@ -165,6 +165,10 @@
         border-radius: 10px;
         // width: 150px;
         color: white;
+        transition: 0.3s ease;
+        &:hover{
+          background-color: #2a342d;
+        }
       }
 
     }

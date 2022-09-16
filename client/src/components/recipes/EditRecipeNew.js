@@ -42,7 +42,7 @@ const EditRecipeNew = () => {
 
   const [selectedRemedies, setSelectedRemedies] = useState()
   const [selectedApplications, setSelectedApplications] = useState()
- 
+
 
   const [error, setError] = useState([])
 
@@ -106,9 +106,9 @@ const EditRecipeNew = () => {
           applications: [],
           remedies: [],
         })
-        
+
         console.log('RECIPE DATA PREPOP', data)
-        
+
         let currentRemedies = data.remedies.map(remedy => ({ value: remedy.id, label: remedy.name }))
         console.log('REMEDY OPTIONS--->', currentRemedies)
         setSelectedRemedies(currentRemedies)
@@ -116,7 +116,7 @@ const EditRecipeNew = () => {
         let currentApplications = data.applications.map(application => ({ value: application.id, label: application.name }))
         setSelectedApplications(currentApplications)
 
-      
+
       } catch (error) {
         setError(error)
         console.log(error)
@@ -132,7 +132,7 @@ const EditRecipeNew = () => {
   }, [recipeData])
 
 
-  
+
 
   //  ! Execution
 
@@ -181,113 +181,116 @@ const EditRecipeNew = () => {
 
 
   return (
-    <Container className="recipe-form-wrapper min-vh-100">
-      <h1>EDIT RECIPE 2</h1>
-      {Object.keys(recipeData).length && 
-          <form onSubmit={handleRecipeSubmit} className="justify-content-between">
-            <h3 className="text-center">Recipe Details</h3>
-            {/* Recipe name */}
-            <Row>
-              <label htmlFor="name">Recipe Name</label>
+    <Container id="edit-recipe" className="recipe-form-wrapper min-vh-100">
+      <div className="header-wrapper">
+
+        <h1>EDIT RECIPE</h1>
+      </div>
+      {Object.keys(recipeData).length &&
+        <form onSubmit={handleRecipeSubmit} className="justify-content-between">
+          <h3 className="text-center">Recipe Details</h3>
+          {/* Recipe name */}
+          <Row>
+            <label htmlFor="name">Recipe Name</label>
+            <input
+              onInput={handleRecipeChange}
+              type="text"
+              name="name"
+              value={recipeData.name}
+              required
+            />
+          </Row>
+          {/* Description */}
+          <Row>
+            <label htmlFor="description">Description</label>
+            <textarea
+              onInput={handleRecipeChange}
+              name="description"
+              value={recipeData.description}
+              required
+            />
+          </Row>
+          {/* Makes */}
+          <Row>
+            <label htmlFor="makes">Makes</label>
+            <input
+              onInput={handleRecipeChange}
+              type="text"
+              name="makes"
+              value={recipeData.makes}
+              placeholder="How much does this recipe make..."
+              required
+            />
+          </Row>
+          {/* Step1 */}
+          <Row>
+            <label htmlFor="step_one">Step 1</label>
+            <textarea
+              onInput={handleRecipeChange}
+              name="step_one"
+              value={recipeData.step_one}
+              required
+            />
+          </Row>
+          <Row>
+            <label htmlFor="step_two">Step 2</label>
+            <textarea
+              onInput={handleRecipeChange}
+              name="step_two"
+              value={recipeData.step_two}
+            />
+          </Row>
+          <Row>
+            <label htmlFor="step_three">Step 3</label>
+            <textarea
+              onInput={handleRecipeChange}
+              name="step_three"
+              value={recipeData.step_three}
+            />
+          </Row>
+          {/* Categories */}
+          <Row>
+            <label htmlFor="remedies">Remedy</label>
+            <Select
+              value={selectedRemedies}
+              name="remedies"
+              options={remedyOptions}
+              className="basic-multi-select mb-3"
+              classNamePrefix="select"
+              isMulti
+              onChange={handleRemedyChange} >
+            </Select>
+          </Row>
+          <Row>
+            <label htmlFor="applications">Applications</label>
+            <Select
+              value={selectedApplications}
+              name="applications"
+              options={applicationOptions}
+              className="basic-multi-select mb-3"
+              classNamePrefix="select"
+              isMulti
+              onChange={handleApplicationChange} >
+            </Select>
+          </Row>
+          {/* Public*/}
+          <Row className="checkbox">
+            <Col className="col-2 ps-0">
+              <label htmlFor="public">Public</label>
+            </Col>
+            <Col className="col-10">
               <input
-                onInput={handleRecipeChange}
-                type="text"
-                name="name"
-                value={recipeData.name}
-                required
+                onInput={handleCheckBoxChange}
+                type="checkbox"
+                name="public"
+                defaultChecked
               />
-            </Row>
-            {/* Description */}
-            <Row>
-              <label htmlFor="description">Description</label>
-              <textarea
-                onInput={handleRecipeChange}
-                name="description"
-                value={recipeData.description}
-                required
-              />
-            </Row>
-            {/* Makes */}
-            <Row>
-              <label htmlFor="makes">Makes</label>
-              <input
-                onInput={handleRecipeChange}
-                type="text"
-                name="makes"
-                value={recipeData.makes}
-                placeholder="How much does this recipe make..."
-                required
-              />
-            </Row>
-            {/* Step1 */}
-            <Row>
-              <label htmlFor="step_one">Step 1</label>
-              <textarea
-                onInput={handleRecipeChange}
-                name="step_one"
-                value={recipeData.step_one}
-                required
-              />
-            </Row>
-            <Row>
-              <label htmlFor="step_two">Step 2</label>
-              <textarea
-                onInput={handleRecipeChange}
-                name="step_two"
-                value={recipeData.step_two}
-              />
-            </Row>
-            <Row>
-              <label htmlFor="step_three">Step 3</label>
-              <textarea
-                onInput={handleRecipeChange}
-                name="step_three"
-                value={recipeData.step_three}
-              />
-            </Row>
-            {/* Categories */}
-            <Row>
-              <label htmlFor="remedies">Remedy</label>
-              <Select
-                value={selectedRemedies}
-                name="remedies"
-                options={remedyOptions}
-                className="basic-multi-select"
-                classNamePrefix="select"
-                isMulti
-                onChange={handleRemedyChange} >
-              </Select>
-            </Row>
-            <Row>
-              <label htmlFor="applications">Applications</label>
-              <Select 
-                value={selectedApplications}
-                name="applications"
-                options={applicationOptions}
-                className="basic-multi-select"
-                classNamePrefix="select"
-                isMulti
-                onChange={handleApplicationChange} >
-              </Select>
-            </Row>
-            {/* Public*/}
-            <Row className="checkbox">
-              <Col className="col-2 ps-0">
-                <label htmlFor="public">Public</label>
-              </Col>
-              <Col className="col-10">
-                <input
-                  onInput={handleCheckBoxChange}
-                  type="checkbox"
-                  name="public"
-                  defaultChecked
-                />
-              </Col>
-            </Row>
-            {/* Submit */}
-            <input type="submit" value="Update Recipe" className="btn dark" />
-          </form>
-}
+            </Col>
+          </Row>
+          {/* Submit */}
+          <input type="submit" value="Update Recipe" className="recipe-submit" />
+        </form>
+      }
     </Container>
   )
 }
