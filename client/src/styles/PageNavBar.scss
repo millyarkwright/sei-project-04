@@ -3,6 +3,8 @@
   background: #404F45;
   // background: #1c4b35;
   color: white;
+  font-family: 'Quicksand', sans-serif;
+
   // border-bottom: 1px dashed #F8D549;
   // min-height: 50px;
   .logo {
@@ -14,6 +16,7 @@
     text-decoration: none;
     text-align: right;
     font-weight: 300;
+    
     // background-color: blue;
     &:hover{
       transition: 0.2s ease-in-out;

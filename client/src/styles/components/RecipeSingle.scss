@@ -12,7 +12,7 @@
     span {
       font-style: italic;
       font-size: 1.5rem;
-      margin-right: 30px;
+      margin-right: 10px;
       a {
         // text-decoration: none;
         color: black;
@@ -61,42 +61,7 @@
       }
     }
   }
-  .categories-container {
-    display: flex; 
-    text-align: center;
-    .category-card-wrapper{
-      display: flex;
-      flex-direction: column;
-      align-items:  center;
-      justify-content: flex-start;
-      text-align: center;
-      margin-right: 15px;
-      max-width: 100px;
-      p {
-        font-size: 0.8rem;
-      }
-    }
-    .category {
-      // display: flex;
-      // flex-direction: column;
-      // align-items:  center;
-      // justify-content: flex-start;
-      // text-align: center;
-      // margin-right: 15px; 
-      background-color: white;
-      padding: 10px;
-      width: 80px;
-      height: 80px;
-      border-radius: 200px;
-      img {
-        max-width: 60px;
-        // max-height: 70px;
-      }
-      p {
-        font-size: 0.7rem;
-      }
-    }
-  }
+
   .ingredients-container{
     align-items: flex-start;
     text-align: left;
@@ -104,9 +69,24 @@
     background-color: $beigebg;
     border-radius: 10px;
     height: 100%;
+    h3 {
+      // margin-bottom: 0px;
+    }
+    .ingredients-title{
+      margin-bottom: 20px;
+    }
+    .makes {
+      font-style: italic;
+      margin-bottom: 20px;
+      span {
+        text-decoration: underline;
+      }
+    }
     .ingredient {
       display: flex;
       align-items: center;
+
+      
       p {
         margin: 0px;
       }
@@ -122,6 +102,9 @@
     padding: 20px;
     border-radius: 10px;
     height: 100%;
+    h3 {
+      font-style: italic;
+    }
     h3, p {
       text-align: left;
     }
@@ -131,10 +114,10 @@
     margin: 0px;
     margin-top: 20px;
     padding: 20px;
-    background-color: $lightbg;
+    background-color: $greybg;
     border-radius: 15px;
     // filter: drop-shadow(4px 4px 15px rgba(0, 0, 0, 0.227));
-    min-height: 415px;
+    min-height: 315px;
     width: 100%;
     h3 {
       // font-size: 2rem;
@@ -149,21 +132,22 @@
       // max-height: 270px;
       padding:0px;
       text-align: left;
-      height: 340px;
+      height: 300px;
       
 
       textarea {
         // resize: vertical;
         // resize: horizontal;
         width: 100%;
-        min-height: 212px;
-        max-height: 212px;
+        min-height: 172px;
+        max-height: 172px;
         margin-bottom: 10px;
         border-radius: 15px;
         border: 1px solid lightgray;
         color: grey;
         font-size: 0.9rem;
         padding: 10px;
+        background-color: rgb(250,251,248);
       }
       .rate-container {
         align-items: center;
@@ -175,10 +159,11 @@
       }
 
       input {
-        background-color: rgb(147, 65, 80);
+        // background-color: rgb(147, 65, 80);
+        background-color: #404F45;
         border: 1px solid transparent;
         border-radius: 10px;
-        width: 150px;
+        // width: 150px;
         color: white;
       }
 
