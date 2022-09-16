@@ -162,7 +162,7 @@ const RecipesIndex = () => {
                         <p>{recipe.description}</p>
                       </Col>
 
-                      <Col className="col-12 list-categories px-2 pb-2 p-md-3" md="4">
+                      <Col className="col-12 list-categories px-2 p-2 p-md-3" md="4">
                         <Row>
                           {recipe.essential_oil_amount.length > 0 &&
 
@@ -181,7 +181,7 @@ const RecipesIndex = () => {
                               
                           {recipe.applications.length > 0 &&
 
-                            <Col className="col-4 pt-2" md="6">
+                            <Col className="col-4 pt-md-2" md="6">
                               <p>Applications:</p>
                               <div className="category-cards-wrapper">
                                 {recipe.applications.map((item) => {
@@ -197,7 +197,7 @@ const RecipesIndex = () => {
 
                           {recipe.remedies.length > 0 &&
 
-                            <Col className="col-4 pt-2" md="6">
+                            <Col className="col-4 pt-md-2" md="6">
                               <p>Remedies:</p>
                               <div className="category-cards-wrapper">
                                 {recipe.remedies.map((item) => {

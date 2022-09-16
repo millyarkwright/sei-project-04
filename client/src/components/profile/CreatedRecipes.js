@@ -282,7 +282,7 @@ const CreatedRecipes = () => {
                           </Col>}
                       </Row>
                     </Col>
-                    <Col className="userActions-wrapper col-12">
+                    <Col className="userActions-wrapper col-12 px-2 pb-2 pt-md-1 p-md-3">
                       <div className="button-container">
                         <Link className="edit-button" to={`/recipes/${recipe.id}/edit`}>
                           <span className="button">EDIT</span>
