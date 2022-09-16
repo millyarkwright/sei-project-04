@@ -111,7 +111,7 @@ const Login = () => {
 
       // Notification
       toast.success(data.message, {
-        position: "top-right",
+        position: "top-left",
         autoClose: 1200,
         hideProgressBar: false,
         closeOnClick: true,
