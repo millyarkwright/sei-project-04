@@ -63,7 +63,7 @@
       .category-cards-wrapper {
         display: flex;
         flex-wrap: wrap;
-        // align-items: center;
+        align-items: center;
         // justify-content: center;
       }
       .category-card{
@@ -73,6 +73,8 @@
         justify-content: center;
         flex-wrap: wrap;
         padding: 5px;
+        max-width: 115px;
+
         img {
           background-color: rgba(237, 224, 196, 0.82);
           padding: 5px;
@@ -87,7 +89,6 @@
         color: rgb(10, 57, 57);
         font-size: 0.9rem;
         margin: 0px 5px;
-        max-width: 115px;
       }
       p {
         font-weight: bold;

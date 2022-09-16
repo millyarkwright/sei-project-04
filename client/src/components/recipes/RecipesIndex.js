@@ -32,7 +32,7 @@ const RecipesIndex = () => {
         const { data } = await axios.get(`${API_URL}/recipes/`)
         let publicData = data.filter(((item) => item.public === true))
         setRecipes(publicData)
-        console.log(data)
+        console.log('publicdata', data)
       } catch (error) {
         setError(error)
         console.log(error)
@@ -178,25 +178,35 @@ const RecipesIndex = () => {
                                 })}
                               </div>
                             </Col>}
-
+                              
                           {recipe.applications.length > 0 &&
 
-                            <Col className="col-4" md="12">
+                            <Col className="col-4 pt-2" md="6">
                               <p>Applications:</p>
-                              <div className="d-flex flex-wrap">
+                              <div className="category-cards-wrapper">
                                 {recipe.applications.map((item) => {
-                                  return (<span>{item.name}</span>)
+                                  return (
+                                    <div className="category-card">
+                                      <img src={item.icon} className="category" alt="icon"/>
+                                      <span>{item.name}</span>
+                                  </div>
+                                  )
                                 })}
                               </div>
                             </Col>}
 
                           {recipe.remedies.length > 0 &&
 
-                            <Col className="col-4" md="12">
+                            <Col className="col-4 pt-2" md="6">
                               <p>Remedies:</p>
-                              <div className="d-flex flex-wrap">
+                              <div className="category-cards-wrapper">
                                 {recipe.remedies.map((item) => {
-                                  return (<span>{item.name}</span>)
+                                  return (
+                                    <div className="category-card">
+                                      <img src={item.icon} className="category" alt="icon"/>
+                                      <span>{item.name}</span>
+                                  </div>
+                                  )
                                 })}
                               </div>
                             </Col>}     

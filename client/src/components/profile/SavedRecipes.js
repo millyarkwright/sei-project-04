@@ -97,7 +97,7 @@ const SavedRecipes = () => {
                         {recipe.bookmarked_recipe.applications.length > 0 &&
                           <Col className="col-4" md="12">
                             <p>Applications:</p>
-                            <div className="category-cards-wrapper justify-content-sm-start justify-content-md-center">
+                            <div className="category-cards-wrapper">
                               {recipe.bookmarked_recipe.applications.map((item) => {
                                 return (
                                 <div className="category-card">
@@ -111,7 +111,7 @@ const SavedRecipes = () => {
                         {recipe.bookmarked_recipe.remedies.length > 0 &&
                           <Col className="col-4" md="12">
                             <p>Remedies:</p>
-                            <div className="category-cards-wrapper justify-content-sm-start justify-content-md-center ">
+                            <div className="category-cards-wrapper">
                               {recipe.bookmarked_recipe.remedies.map((item) => {
                                 return (
                                   <div className="category-card">
@@ -163,7 +163,7 @@ const SavedRecipes = () => {
 
                           <Col className="col-4" md="12">
                             <p>Applications:</p>
-                            <div className="category-cards-wrapper justify-content-sm-start justify-content-md-center">
+                            <div className="category-cards-wrapper">
                               {recipe.tested_recipe.applications.map((item) => {
                                 return (
                                   <div className="category-card">
@@ -179,13 +179,15 @@ const SavedRecipes = () => {
 
                           <Col className="col-4" md="12">
                             <p>Remedies:</p>
-                            <div className="category-cards-wrapper justify-content-sm-start justify-content-md-center">
+                            <div className="category-cards-wrapper">
                               {recipe.tested_recipe.remedies.map((item) => {
                                 return (
+                                  <>
                                   <div className="category-card">
                                     <img src={item.icon} className="category" alt="icon"/>
                                     <span>{item.name}</span>
                                   </div>
+                                  </>
                                 )
                               })}
                             </div>
