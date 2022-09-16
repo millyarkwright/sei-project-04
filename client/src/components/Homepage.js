@@ -40,7 +40,7 @@ const HomePage = () => {
   const [baseOils, setBaseOils] = useState([])
   const [error, setError] = useState('')
 
-    // ! GET DATA
+  // ! GET DATA
   // * ESSENTIAL OILS
   useEffect(() => {
     const getData = async () => {
@@ -72,26 +72,28 @@ const HomePage = () => {
     getData()
   }, [])
 
-  
+
 
   return (
     <>
-    <div className="hero-container">
-      <div className="hero-overlay">
-        <h1>aromatics</h1>
-        <p>Discover the therapeutic properties of essential oils, the best ways to use them, and create your own recipes.</p>
-      </div>
-    </div>
-    <Container className="home-wrapper min-vh-100">
-
-      <div className="home-essentials">
-        <div className="essentials-text">
-          <h2>Essential Oils</h2>
-          <p>Essential oils contain the essence of nature. They are natural extracts from the seeds, stems, roots, flowers, bark and other parts of the plant. Used today in aromatherapy and fragrances, they have a long history in natural healing. The oils harness a plant's therapeutic properties to restore balance to the mind, body and spirit.  </p>
-          <p>Discover the unique properties of over 40 essential oils, each profile details a plant's orogin and properties, the oil's appearance and aroma, and suggests some of the best ways to use each essential oil. </p>
+      <div className="hero-container">
+        <div className="hero-overlay">
+          <h1>aromatics</h1>
+          <p>Discover the therapeutic properties of essential oils, the best ways to use them, and create your own recipes.</p>
         </div>
-        <Row>
-          <div className="oil-swipe">
+      </div>
+      <Container className="home-wrapper min-vh-100">
+
+        <div className="home-essentials">
+          <div className="essentials-text">
+            <h2>Essential Oils</h2>
+            <div className="home-text-wrapper">
+            <p>Essential oils contain the essence of nature. They are natural extracts from the seeds, stems, roots, flowers, bark and other parts of the plant. Used today in aromatherapy and fragrances, they have a long history in natural healing. The oils harness a plant's therapeutic properties to restore balance to the mind, body and spirit.  </p>
+            <p>Discover the unique properties of over 40 essential oils, each profile details a plant's orogin and properties, the oil's appearance and aroma, and suggests some of the best ways to use each essential oil. </p>
+            </div>
+          </div>
+          <Row>
+            <div className="oil-swipe">
               <Swiper
                 // install Swiper modules
                 modules={[
@@ -147,26 +149,29 @@ const HomePage = () => {
                   return (
                     <SwiperSlide key={oil._id}>
                       <div className="oil-box">
-                          <Link to={`/essentials/${oil.id}`}>
-                            <img src={oil.image} alt="oil img"/>
-                            <p>{oil.name}</p>
-                          </Link>
+                        <Link to={`/essentials/${oil.id}`}>
+                          <img src={oil.image} alt="oil img" />
+                          <p>{oil.name}</p>
+                        </Link>
                       </div>
                     </SwiperSlide>
                   )
                 })}
               </Swiper>
             </div>
-        </Row>
-      </div>
-
-      <div className="home-bases">
-        <div className="bases-text">
-          <h2>Base Oils</h2>
-          <p>Base, or carrier, oils are used to dilute and disperse concentrated oils, which can otherwise cause irritation, sensitization, redness, burning other reactions if applied directly. Derived from vegetable, nut, or seed sources, or made by macerating a herb in a plant oil, base oils have their own benefits. </p>
+          </Row>
         </div>
-        <Row>
-          <div className="oil-swipe">
+
+        <div className="home-essentials">
+          <div className="bases-text">
+
+            <h2>Base Oils</h2>
+            <div className="home-text-wrapper">
+              <p>Base, or carrier, oils are used to dilute and disperse concentrated oils, which can otherwise cause irritation, sensitization, redness, burning other reactions if applied directly. Derived from vegetable, nut, or seed sources, or made by macerating a herb in a plant oil, base oils have their own benefits. </p>
+            </div>
+          </div>
+          <Row>
+            <div className="oil-swipe">
               <Swiper
                 // install Swiper modules
                 modules={[
@@ -222,19 +227,19 @@ const HomePage = () => {
                   return (
                     <SwiperSlide key={oil._id}>
                       <div className="oil-box">
-                          <Link to={`/bases/${oil.id}`}>
-                            <img src={oil.image} alt="oil img"/>
-                            <p>{oil.name}</p>
-                          </Link>
+                        <Link to={`/bases/${oil.id}`}>
+                          <img src={oil.image} alt="oil img" />
+                          <p>{oil.name}</p>
+                        </Link>
                       </div>
                     </SwiperSlide>
                   )
                 })}
               </Swiper>
             </div>
-        </Row>
-      </div>
-    </Container>
+          </Row>
+        </div>
+      </Container>
     </>
   )
 }
