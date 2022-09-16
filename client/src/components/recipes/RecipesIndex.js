@@ -32,7 +32,7 @@ const RecipesIndex = () => {
         const { data } = await axios.get(`${API_URL}/recipes/`)
         let publicData = data.filter(((item) => item.public === true))
         setRecipes(publicData)
-        console.log(data)
+        console.log('publicdata', data)
       } catch (error) {
         setError(error)
         console.log(error)
@@ -49,7 +49,7 @@ const RecipesIndex = () => {
         console.log(data)
         let dataMapped = data.map((keys) => { return keys.name })
         dataMapped.unshift('All')
-        console.log(dataMapped)
+        console.log('application data mapped', dataMapped)
         setApplicationsFilter(dataMapped)
       } catch (error) {
         setError(error)
@@ -136,8 +136,9 @@ const RecipesIndex = () => {
             <div className='button-container ms-5 text-start flex-column'>
               <h5>Applications</h5>
               {applicationsFilter.map((item) => {
-                return <button className={applicationsBtn === item ? "btn-clicked" : ""} onClick={handleApplicationFilter} name="applications" value={item} > {item}</button>
-              })}
+                return (
+                    <button className={applicationsBtn === item ? "btn-clicked" : ""} onClick={handleApplicationFilter} name="applications" value={item} > {item}</button>
+                )})}
             </div>
             <div className='button-container ms-5 text-start flex-column'>
               <h5>Remedies</h5>
@@ -161,7 +162,7 @@ const RecipesIndex = () => {
                         <p>{recipe.description}</p>
                       </Col>
 
-                      <Col className="col-12 list-categories px-2 pb-2 p-md-3" md="4">
+                      <Col className="col-12 list-categories px-2 p-2 p-md-3" md="4">
                         <Row>
                           {recipe.essential_oil_amount.length > 0 &&
 
@@ -177,25 +178,35 @@ const RecipesIndex = () => {
                                 })}
                               </div>
                             </Col>}
-
+                              
                           {recipe.applications.length > 0 &&
 
-                            <Col className="col-4" md="12">
+                            <Col className="col-4 pt-md-2" md="6">
                               <p>Applications:</p>
-                              <div className="d-flex flex-wrap">
+                              <div className="category-cards-wrapper">
                                 {recipe.applications.map((item) => {
-                                  return (<span>{item.name}</span>)
+                                  return (
+                                    <div className="category-card">
+                                      <img src={item.icon} className="category" alt="icon"/>
+                                      <span>{item.name}</span>
+                                  </div>
+                                  )
                                 })}
                               </div>
                             </Col>}
 
                           {recipe.remedies.length > 0 &&
 
-                            <Col className="col-4" md="12">
+                            <Col className="col-4 pt-md-2" md="6">
                               <p>Remedies:</p>
-                              <div className="d-flex flex-wrap">
+                              <div className="category-cards-wrapper">
                                 {recipe.remedies.map((item) => {
-                                  return (<span>{item.name}</span>)
+                                  return (
+                                    <div className="category-card">
+                                      <img src={item.icon} className="category" alt="icon"/>
+                                      <span>{item.name}</span>
+                                  </div>
+                                  )
                                 })}
                               </div>
                             </Col>}     

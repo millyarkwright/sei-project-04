@@ -1,5 +1,17 @@
+// See Recipe Card for created recipes at the bottom
+
 .list-container{
   padding: 10px;
+  .saved-title-container{
+    padding: 20px;
+    background-color: rgba(239, 239, 239, 0.655);
+    border-radius: 15px 15px 0px 0px;
+    h1 {
+      color: rgb(59, 58, 58);
+      font-weight: bolder;
+      font-style: italic;
+    }
+  }
   p, a {
     text-decoration: none;
     color: black;
@@ -21,16 +33,10 @@
     }
     .list-text {
       text-align: left;
-      // max-width: 60%;
       height: 90%;
-      // padding: 20px;
-      // overflow: scroll;
-      // white-space: nowrap;
-      // text-overflow: ellipsis;
       p{
         margin-top: 10px;
         margin-bottom: 0px;
-        // text-align: justify;
         font-size: calc(0.9em + 0.05vw);
         overflow: scroll;
         height: 90%;
@@ -55,20 +61,43 @@
     }
 
     .list-categories {
-      // padding: 20px;
       text-align: left;
-      p, span{
-        margin-bottom: 0px;
+      .category-cards-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        // justify-content: center;
+      }
+      .category-card{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 5px;
+        max-width: 115px;
+
+        img {
+          background-color: rgba(237, 224, 196, 0.82);
+          padding: 5px;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+        } span {
+          text-align: center;
+        }
+      }
+      span{
         color: rgb(10, 57, 57);
         font-size: 0.9rem;
-        margin-right: 5px;
+        margin: 0px 5px;
       }
       p {
+        color: rgb(10, 57, 57);
+        font-size: 0.9rem;
         font-weight: bold;
+        margin-bottom: 0px;
       }
-      // span:not(:first-of-type), a:not(:first-of-type) {
-      //   margin-left: 5px;
-      // }
       a {
         color: rgb(10, 57, 57);
         text-decoration: underline;
@@ -78,4 +107,114 @@
       }
     }
   }
+  .remove-button {
+    padding-right: 10px;
+    padding-left: 10px;
+    width: 100%;
+    background-color: $greybg;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    transition: 0.5s ease;
+    &:hover{
+      background-color: $darkgreybg;
+      box-shadow: 0px 2px 5px 0px $greybg;
+    }
+  }
 }
+
+
+
+
+
+.userActions-wrapper {
+  display: flex;
+  flex-direction: row;
+  .button-container {
+    display: flex; 
+    flex-direction: row;
+    .edit-button {
+      padding: 5px;
+      margin-right: 10px;
+      background-color: $greybg;
+      border: 1px solid transparent;
+      border-radius: 5px;
+      transition: 0.5s ease;
+      // display: flex;
+      // justify-content: center;
+      // align-items: center;
+      &:hover{
+        background-color: $darkgreybg;
+        box-shadow: 0px 2px 5px 0px $greybg;
+      }
+    }
+    .delete-button {
+      button {
+      padding: 5px;
+      margin-right: 10px;
+      background-color: $greybg;
+      border: 1px solid transparent;
+      border-radius: 5px;
+      transition: 0.5s ease;
+      // display: flex;
+      // justify-content: center;
+      // align-items: center;
+      &:hover{
+        background-color: $darkgreybg;
+        box-shadow: 0px 2px 5px 0px $greybg;
+      }
+      }
+    }
+
+    }
+  .checkbox-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: $greybg;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    label {
+      margin-right: 10px;
+      padding: 5px;
+    }
+    input[type="checkbox"] {
+      margin: 5px 5px 5px 0px;
+      padding: 5px;
+    }
+  }
+}
+
+
+// .userActions-wrapper {
+//   display: flex;
+//   flex-direction: row;
+//   padding: 20px;
+//   .button-container {
+//     display: flex; 
+//     flex-direction: row;
+//     .edit-button, .delete-button {
+//     // padding-right: 10px;
+//     // padding-left: 10px;
+//     background-color: $greybg;
+//     border: 1px solid transparent;
+//     border-radius: 5px;
+//     transition: 0.5s ease;
+//     margin-right: 10px;
+//     &:hover{
+//       background-color: $darkgreybg;
+//       box-shadow: 0px 2px 5px 0px $greybg;
+//     }
+//     button {
+//       padding-right: 10px;
+//       padding-left: 10px;
+//       background-color: $greybg;
+//       border: 1px solid transparent;
+//       border-radius: 5px;
+//       transition: 0.5s ease;
+//       &:hover{
+//         background-color: $darkgreybg;
+//         box-shadow: 0px 2px 5px 0px $greybg;
+//       }
+//     }
+//     }
+//   }

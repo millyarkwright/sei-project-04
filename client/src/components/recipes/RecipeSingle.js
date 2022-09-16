@@ -500,8 +500,8 @@ const RecipeSingle = () => {
                       {recipe.base_oil_amount.map((item) => {
                         return (
                           <div key={item.id} className="ingredient">
-                            <p className="ms-2">{item.quantity} {item.measurement}</p>
-                            <p className="mx-2">of</p>
+                            <p className="ms-2 mx-2">{item.quantity} {item.measurement}</p>
+                            {/* <p className="mx-2">of</p> */}
                             <Link to={`/bases/${item.base_oil.id}`}>
                               <p className="fw-bold">{item.base_oil.name} oil</p>
                             </Link>
@@ -516,8 +516,8 @@ const RecipeSingle = () => {
                       {recipe.other_ingredient_amount.map((item) => {
                         return (
                           <div key={item.id} className="ingredient">
-                            <p className="ms-2">{item.quantity} {item.measurement}</p>
-                            <p className="mx-2">of</p>
+                            <p className="ms-2 mx-2">{item.quantity} {item.measurement}</p>
+                            {/* <p className="mx-2">of</p> */}
                             <p className="fw-bold">{item.other_ingredient.name}</p>
                           </div>
                         )
@@ -530,8 +530,8 @@ const RecipeSingle = () => {
                       {recipe.essential_oil_amount.map((item) => {
                         return (
                           <div key={item.id} className="ingredient">
-                            <p className="ms-2">{item.quantity} {item.measurement}</p>
-                            <p className="mx-2">of</p>
+                            <p className="ms-2 mx-2">{item.quantity} {item.measurement}</p>
+                            {/* <p className="mx-2">of</p> */}
                             <Link to={`/essentials/${item.essential_oil.id}`}>
                               <p className="fw-bold">{item.essential_oil.name} essential oil</p>
                             </Link>
