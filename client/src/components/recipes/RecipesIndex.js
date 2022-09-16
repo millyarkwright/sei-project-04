@@ -49,7 +49,7 @@ const RecipesIndex = () => {
         console.log(data)
         let dataMapped = data.map((keys) => { return keys.name })
         dataMapped.unshift('All')
-        console.log(dataMapped)
+        console.log('application data mapped', dataMapped)
         setApplicationsFilter(dataMapped)
       } catch (error) {
         setError(error)
@@ -136,8 +136,9 @@ const RecipesIndex = () => {
             <div className='button-container ms-5 text-start flex-column'>
               <h5>Applications</h5>
               {applicationsFilter.map((item) => {
-                return <button className={applicationsBtn === item ? "btn-clicked" : ""} onClick={handleApplicationFilter} name="applications" value={item} > {item}</button>
-              })}
+                return (
+                    <button className={applicationsBtn === item ? "btn-clicked" : ""} onClick={handleApplicationFilter} name="applications" value={item} > {item}</button>
+                )})}
             </div>
             <div className='button-container ms-5 text-start flex-column'>
               <h5>Remedies</h5>
