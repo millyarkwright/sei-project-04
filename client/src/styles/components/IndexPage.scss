@@ -77,9 +77,12 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    // margin-top: 20px;
     gap: 50px;
-    background-color: rgba(239, 239, 239, 0.655);
+    // background-color: rgba(239, 239, 239, 0.655);
+    background-color: rgba(239, 239, 239, 0.434);
     padding: 30px;
+    // border: 1px solid lightgray;
 
     // padding-left: 30px;
     
@@ -97,7 +100,7 @@
       color: black;
       img{
         height: 200px;
-        border-radius: 200px;
+        border-radius: 15px;
         width: 200px;
         object-fit: cover;
         transition: .3s ease;
