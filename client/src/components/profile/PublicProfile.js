@@ -37,10 +37,13 @@ const PublicProfile = () => {
   return (
     <Container className="search-wrapper min-vh-100">
       <div className='list-container'>
-      <h1>Recipes by {username}</h1>
+        <div className="header-wrapper">
+          <h1>Recipes by {username}</h1>
+
+        </div>
         {Object.keys(publicRecipes).length > 0 ?
           <>
-     
+
             {publicRecipes.map((recipe) => {
               // (recipe.name.charAt(0).toUpperCase() + recipe.name.slice(1)).join(' ')
               return (
