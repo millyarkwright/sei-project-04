@@ -142,7 +142,7 @@ const CreatedRecipes = () => {
         headers: { Authorization: `Bearer ${getToken()}` },
       })
       toast.success(data.detail, {
-        position: "top-right",
+        position: "top-left",
         autoClose: 1000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -167,7 +167,7 @@ const CreatedRecipes = () => {
           headers: { Authorization: `Bearer ${getToken()}` },
         })
         toast.success(data.detail, {
-          position: "top-right",
+          position: "top-left",
           autoClose: 1000,
           hideProgressBar: false,
           closeOnClick: true,

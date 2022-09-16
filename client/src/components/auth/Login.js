@@ -48,14 +48,14 @@ const Login = () => {
 
       // Notification
       toast.success(data.message, {
-        position: "top-right",
+        position: "top-left",
         autoClose: 1200,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-      });
+      })
     } catch (error) {
       console.log(error)
       toast.error(error.response.data.detail, {

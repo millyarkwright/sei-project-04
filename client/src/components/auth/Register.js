@@ -90,6 +90,15 @@ const Register = () => {
       const { token } = data
       setToken(token)
       navigate('/login')
+      // toast.success(data.message, {
+      //   position: "top-left",
+      //   autoClose: 1200,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   progress: undefined,
+      // })
       console.log(formData)
     } catch (error) {
         console.log('ERROR', error)

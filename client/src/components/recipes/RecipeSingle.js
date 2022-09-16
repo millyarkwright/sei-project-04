@@ -217,7 +217,7 @@ const RecipeSingle = () => {
       console.log('data.detail', data.detail)
       setBookmarked(true)
       toast.success(data.detail, {
-        position: "top-right",
+        position: "top-left",
         autoClose: 1500,
         hideProgressBar: false,
         closeOnClick: true,
@@ -230,7 +230,7 @@ const RecipeSingle = () => {
       setError(error)
       setErrorMessage(error.response.data.detail)
       toast.error(error.response.data.detail, {
-        position: "top-right",
+        position: "top-left",
         autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -253,7 +253,7 @@ const RecipeSingle = () => {
       // console.log('data.detail', data.detail)
       setBookmarked(false)
       toast.success(data.detail, {
-        position: "top-right",
+        position: "top-left",
         autoClose: 1500,
         hideProgressBar: false,
         closeOnClick: true,
@@ -266,7 +266,7 @@ const RecipeSingle = () => {
       setError(error)
       setErrorMessage(error.response.data.detail)
       toast.error(error.response.data.detail, {
-        position: "top-right",
+        position: "top-left",
         autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -291,7 +291,7 @@ const RecipeSingle = () => {
       console.log(data.detail)
       setTested(true)
       toast.success(data.detail, {
-        position: "top-right",
+        position: "top-left",
         autoClose: 1500,
         hideProgressBar: false,
         closeOnClick: true,
@@ -304,7 +304,7 @@ const RecipeSingle = () => {
       setError(error)
       setErrorMessage(error.response.data.detail)
       toast.error(error.response.data.detail, {
-        position: "top-right",
+        position: "top-left",
         autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -324,7 +324,7 @@ const RecipeSingle = () => {
         headers: { Authorization: `Bearer ${getToken()}` },
       })
       toast.success(data.detail, {
-        position: "top-right",
+        position: "top-left",
         autoClose: 1000,
         hideProgressBar: false,
         closeOnClick: true,
