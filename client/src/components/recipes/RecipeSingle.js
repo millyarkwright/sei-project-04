@@ -5,6 +5,11 @@ import axios from 'axios'
 import { API_URL } from '../../config'
 import { Rating } from 'react-simple-star-rating'
 import loaderImg from '../../images/loader.gif'
+import bookmarkImg from '../../images/bookmark.png'
+import unBookmarkImg from '../../images/unbookmark.png'
+import userImg from '../../images/user.png'
+import notTestedImg from '../../images/notTested.png'
+import testedImg from '../../images/tested.png'
 
 // * Toast
 import { ToastContainer, toast } from 'react-toastify';
@@ -106,7 +111,9 @@ const RecipeSingle = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const { data } = await axios.get(`${API_URL}/users/bookmarks`)
+        const { data } = await axios.get(`${API_URL}/users/bookmarks`, {
+          headers: { Authorization: `Bearer ${getToken()}` },
+        })
         // console.log('BOOKMARKS DATA',data)
         let bookmark = data.filter(bookmark => bookmark.bookmarked_recipe === parseInt(recipeId))
         // console.log('bookmark', bookmark.length)
@@ -130,12 +137,14 @@ const RecipeSingle = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const { data } = await axios.get(`${API_URL}/users/tested/`)
+        const { data } = await axios.get(`${API_URL}/users/tested/`, {
+          headers: { Authorization: `Bearer ${getToken()}` },
+        })
         // console.log('TESTED DATA',data)
         let tested = data.filter(tested => tested.tested_recipe === parseInt(recipeId))
         // console.log('tested', tested.length)
         if (tested.length > 0) {
-          // console.log('tested id',tested[0].id)
+          console.log('tested id', tested[0].id)
           setTestedId(tested[0].id)
           setTested(true)
         } else {
@@ -377,66 +386,91 @@ const RecipeSingle = () => {
           <Container className="header-wrapper">
             <Row>
               {/* <Row className="flex-column-reverse flex-md-row"> */}
-              <Col className="col-12" md="6">
+              <Col className="col-12" md="5">
                 <h1>{recipe.name}</h1>
+                <span>by <Link to={`/profile/${recipe.owner.username}`}>{recipe.owner.username}</Link></span>
+                {/* <p>{recipe.description}</p> */}
+                {userIsAuthenticated() && (currentUser.id === recipe.owner.id) ?
+                  <>
+                    <Link to={`/recipes/${recipeId}/edit`}>
+                      <button className='edit-button'>EDIT</button>
+                    </Link>
+                    <button className='edit-button' onClick={handleDelete}>DELETE</button>
+
+                  </>
+                  :
+                  <></>
+                }
               </Col>
-              <Col className="col-12" md="6">
-                <div className="userActions d-flex justify-content-md-end">
+              <Col className="col-12" md="3">
+                {/* Categoies */}
+                <div className="categories-container justify-content-center justify-content-md-start">
+                  {recipe.applications.map((application) => {
+                    return (
+                      <div key={application.name} className="category-card-wrapper">
+                        <img src={application.icon} className='category' alt="icon" />
+                        <p>{application.name}</p>
+                      </div>
+                    )
+                  })}
+                  {recipe.remedies.map((remedy) => {
+                    return (
+                      <div key={remedy.name} className="category-card-wrapper">
+                        <img src={remedy.icon} className="category" alt="icon" />
+                        <p>{remedy.name}</p>
+                      </div>
+                    )
+                  })}
+                </div>
+              </Col>
+              <Col className="col-12 " md="4" >
+                <div className="userActions d-flex justify-content-center justify-content-md-end">
                   {userIsAuthenticated() ?
                     <>
                       {bookmarked ?
-                        <button onClick={handleRemoveBookmark}>UNBOOKMARK</button>
+                        <button onClick={handleRemoveBookmark} className="unbookmark">
+                          <img className="bookmark-img" src={unBookmarkImg} alt="Remove Bookmark" />
+                          Remove Bookmark
+                        </button>
                         :
-                        <button onClick={handleAddToBookmark}>BOOKMARK</button>
+                        <button onClick={handleAddToBookmark}>
+                          <img className="bookmark-img" src={bookmarkImg} alt="Add Bookmark" />
+                          Add Bookmark
+                        </button>
                       }
 
                     </>
                     :
                     <>
-                      <button onClick={handleAddToBookmark}>BOOKMARK</button>
-                      <button onClick={handleAddToTested}>TESTED</button>
+                      <button onClick={handleAddToBookmark}>
+                        <img className="bookmark-img" src={bookmarkImg} alt="Add Bookmark" />
+                        {/* Add Bookmark */}
+                      </button>
+                      {/* <button onClick={handleAddToTested}>
+                        <img className="bookmark-img" src={notTestedImg} alt="Not Tested, add to test" />
+                        Add to tested
+                      </button> */}
                     </>
                   }
                   {tested ?
-                    <button disabled>TESTED</button>
+                    <button disabled className='disabled'>
+                      <img className="bookmark-img" src={testedImg} alt="Tested!" />
+                      Tested!
+                    </button>
                     :
-                    <button onClick={handleAddToTested}>TESTED</button>
-                  }
-                  {userIsAuthenticated() && (currentUser.id === recipe.owner.id) ?
-                    <>
-                      <button onClick={handleDelete}>DELETE</button>
-                      <Link to={`/recipes/${recipeId}/edit`}>
-                        <button>EDIT</button>
-                      </Link>
+                    <button onClick={handleAddToTested}>
+                      <img className="bookmark-img" src={notTestedImg} alt="Not Tested, add to test" />
+                      {/* Add to tested */}
 
-                    </>
-                    :
-                    <></>
+                    </button>
                   }
 
                 </div>
               </Col>
             </Row>
-            {/* Categoies */}
-            <div className="categories-container">
-              {recipe.applications.map((application) => {
-                return (
-                  <div key={application.name} className="category">
-                    <img src={application.icon} alt="icon" />
-                    <p>{application.name}</p>
-                  </div>
-                )
-              })}
-              {recipe.remedies.map((remedy) => {
-                return (
-                  <div key={remedy.name}>
-                    <img src={remedy.icon} alt="icon" />
-                    <p>{remedy.name}</p>
-                  </div>
-                )
-              })}
-            </div>
-            <p>{recipe.description}</p>
+            <Col className='col-12 description-wrapper' md='10'>
+              <p>{recipe.description}</p>
+            </Col>
           </Container>
 
           {/* Ingredients */}
@@ -524,13 +558,13 @@ const RecipeSingle = () => {
                     emptyColor="darkgrey"
                     // fillColor="yellow"
                     required
-                    fillColorArray={[
-                      'darkred',
-                      'darkorange',
-                      'gold',
-                      'darkcyan',
-                      'darkgreen',
-                    ]}
+                    // fillColorArray={[
+                    //   'darkred',
+                    //   'darkorange',
+                    //   'gold',
+                    //   'darkcyan',
+                    //   'darkgreen',
+                    // ]}
                     // customIcons={customIcons}
                     ratingValue={formData.rating} /* Rating Props */
                   />
@@ -545,7 +579,7 @@ const RecipeSingle = () => {
                 >
                   {formData.text}
                 </textarea>
-                <input type="submit" value="Add Comment" required />
+                <input type="submit" value="Submit Review" required />
                 {/* <ToastContainer /> */}
               </form>
             </div>
@@ -594,9 +628,9 @@ const RecipeSingle = () => {
                   return (
                     <SwiperSlide key={comment._id}>
                       <div className="comment-box">
-                        <div>
+                        <div className="comment-owner-profile">
                           <img
-                            src={comment.owner.profile_image}
+                            src={comment.owner.profile_image != '' ? comment.owner.profile_image : userImg}
                             alt="profile img"
                           />
                           <Link to={`/profile/${comment.owner.username}`}>
@@ -608,13 +642,13 @@ const RecipeSingle = () => {
                             size={20}
                             emptyColor="darkgrey"
                             // fillColor="yellow"
-                            fillColorArray={[
-                              'darkred',
-                              'darkorange',
-                              'gold',
-                              'darkcyan',
-                              'darkgreen',
-                            ]}
+                            // fillColorArray={[
+                            //   'darkred',
+                            //   'darkorange',
+                            //   'gold',
+                            //   'darkcyan',
+                            //   'darkgreen',
+                            // ]}
                             // customIcons={customIcons}
                             ratingValue={comment.rating}
                             allowHover={false}
