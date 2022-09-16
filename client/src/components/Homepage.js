@@ -75,16 +75,19 @@ const HomePage = () => {
   
 
   return (
-    <Container className="home-wrapper min-vh-100">
-      <div className="title-container">
-        <h1>Welcome</h1>
-        <p>Essential oils contain the essence of nature. They are natural extracts from the seeds, stems, roots, flowers, bark and other parts of the plant. Used today in aromatherapy and fragrances, they have a long history in natural healing. The oils harness a plant's therapeutic properties to restore balance to the mind, body and spirit.  </p>
-        <p>Discover the therapeutic properties of essential oils, the best ways to use each essential oil, and create your own recipes and blends.</p>
+    <>
+    <div className="hero-container">
+      <div className="hero-overlay">
+        <h1>aromatics</h1>
+        <p>Discover the therapeutic properties of essential oils, the best ways to use them, and create your own recipes.</p>
       </div>
+    </div>
+    <Container className="home-wrapper min-vh-100">
 
       <div className="home-essentials">
         <div className="essentials-text">
           <h2>Essential Oils</h2>
+          <p>Essential oils contain the essence of nature. They are natural extracts from the seeds, stems, roots, flowers, bark and other parts of the plant. Used today in aromatherapy and fragrances, they have a long history in natural healing. The oils harness a plant's therapeutic properties to restore balance to the mind, body and spirit.  </p>
           <p>Discover the unique properties of over 40 essential oils, each profile details a plant's orogin and properties, the oil's appearance and aroma, and suggests some of the best ways to use each essential oil. </p>
         </div>
         <Row>
@@ -231,8 +234,8 @@ const HomePage = () => {
             </div>
         </Row>
       </div>
-
     </Container>
+    </>
   )
 }
 

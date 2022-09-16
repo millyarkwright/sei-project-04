@@ -1,3 +1,28 @@
+.hero-container {
+  height: 400px;
+  background-image: url('../../images/hero_image.jpeg'); 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size:cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  .hero-overlay{
+    background-color: rgb(255, 255, 255, 0.4);
+    border-radius: 15px;
+    padding: 15px;
+    width: 80%;
+  }
+  h1 {
+    font-weight: bold;
+    font-size:50px;
+  }
+  p {
+    font-size: 20px;
+  }
+}
+
 .home-wrapper{
   justify-content: center;
   text-align: left;
