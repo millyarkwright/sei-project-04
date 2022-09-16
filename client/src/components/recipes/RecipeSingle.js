@@ -388,7 +388,7 @@ const RecipeSingle = () => {
               {/* <Row className="flex-column-reverse flex-md-row"> */}
               <Col className="col-12" md="5">
                 <h1>{recipe.name}</h1>
-                <span>by <Link to={`/profile/${recipe.owner.username}`}>{recipe.owner.username}</Link></span>
+                <span className="d-block d-lg-inline mb-3 mb-lg-0">by <Link to={`/profile/${recipe.owner.username}`}>{recipe.owner.username}</Link></span>
                 {/* <p>{recipe.description}</p> */}
                 {userIsAuthenticated() && (currentUser.id === recipe.owner.id) ?
                   <>
@@ -430,12 +430,12 @@ const RecipeSingle = () => {
                       {bookmarked ?
                         <button onClick={handleRemoveBookmark} className="unbookmark">
                           <img className="bookmark-img" src={unBookmarkImg} alt="Remove Bookmark" />
-                          Remove Bookmark
+                          {/* Remove Bookmark */}
                         </button>
                         :
                         <button onClick={handleAddToBookmark}>
                           <img className="bookmark-img" src={bookmarkImg} alt="Add Bookmark" />
-                          Add Bookmark
+                          {/* Add Bookmark */}
                         </button>
                       }
 
@@ -455,12 +455,12 @@ const RecipeSingle = () => {
                   {tested ?
                     <button disabled className='disabled'>
                       <img className="bookmark-img" src={testedImg} alt="Tested!" />
-                      Tested!
+                      Tested
                     </button>
                     :
                     <button onClick={handleAddToTested}>
                       <img className="bookmark-img" src={notTestedImg} alt="Not Tested, add to test" />
-                      {/* Add to tested */}
+                      Tested
 
                     </button>
                   }
@@ -478,18 +478,22 @@ const RecipeSingle = () => {
             <Row>
               <Col className="col-12" md="5">
                 <Row className='ingredients-container me-md-1'>
-                  <h3>Ingredients</h3>
-                  <p className="m-0">Makes {recipe.makes}</p>
+                  <div className='ingredients-title'>
+                    <h3>Ingredients</h3>
+                    <p className="m-0  makes">This recipe makes <span className="fw-normal">{recipe.makes}</span></p>
+                  </div>
+
                   {/* Base Oils */}
                   {recipe.base_oil_amount.length > 0 &&
                     <>
                       {recipe.base_oil_amount.map((item) => {
                         return (
                           <div key={item.id} className="ingredient">
+                            <p className="ms-2">{item.quantity} {item.measurement}</p>
+                            <p className="mx-2">of</p>
                             <Link to={`/bases/${item.base_oil.id}`}>
                               <p className="fw-bold">{item.base_oil.name} oil</p>
                             </Link>
-                            <p className="ms-2">{item.quantity} {item.measurement}</p>
                           </div>
                         )
                       })}
@@ -501,8 +505,9 @@ const RecipeSingle = () => {
                       {recipe.other_ingredient_amount.map((item) => {
                         return (
                           <div key={item.id} className="ingredient">
-                            <p className="fw-bold">{item.other_ingredient.name}</p>
                             <p className="ms-2">{item.quantity} {item.measurement}</p>
+                            <p className="mx-2">of</p>
+                            <p className="fw-bold">{item.other_ingredient.name}</p>
                           </div>
                         )
                       })}
@@ -514,10 +519,11 @@ const RecipeSingle = () => {
                       {recipe.essential_oil_amount.map((item) => {
                         return (
                           <div key={item.id} className="ingredient">
+                            <p className="ms-2">{item.quantity} {item.measurement}</p>
+                            <p className="mx-2">of</p>
                             <Link to={`/essentials/${item.essential_oil.id}`}>
                               <p className="fw-bold">{item.essential_oil.name} essential oil</p>
                             </Link>
-                            <p className="ms-2">{item.quantity} {item.measurement}</p>
                           </div>
                         )
                       })}
@@ -527,11 +533,11 @@ const RecipeSingle = () => {
               </Col>
               <Col className="col-12" md="7">
                 <Row className="steps-container">
-                  <h3>Steps</h3>
+
                   <div className="text-start">
-                    {recipe.step_one !== "" ? <><p>1. {recipe.step_one}</p></> : <></>}
-                    {recipe.step_two !== "" ? <><p>2. {recipe.step_two}</p></> : <></>}
-                    {recipe.step_three !== "" ? <><p>3. {recipe.step_three}</p></> : <></>}
+                    {recipe.step_one !== "" ? <><h3>Step 1</h3><p>{recipe.step_one}</p></> : <></>}
+                    {recipe.step_two !== "" ? <><h3>Step 2</h3><p>{recipe.step_two}</p></> : <></>}
+                    {recipe.step_three !== "" ? <><h3>Step 3</h3><p>{recipe.step_three}</p></> : <></>}
                   </div>
                 </Row>
               </Col>
@@ -579,7 +585,7 @@ const RecipeSingle = () => {
                 >
                   {formData.text}
                 </textarea>
-                <input type="submit" value="Submit Review" required />
+                <input type="submit" value="Submit" required />
                 {/* <ToastContainer /> */}
               </form>
             </div>
