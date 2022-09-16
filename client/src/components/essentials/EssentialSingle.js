@@ -71,8 +71,8 @@ const EssentialSingle = () => {
                   </div>
                 </div>
                 <div className="description-container mt-md-4">
+                  <p><span className="fw-bold">Key action: </span>{essentialOil.key_action}</p>
                   <p>{essentialOil.description_long}</p>
-                  <p><span className="fw-bold">Method of extraction: </span>{essentialOil.method_of_extraction}</p>
                 </div>
               </Col>
               <Col className="header-image col-12" md="4">
@@ -109,6 +109,10 @@ const EssentialSingle = () => {
                     <h4>The essential oil</h4>
                     <p>{essentialOil.the_essential_oil}</p>
                 </div>
+                <div>
+                  <h4>Method of extraction</h4>
+                  <p>{essentialOil.method_of_extraction}</p>
+                </div>
                 <div className="safeUsage">
                     <h4>Safe usage</h4>
                     <p>{essentialOil.safe_usage}</p>
@@ -133,16 +137,19 @@ const EssentialSingle = () => {
           </Container>
           {/* Blends */}
           <Container className="blends-wrapper">
-            {essentialOil.blends_well_with.map((blend) => {
-              return (
-                <div key={blend.id}>
-                  <Link to={`/essentials/${blend.id}`} onClick={() => window.location.reload()}>
-                    <img className="eoSingle-image w-100" src={blend.image} alt="Essential Oil"/>
-                    <p>{blend.name}</p>
-                  </Link>
-                </div>
-              )
-            })}
+            <h3>Blends well with...</h3>
+            <div className="blends-container">
+              {essentialOil.blends_well_with.map((blend) => {
+                return (
+                  <div key={blend.id}>
+                    <Link to={`/essentials/${blend.id}`} onClick={() => window.location.reload()}>
+                      <img className="eoSingle-image w-100" src={blend.image} alt="Essential Oil"/>
+                      <p>{blend.name}</p>
+                    </Link>
+                  </div>
+                )
+              })}
+            </div>
           </Container>
         </>
           :
