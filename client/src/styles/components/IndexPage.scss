@@ -20,12 +20,17 @@
       font-weight: bolder;
       font-style: italic;
     }
+    h5 {
+      font-size: 1rem;
+      font-weight: light;
+      text-decoration: underline;
+    }
     .button-container {
       margin-top: 10px;
       button {
         background-color:transparent;
         // border: 1px solid rgb(211, 211, 211);
-        border: 1px solid transparent;
+        border: 1px solid $beigebg;
         border-radius: 10px;
         margin: 5px;
         padding-left: 10px;
@@ -52,7 +57,7 @@
       width: 300px;
       margin-top: 5px;
       margin-bottom: 5px;
-      background-color: rgba(251, 251, 251, 0.6);
+      background-color: rgb(255, 255, 255);
 
       &:hover {
         transition: 0.2s ease-in-out;
