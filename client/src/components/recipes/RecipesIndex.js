@@ -128,7 +128,7 @@ const RecipesIndex = () => {
       {Object.keys(recipes).length ?
         <>
         {/* FILTERS */}
-          <div className='title-container'>
+          <div className="title-container">
             <h1>Recipes</h1>
             <div className='search-container text-center text-end my-md-0 my-3'>
               <input type="text" className="seach" placeholder="Search..." onChange={handleSearch} name="search" value={filters.search}></input>
