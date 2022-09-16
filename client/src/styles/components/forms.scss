@@ -8,7 +8,11 @@
     border-radius: 15px;
     box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.1);
     padding: 25px;
-    background-color: rgba(255, 255, 255, 0.945);
+    background-color: rgb(251, 249, 247);
+    h3 {
+      // font-style: italic;
+      // font-weight: bold;
+    }
   
   }
   .row {
@@ -19,7 +23,7 @@
       padding: 0px;
       margin-bottom: 10px;
       font-weight: 500;
-      color:  #567673;
+      // color:  #567673;
     }
     input {
       border-radius: 10px;
@@ -39,12 +43,16 @@
     margin-top: 20px;
     text-align: center;
     width: 40%;
-    background-color: #EBD35D;
-    background-color: #b5e2de;
-    font-weight: 500;
+    // background-color: #EBD35D;
+    background-color: #404F45;
+
     border: none;
+    color: white;
     &:hover{
-      box-shadow: 2px 2px 0px #EBD35D;
+      // box-shadow: 2px 2px 0px #EBD35D;
+      background-color: #2a342d;
+      color: white;
+
     }
   }
 
