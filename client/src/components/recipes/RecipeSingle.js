@@ -62,8 +62,8 @@ const RecipeSingle = () => {
   const [bookmarkId, setBookmarkId] = useState()
   const [bookmarked, setBookmarked] = useState()
 
-  const [testedId, setTestedId] = useState()
-  const [tested, setTested] = useState()
+  const [testedId, setTestedId] = useState(false)
+  const [tested, setTested] = useState(false)
 
 
   // * Get User Data
@@ -82,19 +82,30 @@ const RecipeSingle = () => {
         // console.log('USER B.RECIPES IDS ARRAY-->', BookmarkedRecipeIds)
         setBookmarkedRecipeIds(BookmarkedRecipeIds)
 
-        // let bRecipes = data.bookmarked_recipes
-        // let filteredBookmarkedRecipe 
-        // for(let i=0; i < data.bookmarked_recipes.length; i++){
-        //   // console.log('LOOOP')
-        //   // console.log('BOOKMARKED ID-->', bRecipes[i].id)
-        //   // console.log('RECIPE ID-->', bRecipes[i].bookmarked_recipe.id)
-        //   // console.log('CURRENT RECIPE ID', parseInt(recipeId))
-        //   if(bRecipes[i].bookmarked_recipe.id === parseInt(recipeId)){
-        //     console.log('bRecipes', bRecipes[i].id)
-        //     let filteredBookmarkedRecipe = bRecipes[i].id
-        //     // return bRecipes[i].id
-        //   }
-        // }
+        let bRecipes = data.bookmarked_recipes
+        let filteredBookmarkedRecipe 
+        for(let i=0; i < data.bookmarked_recipes.length; i++){
+          // console.log('LOOOP')
+          // console.log('BOOKMARKED ID-->', bRecipes[i].id)
+          // console.log('RECIPE ID-->', bRecipes[i].bookmarked_recipe.id)
+          // console.log('CURRENT RECIPE ID', parseInt(recipeId))
+          if(bRecipes[i].bookmarked_recipe.id === parseInt(recipeId)){
+            console.log('bRecipes', bRecipes[i].id)
+            let filteredBookmarkedRecipe = bRecipes[i].id
+            setBookmarked(true)
+            // return bRecipes[i].id
+          }
+        }
+
+        let tRecipes = data.tested_recipes
+        let filteredTestedRecipe 
+        for(let i=0; i < data.tested_recipes.length; i++){ 
+          if(tRecipes[i].tested_recipe.id === parseInt(recipeId)){
+            console.log('tRecipes', tRecipes[i].id)
+            let filteredTestedRecipe = tRecipes[i].id
+            setTested(true)     
+          } 
+        }
 
       } catch (error) {
         setError(error)
@@ -120,9 +131,9 @@ const RecipeSingle = () => {
         if (bookmark.length > 0) {
           // console.log('bookmark id',bookmark[0].id)
           setBookmarkId(bookmark[0].id)
-          setBookmarked(true)
+          // setBookmarked(true)
         } else {
-          setBookmarked(false)
+          // setBookmarked(false)
         }
       } catch (error) {
         setError(error)
@@ -146,9 +157,9 @@ const RecipeSingle = () => {
         if (tested.length > 0) {
           console.log('tested id', tested[0].id)
           setTestedId(tested[0].id)
-          setTested(true)
+          // setTested(true)
         } else {
-          setTested(false)
+          // setTested(false)
         }
       } catch (error) {
         setError(error)
@@ -636,7 +647,7 @@ const RecipeSingle = () => {
                       <div className="comment-box">
                         <div className="comment-owner-profile">
                           <img
-                            src={comment.owner.profile_image != '' ? comment.owner.profile_image : userImg}
+                            src={comment.owner.profile_image !== '' ? comment.owner.profile_image : userImg}
                             alt="profile img"
                           />
                           <Link to={`/profile/${comment.owner.username}`}>

@@ -1,14 +1,28 @@
 .recipe-form-wrapper{
   max-width: 1200px;
-  margin-top: 60px;
+  // margin-top: 60px;
   justify-content: center;
   padding: 10px;
   text-align: center;
+
+  h1 {
+    font-style: italic;
+    font-weight: bold;
+  }
+  h3{
+    font-style: italic;
+    font-weight: 600;
+  }
   form {
     border-radius: 15px;
-    box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.1);
+    // box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.1);
     padding: 25px;
-    background-color: rgba(255, 255, 255, 0.945);
+    background-color: $greybg;
+    // background-color: rgb(252, 252, 252);
+    // background-color: rgb(247, 243, 238);
+    // background-color: rgba(239, 239, 239, 0.655);
+    margin-top: 20px;
+    border: 1px solid lightgrey;
   
   }
   .row {
@@ -17,17 +31,18 @@
     text-align: left;
     label {
       padding: 0px;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       font-weight: 500;
-      color:  #567673;
+      // color:  rgb(90, 68, 14);
     }
     input {
       border-radius: 10px;
       border: 1px solid rgb(222, 222, 222);
       padding-left: 20px;
-      background-color: rgb(245, 245, 245);
-      margin-bottom: 10px;
+      // background-color: rgb(245, 245, 245);
+      margin-bottom: 15px;
       padding: 10px;
+
       &:focus {
         outline: none;
         border: 1px solid #EBD35D;
@@ -56,17 +71,77 @@
     width: 100%;
     // min-height: 212px;
     max-height: 212px;
-    margin-bottom: 10px;
-    border-radius: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
     border: 1px solid lightgray;
-    background-color: rgb(245, 245, 245);
-    color: grey;
+    // background-color: rgb(245, 245, 245);
+    color: black;
     font-size: 0.9rem;
     padding: 10px;
   }
 }
 
-// .basic-single {
-//   width: 30%;
-//   display: inline-block;
-// }
+.ingredient-form-wrapper{
+  .ingredient-form-container {
+    form {
+      background-color: rgb(247, 243, 238);
+      border-radius: 10px;
+    }
+    button {
+      background-color: $beigebg;
+      border: 1px solid transparent;
+      padding: 5px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+    }
+    .remove {
+      border-radius: 30px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      background-color: rgb(179, 84, 53);
+      // box-shadow: 0px 2px rgb(120, 59, 39);
+      transition: 0.2s ease;
+      color: white;
+      &:hover {
+        background-color: rgb(120, 59, 39);
+        // box-shadow: 0px 2px rgb(179, 84, 53);
+      }
+    }
+    .amounts {
+      .col {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0px;
+        padding-right: 10px;
+        gap: 5px;
+      }
+      input {
+        // margin-right: 10px;
+        max-width: 100%;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-right: 10px;
+        padding-left: 10px;
+      }
+    }
+  }
+
+}
+.select-ingredients {
+  // max-width: 40%;
+}
+
+.recipe-submit {
+  padding: 10px;
+  max-width: 30%;
+  background-color: #404F45;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  color: white;
+  transition: 0.3s ease;
+  &:hover{
+    background-color: #2a342d;
+  }
+}
+

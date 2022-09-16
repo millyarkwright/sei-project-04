@@ -1,6 +1,6 @@
 //  * Hooks
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { getToken } from '../helpers/auth'
 // * Axios & URL
 import axios from 'axios'
@@ -18,7 +18,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const CreateRecipe = () => {
 
   //  ! State
-
+  const navigate = useNavigate()
   // * Base Recipe
   const [recipeData, setRecipeData] = useState({
     name: '',
@@ -228,6 +228,7 @@ const CreateRecipe = () => {
       const { data } = await axios.post(`${API_URL}/recipes/createrecipe/`, recipeData, {
         headers: { Authorization: `Bearer ${getToken()}` },
       })
+      navigate('/recipes')
     } catch (error) {
       console.log('----ERROR-----', error)
       setError(error)
@@ -241,7 +242,7 @@ const CreateRecipe = () => {
           draggable: true,
           progress: undefined,
         })
-      } 
+      }
       if ('measurement' in error.response.data.detail) {
         toast.error(error.response.data.detail.measurement[0], {
           position: "top-center",
@@ -415,11 +416,15 @@ const CreateRecipe = () => {
   return (
     <Container className="recipe-form-wrapper min-vh-100">
       <ToastContainer />
-      <h1>CREATE RECIPE</h1>
-      <Row>
-        <Col className="col-12" md="6">
-          <form onSubmit={handleRecipeSubmit} className="justify-content-between">
-            <h3 className="text-center">Recipe Details</h3>
+      <div className="header-wrapper">
+
+        <h1>Create Your Recipe</h1>
+      </div>
+      <form onSubmit={handleRecipeSubmit} className="justify-content-between">
+
+        <Row>
+          <Col className="col-12" md="6">
+            <h3 className="text-start">Recipe Details</h3>
             {/* Recipe name */}
             <Row>
               <label htmlFor="name">Recipe Name</label>
@@ -480,30 +485,30 @@ const CreateRecipe = () => {
               />
             </Row>
             {/* Categories */}
-            <Row>
+
               <label htmlFor="remedies">Remedy</label>
               <Select
                 value={selectedRemedies}
                 name="remedies"
                 options={remedyOptions}
-                className="basic-multi-select"
+                className="basic-multi-select mb-3"
                 classNamePrefix="select"
                 isMulti
                 onChange={handleRemedyChange} >
               </Select>
-            </Row>
-            <Row>
+
+
               <label htmlFor="applications">Applications</label>
               <Select
                 value={selectedApplications}
                 name="applications"
                 options={applicationOptions}
-                className="basic-multi-select"
+                className="basic-multi-select mb-3"
                 classNamePrefix="select"
                 isMulti
                 onChange={handleApplicationChange} >
               </Select>
-            </Row>
+
             {/* Public*/}
             <Row className="checkbox">
               <Col className="col-2 ps-0">
@@ -518,123 +523,167 @@ const CreateRecipe = () => {
                 />
               </Col>
             </Row>
-            {/* Submit */}
-            <input type="submit" value="Add Recipe" className="btn dark" />
-          </form>
-        </Col>
-        <Col className="col-12" md="6">
-          {/* Essential Oils */}
-          <Row className="ingredient-form-container">
-            {/* <form onSubmit={handleEoFormSubmit}> */}
-            <form>
-              <h4>Essential Oils</h4>
-              {eoFormFields.map((form, index) => {
-                return (
-                  <div key={index}>
-                    <Select
-                      name="essential_oil"
-                      options={essentialOptions}
-                      // value={selectedEssentials} 
-                      onChange={event => handleEssentialChange(event, index)}
-                      className="basic-single"
-                      classNamePrefix="select"
-                    >
-                    </Select>
-                    <input
-                      name='quantity'
-                      placeholder='Quantity'
-                      onChange={event => handleEoFormChange(event, index)}
-                      value={form.quantity}
-                    />
-                    <input
-                      name='measurement'
-                      placeholder='Measurement'
-                      onChange={event => handleEoFormChange(event, index)}
-                      value={form.measurement}
-                    />
-                    <button onClick={() => removeEoFields(index)}>Remove</button>
-                  </div>
-                )
-              })}
-              <button onClick={addEoFields}>Add More..</button>
-            </form>
-          </Row>
+          </Col>
+          <Col className="col-12 ingredient-form-wrapper " md="6">
+            <h3 className="text-start">Ingredients</h3>
+            {/* Essential Oils */}
+            <Row className="ingredient-form-container">
+              {/* <form onSubmit={handleEoFormSubmit}> */}
+              <form className=''>
+                <h4>Essential Oils</h4>
+                {eoFormFields.map((form, index) => {
+                  return (
+                    <div key={index} className='mt-2' >
 
-          {/* Base Oils */}
-          <Row className="ingredient-form-container">
-            {/* <form onSubmit={handleEoFormSubmit}> */}
-            <form>
-              <h4 className="fw-bold">Base Ingredients</h4>
-              {boFormFields.map((form, index) => {
-                return (
-                  <div key={index}>
-                    <Select
-                      name="base_oil"
-                      options={baseOptions}
-                      onChange={event => handleBaseChange(event, index)}
-                      className="basic-single"
-                      classNamePrefix="select"
-                    >
-                    </Select>
-                    <input
-                      name='quantity'
-                      placeholder='Quantity'
-                      onChange={event => handleBoFormChange(event, index)}
-                      value={form.quantity}
-                    />
-                    <input
-                      name='measurement'
-                      placeholder='Measurement'
-                      onChange={event => handleBoFormChange(event, index)}
-                      value={form.measurement}
-                    />
-                    <button onClick={() => removeBoFields(index)}>Remove</button>
-                  </div>
-                )
-              })}
-              <button onClick={addBoFields}>Add More..</button>
-            </form>
-          </Row>
 
-          {/* Other Indgredients */}
-          <Row className="ingredient-form-container">
-            {/* <form onSubmit={handleOiFormSubmit}> */}
-            <form>
-              <h4>Other Ingredients</h4>
-              {oiFormFields.map((form, index) => {
-                return (
-                  <div key={index}>
-                    <Select
-                      name="other_ingredient"
-                      options={otherOptions}
-                      onChange={event => handleOtherChange(event, index)}
-                      className="basic-single"
-                      classNamePrefix="select"
-                    >
-                    </Select>
-                    <input
-                      name='quantity'
-                      placeholder='Quantity'
-                      className='amount'
-                      onChange={event => handleOiFormChange(event, index)}
-                      value={form.quantity}
-                    />
-                    <input
-                      name='measurement'
-                      placeholder='Measurement'
-                      className='amount'
-                      onChange={event => handleOiFormChange(event, index)}
-                      value={form.measurement}
-                    />
-                    <button onClick={() => removeOiFields(index)}>Remove</button>
-                  </div>
-                )
-              })}
-              <button onClick={addOiFields}>Add More..</button>
-            </form>
-          </Row>
-        </Col>
-      </Row>
+                      <Select
+                        name="essential_oil"
+                        options={essentialOptions}
+                        // value={selectedEssentials} 
+                        onChange={event => handleEssentialChange(event, index)}
+                        className="basic-single select-ingredients"
+                        classNamePrefix="select"
+                      >
+                      </Select>
+
+                      <Row className="amounts mt-1">
+                        <Col className="col-4">
+
+                          <input
+                            name='quantity'
+                            placeholder='Quantity'
+                            onChange={event => handleEoFormChange(event, index)}
+                            value={form.quantity}
+                          />
+                        </Col>
+                        <Col className="col-5">
+                          <input
+                            name='measurement'
+                            placeholder='Measurement'
+                            onChange={event => handleEoFormChange(event, index)}
+                            value={form.measurement}
+                          />
+
+                        </Col>
+                        <Col className="col-3">
+                          <button className='remove' onClick={() => removeEoFields(index)}>Remove</button>
+
+                        </Col>
+                      </Row>
+                    </div>
+                  )
+                })}
+                <Row>
+                  <button onClick={addEoFields}>Add More..</button>
+
+                </Row>
+              </form>
+            </Row>
+
+            {/* Base Oils */}
+            <Row className="ingredient-form-container">
+              {/* <form onSubmit={handleEoFormSubmit}> */}
+              <form>
+                <h4>Base Ingredients</h4>
+                {boFormFields.map((form, index) => {
+                  return (
+                    <div key={index} className='mt-2'>
+                      <Select
+                        name="base_oil"
+                        options={baseOptions}
+                        onChange={event => handleBaseChange(event, index)}
+                        className="basic-single select-ingredients"
+                        classNamePrefix="select"
+                      >
+                      </Select>
+                      <Row className="amounts mt-1">
+                        <Col className="col-4">
+                          <input
+                            name='quantity'
+                            placeholder='Quantity'
+                            onChange={event => handleBoFormChange(event, index)}
+                            value={form.quantity}
+                          />
+                        </Col>
+                        <Col className="col-5">
+                          <input
+                            name='measurement'
+                            placeholder='Measurement'
+                            onChange={event => handleBoFormChange(event, index)}
+                            value={form.measurement}
+                          />
+                        </Col>
+                        <Col className="col-3">
+                          <button className='remove' onClick={() => removeBoFields(index)}>Remove</button>
+                        </Col>
+                      </Row>
+                    </div>
+                  )
+                })}
+                <Row>
+
+                  <button onClick={addBoFields}>Add More..</button>
+                </Row>
+              </form>
+            </Row>
+
+            {/* Other Indgredients */}
+            <Row className="ingredient-form-container">
+              {/* <form onSubmit={handleOiFormSubmit}> */}
+              <form>
+                <h4>Other Ingredients</h4>
+                {oiFormFields.map((form, index) => {
+                  return (
+                    <div key={index} className='mt-2' >
+                      <Select
+                        name="other_ingredient"
+                        options={otherOptions}
+                        onChange={event => handleOtherChange(event, index)}
+                        className="basic-single select-ingredients"
+                        classNamePrefix="select"
+                      >
+                      </Select>
+                      <Row className="amounts mt-1">
+                        <Col className="col-4">
+                          <input
+                            name='quantity'
+                            placeholder='Quantity'
+                            className='amount'
+                            onChange={event => handleOiFormChange(event, index)}
+                            value={form.quantity}
+                          />
+                        </Col>
+                        <Col className="col-5">
+                          <input
+                            name='measurement'
+                            placeholder='Measurement'
+                            className='amount'
+                            onChange={event => handleOiFormChange(event, index)}
+                            value={form.measurement}
+                          />
+                        </Col>
+                        <Col className="col-3">
+                          <button className='remove' onClick={() => removeOiFields(index)}>Remove</button>
+                        </Col>
+                      </Row>
+                    </div>
+
+                  )
+                })}
+                <Row>
+
+                  <button  onClick={addOiFields}>Add More..</button>
+                </Row>
+              </form>
+            </Row>
+
+          </Col>
+        </Row>
+        <Row>
+
+          <input type="submit" value="Create Recipe" className="recipe-submit" />
+        </Row>
+      </form>
     </Container>
   )
 }
