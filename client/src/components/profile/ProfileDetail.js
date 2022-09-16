@@ -94,7 +94,7 @@ const ProfileDetail = () => {
           </Col>
         </Row>
       </Row>
-      <Row>
+      <Row className="d-flex justify-content-center m-2">
           <button className="deleteAccount" onClick={handleDeleteAccount}>Delete account</button>
       </Row>
     </Container>
