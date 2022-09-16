@@ -29,7 +29,7 @@ const EssentialsIndex = () => {
   const [activeBtn1, setActiveBtn1] = useState('All')
   const [activeBtn2, setActiveBtn2] = useState('All')
   const [activeBtn3, setActiveBtn3] = useState('All')
-  // const [searchValue, setSearchValue] = useState([])
+  const [searchValue, setSearchValue] = useState([])
 
   const [error, setError] = useState('')
 
@@ -154,11 +154,12 @@ const EssentialsIndex = () => {
   useEffect(() => {
     const regexSearch = new RegExp(filters.search, 'i')
     console.log('search value', regexSearch)
-    console.log('saved tag', filters.tag)
+    console.log('saved tag', filters.applications)
+    console.log(oils)
     const filteredArray = oils.filter(oil => {
       return regexSearch.test(oil.name) && ((oil.key_action === filters.keyActions) || filters.keyActions === 'All')
-        && ((oil.applications.includes(filters.applications) || filters.applications === 'All'))
-        && ((oil.remedies.includes(filters.remedies) || filters.remedies === 'All'))
+        && ((oil.applications.map((keys) => { return keys.name }).includes(filters.applications) || filters.applications === 'All'))
+        && ((oil.remedies.map((keys) => { return keys.name }).includes(filters.remedies) || filters.remedies === 'All'))
     })
     console.log('filtered array', filteredArray)
     setFilteredOils(filteredArray)
