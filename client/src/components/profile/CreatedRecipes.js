@@ -252,52 +252,66 @@ const CreatedRecipes = () => {
                     <Col className="col-12 list-categories px-2 pb-2 p-md-3" md="4">
                       <Row>
                         {recipe.applications.length > 0 &&
-                          <Col className="col-5" md="12">
+                          <Col className="col-5" md="6">
                             <p>Applications:</p>
-                            <div className="d-flex flex-wrap">
+                            <div className="category-cards-wrapper">
                               {recipe.applications.map((item) => {
-                                return (<span>{item.name}</span>)
+                                return (
+                                  <div className="category-card">
+                                    <img src={item.icon} className="category" alt="icon"/>
+                                    <span>{item.name}</span>
+                                </div>
+                              )
                               })}
                             </div>
                           </Col>}
 
                         {recipe.remedies.length > 0 &&
-                          <Col className="col-7" md="12">
+                          <Col className="col-7" md="6">
                             <p>Remedies:</p>
-                            <div className="d-flex flex-wrap">
+                            <div className="category-cards-wrapper">
                               {recipe.remedies.map((item) => {
-                                return (<span>{item.name}</span>)
+                                return (
+                                  <div className="category-card">
+                                    <img src={item.icon} className="category" alt="icon"/>
+                                    <span>{item.name}</span>
+                                </div>
+                              )
                               })}
                             </div>
-                            <Link to={`/recipes/${recipe.id}/edit`}>
-                              <button>EDIT</button>
-                            </Link>
-                            <button onClick={handleDelete} value={recipe.id}>DELETE</button>
-                            <Row className="checkbox-list">
-                              <Col className="col-2 ps-0">
-                                <label htmlFor="public">Public</label>
-                              </Col>
-                              <Col className="col-10">
-                                {/* <h1>public</h1> */}
-                                {recipe.public ? <input
-                                  onInput={handleCheckBoxChange}
-                                  type="checkbox"
-                                  name="public"
-                                  value={recipe.id}
-                                  checked='false'
-                                /> :
-                                <input
-                                  onInput={handleCheckBoxChange}
-                                  type="checkbox"
-                                  name="public"
-                                  value={recipe.id}
-
-                                />}
-
-                              </Col>
-                            </Row>
                           </Col>}
                       </Row>
+                    </Col>
+                    <Col className="userActions-wrapper col-12">
+                      <div className="button-container">
+                        <Link className="edit-button" to={`/recipes/${recipe.id}/edit`}>
+                          <span className="button">EDIT</span>
+                        </Link>
+                        <div className="delete-button">
+                          <button className="button" onClick={handleDelete} value={recipe.id}>DELETE</button>
+                        </div>
+                      </div>
+                      <div className="checkbox-container">
+                        <div className="checkbox-label">
+                          <label htmlFor="public">PUBLIC</label>
+                        </div>
+                        <div className="checkbox">
+                          {/* <h1>public</h1> */}
+                          {recipe.public ? <input
+                            onInput={handleCheckBoxChange}
+                            type="checkbox"
+                            name="public"
+                            value={recipe.id}
+                            checked='false'
+                          /> :
+                          <input
+                            onInput={handleCheckBoxChange}
+                            type="checkbox"
+                            name="public"
+                            value={recipe.id}
+                          />}
+                        </div>
+                      </div>                    
                     </Col>
                   </Row>
                 </>
