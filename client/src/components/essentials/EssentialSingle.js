@@ -54,16 +54,16 @@ const EssentialSingle = () => {
                   <div className="categories-container">
                     {essentialOil.applications.map((application) => {
                       return (
-                        <div key={application.name}>
-                          <img src={application.icon} alt="icon"/>
+                        <div key={application.name} className="category-container">
+                          <img className="category" src={application.icon} alt="icon"/>
                           <p>{application.name}</p>
                         </div>
                         )
                       })}
                     {essentialOil.remedies.map((remedy) => {
                       return (
-                        <div key={remedy.name}>
-                          <img src={remedy.icon} alt="icon"/>
+                        <div key={remedy.name} className="category-container">
+                          <img className="category" src={remedy.icon} alt="icon"/>
                           <p>{remedy.name}</p>
                         </div>
                       )
