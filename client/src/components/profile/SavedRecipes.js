@@ -76,7 +76,7 @@ const SavedRecipes = () => {
       <Row>
         {/* BOOKMARKED */}
         <Col className="list-container col-12" md="6">
-          <Row className="title-container">
+          <Row className="saved-title-container me-md-1 mt-2">
             <h1>Bookmarked Recipes</h1>
           </Row>
           {Object.keys(bookmarked).length > 0 ? 
@@ -97,24 +97,36 @@ const SavedRecipes = () => {
                         {recipe.bookmarked_recipe.applications.length > 0 &&
                           <Col className="col-4" md="12">
                             <p>Applications:</p>
-                            <div className="d-flex flex-wrap">
+                            <div className="category-cards-wrapper justify-content-sm-start justify-content-md-center">
                               {recipe.bookmarked_recipe.applications.map((item) => {
-                                return (<span>{item.name}</span>)
+                                return (
+                                <div className="category-card">
+                                  <img src={item.icon} className="category" alt="icon"/>
+                                  <span>{item.name}</span>
+                                </div>
+                                )
                               })}
                             </div>
                           </Col>}
                         {recipe.bookmarked_recipe.remedies.length > 0 &&
                           <Col className="col-4" md="12">
                             <p>Remedies:</p>
-                            <div className="d-flex flex-wrap">
+                            <div className="category-cards-wrapper justify-content-sm-start justify-content-md-center ">
                               {recipe.bookmarked_recipe.remedies.map((item) => {
-                                return (<span>{item.name}</span>)
+                                return (
+                                  <div className="category-card">
+                                    <img src={item.icon} className="category" alt="icon"/>
+                                    <span>{item.name}</span>
+                                  </div>
+                                )
                               })}
                             </div>
-                          </Col>}   
-                          <button onClick={handleRemoveBookmarked} value={recipe.id}>Remove</button>  
+                          </Col>} 
                       </Row>
                     </Col>
+                    <Col className="button-container col-12 px-2 pb-2">
+                      <button className="remove-button" onClick={handleRemoveBookmarked} value={recipe.id}>Remove</button>  
+                    </Col>  
                   </Row>
                 </>
               )
@@ -126,8 +138,8 @@ const SavedRecipes = () => {
         </Col>
 
         {/* TESTED */}
-        <Col className="list-container col-12" md="6">
-          <Row className='title-container ms-md-1'>
+        <Col className="list-container col-12 mt-2" md="6">
+          <Row className='saved-title-container ms-md-1'>
             <h1>Tested Recipes</h1>
           </Row>
           {Object.keys(tested).length > 0 ?
@@ -151,9 +163,14 @@ const SavedRecipes = () => {
 
                           <Col className="col-4" md="12">
                             <p>Applications:</p>
-                            <div className="d-flex flex-wrap">
+                            <div className="category-cards-wrapper justify-content-sm-start justify-content-md-center">
                               {recipe.tested_recipe.applications.map((item) => {
-                                return (<span>{item.name}</span>)
+                                return (
+                                  <div className="category-card">
+                                    <img src={item.icon} className="category" alt="icon"/>
+                                    <span>{item.name}</span>
+                                </div>
+                              )
                               })}
                             </div>
                           </Col>}
@@ -162,14 +179,21 @@ const SavedRecipes = () => {
 
                           <Col className="col-4" md="12">
                             <p>Remedies:</p>
-                            <div className="d-flex flex-wrap">
+                            <div className="category-cards-wrapper justify-content-sm-start justify-content-md-center">
                               {recipe.tested_recipe.remedies.map((item) => {
-                                return (<span>{item.name}</span>)
+                                return (
+                                  <div className="category-card">
+                                    <img src={item.icon} className="category" alt="icon"/>
+                                    <span>{item.name}</span>
+                                  </div>
+                                )
                               })}
                             </div>
                           </Col>}     
-                          <button onClick={handleRemoveTested} value={recipe.id}>Remove</button>
                       </Row>
+                    </Col>
+                    <Col className="button-container col-12 px-2 pb-2">
+                      <button className="remove-button" onClick={handleRemoveTested} value={recipe.id}>Remove</button>
                     </Col>
                   </Row>
                 </>
