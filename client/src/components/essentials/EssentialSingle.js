@@ -142,7 +142,7 @@ const EssentialSingle = () => {
               {essentialOil.blends_well_with.map((blend) => {
                 return (
                   <div key={blend.id}>
-                    <Link to={`/essentials/${blend.id}`} onClick={() => window.location.reload()}>
+                    <Link to={`/essentials/${blend.id}`} >
                       <img className="eoSingle-image w-100" src={blend.image} alt="Essential Oil"/>
                       <p>{blend.name}</p>
                     </Link>
