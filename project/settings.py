@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_admin_hstore_widget',
     'rest_framework',
     'django.contrib.postgres',
     'jwt_auth',
