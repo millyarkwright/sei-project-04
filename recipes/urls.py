@@ -7,7 +7,7 @@ urlpatterns = [
   path('', RecipeListView.as_view()),
 
   # GET, UPDATE & DELETE SINGLE RECIPE
-  path('<int:pk>', RecipeDetailView.as_view()),
+  path('<int:pk>/', RecipeDetailView.as_view()),
 
   # CREATE RECIPE
     path('createrecipe/', CreateRecipeView.as_view()),
