@@ -7,6 +7,8 @@ import { API_URL } from './config'
 import HomePage from './components/HomePage'
 import PageNavBar from './components/PageNavBar'
 import NotFoundPage from './components/NotFoundPage'
+import Footer from "./components/Footer"
+import About from "./components/About"
 
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
@@ -21,7 +23,6 @@ import RecipesIndex from './components/recipes/RecipesIndex'
 import RecipeSingle from './components/recipes/RecipeSingle'
 import CreateRecipe from './components/recipes/CreateRecipe'
 import EditRecipe from './components/recipes/EditRecipe'
-import EditRecipeNew from './components/recipes/EditRecipeNew'
 
 import ProfileDetail from './components/profile/ProfileDetail'
 import PublicProfile from './components/profile/PublicProfile'
@@ -31,23 +32,7 @@ import CreatedRecipe from './components/profile/CreatedRecipes'
 
 
 function App() {
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     const { data } = await axios.get(`${API_URL}/recipes/`) // * <-- replace with your endpoint
-  //     console.log(data)
-  //   }
-  //   getData()
-  // })
 
-  // useEffect(() => {
-  //   // if localstorage token exists, set axios default headers to token, if not, set to null
-  //   const token = localStorage.getItem('aroma-token')
-  //   if (token) {
-  //     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
-  //   } else {
-  //     axios.defaults.headers.common["Authorization"] = null
-  //   }
-  // }, [])
 
   return (
     <div className="site-wrapper">
@@ -64,15 +49,15 @@ function App() {
           <Route path='/recipes' element ={<RecipesIndex />} />
           <Route path='/recipes/:recipeId' element ={<RecipeSingle />} />
           <Route path='/createrecipe' element ={<CreateRecipe />} />
-          {/* <Route path='/recipes/:recipeId/edit' element ={<EditRecipe />} /> */}
-          <Route path='/recipes/:recipeId/edit' element ={<EditRecipeNew />} />
-
+          <Route path='/recipes/:recipeId/edit' element ={<EditRecipe />} />
+          <Route path="/about" element={<About />} />
           <Route path='/profile' element ={<ProfileDetail />} />
           <Route path='/profile/:username' element ={<PublicProfile />} />
           <Route path='/savedrecipes/' element ={<SavedRecipes />} />
           <Route path='/createdrecipes/' element ={<CreatedRecipe />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </div>
   )

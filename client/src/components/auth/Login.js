@@ -1,19 +1,17 @@
 // * Hooks
 import { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
-
-// * React Components
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import { ToastContainer, toast } from 'react-toastify';
-
 // * Axios & API
 import axios from "axios"
 import { API_URL } from "../../config.js"
-
+// * Bootstrap Components
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import { ToastContainer, toast } from 'react-toastify';
 // * Helpers
 import { setToken } from '../helpers/auth'
 import { getText } from '../helpers/auth'
+// * Other
 import jwt_decode from 'jwt-decode'
 
 const Login = () => {

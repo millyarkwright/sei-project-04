@@ -1,11 +1,13 @@
+//  * Hooks
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+// * Axios & URL
 import axios from 'axios'
 import { API_URL } from '../../config'
-import loaderImg from '../../images/loader.gif'
-// Bootstrap Components
+// * Bootstrap Components
 import Container from 'react-bootstrap/Container'
-
+//  * Other
+import loaderImg from '../../images/loader.gif'
 
 const BasesIndex = () => {
   const [oils, setOils] = useState([])
@@ -63,6 +65,7 @@ const BasesIndex = () => {
               <input type="text" className="seach" placeholder="Search..." onChange={handleSearch} name="search" value={filters.search}></input>
             </div>
           </div>
+          <hr />
           <div className='grid-container'>
             {filteredOils.map((oil) => {
               return (

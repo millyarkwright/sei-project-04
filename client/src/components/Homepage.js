@@ -1,17 +1,14 @@
 // * Hooks
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-
 // * Axois & URL
 import axios from 'axios'
 import { API_URL } from '../config'
-
 // * Bootstrap Components
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-
-import Carousel from 'react-bootstrap/Carousel'
+// * Components
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import SwiperCore, {
@@ -30,6 +27,7 @@ import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
 import 'swiper/css/free-mode'
 
+// * Other
 import loaderImg from '../images/loader.gif'
 
 
@@ -246,26 +244,3 @@ const HomePage = () => {
 
 export default HomePage
 
-
-// const [index, setIndex] = useState(0)
-
-  // const handleSelect = (selectedIndex, e) => {
-  //   setIndex(selectedIndex);
-  // }
-
-// * Carousel Test
-// {Object.keys(essentialOils).length > 0 ?
-//   <Carousel className="carousel" activeIndex={index} onSelect={handleSelect}>
-//     {essentialOils.map((oil) => {
-//       return (
-//       <Carousel.Item>
-//         <img className="d-block w-100" src={oil.image} alt="First slide"/>
-//         <Carousel.Caption>
-//           <h3>{oil.name}</h3>
-//         </Carousel.Caption>
-//       </Carousel.Item>
-//       )
-//     })}
-//   </Carousel>
-//   :
-// <h1 className='text-center'>{error ? <p>error</p> : <img className="w-25" src={loaderImg} alt='loader' />}</h1>

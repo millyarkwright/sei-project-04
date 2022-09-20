@@ -74,7 +74,7 @@ class UserProfilePrivateView(APIView):
     print('Users->', user)
     if user.username == request.user.username or request.user.is_superuser == True:
           serialized_user = PopulatedUserSerializer(user)
-          print('Serialized Recipes ->', serialized_user)
+          # print('Serialized Recipes ->', serialized_user)
           return Response(serialized_user.data, status=status.HTTP_200_OK)
     else:
       raise PermissionDenied("Unauthorised")

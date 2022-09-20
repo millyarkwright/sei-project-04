@@ -18,7 +18,7 @@ class RecipeListView(APIView):
     recipes = Recipe.objects.all()
     print('Recipes->', recipes)
     serialized_recipes = PopulatedRecipeSerializer(recipes, many=True)
-    print('Serialized Recipes ->', serialized_recipes)
+    # print('Serialized Recipes ->', serialized_recipes)
     return Response(serialized_recipes.data, status=status.HTTP_200_OK)
 
 class RecipeDetailView(APIView):

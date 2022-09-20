@@ -1,19 +1,19 @@
 //  * Hooks
 import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { getToken } from '../helpers/auth'
 // * Axios & URL
 import axios from 'axios'
 import { API_URL } from '../../config'
-
-// * React Components
+// * Bootstrap Components
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+// * React
 import Select from 'react-select'
-
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+//  * Helpers
+import { getToken } from '../helpers/auth'
 
 const CreateRecipe = () => {
 
@@ -83,7 +83,7 @@ const CreateRecipe = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const { data } = await axios.get(`${API_URL}/applications`)
+        const { data } = await axios.get(`${API_URL}/applications/`)
         console.log('application data', data)
         setApplicationData(data)
         let dataMapped = data.map((keys) => { return keys.name })
@@ -103,7 +103,7 @@ const CreateRecipe = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const { data } = await axios.get(`${API_URL}/remedies`)
+        const { data } = await axios.get(`${API_URL}/remedies/`)
         console.log('remedy data', data)
         setRemedyData(data)
         let remedyOptions = data.map(remedy => ({ value: remedy.id, label: remedy.name }))
@@ -202,8 +202,6 @@ const CreateRecipe = () => {
   }
 
   const handleCheckBoxChange = (event) => {
-    // console.log('checkbox value', event.target.name, event.target.checked)
-    // console.log('RECIPE PUBLIC/PRIVATE', {...recipeData, [event.target.name]: event.target.checked})
     setRecipeData({ ...recipeData, [event.target.name]: event.target.checked })
   }
 
@@ -271,12 +269,6 @@ const CreateRecipe = () => {
 
   // * Essential Oil Handlers
   const handleEssentialChange = (event, index) => {
-
-    console.log('EVENT->', event)
-    console.log('INDEX->', index)
-    // console.log('Selected Essential Value->', event.value)
-    // const selectedEssentialsId = selectedEssentials.map((item) => {return item.value} )
-    // console.log('selectedEssentialsId->', selectedEssentialsId)
     let data = [...eoFormFields]
     data[index]['essential_oil'] = event.value
     console.log('HandleEssentialChange DATA -->', data)
@@ -290,7 +282,6 @@ const CreateRecipe = () => {
   const handleEoFormChange = (event, index) => {
     let data = [...eoFormFields]
     data[index][event.target.name] = event.target.value
-    // setEoFormFields({ ...eoFormFields, [event.target.name]: event.target.value })
     setEoFormFields(data)
     setError({ ...error, [event.target.name]: '' })
     console.log('eoFormFields', eoFormFields)
@@ -312,15 +303,6 @@ const CreateRecipe = () => {
     setEoFormFields(data)
   }
 
-  // const handleEoFormSubmit = async (event) => {
-  //   event.preventDefault()
-  //   try {
-  //     const { data } = await axios.post(`${API_URL}/recipes/eoamounts/`, eoFormFields)
-  //   } catch (error) {
-  //     setError(error)
-  //     }
-  // }
-
   // * Base Oil Handlers
 
   const handleBaseChange = (event, index) => {
@@ -336,7 +318,6 @@ const CreateRecipe = () => {
   const handleBoFormChange = (event, index) => {
     let data = [...boFormFields]
     data[index][event.target.name] = event.target.value
-    // setEoFormFields({ ...eoFormFields, [event.target.name]: event.target.value })
     setBoFormFields(data)
     setError({ ...error, [event.target.name]: '' })
     console.log('boFormFields', boFormFields)
@@ -358,15 +339,6 @@ const CreateRecipe = () => {
     data.splice(index, 1)
     setBoFormFields(data)
   }
-
-  // const handleBoFormSubmit = async (event) => {
-  //   event.preventDefault()
-  //   try {
-  //     const { data } = await axios.post(`${API_URL}/recipes/boamounts/`, boFormFields)
-  //   } catch (error) {
-  //     setError(error)
-  //     }
-  // }
 
   // * Other Ingredient Handlers
 
@@ -404,14 +376,6 @@ const CreateRecipe = () => {
     setOiFormFields(data)
   }
 
-  // const handleOiFormSubmit = async (event) => {
-  //   event.preventDefault()
-  //   try {
-  //     const { data } = await axios.post(`${API_URL}/recipes/oiamounts/`, oiFormFields)
-  //   } catch (error) {
-  //     setError(error)
-  //     }
-  // }
 
   return (
     <Container className="recipe-form-wrapper min-vh-100">
@@ -528,7 +492,6 @@ const CreateRecipe = () => {
             <h3 className="text-start">Ingredients</h3>
             {/* Essential Oils */}
             <Row className="ingredient-form-container">
-              {/* <form onSubmit={handleEoFormSubmit}> */}
               <form className=''>
                 <h4>Essential Oils</h4>
                 {eoFormFields.map((form, index) => {
@@ -539,7 +502,6 @@ const CreateRecipe = () => {
                       <Select
                         name="essential_oil"
                         options={essentialOptions}
-                        // value={selectedEssentials} 
                         onChange={event => handleEssentialChange(event, index)}
                         className="basic-single select-ingredients"
                         classNamePrefix="select"
@@ -582,7 +544,6 @@ const CreateRecipe = () => {
 
             {/* Base Oils */}
             <Row className="ingredient-form-container">
-              {/* <form onSubmit={handleEoFormSubmit}> */}
               <form>
                 <h4>Base Ingredients</h4>
                 {boFormFields.map((form, index) => {
@@ -629,7 +590,6 @@ const CreateRecipe = () => {
 
             {/* Other Indgredients */}
             <Row className="ingredient-form-container">
-              {/* <form onSubmit={handleOiFormSubmit}> */}
               <form>
                 <h4>Other Ingredients</h4>
                 {oiFormFields.map((form, index) => {

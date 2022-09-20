@@ -1,3 +1,4 @@
+
 import axios from 'axios'
 import { Buffer } from 'buffer'
 
@@ -5,7 +6,6 @@ import { Buffer } from 'buffer'
 
 export const setToken = (token) => {
   window.localStorage.setItem('aroma-token', token)
-  // axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
 }
 
 // * Getting token

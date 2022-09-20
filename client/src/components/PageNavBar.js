@@ -1,15 +1,15 @@
+// * Hooks
 import { Link, useNavigate } from 'react-router-dom'
-import { userIsAuthenticated, loginTextDisplay, getToken } from '../components/helpers/auth'
-import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
-// Import React Bootstrap Components
+// * Bootstrap Components
 import NavBar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Container from 'react-bootstrap/Container'
 import NavDropdown from 'react-bootstrap/NavDropdown'
-import { useEffect } from 'react';
+// * Toast
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+// * Helpers
+import { userIsAuthenticated, loginTextDisplay, getToken } from '../components/helpers/auth'
 
 let auth = false
 
@@ -31,9 +31,7 @@ const PageNavBar = () => {
     navigate('/')
     console.log('USER HAS LOGGED OUT')
   }
-  // useEffect(() => {
-  //   axios.defaults.headers.common["Authorization"] = `Bearer ${getToken()}`
-  // },[])
+
   return (
     <NavBar expand="md">
       <ToastContainer />

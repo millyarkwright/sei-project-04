@@ -1,18 +1,15 @@
 //  * Hooks
 import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-
 // * Axios & API
 import axios from 'axios'
 import { API_URL } from '../../config'
-
-// * React Components
+// * Bootstrap Components
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
+// * React
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-
 // * Helpers
 import { setToken } from '../helpers/auth'
 import jwt_decode from 'jwt-decode'
@@ -104,16 +101,6 @@ const Register = () => {
         console.log('ERROR', error)
         // if (error.response.data.detail) setErrors(error.response.data.detail)
         console.log('DETAIL --->', error.response.data.detail)
-
-  
-        // console.log('username --->', error.response.data.detail.username)
-        // console.log('username[0] --->', error.response.data.detail.username[0])
-        // console.log('email --->', error.response.data.detail.email)
-        // console.log('email[0] --->', error.response.data.detail.email[0])
-        // console.log('password[0] --->', error.response.data.detail.password_confirmation[0])
-        // console.log('password_confirmation[0] --->', error.response.data.detail.password_confirmation[0])
-
-
         if ('username' in error.response.data.detail) {
           console.log('USERNAME KEY FOUND')
         }

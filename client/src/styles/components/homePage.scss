@@ -8,11 +8,9 @@
   justify-content: center;
   align-items: top;
   text-align: center;
-  /* lavender-1200x1200 1 */
 
 
   .hero-overlay{
-    // background-color: rgb(255, 255, 255, 0.4);
     margin-top: 20px;
     border-radius: 15px;
     padding: 15px;
@@ -32,7 +30,6 @@
   justify-content: center;
   text-align: left;
   max-width: 1200px;
-  // background-color: antiquewhite;
   .title-container{
     margin-top: 30px;
     padding: 20px;
@@ -52,9 +49,8 @@
       font-weight: bold;
       font-style: italic;
     }
-    // background-color: rgba(239, 239, 239, 0.655);
-
   }
+
   .home-bases {
     margin-top: 10px;
     padding: 20px;
@@ -71,11 +67,9 @@
 }
 .home-text-wrapper {
   max-width: 80%;
-  // text-align: justify;
 }
 
 .oil-swipe {
-  // background-color: rgb(232, 232, 232);
   border-radius: 15px;
   padding: 10px 15px;
 
@@ -113,13 +107,3 @@
     }
   }
 }
-
-
-// .carousel {
-
-//   background-color: black;
-//   img {
-//     max-width: 300px;
-//   }
-// }
-// <img className="d-block w-100" src={oil.image} alt="First slide"/>

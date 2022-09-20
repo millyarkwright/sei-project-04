@@ -1,23 +1,27 @@
+// * Hooks 
 import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+// * Axois & URL
 import axios from 'axios'
 import { API_URL } from '../../config'
-import loaderImg from '../../images/loader.gif'
-import { getToken } from '../helpers/auth'
-
-// Bootstrap Components
+// * Bootstrap Components
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-
+// * Toast
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+// * Helpers 
+import { getToken } from '../helpers/auth'
+// * Other
+import loaderImg from '../../images/loader.gif'
 
 const CreatedRecipes = () => {
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const [created, setCreated] = useState([])
+  const [user, setUser] = useState([])
   const [recipeId, setRecipeId] = useState([])
-  const [updatedList, setUpdatedList] = useState([])
+  const [updateList, setUpdateList] = useState()
   const [applicationsFilter, setApplicationsFilter] = useState([])
   const [remediesFilter, setRemediesFilter] = useState([])
   const [filteredRecipes, setFilteredRecipes] = useState([])
@@ -26,12 +30,10 @@ const CreatedRecipes = () => {
     remedies: 'All',
     search: ''
   })
-  const [publicToggle, setPublicToggle] = useState({
-    public: ''
-  })
+  const [publicToggle, setPublicToggle] = useState({})
   const [applicationsBtn, setApplicationsBtn] = useState('All')
   const [remediesBtn, setRemediesBtn] = useState('All')
-  const [error, setError] = useState([])
+  const [error, setError] = useState('')
   const [errorMessage, setErrorMessage] = useState([])
 
   useEffect(() => {
@@ -40,31 +42,30 @@ const CreatedRecipes = () => {
         const { data } = await axios.get(`${API_URL}/users/profile/`, {
           headers: { Authorization: `Bearer ${getToken()}` },
         })
-        setCreated(data.created_recipes)
-        console.log('DATAAA', data)
-        console.log('data.bookmarked -->', data.bookmarked_recipes)
-        console.log('data.tested -->', data.tested_recipes)
+        setUser(data)
+        let sortedData = data.created_recipes.sort(function(a,b){return b.public-a.public})
+        // sortedData = sortedData.sort(function(a,b) { return a.name.localeCompare(b.name)})
+        setCreated(sortedData)
       } catch (error) {
         setError(error)
-        console.log(error)
+        console.log('USER PROFILE ERROR--->', error)
       }
     }
     getData()
-  }, [updatedList])
+  }, [updateList])
 
 
   useEffect(() => {
     const getData = async () => {
       try {
-        const { data } = await axios.get(`${API_URL}/applications`)
-        console.log(data)
+        const { data } = await axios.get(`${API_URL}/applications/`)
+
+        setApplicationsFilter(data)
         let dataMapped = data.map((keys) => { return keys.name })
         dataMapped.unshift('All')
-        console.log(dataMapped)
-        setApplicationsFilter(dataMapped)
       } catch (error) {
         setError(error)
-        console.log(error)
+        console.log('APPLICATIONS ERROR-->', error)
       }
     }
     getData()
@@ -73,14 +74,13 @@ const CreatedRecipes = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const { data } = await axios.get(`${API_URL}/remedies`)
+        const { data } = await axios.get(`${API_URL}/remedies/`)
+        setRemediesFilter(data)
         let dataMapped = data.map((keys) => { return keys.name })
         dataMapped.unshift('All')
-        console.log(dataMapped)
-        setRemediesFilter(dataMapped)
       } catch (error) {
         setError(error)
-        console.log(error)
+        console.log('REMEDIES ERROR -->', error)
       }
     }
     getData()
@@ -88,16 +88,12 @@ const CreatedRecipes = () => {
 
   useEffect(() => {
     const regexSearch = new RegExp(filters.search, 'i')
-    console.log('search value', regexSearch)
-    console.log('saved tag', filters.tag)
     const filteredArray = created.filter(recipe => {
       return regexSearch.test(recipe.name)
         && ((recipe.applications.map((keys) => { return keys.name }).includes(filters.applications) || filters.applications === 'All'))
         && ((recipe.remedies.map((keys) => { return keys.name }).includes(filters.remedies) || filters.remedies === 'All'))
     })
-    console.log('filtered array', filteredArray)
     setFilteredRecipes(filteredArray)
-
   }, [created, filters])
 
   const handleSearch = (event) => {
@@ -138,7 +134,7 @@ const CreatedRecipes = () => {
     event.preventDefault()
     try {
       console.log(`delete this recipe`, created.id)
-      const { data } = await axios.delete(`${API_URL}/recipes/${event.target.value}`, {
+      const { data } = await axios.delete(`${API_URL}/recipes/${event.target.value}/`, {
         headers: { Authorization: `Bearer ${getToken()}` },
       })
       toast.success(data.detail, {
@@ -151,7 +147,7 @@ const CreatedRecipes = () => {
         progress: undefined,
       })
       // navigate('/recipes')
-      setUpdatedList([...event.target.value])
+      setUpdateList([...event.target.value])
     } catch (error) {
       console.log('error', error)
       console.log('error message', error.response.data.detail)
@@ -163,7 +159,7 @@ const CreatedRecipes = () => {
   useEffect(() => {
     const post = async (event) => {
       try {
-        const { data } = await axios.patch(`${API_URL}/recipes/${recipeId}`, publicToggle, {
+        const { data } = await axios.patch(`${API_URL}/recipes/${recipeId}/`, publicToggle, {
           headers: { Authorization: `Bearer ${getToken()}` },
         })
         toast.success(data.detail, {
@@ -175,46 +171,27 @@ const CreatedRecipes = () => {
           draggable: true,
           progress: undefined,
         })
-        // navigate('/recipes')
-
-        // setUpdatedList([...event.target.value])
+        setUpdateList(publicToggle)
       } catch (error) {
         console.log('error', error)
-        console.log('error message', error.response.data.detail)
+        // console.log('error message', error.response.data.detail)
         setError(error)
-        setErrorMessage(error.response.data.detail)
+        // setErrorMessage(error.response.data.detail)
       }
 
     }
     post()
-  }, [publicToggle, recipeId])
+  }, [publicToggle])
 
   const handleCheckBoxChange = (event) => {
-    console.log('checkbox value', event.target.name, event.target.checked, event.target.value)
-    // console.log('RECIPE PUBLIC/PRIVATE', {...recipeData, [event.target.name]: event.target.checked})
-    setPublicToggle({ ...publicToggle, [event.target.name]: event.target.checked })
+    console.log('checkbox value ---->', event.target.name, event.target.checked, event.target.value)
+    setPublicToggle({ [event.target.name]: event.target.checked })
     setRecipeId(event.target.value)
-    setUpdatedList([...event.target.name])
   }
 
-  // const handleCheckBoxChange = (event) => {
-  //   try {
-  //     const { data } = await axios.patch(`${API_URL}/recipes/${event.target.value}`, {
-  //       headers: { Authorization: `Bearer ${getToken()}` },
-  //     })
-  //     setUpdatedList([...event.target.value])
-  //   } catch (error) {
-  //     console.log('error', error)
-  //     setError(error)
-  //   }
-
-  // console.log('checkbox value', event.target.name, event.target.checked)
-  // console.log('RECIPE PUBLIC/PRIVATE', {...recipeData, [event.target.name]: event.target.checked})
-  // setRecipeData({ ...recipeData, [event.target.name]: event.target.checked })
-  // }
   return (
     <Container className="search-wrapper min-vh-100">
-      {Object.keys(created).length ?
+      {Object.keys(user).length > 0 ?
         <>
           {/* FILTERS */}
           <div className='title-container'>
@@ -222,102 +199,122 @@ const CreatedRecipes = () => {
             <div className='search-container text-center text-end my-md-0 my-3'>
               <input type="text" className="seach" placeholder="Search..." onChange={handleSearch} name="search" value={filters.search}></input>
             </div>
-            <div className='button-container ms-5 text-start flex-column'>
-              <h5>Applications</h5>
-              {applicationsFilter.map((item) => {
-                return <button className={applicationsBtn === item ? "btn-clicked" : ""} onClick={handleApplicationFilter} name="applications" value={item} > {item}</button>
-              })}
-            </div>
-            <div className='button-container ms-5 text-start flex-column'>
-              <h5>Remedies</h5>
-              {remediesFilter.map((item) => {
-                return <button className={remediesBtn === item ? "btn-clicked" : ""} onClick={handleRemedyFilter} name="remedies" value={item} > {item}</button>
-              })}
-            </div>
           </div>
+          <hr />
+          <Row className='index-body-container'>
+            <Col className="col-12 col-md-3 filter-container">
+              <div className='button-container ms-3 text-start flex-column'>
+                <h5>Applications</h5>
+                <button className={applicationsBtn === 'All' ? "btn-clicked d-inline mx-1 d-md-block mx-md-0" : "d-inline d-md-block mx-1 mx-md-0"} onClick={handleApplicationFilter} name="applications" value='All' > All</button>
+                {applicationsFilter.map((item) => {
+                  return <button key={item.id} className={applicationsBtn === item.name ? "btn-clicked d-inline mx-1 d-md-block mx-md-0" : "d-inline d-md-block mx-1 mx-md-0"} onClick={handleApplicationFilter} name="applications" value={item.name} >
+                    <img src={item.icon} alt={item.name} />
+                    {item.name}</button>
+                })}
+              </div>
+              <div className=' button-container ms-3 text-start flex-column'>
+                <h5>Remedies</h5>
+                {remediesFilter.map((item) => {
+                  return <button key={item.id} className={remediesBtn === item.name ? "btn-clicked d-inline mx-1 d-md-block mx-md-0" : "d-inline d-md-block mx-1 mx-md-0"} onClick={handleRemedyFilter} name="remedies" value={item.name} >
+                    <img src={item.icon} alt={item.name} />
+                    {item.name}</button>
+                })}
+              </div>
+            </Col>
+            <Col className="col-12 col-md-9">
 
+              <div className='list-container'>
+                {Object.keys(created).length > 0 ?
+                  <>
+                    {filteredRecipes.map((recipe) => {
+                      return (
+                        <>
+                          <Row className=" list-card-container" key={recipe.id}>
+                            <Col className="col-12 list-text px-2 pt-2 p-md-3" md="8">
+                              <Link to={`/recipes/${recipe.id}`}>
+                                <h3>{recipe.name}</h3>
+                              </Link>
+                              <p>{recipe.description}</p>
+                            </Col>
 
-          <div className='list-container'>
-            {filteredRecipes.map((recipe) => {
-              return (
-                <>
-                  <Row className=" list-card-container">
-                    <Col className="col-12 list-text px-2 pt-2 p-md-3" md="8">
-                      <Link to={`/recipes/${recipe.id}`}>
-                        <h3>{recipe.name}</h3>
-                      </Link>
-                      <p>{recipe.description}</p>
-                    </Col>
+                            <Col className="col-12 list-categories px-2 pb-2 p-md-3" md="4" >
+                              <Row>
+                                {recipe.applications.length > 0 &&
+                                  <Col className="col-5" md="6">
+                                    <p>Applications:</p>
+                                    <div className="category-cards-wrapper">
+                                      {recipe.applications.map((item) => {
+                                        return (
+                                          <div className="category-card" key={item.name}>
+                                            <img src={item.icon} className="category" alt="icon" />
+                                            <span>{item.name}</span>
+                                          </div>
+                                        )
+                                      })}
+                                    </div>
+                                  </Col>}
 
-                    <Col className="col-12 list-categories px-2 pb-2 p-md-3" md="4">
-                      <Row>
-                        {recipe.applications.length > 0 &&
-                          <Col className="col-5" md="6">
-                            <p>Applications:</p>
-                            <div className="category-cards-wrapper">
-                              {recipe.applications.map((item) => {
-                                return (
-                                  <div className="category-card">
-                                    <img src={item.icon} className="category" alt="icon"/>
-                                    <span>{item.name}</span>
+                                {recipe.remedies.length > 0 &&
+                                  <Col className="col-7" md="6">
+                                    <p>Remedies:</p>
+                                    <div className="category-cards-wrapper">
+                                      {recipe.remedies.map((item) => {
+                                        return (
+                                          <div className="category-card" key={item.name}>
+                                            <img src={item.icon} className="category" alt="icon" />
+                                            <span>{item.name}</span>
+                                          </div>
+                                        )
+                                      })}
+                                    </div>
+                                  </Col>}
+                              </Row>
+                            </Col>
+                            <Col className="userActions-wrapper col-12 px-2 pb-2 pt-md-1 p-md-3">
+                              <div className="button-container">
+                                <Link className="" to={`/recipes/${recipe.id}/edit`}>
+                                  <button className="edit-button">EDIT</button>
+                                </Link>
+                                <div className="">
+                                  <button className="edit-button" onClick={handleDelete} value={recipe.id}>DELETE</button>
                                 </div>
-                              )
-                              })}
-                            </div>
-                          </Col>}
-
-                        {recipe.remedies.length > 0 &&
-                          <Col className="col-7" md="6">
-                            <p>Remedies:</p>
-                            <div className="category-cards-wrapper">
-                              {recipe.remedies.map((item) => {
-                                return (
-                                  <div className="category-card">
-                                    <img src={item.icon} className="category" alt="icon"/>
-                                    <span>{item.name}</span>
+                                <div className="checkbox-container edit-button">
+                                <div className="checkbox-label">
+                                  <label htmlFor="public">PUBLIC</label>
                                 </div>
-                              )
-                              })}
-                            </div>
-                          </Col>}
-                      </Row>
-                    </Col>
-                    <Col className="userActions-wrapper col-12 px-2 pb-2 pt-md-1 p-md-3">
-                      <div className="button-container">
-                        <Link className="edit-button" to={`/recipes/${recipe.id}/edit`}>
-                          <span className="button">EDIT</span>
-                        </Link>
-                        <div className="delete-button">
-                          <button className="button" onClick={handleDelete} value={recipe.id}>DELETE</button>
-                        </div>
-                      </div>
-                      <div className="checkbox-container">
-                        <div className="checkbox-label">
-                          <label htmlFor="public">PUBLIC</label>
-                        </div>
-                        <div className="checkbox">
-                          {/* <h1>public</h1> */}
-                          {recipe.public ? <input
-                            onInput={handleCheckBoxChange}
-                            type="checkbox"
-                            name="public"
-                            value={recipe.id}
-                            checked='false'
-                          /> :
-                          <input
-                            onInput={handleCheckBoxChange}
-                            type="checkbox"
-                            name="public"
-                            value={recipe.id}
-                          />}
-                        </div>
-                      </div>                    
-                    </Col>
-                  </Row>
-                </>
-              )
-            })}
-          </div>
+                                <div className="checkbox">
+                                  <input
+                                    onInput={handleCheckBoxChange}
+                                    type="checkbox"
+                                    name="public"
+                                    value={recipe.id}
+                                    defaultChecked={recipe.public}
+                                    key={Math.random()}
+                                  />
+                                </div>
+                              </div>
+                              </div>
+                            </Col>
+                          </Row>
+                        </>
+                      )
+                    })}
+                  </>
+                  :
+                  <>
+                    <h4 className='fst-italic'>Start creating your own recipe now!</h4>
+                    <Link to='/createrecipe'>
+                      <button className='mt-2 btn'>Create Recipe</button>
+                    </Link>
+                  </>
+                }
+
+              </div>
+
+            </Col>
+
+          </Row>
+
         </>
         :
         <h1 className='text-center'>{error ? <p>error</p> : <img className="w-25" src={loaderImg} alt='loader' />}</h1>}

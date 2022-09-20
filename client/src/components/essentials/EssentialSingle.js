@@ -1,20 +1,15 @@
 //  * Hooks
 import { useState, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
-
+import { Link, useParams, Route } from 'react-router-dom'
 // * Axios & URLs
 import axios from 'axios'
 import { API_URL } from '../../config'
-
-import loaderImg from '../../images/loader.gif'
-
 // * Bootstrap
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-// import Carousel from 'react-bootstrap/Carousel' --- related recipes or blend well with oils
-
-
+// * Other
+import loaderImg from '../../images/loader.gif'
 
 const EssentialSingle = () => {
 

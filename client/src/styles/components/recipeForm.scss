@@ -1,10 +1,11 @@
 .recipe-form-wrapper{
   max-width: 1200px;
-  // margin-top: 60px;
   justify-content: center;
   padding: 10px;
   text-align: center;
-
+  .header-wrapper{
+    border-radius: 15px 15px 0px 0px;
+  }
   h1 {
     font-style: italic;
     font-weight: bold;
@@ -14,15 +15,13 @@
     font-weight: 600;
   }
   form {
-    border-radius: 15px;
-    // box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
     padding: 25px;
-    background-color: $greybg;
-    // background-color: rgb(252, 252, 252);
-    // background-color: rgb(247, 243, 238);
-    // background-color: rgba(239, 239, 239, 0.655);
+    background-color: $lightbg;
     margin-top: 20px;
-    border: 1px solid lightgrey;
+    border-radius: 10px;
+    padding: 25px;
+    margin-top: 20px;
   
   }
   .row {
@@ -33,13 +32,11 @@
       padding: 0px;
       margin-bottom: 8px;
       font-weight: 500;
-      // color:  rgb(90, 68, 14);
     }
     input {
-      border-radius: 10px;
+      border-radius: 8px;
       border: 1px solid rgb(222, 222, 222);
       padding-left: 20px;
-      // background-color: rgb(245, 245, 245);
       margin-bottom: 15px;
       padding: 10px;
 
@@ -72,12 +69,16 @@
     // min-height: 212px;
     max-height: 212px;
     margin-bottom: 15px;
-    border-radius: 10px;
+    border-radius: 8px;
     border: 1px solid lightgray;
     // background-color: rgb(245, 245, 245);
     color: black;
     font-size: 0.9rem;
     padding: 10px;
+    &:focus {
+      outline: none;
+      border: 1px solid #EBD35D;
+    }
   }
 }
 
@@ -86,25 +87,30 @@
     form {
       background-color: rgb(247, 243, 238);
       border-radius: 10px;
+      border: 1px solid transparent;
     }
     button {
-      background-color: $beigebg;
+      background-color: $greybg;
       border: 1px solid transparent;
       padding: 5px;
       margin-bottom: 10px;
       border-radius: 10px;
+      transition: 0.5s ease;
+      &:hover{
+        background-color: $darkgreybg;
+      }
     }
     .remove {
       border-radius: 30px;
       padding-top: 5px;
       padding-bottom: 5px;
+      padding-left: 6px;
+      padding-right: 6px;
       background-color: rgb(179, 84, 53);
-      // box-shadow: 0px 2px rgb(120, 59, 39);
       transition: 0.2s ease;
       color: white;
       &:hover {
         background-color: rgb(120, 59, 39);
-        // box-shadow: 0px 2px rgb(179, 84, 53);
       }
     }
     .amounts {
@@ -117,7 +123,6 @@
         gap: 5px;
       }
       input {
-        // margin-right: 10px;
         max-width: 100%;
         padding-top: 5px;
         padding-bottom: 5px;
@@ -128,9 +133,7 @@
   }
 
 }
-.select-ingredients {
-  // max-width: 40%;
-}
+
 
 .recipe-submit {
   padding: 10px;
@@ -145,3 +148,6 @@
   }
 }
 
+#edit-recipe{
+  max-width: 700px;
+}

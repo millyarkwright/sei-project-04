@@ -1,32 +1,28 @@
-/* eslint-disable no-unused-vars */
+// * Hooks 
 import { useState, useEffect } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+// * Axios & URL
 import axios from 'axios'
 import { API_URL } from '../../config'
-import { Rating } from 'react-simple-star-rating'
+// * Bootstrap Components
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+// * Other
 import loaderImg from '../../images/loader.gif'
 import bookmarkImg from '../../images/bookmark.png'
 import unBookmarkImg from '../../images/unbookmark.png'
 import userImg from '../../images/user.png'
 import notTestedImg from '../../images/notTested.png'
 import testedImg from '../../images/tested.png'
-
+// * Helpers
+import { getToken } from '../helpers/auth'
+import { userIsAuthenticated } from '../helpers/auth'
 // * Toast
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-// * Helpers
-import { getToken } from '../helpers/auth'
-
-// * Bootstrap Components
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-
-// * HELPERS
-import { userIsAuthenticated } from '../helpers/auth'
-
-//! Components
+// * Components
+import { Rating } from 'react-simple-star-rating'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import SwiperCore, {
@@ -75,34 +71,24 @@ const RecipeSingle = () => {
           headers: { Authorization: `Bearer ${getToken()}` },
         })
         setCurrentUser(data)
-        // console.log('USER DATAAA', data)
-        // console.log('USER data.bookmarked_recipes  -->', data.bookmarked_recipes)
-
         let BookmarkedRecipeIds = data.bookmarked_recipes.map(recipe => recipe.bookmarked_recipe.id)
-        // console.log('USER B.RECIPES IDS ARRAY-->', BookmarkedRecipeIds)
+
         setBookmarkedRecipeIds(BookmarkedRecipeIds)
 
         let bRecipes = data.bookmarked_recipes
-        let filteredBookmarkedRecipe 
         for(let i=0; i < data.bookmarked_recipes.length; i++){
-          // console.log('LOOOP')
-          // console.log('BOOKMARKED ID-->', bRecipes[i].id)
-          // console.log('RECIPE ID-->', bRecipes[i].bookmarked_recipe.id)
-          // console.log('CURRENT RECIPE ID', parseInt(recipeId))
           if(bRecipes[i].bookmarked_recipe.id === parseInt(recipeId)){
             console.log('bRecipes', bRecipes[i].id)
-            let filteredBookmarkedRecipe = bRecipes[i].id
+
             setBookmarked(true)
-            // return bRecipes[i].id
           }
         }
 
         let tRecipes = data.tested_recipes
-        let filteredTestedRecipe 
         for(let i=0; i < data.tested_recipes.length; i++){ 
           if(tRecipes[i].tested_recipe.id === parseInt(recipeId)){
             console.log('tRecipes', tRecipes[i].id)
-            let filteredTestedRecipe = tRecipes[i].id
+
             setTested(true)     
           } 
         }
@@ -122,18 +108,15 @@ const RecipeSingle = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const { data } = await axios.get(`${API_URL}/users/bookmarks`, {
+        const { data } = await axios.get(`${API_URL}/users/bookmarks/`, {
           headers: { Authorization: `Bearer ${getToken()}` },
         })
-        // console.log('BOOKMARKS DATA',data)
+
         let bookmark = data.filter(bookmark => bookmark.bookmarked_recipe === parseInt(recipeId))
-        // console.log('bookmark', bookmark.length)
+
         if (bookmark.length > 0) {
-          // console.log('bookmark id',bookmark[0].id)
           setBookmarkId(bookmark[0].id)
-          // setBookmarked(true)
         } else {
-          // setBookmarked(false)
         }
       } catch (error) {
         setError(error)
@@ -142,6 +125,7 @@ const RecipeSingle = () => {
     }
     getData()
   }, [bookmarked])
+
 
   // * Tested Recipes
 
@@ -157,9 +141,7 @@ const RecipeSingle = () => {
         if (tested.length > 0) {
           console.log('tested id', tested[0].id)
           setTestedId(tested[0].id)
-          // setTested(true)
         } else {
-          // setTested(false)
         }
       } catch (error) {
         setError(error)
@@ -175,7 +157,7 @@ const RecipeSingle = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const { data } = await axios.get(`${API_URL}/recipes/${recipeId}`)
+        const { data } = await axios.get(`${API_URL}/recipes/${recipeId}/`)
         setRecipe(data)
         console.log(data)
       } catch (error) {
@@ -191,7 +173,7 @@ const RecipeSingle = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const { data } = await axios.get(`${API_URL}/recipes/${recipeId}`)
+        const { data } = await axios.get(`${API_URL}/recipes/${recipeId}/`)
         setComments(data.reviews)
         console.log(data)
       } catch (error) {
@@ -210,7 +192,7 @@ const RecipeSingle = () => {
     event.preventDefault()
     try {
       console.log(`ADD THIS TO BOOKMARK ->`, recipeId)
-      const { data } = await axios.post(`${API_URL}/users/bookmarked/${recipeId}`, {}, {
+      const { data } = await axios.post(`${API_URL}/users/bookmarked/${recipeId}/`, {}, {
         headers: { Authorization: `Bearer ${getToken()}` },
       })
       console.log('DATA->', data)
@@ -246,11 +228,9 @@ const RecipeSingle = () => {
     event.preventDefault()
     try {
       console.log(`REMOVE THIS RECIPE FROM BOOKMARKS ->`, recipeId)
-      const { data } = await axios.delete(`${API_URL}/users/bookmarked/${bookmarkId}`, {
+      const { data } = await axios.delete(`${API_URL}/users/bookmarked/${bookmarkId}/`, {
         headers: { Authorization: `Bearer ${getToken()}` },
       })
-      // console.log('DATA->', data)
-      // console.log('data.detail', data.detail)
       setBookmarked(false)
       toast.success(data.detail, {
         position: "top-left",
@@ -284,7 +264,7 @@ const RecipeSingle = () => {
       console.log(`ADD THIS TO Tested ->`, recipeId, {
         headers: { Authorization: `Bearer ${getToken()}` },
       })
-      const { data } = await axios.post(`${API_URL}/users/tested/${recipeId}`, {}, {
+      const { data } = await axios.post(`${API_URL}/users/tested/${recipeId}/`, {}, {
         headers: { Authorization: `Bearer ${getToken()}` },
       })
       console.log(data)
@@ -320,7 +300,7 @@ const RecipeSingle = () => {
     event.preventDefault()
     try {
       console.log(`delete this recipe`, recipeId)
-      const { data } = await axios.delete(`${API_URL}/recipes/${recipeId}`, {
+      const { data } = await axios.delete(`${API_URL}/recipes/${recipeId}/`, {
         headers: { Authorization: `Bearer ${getToken()}` },
       })
       toast.success(data.detail, {
@@ -345,11 +325,10 @@ const RecipeSingle = () => {
   const handleAddComment = async (event) => {
     event.preventDefault()
     try {
-      // console.log(getToken())
       console.log('form data -->', formData)
 
       const res = await axios.post(
-        `${API_URL}/reviews/${recipeId}`,
+        `${API_URL}/reviews/${recipeId}/`,
         formData, {
         headers: { Authorization: `Bearer ${getToken()}` },
       })
@@ -396,18 +375,16 @@ const RecipeSingle = () => {
         <>
           <Container className="header-wrapper">
             <Row>
-              {/* <Row className="flex-column-reverse flex-md-row"> */}
               <Col className="col-12" md="5">
                 <h1>{recipe.name}</h1>
                 <span className="d-block d-lg-inline mb-3 mb-lg-0">by <Link to={`/profile/${recipe.owner.username}`}>{recipe.owner.username}</Link></span>
-                {/* <p>{recipe.description}</p> */}
+
                 {userIsAuthenticated() && (currentUser.id === recipe.owner.id) ?
                   <>
                     <Link to={`/recipes/${recipeId}/edit`}>
                       <button className='edit-button'>EDIT</button>
                     </Link>
                     <button className='edit-button' onClick={handleDelete}>DELETE</button>
-
                   </>
                   :
                   <></>
@@ -457,10 +434,6 @@ const RecipeSingle = () => {
                         <img className="bookmark-img" src={bookmarkImg} alt="Add Bookmark" />
                         {/* Add Bookmark */}
                       </button>
-                      {/* <button onClick={handleAddToTested}>
-                        <img className="bookmark-img" src={notTestedImg} alt="Not Tested, add to test" />
-                        Add to tested
-                      </button> */}
                     </>
                   }
                   {tested ?
@@ -501,7 +474,6 @@ const RecipeSingle = () => {
                         return (
                           <div key={item.id} className="ingredient">
                             <p className="ms-2 mx-2">{item.quantity} {item.measurement}</p>
-                            {/* <p className="mx-2">of</p> */}
                             <Link to={`/bases/${item.base_oil.id}`}>
                               <p className="fw-bold">{item.base_oil.name} oil</p>
                             </Link>
@@ -517,7 +489,6 @@ const RecipeSingle = () => {
                         return (
                           <div key={item.id} className="ingredient">
                             <p className="ms-2 mx-2">{item.quantity} {item.measurement}</p>
-                            {/* <p className="mx-2">of</p> */}
                             <p className="fw-bold">{item.other_ingredient.name}</p>
                           </div>
                         )
@@ -531,7 +502,6 @@ const RecipeSingle = () => {
                         return (
                           <div key={item.id} className="ingredient">
                             <p className="ms-2 mx-2">{item.quantity} {item.measurement}</p>
-                            {/* <p className="mx-2">of</p> */}
                             <Link to={`/essentials/${item.essential_oil.id}`}>
                               <p className="fw-bold">{item.essential_oil.name} essential oil</p>
                             </Link>
@@ -565,24 +535,14 @@ const RecipeSingle = () => {
               >
                 <div className="d-flex align-center rate-container">
                   <p>Rate</p>
-                  {/* <label htmlFor="rate">Rate</label> */}
+
                   <Rating
                     name="rate"
                     onClick={handleRating}
                     transition={true}
                     size={20}
-                    // showTooltip={true}
                     emptyColor="darkgrey"
-                    // fillColor="yellow"
                     required
-                    // fillColorArray={[
-                    //   'darkred',
-                    //   'darkorange',
-                    //   'gold',
-                    //   'darkcyan',
-                    //   'darkgreen',
-                    // ]}
-                    // customIcons={customIcons}
                     ratingValue={formData.rating} /* Rating Props */
                   />
                 </div>
@@ -612,11 +572,9 @@ const RecipeSingle = () => {
                   Mousewheel,
                   FreeMode,
                 ]}
-                // spaceBetween={15}
                 slidesPerView={3}
                 freeMode={true}
                 mousewheel={true}
-                // navigation={{hideOnClick: true}}
                 pagination={{ clickable: true }}
                 breakpoints={{
                   375: {
@@ -637,9 +595,6 @@ const RecipeSingle = () => {
                     spaceBetween: 10,
                   },
                 }}
-              // scrollbar={{ draggable: true }}
-              // onSwiper={(swiper) => console.log(swiper)}
-              // onSlideChange={() => console.log('slide change')}
               >
                 {comments.map((comment) => {
                   return (
@@ -658,15 +613,6 @@ const RecipeSingle = () => {
                             onClick={handleRating}
                             size={20}
                             emptyColor="darkgrey"
-                            // fillColor="yellow"
-                            // fillColorArray={[
-                            //   'darkred',
-                            //   'darkorange',
-                            //   'gold',
-                            //   'darkcyan',
-                            //   'darkgreen',
-                            // ]}
-                            // customIcons={customIcons}
                             ratingValue={comment.rating}
                             allowHover={false}
                             readonly={true} /* Rating Props */

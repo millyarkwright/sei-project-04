@@ -1,21 +1,17 @@
 // * Hooks
 import { useState, useEffect } from "react"
 import { Link, useNavigate } from 'react-router-dom'
-
 // * Axios & URLs
 import axios from "axios"
 import { API_URL } from '../../config'
-
 // * Helpers
 import { getToken } from '../helpers/auth'
 import { removeToken } from "../helpers/auth"
-
 // * React Bootstrap Components 
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
-
-// * Toast
+// * React
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -48,7 +44,7 @@ const ProfileDetail = () => {
   const handleDeleteAccount = async (event) => {
     event.preventDefault()
     try {
-      const { data } = await axios.delete(`${API_URL}/users/profile/${userInfo.username}`, {
+      const { data } = await axios.delete(`${API_URL}/users/profile/${userInfo.username}/`, {
         headers: { Authorization: `Bearer ${getToken()}` },
       })
       console.log(data)

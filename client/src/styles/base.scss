@@ -1,19 +1,12 @@
 * {
   box-sizing: border-box;
-  // font-family: 'Fira Sans', sans-serif;
-  font-family: 'Literata', serif;
 }
 
 .site-wrapper{
+  font-family: 'Literata', serif;
   display:flex;
   flex-direction: column;
   min-height: 100vh;
-  // background-color: lightblue;
-  // background:  linear-gradient(0deg, rgba(255, 255, 255, 0.40), rgba(255, 255, 255, 0.20)),url(../assets/background.jpg);
-  // transform: rotate(-0.10deg);
-  // background-repeat: none;
-  // background-size: cover;
-  // background-position:center;
 }
 
 
@@ -21,7 +14,6 @@
 .container {
 	animation: fadeInAnimation ease .5s;
 	animation-iteration-count: 1;
-	animation-fill-mode: forwards;
   
 }
 
@@ -33,18 +25,3 @@
 		opacity: 1;
 	}
 }
-
-// body {
-//   animation: fadeInAnimation ease 3s;
-//   animation-iteration-count: 1;
-//   animation-fill-mode: forwards;
-// }
-
-// @keyframes fadeInAnimation {
-//   0% {
-//       opacity: 0;
-//   }
-//   100% {
-//       opacity: 1;
-//    }
-// }
