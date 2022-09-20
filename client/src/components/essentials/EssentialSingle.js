@@ -19,6 +19,7 @@ const EssentialSingle = () => {
   const [error, setError] = useState('')
 
   useEffect(() => {
+    window.scrollTo({top: 0, left: 0, behavior: 'instant' })
     const getData = async () => {
       try {
         const { data } = await axios.get(`${API_URL}/essentialoils/${eoId}/`)
@@ -30,7 +31,7 @@ const EssentialSingle = () => {
       }
     }
     getData()
-  }, [])
+  }, [eoId])
 
   return (
     <Container className="oil-single-wrapper min-vh-100">

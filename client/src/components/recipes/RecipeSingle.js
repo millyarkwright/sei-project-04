@@ -155,6 +155,7 @@ const RecipeSingle = () => {
   // * Get Recipe Data
 
   useEffect(() => {
+    window.scrollTo({top: 0, left: 0, behavior: 'instant' })
     const getData = async () => {
       try {
         const { data } = await axios.get(`${API_URL}/recipes/${recipeId}/`)
