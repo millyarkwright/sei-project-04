@@ -207,53 +207,5 @@
     "groups": [],
     "user_permissions": []
   }
-},
-{
-  "model": "jwt_auth.bookmarkedrecipe",
-  "pk": 11,
-  "fields": {
-    "bookmarked_by": 1,
-    "bookmarked_recipe": 23
-  }
-},
-{
-  "model": "jwt_auth.bookmarkedrecipe",
-  "pk": 16,
-  "fields": {
-    "bookmarked_by": 1,
-    "bookmarked_recipe": 7
-  }
-},
-{
-  "model": "jwt_auth.testedrecipe",
-  "pk": 1,
-  "fields": {
-    "tested_by": 1,
-    "tested_recipe": 1
-  }
-},
-{
-  "model": "jwt_auth.testedrecipe",
-  "pk": 3,
-  "fields": {
-    "tested_by": 1,
-    "tested_recipe": 8
-  }
-},
-{
-  "model": "jwt_auth.testedrecipe",
-  "pk": 4,
-  "fields": {
-    "tested_by": 1,
-    "tested_recipe": 9
-  }
-},
-{
-  "model": "jwt_auth.testedrecipe",
-  "pk": 5,
-  "fields": {
-    "tested_by": 1,
-    "tested_recipe": 7
-  }
 }
 ]
