@@ -80,7 +80,7 @@ Clone or download the repo then do the following in Terminal:
 * SCSS & Bootstrap
 
 #### Development tools:
-* VS code
+* VS Code
 * npm
 * Insomnia
 * TablePlus
@@ -88,8 +88,7 @@ Clone or download the repo then do the following in Terminal:
 * Google Chrome dev tools
 * Heroku (deployment)
 * Trello Board (planning and timeline)
-* Excalidraw (wireframing)
-* Figma (design)
+* Figma (design & wireframing)
 * Lucidraw (Entity Relationship Diagram for database architecture and flow diagram for user journey)
 
 ## Approach taken (featured code)
