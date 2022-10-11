@@ -104,19 +104,29 @@ class CreateRecipeView(APIView):
       print(recipe_to_add.data['id'])
 
       for item in req_eo_amount:
+        print('---EO ITEM')
+        print(item)
         item['recipe'] = recipe_to_add.data['id']
+        print('---EO ITEM[RECIPE]---')
+        print(item)
         amount_to_add = EssentialOilAmountFullSerializer(data=item)
         amount_to_add.is_valid(True)
         amount_to_add.save()
         
       for item in req_bo_amount:
+        print('---EO ITEM')
+        print(item)
         item['recipe'] = recipe_to_add.data['id']
+        print('---BO ITEM[RECIPE]---')
+        print(item)
         amount_to_add = BaseOilAmountFullSerializer(data=item)
         amount_to_add.is_valid(True)
         amount_to_add.save()  
 
       for item in req_oi_amount:
         item['recipe'] = recipe_to_add.data['id']
+        print('---OI ITEM[RECIPE]---')
+        print(item)
         amount_to_add = OtherIngredientAmountFullSerializer(data=item)
         amount_to_add.is_valid(True)
         amount_to_add.save()

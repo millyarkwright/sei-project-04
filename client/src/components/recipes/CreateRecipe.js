@@ -49,7 +49,7 @@ const CreateRecipe = () => {
     measurement: ''
   },])
 
-  // * Other IngrForm Fieldedient
+  // * Other Ingredient Form Field
   const [oiFormFields, setOiFormFields] = useState([{
     other_ingredient: '',
     quantity: '',
@@ -269,6 +269,7 @@ const CreateRecipe = () => {
 
   // * Essential Oil Handlers
   const handleEssentialChange = (event, index) => {
+    console.log('eo change event', event)
     let data = [...eoFormFields]
     data[index]['essential_oil'] = event.value
     console.log('HandleEssentialChange DATA -->', data)
@@ -497,8 +498,6 @@ const CreateRecipe = () => {
                 {eoFormFields.map((form, index) => {
                   return (
                     <div key={index} className='mt-2' >
-
-
                       <Select
                         name="essential_oil"
                         options={essentialOptions}
@@ -507,10 +506,8 @@ const CreateRecipe = () => {
                         classNamePrefix="select"
                       >
                       </Select>
-
                       <Row className="amounts mt-1">
                         <Col className="col-4">
-
                           <input
                             name='quantity'
                             placeholder='Quantity'
@@ -525,11 +522,9 @@ const CreateRecipe = () => {
                             onChange={event => handleEoFormChange(event, index)}
                             value={form.measurement}
                           />
-
                         </Col>
                         <Col className="col-3">
                           <button className='remove' onClick={() => removeEoFields(index)}>Remove</button>
-
                         </Col>
                       </Row>
                     </div>
@@ -537,7 +532,6 @@ const CreateRecipe = () => {
                 })}
                 <Row>
                   <button onClick={addEoFields}>Add More..</button>
-
                 </Row>
               </form>
             </Row>
