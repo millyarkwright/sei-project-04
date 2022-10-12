@@ -137,7 +137,7 @@ We first need to save the base recipe (“Recipe” Model) as we need the Recipe
 
 ![Create Recipe Backend](./screenshots/create_recipe_backend.png)
 
-### Frontend (Days 6-9)
+### Frontend (Day 6 & 9)
 
 For the front end, we used React Hooks, Axios for the data requests from the backend and react-router-dom was used for page navigation in React. We also used a few React Components such as Toastify, Swiper, Simple Star Rating and the React Grid system, the latter was particularly useful when it came to making the app fully responsive. We used a combination of React Bootstrap and SCSS for styling. 
 
