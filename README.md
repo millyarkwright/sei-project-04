@@ -104,6 +104,8 @@ After refining our features, detailing all the user functionalities and defining
 The only tables we didn’t implement from the below ERD were the Blends and blends_essential_oil (join table). Each essential oil has essential oils that it blends well with, rather than having a separate model and join table for these “blends well with” oils, we decided to include a field - called “blends_well_with” - directly to the Essential Oils model and have a ManyToMany relationship with itself.
 
 ![ERD](./screenshots/erd.jpeg)
+![ERD](screenshots/erd.jpeg)
+
 
 **User Journey**
 
