@@ -189,7 +189,7 @@ We found we weren’t able to use the same HandleFormChange functions we were us
 ## Wins & Challenges
 
 **Wins**: 
-* I’m no doubt biased but I really love this app! I feel its responsive design across multiple platforms, user functionalities and depth make this a useful and enjoyable app to use. As a lover of aromatherapy, I’m definitely going to be using this app as my own personal recipe book!
+* I’m no doubt biased but I really love this app! I feel its responsive design, user functionalities and depth make this a useful and enjoyable app to use. As a lover of aromatherapy, I’m definitely going to be using this app as my own personal recipe book!
 * Also a challenge, the create recipe functionality was a big win and I’m pleased with how it turned out, particularly as this was the first using React Select and dynamic forms. 
 
 **Challenges**: 
