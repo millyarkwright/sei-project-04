@@ -166,29 +166,29 @@ ROOT_URLCONF = 'project.urls' #check if you have this already, if not add it in
 # ! Static Files (New - https://github.com/heroku/python-getting-started/blob/main/gettingstarted/settings.py)
 # Whitenoise middleware also added in for this. File name in directory changed to "static" as per example linked above)
 
-# STATIC_ROOT = BASE_DIR / "staticfiles"
-# STATIC_URL = "static/"
-
-# # Not in example, adding in to test.
-# STATICFILES_DIRS = (
-#     os.path.join(BASE_DIR, 'client', "build", "static"),
-# )
-
-# # Enable WhiteNoise's GZip compression of static assets.
-# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-
-# ! Static Files (New - https://github.com/heroku/python-getting-started/blob/main/gettingstarted/settings.py) - merging what worked previously
-# Whitenoise middleware also added in for this. File name in directory changed to "static" as per example linked above)
-
 STATIC_ROOT = BASE_DIR / "staticfiles"
-STATIC_URL = "staticfiles/"
+STATIC_URL = "static/"
 
 # Not in example, adding in to test.
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'client', "build", "staticfiles"),
+    os.path.join(BASE_DIR, 'client', "build", "static"),
 )
 
 # Enable WhiteNoise's GZip compression of static assets.
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+# ! Static Files (New - https://github.com/heroku/python-getting-started/blob/main/gettingstarted/settings.py) - merging what worked previously
+# Whitenoise middleware also added in for this. File name in directory changed to "static" as per example linked above)
+
+# STATIC_ROOT = BASE_DIR / "staticfiles"
+# STATIC_URL = "staticfiles/"
+
+# # Not in example, adding in to test.
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, 'client', "build", "staticfiles"),
+# )
+
+# # Enable WhiteNoise's GZip compression of static assets.
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 django_on_heroku.settings(locals())
