@@ -33,7 +33,7 @@ Email: user1@email.com | Password: user1123
 ### Code Installation
 Clone or download the repo then do the following in Terminal:
 
-* Install back-end dependencies: `pipenv`
+* Install back-end dependencies: `pipenv install`
 * Enter Shell for project: `pipenv shell`
 * Make Migrations: `python manage.py makemigrations`
 * Migrate: `python manage.py migrate`
