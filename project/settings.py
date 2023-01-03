@@ -167,7 +167,7 @@ STATICFILES_DIRS = (
 # Whitenoise middleware also added in for this. File name in directory changed to "static" as per example linked above)
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
 
 # Not in example, adding in to test.
 STATICFILES_DIRS = (
