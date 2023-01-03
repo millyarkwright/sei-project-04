@@ -56,6 +56,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -148,16 +149,27 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 ROOT_URLCONF = 'project.urls' #check if you have this already, if not add it in
 
+# ! Static Files Original
 STATIC_URL = '/static/' # same with this
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'client', "build", "static"),
 )
 
+# ? Static Files Update of Originals (works with no whitenoise fail)
 # STATIC_URL = '/staticfiles/' # same with this
 
 # STATICFILES_DIRS = (
 #     os.path.join(BASE_DIR, 'client', "build", "staticfiles"),
 # )
+
+# ! Static Files (New - https://github.com/heroku/python-getting-started/blob/main/gettingstarted/settings.py)
+# Whitenoise middleware also added in for this. File name in directory changed to "static" as per example linked above)
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_URL = "static/"
+
+# Enable WhiteNoise's GZip compression of static assets.
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 django_on_heroku.settings(locals())
