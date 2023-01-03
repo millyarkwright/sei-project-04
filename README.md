@@ -33,7 +33,7 @@ Email: user1@email.com | Password: user1123
 ### Code Installation
 Clone or download the repo then do the following in Terminal:
 
-* Install back-end dependencies: `pipenv`
+* Install back-end dependencies: `pipenv install`
 * Enter Shell for project: `pipenv shell`
 * Make Migrations: `python manage.py makemigrations`
 * Migrate: `python manage.py migrate`
@@ -45,7 +45,7 @@ Clone or download the repo then do the following in Terminal:
 * Load Seed data for Users: `python manage.py loaddata jwt_auth/seeds.json`
 * Start back-end server: `python manage.py runserver`
 * Change to front-end directory: `cd client`
-* Install front-end dependencies: `npm`
+* Install front-end dependencies: `npm install`
 * Start front-end server: `npm run start`
 
 ## The Brief
