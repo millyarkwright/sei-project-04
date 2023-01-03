@@ -150,11 +150,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 ROOT_URLCONF = 'project.urls' #check if you have this already, if not add it in
 
 # ! Static Files Original
-STATIC_URL = '/static/' # same with this
+# STATIC_URL = '/static/' # same with this
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'client', "build", "static"),
-)
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, 'client', "build", "static"),
+# )
 
 # ? Static Files Update of Originals (works with no whitenoise fail)
 # STATIC_URL = '/staticfiles/' # same with this
@@ -167,7 +167,7 @@ STATICFILES_DIRS = (
 # Whitenoise middleware also added in for this. File name in directory changed to "static" as per example linked above)
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
-STATIC_URL = "/static/"
+STATIC_URL = "static/"
 
 # Not in example, adding in to test.
 STATICFILES_DIRS = (
